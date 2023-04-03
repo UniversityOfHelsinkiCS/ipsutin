@@ -19,7 +19,7 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: kliksutin
+          image: ipsutin
           tags: production ${{ github.sha }}
           containerfiles: |
             ./Dockerfile
@@ -44,10 +44,10 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Pull image and create a container
-        run: docker create --name kliksutin toska/kliksutin:latest
+        run: docker create --name ipsutin toska/ipsutin:latest
 
       - name: Copy assets from the container
-        run: docker cp kliksutin:/opt/app-root/src ./app
+        run: docker cp ipsutin:/opt/app-root/src ./app
 
       - name: Create Sentry release
         uses: getsentry/action-release@v1

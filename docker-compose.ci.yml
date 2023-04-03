@@ -14,7 +14,7 @@ services:
     command: ['npm', 'run', 'start:test']
     ports:
       - 8000:8000
-    container_name: kliksutin_test
+    container_name: ipsutin_dev
 
   db:
     image: postgres:15.1
@@ -22,4 +22,4 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - 5432:5432
-    container_name: kliksutin_test_db
+    container_name: ipsutin_test_db

@@ -20,12 +20,13 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: kliksutin
+          image: ipsutin
           tags: staging ${{ github.sha }}
           containerfiles: |
             ./Dockerfile
           build-args: |
-            BASE_PATH=/kliksutin
+            BASE_PATH=/ipsutin
+
             GIT_SHA=${{ github.sha }}
             STAGING=true
 

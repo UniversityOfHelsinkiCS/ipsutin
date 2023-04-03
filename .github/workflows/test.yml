@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          path: /home/runner/work/kliksutin/kliksutin/cypress/videos/*
+          path: /home/runner/work/ipsutin/ipsutin/cypress/videos/*

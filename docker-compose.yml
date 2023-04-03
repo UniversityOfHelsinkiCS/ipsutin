@@ -5,7 +5,7 @@ services:
     build:
       context: ./
       dockerfile: dev.Dockerfile
-    image: kliksutin_dev
+    image: ipsutin_dev
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_USER=postgres
@@ -15,7 +15,7 @@ services:
       - ./:/usr/src/app
     ports:
       - 3000:3000
-    container_name: kliksutin_dev
+    container_name: ipsutin_dev
 
   db:
     image: postgres:15.1
@@ -26,7 +26,7 @@ services:
       - 5432:5432
     volumes:
       - pg_data:/data
-    container_name: kliksutin_db
+    container_name: ipsutin_db
 
 volumes:
   pg_data:
