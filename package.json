@@ -94,7 +94,8 @@
         }
       ],
       "react/jsx-props-no-spreading": "off",
-      "import/no-cycle": "off"
+      "import/no-cycle": "off",
+      "import/extensions": "off"
     }
   },
   "prettier": {
