@@ -29,7 +29,7 @@ const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
       <Box sx={cardStyles.card}>
         {questions.map((question) => (
           <div key={question.id}>
-            {question.parentId === null && question.priority !== 0 && (
+            {question.parentId === null && (
               <RenderQuestions
                 control={control}
                 watch={watch}

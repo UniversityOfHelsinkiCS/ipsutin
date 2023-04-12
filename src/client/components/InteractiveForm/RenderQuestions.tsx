@@ -44,9 +44,11 @@ const RenderQuestions = ({
   if (question.visibility?.options) {
     const [...options] = question.visibility.options
 
-    const parent = watch(question.parentId.toString())
+    if (question.parentId !== null) {
+      const parent = watch(question.parentId.toString())
 
-    if (!options.includes(parent)) return null
+      if (!options.includes(parent)) return null
+    }
   }
 
   const components: {
@@ -82,7 +84,7 @@ const RenderQuestions = ({
               control={control}
               watch={watch}
               question={children}
-              questions={childQuestions}
+              questions={questions}
               language={language}
             />
           ))}
