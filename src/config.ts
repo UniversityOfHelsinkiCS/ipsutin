@@ -14,4 +14,4 @@ export const PUBLIC_URL = import.meta.env.PUBLIC_URL || ''
 export const DEFAULT_SURVEY_NAME =
   import.meta.env.DEFAULT_SURVEY_NAME || 'testSurvey'
 
-export const FORM_DATA_KEY = 'curre_local_save'
+export const FORM_DATA_KEY = 'ipsutin_local_save'
