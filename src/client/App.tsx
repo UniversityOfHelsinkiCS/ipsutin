@@ -6,6 +6,7 @@ import { SnackbarProvider } from 'notistack'
 import Footer from './components/Footer'
 
 import useTheme from './theme'
+import InteractiveForm from './components/InteractiveForm/InteractiveForm'
 
 const App = () => {
   const theme = useTheme()
@@ -27,7 +28,7 @@ const App = () => {
             alignItems="center"
             minHeight="100vh"
           >
-            <p>Hello world!</p>
+            <InteractiveForm />
           </Box>
           <Footer />
         </Box>
