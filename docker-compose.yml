@@ -15,6 +15,7 @@ services:
       - ./:/usr/src/app
     ports:
       - 3000:3000
+      - 8000:8000
     container_name: ipsutin_dev
 
   db:
