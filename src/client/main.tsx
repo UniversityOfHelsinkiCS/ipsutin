@@ -6,8 +6,11 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import CssBaseline from '@mui/material/CssBaseline'
 
 import queryClient from './util/queryClient'
+import initializeI18n from './util/il18n'
 
 import App from './App'
+
+initializeI18n()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

@@ -4,7 +4,6 @@ import { initReactI18next } from 'react-i18next'
 import en from '../locales/en.json'
 import fi from '../locales/fi.json'
 import sv from '../locales/sv.json'
-import { inProduction } from '../../config'
 
 declare global {
   interface Window {
@@ -12,7 +11,7 @@ declare global {
   }
 }
 
-const defaultLanguage = inProduction ? 'fi' : 'en'
+const defaultLanguage = 'fi'
 
 const initializeI18n = () =>
   i18n.use(initReactI18next).init({

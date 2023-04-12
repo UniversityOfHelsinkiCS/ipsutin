@@ -16,9 +16,7 @@ const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
 
   console.log(savedData)
 
-  let { language } = i18n
-
-  if (!language) language = 'fi'
+  const { language } = i18n
 
   const submitFormData = (event: BaseSyntheticEvent) => {
     handleSubmit(event)

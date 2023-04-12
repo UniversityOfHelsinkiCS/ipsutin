@@ -1,76 +1,15 @@
 {
   "common": {
-    "appName": "Curre",
-    "submit": "Gjorda val",
-    "updateSubmit": "Uppdatera val",
-    "reset": "Börja om från början",
-    "openForm": "Fortsätt till frågorna",
-    "admin": "administration"
+    "appName": "Ipsutin",
+    "submit": "Valinnat tehty",
+    "updateSubmit": "Päivitä valinnat",
+    "reset": "Aloita alusta",
+    "openForm": "Jatka kysymyksiin",
+    "admin": "ylläpito"
   },
   "footer": {
-    "contactSupport": "Kontakta supporten: <mailTo>{{supportEmail}}</mailTo>",
-    "licenseText": "Detta arbete är licensierat",
-    "licenseLinkText": "med CC BY-NC-SA 4.0 licensä"
-  },
-  "facultySelect": {
-    "welcomeMessage": "",
-    "introMessage": "Börja med att i menyn välja det fakultet där kursen kommer att genomföras.",
-    "inputLabel": "Fakultet"
-  },
-  "courseSelect": {
-    "introMessage": "Vilken kurs håller du på att anordna?",
-    "inputLabel": "Kurs"
-  },
-  "recommendations": {
-    "title": "Verktyg som är till ditt förfogande",
-    "infoBoxText": "Nedan finns en lista över verktyg som Tjänster för digital undervisning och kontinuerligt lärande (DOJO) erbjuder officiellt digipedagogiskt stöd för. Listan kommer senare att kompletteras med andra program som är tillgängliga för universitetets lärare (t.ex. Office 365-produktfamiljen)"
-  },
-  "results": {
-    "title": "En sammanfattning av dina val",
-    "resultsMessage": "Vi listade även en sammanfattning av dina val nedan",
-    "proceedTitle": "Hittade du vad du letade efter?",
-    "proceedToExit": "Ja",
-    "proceedToConsultation": "Nej",
-    "proceedEmailInfoText": "Om du vill få en sammanfattning skickad per e-post, tryck då på skicka knappen nedan.",
-    "summaryEmailSubject": "Din Curre sammanfattning",
-    "sendSummaryMail": "Skicka",
-    "sendSuccess": "Ett sammandrag har skickats till din e-post",
-    "endMessage": "Tack för att du har använt Curre!",
-    "backToMessage": "Tillbaka till valmenyn"
-  },
-  "contact": {
-    "title": "Kontaktmöjlighet",
-    "contactMessage": "Skicka ett meddelande här för att fortsätta konversationen med en expert",
-    "contactMethodLabel": "Välj ett sätt att kommunicera på",
-    "contactMethodEmail": "E-post",
-    "contactMethodConsultation": "Konsultation",
-    "contactTicketText": "Fyll i ett kontaktformulär",
-    "contactTicketContentLabel": "Innehåll",
-    "contactTicketSenderEmail": "Användarens e-postadress:",
-    "contactTicketSenderFullname": "Användarens namn:",
-    "contactTicketUserMessage": "Användarens meddelande:",
-    "contactTicketUserSummary": "Användarens sammandrag:",
-    "contactTicketSend": "Skicka",
-    "sendSuccess": "Tack för att du har använt Curre, vi kommer att vara i kontakt med dig snarast möjligt!"
-  },
-  "openai": {
-    "title": "Artificiell intelligens i undervisningen",
-    "infoBoxText": "[Artificiell intelligens i undervisningen]( https://teaching.helsinki.fi/instruktioner/artikel/artificiell-intelligens-i-undervisningen) är för tillfället ett aktuellt ämne. Curre ger dig möjligheten att prova vilken typ av möjligheter [OpenAI:n](https://openai.com/) ChatGPT-språkmodell kan erbjuda dig för att stödja din undervisning. Det är dock viktigt att notera att dessa förslag kan innehålla sakfel och att det har förts in som en del av Curre. Detta för att varje lärare vid Helsingfors Universitet ska genom att testa ha möjlighet att bekanta sig med det aktuella ämnet. \n\n Det finns två olika alternativ tillgängliga för att ställa frågor till den artificiella intelligensen relaterade till din undervisning. Alternativt genom det fria textfältet kan man erbjuda den artificiella intelligensen kursens titel och se hurdana rubriker den föreslår för kursens föreläsningar. I det andra alternativet kan man välja någon av Curres inlärningsmetoder, varefter den artificiella intelligensen föreslår olika sätt man kan utnyttja programvaran som Curre har föreslagit. Detta för att stödja den valda inlärningsmetoden under kursen. \n\n Helsingfors universitets utbildningsråd har publicerat [Universitets riktlinjer för användning av AI]( https://studies.helsinki.fi/system/files/inline-files/AI_riktlinjer_undervisning_Helsingfors_universitet.pdf) 16.2.2023. [Global Campus](https://blogs.helsinki.fi/globalcampus/) undersöker och utvecklar olika användningsområden för ChatGPT. Om ämnet intresserar dig kan du också vara i direkt kontakt med Global Campus projekts expert Jussi Wrighti (jussi.wright@helsinki.fi)",
-    "giveCourseInfoText": "Om du vill ha föreläsnings idéer till dina kurser, ange kursnamnet nedan.",
-    "courseInfoText": "Om du vill ha föreläsnings idéer till dina kurser, tryck på skicka knappen",
-    "courseCompletionPrompt": "Ange 5 föreläsningsämnen för kursen med rubriken \"{{courseName}}\".",
-    "selectDimensionInfoText": "Om du vill ha idéer för användningen av verktygen, välj en inlärningsmetod som stöds",
-    "dimensionSelect": "Inlärningsmetod",
-    "dimensionCompletionPrompt": "Hur kan jag stödja ämnet \"{{dimensionName}}\" på universitetskursen? Ange 3 exempel med hjälp av programvaran {{recommendations}}?",
-    "send": "Skicka",
-    "or": " eller ",
-    "apiErrorMessage": "Det gick inte att få kontakt med servern"
-  },
-  "admin": {
-    "selectDimension": "Välj inlärningsform",
-    "selectQuestion": "Välj fråga",
-    "selectLanguage": "Välj språk",
-    "save": "Spara",
-    "saveSuccess": "Sparad"
+    "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>",
+    "licenseText": "Tämä teos on lisensoitu",
+    "licenseLinkText": "CC BY-NC-SA 4.0 -lisenssillä"
   }
 }
