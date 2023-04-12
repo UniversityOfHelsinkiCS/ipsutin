@@ -1,4 +1,4 @@
-# Kliksutin ![Release](https://github.com/UniversityOfHelsinkiCS/kliksutin/actions/workflows/production.yml/badge.svg) ![Release](https://github.com/UniversityOfHelsinkiCS/kliksutin/actions/workflows/test.yml/badge.svg)
+# Ipsutin
 
 ## Requirements
 
@@ -21,15 +21,7 @@
     - [Docker Compose for Linux](https://docs.docker.com/compose/install/)
 
 3.  Install NPM
-
-        You can download and install Node.js from the official website: https://nodejs.org/en/
-
-        1. Open your terminal or command prompt.
-        2. Run the following command to install npm:
-
-    ```bash
-        npm install npm@latest -g
-    ```
+    You can download and install Node.js from the official website: https://nodejs.org/en/
 
 ## Scripts
 
@@ -46,7 +38,7 @@ Run all e2e tests
 npm run test
 ```
 
-Open cypress, then run the container (set the port [here](https://github.com/UniversityOfHelsinkiCS/kliksutin/blob/ffe33eee1f187f260cd27c587825fbe4771430ba/cypress/support/e2e.ts#LL19))
+Open cypress, then run the container (set the port [here](cypress/support/e2e.ts))
 
 ```bash
 npm run test:cypress
