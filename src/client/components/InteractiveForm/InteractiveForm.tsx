@@ -20,12 +20,7 @@ const InteractiveForm = () => {
 
   const savedFormData = getSavedInstance()
 
-  const {
-    formState: { isSubmitted },
-    handleSubmit,
-    control,
-    watch,
-  } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
     defaultValues: savedFormData,
@@ -42,13 +37,12 @@ const InteractiveForm = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
-        <Grid id="curre-main-section" item sm={12} md={7} xl={8}>
+        <Grid id="ipsutin-main-section" item sm={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <RenderSurvey
               control={control}
               watch={watch}
               handleSubmit={handleSubmit(onSubmit)}
-              isSubmitted={isSubmitted}
             />
           </form>
         </Grid>

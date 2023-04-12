@@ -8,12 +8,7 @@ import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 import useQuestions from '../../hooks/useQuestions'
 
-const RenderSurvey = ({
-  control,
-  watch,
-  handleSubmit,
-  isSubmitted,
-}: InputProps) => {
+const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
   const { t, i18n } = useTranslation()
   const questions = useQuestions()
   const { cardStyles, formStyles } = styles
@@ -21,7 +16,9 @@ const RenderSurvey = ({
 
   console.log(savedData)
 
-  const { language } = i18n
+  let { language } = i18n
+
+  if (!language) language = 'fi'
 
   const submitFormData = (event: BaseSyntheticEvent) => {
     handleSubmit(event)
@@ -55,7 +52,7 @@ const RenderSurvey = ({
               variant="contained"
               onClick={submitFormData}
             >
-              {isSubmitted ? t('updateSubmit') : t('submit')}
+              {t('submit')}
             </Button>
             <ResetForm />
           </Stack>
