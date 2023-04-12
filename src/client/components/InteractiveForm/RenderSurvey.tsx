@@ -1,15 +1,12 @@
-import React, { BaseSyntheticEvent, useState } from 'react'
+import React, { BaseSyntheticEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, Stack } from '@mui/material'
-import useSurvey from '../../hooks/useSurvey'
 import { InputProps } from '../../types'
-import SelectFaculty from './SelectFaculty'
 import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
-import { getSelectedDimensions } from '../../util/dimensions'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
-import SelectCourse from './SelectCourse'
+import useQuestions from '../../hooks/useQuestions'
 
 const RenderSurvey = ({
   control,
@@ -18,39 +15,26 @@ const RenderSurvey = ({
   isSubmitted,
 }: InputProps) => {
   const { t, i18n } = useTranslation()
-  const { survey, isLoading } = useSurvey()
+  const questions = useQuestions()
   const { cardStyles, formStyles } = styles
   const savedData = sessionStorage.getItem(FORM_DATA_KEY)
-  const [showQuestions, setShowQuestions] = useState(
-    savedData && savedData !== '{}'
-  )
+
+  console.log(savedData)
 
   const { language } = i18n
-
-  const dimensions = getSelectedDimensions(survey, watch)
-
-  const isAllowedToProceed = () => {
-    const isFacultySelected = watch('faculty') !== ''
-
-    return isFacultySelected && dimensions.length > 0
-  }
 
   const submitFormData = (event: BaseSyntheticEvent) => {
     handleSubmit(event)
   }
 
-  if (isLoading) return null
-
-  const questions = survey.Questions
+  if (!questions) return null
 
   return (
     <Box sx={cardStyles.outerBox}>
-      <SelectFaculty control={control} />
-      <SelectCourse control={control} />
       <Box sx={cardStyles.card}>
         {questions.map((question) => (
           <div key={question.id}>
-            {question.parentId === null && question.priority === 0 && (
+            {question.parentId === null && question.priority !== 0 && (
               <RenderQuestions
                 control={control}
                 watch={watch}
@@ -59,46 +43,22 @@ const RenderSurvey = ({
                 language={language}
               />
             )}
-
-            {showQuestions &&
-              question.parentId === null &&
-              question.priority !== 0 && (
-                <RenderQuestions
-                  control={control}
-                  watch={watch}
-                  question={question}
-                  questions={questions}
-                  language={language}
-                />
-              )}
           </div>
         ))}
 
-        <Box sx={formStyles.stackBox}>
-          {!showQuestions ? (
+        <Box sx={formStyles.stackBoxWrapper}>
+          <Stack sx={formStyles.stack} direction="row">
             <Button
-              data-cy="open-form-button"
-              disabled={dimensions && !isAllowedToProceed()}
-              onClick={() => setShowQuestions(true)}
+              sx={formStyles.stackButton}
+              type="submit"
+              data-cy="submit-form-button"
+              variant="contained"
+              onClick={submitFormData}
             >
-              {t('openForm')}
+              {isSubmitted ? t('updateSubmit') : t('submit')}
             </Button>
-          ) : (
-            <Box sx={formStyles.stackBoxWrapper}>
-              <Stack sx={formStyles.stack} direction="row">
-                <Button
-                  sx={formStyles.stackButton}
-                  type="submit"
-                  data-cy="submit-form-button"
-                  variant="contained"
-                  onClick={submitFormData}
-                >
-                  {isSubmitted ? t('updateSubmit') : t('submit')}
-                </Button>
-                <ResetForm />
-              </Stack>
-            </Box>
-          )}
+            <ResetForm />
+          </Stack>
         </Box>
       </Box>
     </Box>

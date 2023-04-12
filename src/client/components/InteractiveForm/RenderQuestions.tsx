@@ -4,7 +4,6 @@ import { InputProps, Locales, PossibleChoiceTypes, Question } from '../../types'
 import styles from '../../styles'
 import MultiChoice from '../Choices/MultiChoice'
 import SingleChoice from '../Choices/SingleChoice'
-import DimensionSelect from '../Choices/DimensionSelect'
 import Markdown from '../Common/Markdown'
 import ShowMore from '../Common/ShowMore'
 
@@ -55,7 +54,6 @@ const RenderQuestions = ({
   } = {
     singleChoice: SingleChoice,
     multipleChoice: MultiChoice,
-    dimensions: DimensionSelect,
     info: SingleChoice,
   }
 
