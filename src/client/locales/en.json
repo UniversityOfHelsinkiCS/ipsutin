@@ -1,0 +1,77 @@
+{
+  "common": {
+    "appName": "Curre",
+    "submit": "Proceed with these choices",
+    "updateSubmit": "Update choices",
+    "openForm": "Proceed to the questions",
+    "admin": "admin"
+  },
+  "footer": {
+    "contactSupport": "Contact support: <mailTo>{{supportEmail}}</mailTo>",
+    "licenseText": "Tämä teos on lisensoitu",
+    "licenseLinkText": "CC BY-NC-SA 4.0 -lisenssillä"
+  },
+  "facultySelect": {
+    "welcomeMessage": "",
+    "introMessage": "Start by selecting your faculty",
+    "inputLabel": "Your Faculty"
+  },
+  "courseSelect": {
+    "introMessage": "Mitä kurssia olet järjestämässä?",
+    "inputLabel": "Kurssi"
+  },
+  "recommendations": {
+    "title": "Tools that you could use",
+    "recommendationMessage": "Below our recommendations on tools to use"
+  },
+  "results": {
+    "title": "Summary of your choices",
+    "resultsMessage": "We listed the summary of your choices for you below",
+    "proceedTitle": "Löysitkö etsimäsi?",
+    "proceedToExit": "Yes",
+    "proceedToConsultation": "No",
+    "proceedEmailInfoText": "If you would like to have the summary send to your email, enter your email below",
+    "summaryEmailSubject": "Curre yhteenvetosi",
+    "emailIsRequired": "Email is required",
+    "emailIsIncorrect": "Email is incorrect, check input",
+    "sendSummaryMail": "Send",
+    "sendSuccess": "Summary email sent successfully",
+    "endMessage": "Thank you for using Curre!",
+    "backToMessage": "Back to the questions"
+  },
+  "contact": {
+    "title": "Contact page",
+    "contactMessage": "Do you want to contact us by email or book a consultation appointment?",
+    "contactMethodLabel": "Select contact method",
+    "contactMethodEmail": "Email",
+    "contactMethodConsultation": "Consultation",
+    "contactTicketText": "Fill in the form below",
+    "contactTicketContentLabel": "Content",
+    "contactTicketSenderEmail": "User's email:",
+    "contactTicketSenderFullname": "User's name:",
+    "contactTicketUserMessage": "User's message:",
+    "contactTicketUserSummary": "User's summary:",
+    "contactTicketSend": "Send",
+    "sendSuccess": "Thank you for using Curre, we'll be in touch!"
+  },
+  "openai": {
+    "title": "Tekoäly opetuksessa",
+    "infoBoxText": "[Tekoäly opetuksessa](https://teaching.helsinki.fi/ohjeet/artikkeli/tekoaly-opetuksessa) on tällä hetkellä ajankohtainen aihe. Curre antaa sinulle mahdollisuuden kokeilla, millaisia ehdotuksia [OpenAI:n](https://openai.com/) ChatGPT-kielimalli voisi tuottaa opetuksesi tueksi. On tärkeää huomioida, että nämä ehdotukset saattavat sisältää asiavirheitä ja ne ovat tuotu osaksi Currea, jotta jokaisella Helsingin yliopiston opettajalla olisi mahdollisuus kokeilun kautta tutustua tähän ajankohtaiseen aiheeseen.\n\nTarjolla on kaksi erilaista vaihtoehtoa kysyä tekoälyltä opetukseesi liittyviä kysymyksiä. Avoimen tekstikentän kautta voit antaa tekoälylle kurssin otsikon ja katsoa, millaisia luento-otsikoita tekoäly kurssillesi ehdottaa. Toisessa vaihtoehdossa voit valita jonkin Curressa valitsemistasi oppimismuodoista, jonka jälkeen tekoäly ehdottaa erilaisia tapoja hyödyntää Curren suosittelemia ohjelmistoja kyseisen oppimismuodon tukemiseksi kurssin aikana.\n\nHelsingin yliopiston opintoasiainneuvosto on julkaissut [Tekoälyn käytön linjaukset Helsingin yliopistossa](https://teaching.helsinki.fi/system/files/inline-files/tekoalylinjaukset_Helsingin_yliopiston_opetuksessa_0.pdf) 16.2.2023. [Global Campus](https://blogs.helsinki.fi/globalcampus/) tutkii ja kehittää erilaisia ChatGPT:n käyttötapoja. Mikäli aihe kiinnostaa, voit olla myös suoraan yhteydessä Global Campus -projektin asiantuntijaan Jussi Wrightiin (jussi.wright@helsinki.fi)",
+    "giveCourseInfoText": "If you would like lecture ideas for your course, enter the course name below",
+    "courseInfoText": "Jos haluat luentoideoita kurssillesi, paina lähetä-nappia.",
+    "courseCompletionPrompt": "Enter 5 lecture topics for a course with the title \"{{courseName}}\".",
+    "selectDimensionInfoText": "For ideas on how to use the tools, select the dimension to support",
+    "dimensionSelect": "Dimension",
+    "dimensionCompletionPrompt": "How can I support the topic \"{{dimensionName}}\" in a university course? Give 3 examples using the software {{recommendations}}?",
+    "send": "Send",
+    "or": " or ",
+    "apiErrorMessage": "No response from the server"
+  },
+  "admin": {
+    "selectDimension": "Valitse oppimismuoto",
+    "selectQuestion": "Valitse kysymys",
+    "selectLanguage": "Valitse kieli",
+    "save": "Save",
+    "saveSuccess": "Saved successfully"
+  }
+}
