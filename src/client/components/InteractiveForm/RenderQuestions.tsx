@@ -6,6 +6,7 @@ import MultiChoice from '../Choices/MultiChoice'
 import SingleChoice from '../Choices/SingleChoice'
 import Markdown from '../Common/Markdown'
 import ShowMore from '../Common/ShowMore'
+import RenderResponses from './RenderResponses'
 
 const { cardStyles } = styles
 
@@ -89,6 +90,12 @@ const RenderQuestions = ({
             />
           ))}
       </Choice>
+
+      {watch(question.id.toString()) && (
+        <Box sx={cardStyles.answerBox}>
+          <RenderResponses />
+        </Box>
+      )}
     </Container>
   )
 }
