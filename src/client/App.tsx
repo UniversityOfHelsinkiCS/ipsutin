@@ -4,6 +4,7 @@ import { Box } from '@mui/material'
 import { SnackbarProvider } from 'notistack'
 
 import Footer from './components/Footer'
+import NavBar from './components/NavBar/NavBar'
 
 import useTheme from './theme'
 import InteractiveForm from './components/InteractiveForm/InteractiveForm'
@@ -21,6 +22,7 @@ const App = () => {
             flexDirection: 'column',
           }}
         >
+          <NavBar />
           <Box
             flexGrow={1}
             display="flex"
