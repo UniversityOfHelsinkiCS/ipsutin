@@ -6,11 +6,11 @@ import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
-import useQuestions from '../../hooks/useQuestions'
+import useSurvey from '../../hooks/useSurvey'
 
 const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
   const { t, i18n } = useTranslation()
-  const questions = useQuestions()
+  const { survey, isLoading } = useSurvey()
   const { cardStyles, formStyles } = styles
   const savedData = sessionStorage.getItem(FORM_DATA_KEY)
 
@@ -22,19 +22,19 @@ const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
     handleSubmit(event)
   }
 
-  if (!questions) return null
+  if (isLoading) return null
 
   return (
     <Box sx={cardStyles.outerBox}>
       <Box sx={cardStyles.card}>
-        {questions.map((question) => (
+        {survey.Questions.map((question) => (
           <div key={question.id}>
             {question.parentId === null && (
               <RenderQuestions
                 control={control}
                 watch={watch}
                 question={question}
-                questions={questions}
+                questions={survey.Questions}
                 language={language}
               />
             )}

@@ -1,8 +1,8 @@
 import { Question } from '../models'
-import getQuestionData from '../../data/questions'
+import { getQuestions } from '../../util/data'
 
 const seedQuestions = async () => {
-  const questions: any[] = getQuestionData()
+  const questions: any[] = await getQuestions()
 
   questions.forEach(async (question) => {
     await Question.upsert({
