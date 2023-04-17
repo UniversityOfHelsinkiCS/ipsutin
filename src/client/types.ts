@@ -32,6 +32,7 @@ export type Locales = {
 export type SingleChoiceType = {
   id: string
   label: Locales
+  text: string
 }
 
 export interface MultipleChoiceType extends SingleChoiceType {

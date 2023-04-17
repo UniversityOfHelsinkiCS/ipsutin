@@ -92,9 +92,7 @@ const RenderQuestions = ({
       </Choice>
 
       {watch(question.id.toString()) && (
-        <Box sx={cardStyles.answerBox}>
-          <RenderResponses />
-        </Box>
+        <RenderResponses question={question} watch={watch} />
       )}
     </Container>
   )

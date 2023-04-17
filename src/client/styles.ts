@@ -70,9 +70,10 @@ const cardStyles = {
   },
   answerBox: {
     my: 4,
-    maxWidth: 1560,
+    maxWidth: 700,
     border: 1,
-    borderColor: 'grey.300',
+    borderColor: 'green',
+    borderRadius: '8px',
   },
 }
 
