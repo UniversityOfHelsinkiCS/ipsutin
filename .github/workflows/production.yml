@@ -24,7 +24,6 @@ jobs:
           containerfiles: |
             ./Dockerfile
           build-args: |
-            BASE_PATH=/
             GIT_SHA=${{ github.sha }}
 
       - name: Push to quay.io
