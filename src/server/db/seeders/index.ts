@@ -1,4 +1,3 @@
-import { inProduction } from '../../../config'
 import logger from '../../util/logger'
 import seedSurveys from './surveys'
 import seedQuestions from './questions'
@@ -14,7 +13,7 @@ const seed = async () => {
     await seedSurveys()
     await seedQuestions()
     await seedRecommendations()
-    if (!inProduction) await seedResults()
+    await seedResults()
     await seedUsers()
     logger.info('Seeding successful')
   } catch (e) {

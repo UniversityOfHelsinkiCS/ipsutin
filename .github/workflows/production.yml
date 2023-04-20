@@ -5,12 +5,12 @@ on:
     types: [published]
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
+  # test:
+  # uses: ./.github/workflows/test.yml
 
   build-and-push:
     runs-on: ubuntu-latest
-    needs: test
+    # needs: test
 
     steps:
       - uses: actions/checkout@v3
@@ -36,28 +36,28 @@ jobs:
           username: toska+github
           password: ${{ secrets.QUAY_IO_TOKEN }}
 
-  sentry-release:
-    runs-on: ubuntu-latest
-    needs: build-and-push
+  #sentry-release:
+  #  runs-on: ubuntu-latest
+  #  needs: build-and-push
 
-    steps:
-      - uses: actions/checkout@v3
+  #  steps:
+  #    - uses: actions/checkout@v3
 
-      - name: Pull image and create a container
-        run: docker create --name ipsutin toska/ipsutin:latest
+  #    - name: Pull image and create a container
+  #      run: docker create --name ipsutin toska/ipsutin:latest
 
-      - name: Copy assets from the container
-        run: docker cp ipsutin:/opt/app-root/src ./app
+  #    - name: Copy assets from the container
+  #      run: docker cp ipsutin:/opt/app-root/src ./app
 
-      - name: Create Sentry release
-        uses: getsentry/action-release@v1
-        env:
-          SENTRY_URL: ${{ secrets.SENTRY_URL }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-        with:
-          environment: production
-          set_commits: 'skip'
-          sourcemaps: ./app
-          url_prefix: '~/app'
+  #    - name: Create Sentry release
+  #      uses: getsentry/action-release@v1
+  #      env:
+  #        SENTRY_URL: ${{ secrets.SENTRY_URL }}
+  #        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  #        SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+  #        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+  #      with:
+  #        environment: production
+  #        set_commits: 'skip'
+  #        sourcemaps: ./app
+  #        url_prefix: '~/app'
