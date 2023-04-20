@@ -7,11 +7,10 @@ import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
 
 import useTheme from './theme'
-import InteractiveForm from './components/InteractiveForm/InteractiveForm'
+import Router from './Router'
 
 const App = () => {
   const theme = useTheme()
-
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider preventDuplicate>
@@ -28,9 +27,9 @@ const App = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            minHeight="100vh"
+            minHeight="50vh"
           >
-            <InteractiveForm />
+            <Router />
           </Box>
           <Footer />
         </Box>
