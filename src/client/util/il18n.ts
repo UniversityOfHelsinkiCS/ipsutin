@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-const defaultLanguage = 'fi'
+const defaultLanguage = 'en'
 
 const initializeI18n = () =>
   i18n.use(initReactI18next).init({

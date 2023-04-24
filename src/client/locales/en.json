@@ -1,15 +1,10 @@
 {
   "common": {
     "appName": "Ipsutin",
-    "submit": "Valinnat tehty",
-    "updateSubmit": "Päivitä valinnat",
-    "reset": "Aloita alusta",
-    "openForm": "Jatka kysymyksiin",
-    "admin": "ylläpito"
-  },
-  "footer": {
-    "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>",
-    "licenseText": "Tämä teos on lisensoitu",
-    "licenseLinkText": "CC BY-NC-SA 4.0 -lisenssillä"
+    "submit": "Submit",
+    "updateSubmit": "Update choices",
+    "reset": "Restart",
+    "openForm": "Proceed to the questions",
+    "admin": "Admin"
   }
 }
