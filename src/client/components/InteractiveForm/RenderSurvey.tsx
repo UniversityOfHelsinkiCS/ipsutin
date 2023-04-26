@@ -4,6 +4,7 @@ import { Box, Button, Stack } from '@mui/material'
 import { InputProps } from '../../types'
 import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
+import SendSummaryEmail from '../SendEmail/SendSummaryEmail'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 import useSurvey from '../../hooks/useSurvey'
@@ -50,8 +51,9 @@ const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
               variant="contained"
               onClick={submitFormData}
             >
-              {t('submit')}
+              {t('contact:submit')}
             </Button>
+            <SendSummaryEmail />
             <ResetForm />
           </Stack>
         </Box>

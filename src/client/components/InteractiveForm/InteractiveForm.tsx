@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Box, Grid } from '@mui/material'
 // import usePersistForm from '../../hooks/usePersistForm'
@@ -8,7 +8,10 @@ import { FormValues } from '../../types'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 
+import Contact from '../SendEmail/Contact'
+
 const InteractiveForm = () => {
+  const [showContact, setShowContact] = useState(false)
   const { formStyles } = styles
 
   const getSavedInstance = useCallback(() => {
@@ -28,7 +31,7 @@ const InteractiveForm = () => {
 
   const onSubmit = (data: FormValues) => {
     const submittedData = data
-
+    setShowContact(true)
     console.log(submittedData)
   }
 
@@ -46,6 +49,7 @@ const InteractiveForm = () => {
               handleSubmit={handleSubmit(onSubmit)}
             />
           </form>
+          {showContact && <Contact />}
         </Grid>
       </Grid>
     </Box>

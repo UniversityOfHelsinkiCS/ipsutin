@@ -6,5 +6,16 @@
     "reset": "Restart",
     "openForm": "Proceed to the questions",
     "admin": "Admin"
+  },
+  "contact": {
+    "submit": "Contact",
+    "title": "Contact",
+    "contactMessage": "Message",
+    "contactTicketContentLabel": "Content",
+    "contactTicketSend": "Send Email"
+  },
+  "results": {
+    "sendSummaryMail": "Send summary email",
+    "sendSuccess": "Email sent successfully!"
   }
 }
