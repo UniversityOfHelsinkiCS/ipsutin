@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { Alert, Box, Button, Stack, TextField, Typography } from '@mui/material'
 import styles from '../../styles'
 
-const ticketEmail = 'testi@testi.fi'
+const ticketEmail = ''
 
 const SendContactTicket = () => {
   const { t } = useTranslation()
@@ -29,13 +29,9 @@ const SendContactTicket = () => {
     const targets = [ticketEmail]
     const text = `
 
-    ${t('contact:contactTicketUserMessage')}
-    ============================
-
     ${content}
 
     `
-    console.log(targets, text)
     setIsSent(true)
   }
 

@@ -5,17 +5,19 @@ import { InputProps } from '../../types'
 import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
 import SendSummaryEmail from '../SendEmail/SendSummaryEmail'
-import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 import useSurvey from '../../hooks/useSurvey'
 
-const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
+const RenderSurvey = ({
+  control,
+  watch,
+  handleSubmit,
+  answers,
+  showContact,
+}: InputProps) => {
   const { t, i18n } = useTranslation()
   const { survey, isLoading } = useSurvey()
   const { cardStyles, formStyles } = styles
-  const savedData = sessionStorage.getItem(FORM_DATA_KEY)
-
-  console.log(savedData)
 
   const { language } = i18n
 
@@ -47,13 +49,13 @@ const RenderSurvey = ({ control, watch, handleSubmit }: InputProps) => {
             <Button
               sx={formStyles.stackButton}
               type="submit"
-              data-cy="submit-form-button"
+              id="contact-form-button"
               variant="contained"
-              onClick={submitFormData}
+              onClick={showContact}
             >
               {t('contact:submit')}
             </Button>
-            <SendSummaryEmail />
+            <SendSummaryEmail answers={answers} handleSubmit={submitFormData} />
             <ResetForm />
           </Stack>
         </Box>

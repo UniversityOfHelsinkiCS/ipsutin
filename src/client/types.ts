@@ -17,6 +17,8 @@ export interface InputProps {
   handleSubmit?: SubmitHandler<FieldValues>
   isSubmitted?: boolean
   formResultData?: FormValues
+  answers?: object
+  showContact?: SubmitHandler<FieldValues>
 }
 
 export interface FormValues {

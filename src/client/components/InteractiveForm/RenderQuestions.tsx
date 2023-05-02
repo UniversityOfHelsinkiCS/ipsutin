@@ -27,7 +27,7 @@ const QuestionText = ({
 
   return (
     <>
-      <Markdown>{question.title[language]}</Markdown>
+      <p className="questions">{question.title[language]}</p>
       <Box sx={cardStyles.content}>
         <Markdown>{question.text[language]}</Markdown>
       </Box>

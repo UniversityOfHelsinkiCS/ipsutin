@@ -10,6 +10,7 @@ import accessLogger from '../middeware/access'
 import surveyRouter from './survey'
 import entryRouter from './entry'
 import userRouter from './user'
+import summaryRouter from './summary'
 
 const router = express()
 
@@ -29,6 +30,7 @@ router.use(accessLogger)
 router.use('/surveys', surveyRouter)
 router.use('/entries', entryRouter)
 router.use('/users', userRouter)
+router.use('/summary', summaryRouter)
 
 router.use(SentryHandlers.errorHandler())
 router.use(errorHandler)
