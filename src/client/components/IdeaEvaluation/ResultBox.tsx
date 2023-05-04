@@ -3,6 +3,7 @@ import { Box } from '@mui/material'
 
 import { InputProps } from '../../types'
 import styles from '../../styles'
+import useSurvey from '../../hooks/useSurvey'
 import useRecommendations from '../../hooks/useRecommendations'
 
 const ResultBox = ({ watch }: InputProps) => {
@@ -10,17 +11,20 @@ const ResultBox = ({ watch }: InputProps) => {
 
   const { cardStyles, resultStyles } = styles
 
-  const { recommendations, isLoading } = useRecommendations(2)
+  const { survey } = useSurvey('ideaEvaluation')
+  const { recommendations, isSuccess } = useRecommendations(survey?.id)
 
   const answers = watch()
 
   useEffect(() => {
     setResultId(
-      Math.floor(Math.random() * (Math.floor(5) - Math.ceil(1)) + Math.ceil(1))
+      Math.floor(
+        Math.random() * (Math.floor(305) - Math.ceil(301)) + Math.ceil(301)
+      )
     )
   }, [answers])
 
-  if (isLoading) return null
+  if (!isSuccess) return null
 
   return (
     <Box sx={resultStyles.resultBox}>

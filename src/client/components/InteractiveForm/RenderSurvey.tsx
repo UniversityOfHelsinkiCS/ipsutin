@@ -16,7 +16,7 @@ const RenderSurvey = ({
   showContact,
 }: InputProps) => {
   const { t, i18n } = useTranslation()
-  const { survey, isLoading } = useSurvey()
+  const { survey, isLoading } = useSurvey('licenses')
   const { cardStyles, formStyles } = styles
 
   const { language } = i18n
