@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 
-import getIEresults from '../../../server/data/ieResults'
 import { InputProps } from '../../types'
 import styles from '../../styles'
+import useRecommendations from '../../hooks/useRecommendations'
 
 const ResultBox = ({ watch }: InputProps) => {
   const [resultId, setResultId] = useState(null)
 
   const { cardStyles, resultStyles } = styles
 
-  const results = getIEresults()
+  const { recommendations, isLoading } = useRecommendations(2)
 
   const answers = watch()
 
@@ -20,6 +20,8 @@ const ResultBox = ({ watch }: InputProps) => {
     )
   }, [answers])
 
+  if (isLoading) return null
+
   return (
     <Box sx={resultStyles.resultBox}>
       <Box sx={cardStyles.card}>
@@ -27,8 +29,9 @@ const ResultBox = ({ watch }: InputProps) => {
         {resultId && (
           <Box>
             {
-              results.find((result: { id: number }) => result.id === resultId)
-                .name
+              recommendations.find(
+                (result: { id: number }) => result.id === resultId
+              ).title.en
             }
           </Box>
         )}

@@ -7,6 +7,11 @@ const seedSurveys = async () => {
     id: 1,
     name: surveyName,
   })
+
+  await Survey.upsert({
+    id: 2,
+    name: 'ideaEvaluation',
+  })
 }
 
 export default seedSurveys

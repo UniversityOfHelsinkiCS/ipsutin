@@ -4,15 +4,15 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import ResultBox from './ResultBox'
-import useQuestions from '../../hooks/useQuestions'
 import RenderQuestions from '../InteractiveForm/RenderQuestions'
 import styles from '../../styles'
+import useSurvey from '../../hooks/useSurvey'
 
 const IdeaEvaluation = () => {
   const { i18n } = useTranslation()
   const { formStyles, cardStyles } = styles
 
-  const questions = useQuestions()
+  const { survey, isLoading } = useSurvey('ideaEvaluation')
 
   const { language } = i18n
 
@@ -21,7 +21,9 @@ const IdeaEvaluation = () => {
     shouldUnregister: true,
   })
 
-  if (!questions) return null
+  if (isLoading) return null
+
+  const questions = survey.Questions
 
   return (
     <Box sx={formStyles.formWrapper}>
