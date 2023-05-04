@@ -19,7 +19,6 @@ const cardStyles = {
   },
   outerBox: {
     m: 2,
-    maxWidth: 1560,
     border: 1,
     borderColor: 'grey.300',
   },
@@ -220,6 +219,12 @@ const resultStyles = {
   heading: {
     fontWeight: '200',
     textAlign: 'left',
+  },
+  resultBox: {
+    minWidth: 350,
+    m: 2,
+    border: 1,
+    borderColor: 'grey',
   },
 }
 

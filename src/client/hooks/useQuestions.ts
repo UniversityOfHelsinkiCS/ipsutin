@@ -1,4 +1,4 @@
-import getQuestionData from '../../server/data/questions'
+import getQuestionData from '../../server/data/ieQuestions'
 
 import { Question } from '../types'
 
