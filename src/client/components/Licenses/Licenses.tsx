@@ -31,15 +31,15 @@ const Licences = () => {
   })
 
   const fetchAnswers = (formData: FormValues) => {
-    const q = document.getElementsByClassName('questions')
+    const questions = document.getElementsByClassName('questions')
 
-    const titles = Array.from(q).map((y) => y.innerHTML)
+    const titles = Array.from(questions).map((title) => title.innerHTML)
     const labels: any[] = []
 
     Object.values(formData).forEach((value) => {
       if (value) {
-        const x = document.getElementById(`choice-select-${value}`)
-        labels.push(x.outerText)
+        const label = document.getElementById(`choice-select-${value}`)
+        labels.push(label.outerText)
       } else {
         labels.push('')
       }

@@ -9,7 +9,7 @@ const { cardStyles } = styles
 
 const RenderResponses = ({ question, watch }: InputProps) => {
   const answer = question.optionData.options.find(
-    (o) => o.id === watch(question.id.toString())
+    (option) => option.id === watch(question.id.toString())
   )
   if (!answer.text) return null
 
