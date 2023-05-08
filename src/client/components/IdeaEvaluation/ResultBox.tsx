@@ -6,6 +6,7 @@ import { InputProps } from '../../types'
 import styles from '../../styles'
 import useSurvey from '../../hooks/useSurvey'
 import useRecommendations from '../../hooks/useRecommendations'
+import { getIeRecommendationScores, sortRecommendations } from './util'
 
 const ResultBox = ({ watch }: InputProps) => {
   const [resultSequence, setResultSequence] = useState([])
@@ -13,43 +14,20 @@ const ResultBox = ({ watch }: InputProps) => {
   const { survey } = useSurvey('ideaEvaluation')
   const { recommendations, isSuccess } = useRecommendations(survey?.id)
 
-  const hisSeq = ['']
-  const clinicSeq = ['']
-  const corporateSeq = ['']
-  const incubatorSeq = ['']
-  const sequences = [hisSeq, clinicSeq, corporateSeq, incubatorSeq]
-
   const answers = watch()
 
   useEffect(() => {
     if (recommendations) {
-      const names = recommendations.map(
-        (recommendation) => recommendation.title.en
+      const recommendationScores = getIeRecommendationScores(
+        answers,
+        recommendations
       )
-      const resSeq = []
-      for (const seq of sequences) {
-        for (const a of Object.values(answers)) {
-          if (a && a === seq[Object.values(answers).indexOf(a)]) {
-            resSeq.push(names[sequences.indexOf(seq)])
-          }
-        }
-      }
-      const counts: { [key: string]: number } = {}
-      for (const s of resSeq) {
-        counts[s] = counts[s] ? counts[s] + 1 : 1
-      }
-      const results = names.reduce((o, key) => [...o, [key, counts[key]]], [])
-      const sortedResults = results
-        .filter((res: any[]) => res[1] !== undefined)
-        .sort((a: number[], b: number[]) => b[1] - a[1])
-      const sortedResSeq = []
-      for (const res of sortedResults) {
-        sortedResSeq.push(
-          recommendations.find((rec) => rec.title.en === res[0])
-        )
-      }
+      const sortedRecommendations = sortRecommendations(
+        recommendations,
+        recommendationScores
+      )
 
-      setResultSequence(sortedResSeq)
+      setResultSequence(sortedRecommendations)
     }
   }, [JSON.stringify(answers)])
 

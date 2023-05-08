@@ -87,3 +87,14 @@ export interface Result {
     [key: string]: Locales
   }
 }
+
+export interface Recommendation {
+  id: number
+  surveyId: number
+  label: string
+  title: Locales
+  text: Locales
+  data: {
+    [key: string]: number
+  }
+}
