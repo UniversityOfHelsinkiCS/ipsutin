@@ -9,6 +9,10 @@ import {
 import { sequelize } from '../connection'
 import { TranslatedText } from '../../types'
 
+export type RecommendationData = {
+  [key: string]: number
+}
+
 class Recommendation extends Model<
   InferAttributes<Recommendation>,
   InferCreationAttributes<Recommendation>
@@ -22,6 +26,8 @@ class Recommendation extends Model<
   declare title: TranslatedText
 
   declare text: TranslatedText
+
+  declare data: RecommendationData
 }
 
 Recommendation.init(
@@ -46,6 +52,11 @@ Recommendation.init(
     text: {
       type: DataTypes.JSONB,
       allowNull: false,
+    },
+    data: {
+      type: DataTypes.JSONB,
+      allowNull: false,
+      defaultValue: {},
     },
   },
   {
