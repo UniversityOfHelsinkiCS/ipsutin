@@ -3,14 +3,14 @@ import { useForm } from 'react-hook-form'
 import { Box, Grid } from '@mui/material'
 // import usePersistForm from '../../hooks/usePersistForm'
 
-import RenderSurvey from './RenderSurvey'
+import RenderSurvey from '../InteractiveForm/RenderSurvey'
 import { FormValues } from '../../types'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 
 import Contact from '../SendEmail/Contact'
 
-const InteractiveForm = () => {
+const Licences = () => {
   const [answers, setAnswers] = useState({})
   const [showContact, setShowContact] = useState(false)
   const { formStyles } = styles
@@ -72,4 +72,4 @@ const InteractiveForm = () => {
   )
 }
 
-export default InteractiveForm
+export default Licences
