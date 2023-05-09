@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, Stack } from '@mui/material'
 import { InputProps } from '../../types'
@@ -8,22 +8,12 @@ import SendSummaryEmail from '../SendEmail/SendSummaryEmail'
 import styles from '../../styles'
 import useSurvey from '../../hooks/useSurvey'
 
-const RenderSurvey = ({
-  control,
-  watch,
-  handleSubmit,
-  answers,
-  showContact,
-}: InputProps) => {
+const RenderSurvey = ({ control, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { survey, isLoading } = useSurvey('licenses')
   const { cardStyles, formStyles } = styles
 
   const { language } = i18n
-
-  const submitFormData = (event: BaseSyntheticEvent) => {
-    handleSubmit(event)
-  }
 
   if (isLoading) return null
 
@@ -48,14 +38,13 @@ const RenderSurvey = ({
           <Stack sx={formStyles.stack} direction="row">
             <Button
               sx={formStyles.stackButton}
-              type="submit"
               id="contact-form-button"
               variant="contained"
-              onClick={showContact}
+              type="submit"
             >
               {t('contact:submit')}
             </Button>
-            <SendSummaryEmail answers={answers} handleSubmit={submitFormData} />
+            <SendSummaryEmail watch={watch} />
             <ResetForm />
           </Stack>
         </Box>

@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, Box, Button } from '@mui/material'
 
@@ -6,7 +6,8 @@ import styles from '../../styles'
 import apiClient from '../../util/apiClient'
 import { InputProps } from '../../types'
 
-const SendSummaryEmail = ({ handleSubmit, answers }: InputProps) => {
+const SendSummaryEmail = ({ watch }: InputProps) => {
+  const [answers, setAnswers] = useState<any>({})
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
 
@@ -43,14 +44,32 @@ const SendSummaryEmail = ({ handleSubmit, answers }: InputProps) => {
     }
   }
 
+  const fetchAnswers = () => {
+    const formData = watch()
+    const questions = document.getElementsByClassName('questions')
+
+    const titles = Array.from(questions).map((title) => title.innerHTML)
+    const labels: any[] = []
+
+    Object.values(formData).forEach((value) => {
+      if (value) {
+        const label = document.getElementById(`choice-select-${value}`)
+        labels.push(label.outerText)
+      } else {
+        labels.push('')
+      }
+    })
+    return Object.fromEntries(titles.map((_, i) => [titles[i], labels[i]]))
+  }
+
   useEffect(() => {
     if (Object.keys(answers).length !== 0) {
       sendResults()
     }
   }, [answers])
 
-  const submitFormData = (event: BaseSyntheticEvent) => {
-    handleSubmit(event)
+  const submitFormData = () => {
+    setAnswers(fetchAnswers())
   }
 
   return (
@@ -58,7 +77,6 @@ const SendSummaryEmail = ({ handleSubmit, answers }: InputProps) => {
       {!isSent ? (
         <Button
           id="summary-email-button"
-          type="submit"
           sx={formStyles.stackButton}
           variant="contained"
           color="primary"

@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Box, Grid } from '@mui/material'
-// import usePersistForm from '../../hooks/usePersistForm'
 
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 import { FormValues } from '../../types'
@@ -11,7 +10,6 @@ import styles from '../../styles'
 import Contact from '../SendEmail/Contact'
 
 const Licences = () => {
-  const [answers, setAnswers] = useState({})
   const [showContact, setShowContact] = useState(false)
   const { formStyles } = styles
 
@@ -30,40 +28,18 @@ const Licences = () => {
     defaultValues: savedFormData,
   })
 
-  const fetchAnswers = (formData: FormValues) => {
-    const questions = document.getElementsByClassName('questions')
-
-    const titles = Array.from(questions).map((title) => title.innerHTML)
-    const labels: any[] = []
-
-    Object.values(formData).forEach((value) => {
-      if (value) {
-        const label = document.getElementById(`choice-select-${value}`)
-        labels.push(label.outerText)
-      } else {
-        labels.push('')
-      }
-    })
-    return Object.fromEntries(titles.map((_, i) => [titles[i], labels[i]]))
-  }
   const onSubmit = (data: FormValues) => {
-    setAnswers(fetchAnswers(data))
+    console.log(data)
+    setShowContact(true)
   }
-
-  //  usePersistForm({ value: getValues(), sessionStorageKey: FORM_DATA_KEY })
 
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
         <Grid id="ipsutin-main-section" item sm={12}>
-          <form onSubmit={handleSubmit(() => setShowContact(true))}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Licences</h1>
-            <RenderSurvey
-              control={control}
-              watch={watch}
-              handleSubmit={handleSubmit(onSubmit)}
-              answers={answers}
-            />
+            <RenderSurvey control={control} watch={watch} />
           </form>
           {showContact && <Contact />}
         </Grid>

@@ -2,6 +2,7 @@ import axios from 'axios'
 import * as dotenv from 'dotenv'
 
 import { PATE_URL } from '../util/config'
+import { inProduction, inStaging } from '../../config'
 
 dotenv.config()
 
@@ -11,6 +12,7 @@ const settings = {
   color: '#107eab',
   header: 'Ipsutin',
   headerFontColor: 'white',
+  dryrun: !inProduction || inStaging,
 }
 
 const pateClient = axios.create({
