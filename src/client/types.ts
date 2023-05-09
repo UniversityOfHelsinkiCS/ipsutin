@@ -6,6 +6,11 @@ import {
   SubmitHandler,
 } from 'react-hook-form'
 
+export interface Faculty {
+  code: string
+  name: Locales
+}
+
 export interface InputProps {
   control?: Control<FieldValues>
   watch?: UseFormWatch<FieldValues>

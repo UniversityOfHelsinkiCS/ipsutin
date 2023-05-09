@@ -17,5 +17,10 @@
   "results": {
     "sendSummaryMail": "Send summary email",
     "sendSuccess": "Email sent successfully!"
+  },
+  "facultySelect": {
+    "welcomeMessage": "",
+    "introMessage": "Start by selecting your faculty",
+    "inputLabel": "Your Faculty"
   }
 }
