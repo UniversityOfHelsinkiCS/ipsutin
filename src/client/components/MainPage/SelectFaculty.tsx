@@ -3,13 +3,13 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import styles from '../styles'
-import { InputProps, Faculty, Locales } from '../types'
-import useFaculties from '../hooks/useFaculty'
-import Markdown from './Common/Markdown'
-import extraOrganisations from '../util/organisations'
+import styles from '../../styles'
+import { InputProps, Faculty, Locales } from '../../types'
+import useFaculties from '../../hooks/useFaculty'
+import Markdown from '../Common/Markdown'
+import extraOrganisations from '../../util/organisations'
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
   const sortedFaculties = faculties.sort((a, b) => {
@@ -40,9 +40,6 @@ const SelectFaculty = ({ setFaculty, faculty }: InputProps) => {
 
   return (
     <Box sx={cardStyles.card}>
-      <Typography variant="h5" sx={cardStyles.heading} component="div">
-        {t('facultySelect:welcomeMessage')}
-      </Typography>
       <Box sx={cardStyles.content}>
         <Markdown>{t('facultySelect:introMessage')}</Markdown>
       </Box>

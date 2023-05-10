@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import IdeaEvaluation from './components/IdeaEvaluation/IdeaEvaluation'
 import Licenses from './components/Licenses/Licenses'
-import MainPage from './components/MainPage'
+import MainPage from './components/MainPage/MainPage'
 import IpAssessment from './components/IpAssessment/IpAssessment'
 
 const Router = () => (

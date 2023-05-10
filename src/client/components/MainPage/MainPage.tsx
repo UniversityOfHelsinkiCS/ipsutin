@@ -3,17 +3,29 @@ import React, { useState } from 'react'
 import { Box, Grid } from '@mui/material'
 import { Link } from 'react-router-dom'
 import SelectFaculty from './SelectFaculty'
+import HelloBanner from './HelloBanner'
+import styles from '../../styles'
 
 const MainPage = () => {
+  const { formStyles } = styles
   const [faculty, setFaculty] = useState('')
 
   return (
-    <Box>
+    <Box sx={formStyles.formWrapper}>
       <Grid container>
-        <Grid item sm={12} md={7} xl={8}>
+        <Grid item sm={12}>
+          <HelloBanner />
+        </Grid>
+        <Grid
+          item
+          sm={12}
+          md={7}
+          xl={6}
+          sx={{ px: 2, display: 'flex', justifyContent: 'center' }}
+        >
           <SelectFaculty setFaculty={setFaculty} faculty={faculty} />
         </Grid>
-        <Grid item sm={12} md={5} xl={4}>
+        <Grid item sm={12} md={5} xl={6}>
           <h2>Which of these surveys would you like to use?</h2>
           <Box sx={{ minHeight: 50 }}>
             <Link to="/ipassessment">IP Assessment</Link>

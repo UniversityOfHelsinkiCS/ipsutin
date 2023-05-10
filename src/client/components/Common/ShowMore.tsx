@@ -21,7 +21,7 @@ const ShowMore = ({
         <HelpOutlineIcon />
         {!expand ? <ExpandMore /> : <ExpandLess />}
       </IconButton>
-      <Collapse in={expand} timeout="auto" unmountOnExit>
+      <Collapse in={expand} timeout="auto">
         <Markdown>{text}</Markdown>
       </Collapse>
     </>
