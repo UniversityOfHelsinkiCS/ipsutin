@@ -24,6 +24,8 @@ export interface InputProps {
   formResultData?: FormValues
   answers?: object
   showContact?: SubmitHandler<FieldValues>
+  setFaculty?: React.Dispatch<React.SetStateAction<string>>
+  faculty?: string
 }
 
 export interface FormValues {

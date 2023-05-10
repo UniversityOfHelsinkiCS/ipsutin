@@ -2,9 +2,8 @@ import React from 'react'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { Box, Typography } from '@mui/material'
-import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styles from '../styles'
 import { InputProps, Faculty, Locales } from '../types'
@@ -23,7 +22,7 @@ const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
   return sortedFaculties
 }
 
-const SelectFaculty = ({ control }: InputProps) => {
+const SelectFaculty = ({ setFaculty, faculty }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
   const { faculties, isLoading: facultiesLoading } = useFaculties()
@@ -35,6 +34,10 @@ const SelectFaculty = ({ control }: InputProps) => {
   const sortedFaculties = sortFaculties(faculties, language as keyof Locales)
   const organisations = sortedFaculties.concat(extraOrganisations)
 
+  const handleFacultyChange = (event: SelectChangeEvent) => {
+    setFaculty(event.target.value)
+  }
+
   return (
     <Box sx={cardStyles.card}>
       <Typography variant="h5" sx={cardStyles.heading} component="div">
@@ -43,34 +46,26 @@ const SelectFaculty = ({ control }: InputProps) => {
       <Box sx={cardStyles.content}>
         <Markdown>{t('facultySelect:introMessage')}</Markdown>
       </Box>
-
-      <Controller
-        control={control}
-        name="faculty"
-        defaultValue=""
-        render={({ field }) => (
-          <FormControl sx={formStyles.formControl}>
-            <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
-            <Select
-              sx={cardStyles.inputField}
-              data-cy="faculty-select"
-              value=""
-              label={t('facultySelect:inputLabel')}
-              {...field}
+      <FormControl sx={formStyles.formControl}>
+        <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
+        <Select
+          sx={cardStyles.inputField}
+          data-cy="faculty-select"
+          value={faculty}
+          label={t('facultySelect:inputLabel')}
+          onChange={handleFacultyChange}
+        >
+          {organisations.map((f: Faculty) => (
+            <MenuItem
+              data-cy={`faculty-option-${f.code}`}
+              key={f.code}
+              value={f.code}
             >
-              {organisations.map((f: Faculty) => (
-                <MenuItem
-                  data-cy={`faculty-option-${f.code}`}
-                  key={f.code}
-                  value={f.code}
-                >
-                  {f.name[language as keyof Locales]}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
-      />
+              {f.name[language as keyof Locales]}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </Box>
   )
 }
