@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Box, Grid } from '@mui/material'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { useNavigate, useLocation } from 'react-router-dom'
 import SelectFaculty from './SelectFaculty'
 import HelloBanner from './HelloBanner'
 import styles from '../../styles'
-import ShowMore from '../Common/ShowMore'
+import SelectSurvey from './SelectSurvey'
+import Tools from './Tools'
+import Licences from '../Licenses/Licenses'
+import IpAssessment from '../IpAssessment/IpAssessment'
+import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
 
 const MainPage = () => {
   const { formStyles } = styles
+  const navigate = useNavigate()
+  const location = useLocation()
   const [faculty, setFaculty] = useState('')
-  const { t } = useTranslation()
+  const [survey, setSurvey] = useState('')
+
+  useEffect(() => {
+    navigate(`/${survey}`)
+  }, [survey])
 
   return (
     <Box sx={formStyles.formWrapper}>
@@ -20,28 +29,23 @@ const MainPage = () => {
           <HelloBanner />
         </Grid>
         <Grid
+          container
           item
           sm={12}
           md={7}
-          xl={6}
+          xl={8}
           sx={{ px: 2, display: 'flex', justifyContent: 'center' }}
         >
           <SelectFaculty setFaculty={setFaculty} faculty={faculty} />
+          <SelectSurvey setSurvey={setSurvey} survey={survey} />
+          <Grid item>
+            {location.pathname === '/licences' && <Licences />}
+            {location.pathname === '/ipassessment' && <IpAssessment />}
+            {location.pathname === '/ideaevaluation' && <IdeaEvaluation />}
+          </Grid>
         </Grid>
-        <Grid item sm={12} md={5} xl={6}>
-          <h2>{t('mainPage:toolSelectionQuestion')}</h2>
-          <Box sx={{ minHeight: 50 }}>
-            <Link to="/ipassessment">{t('surveyNames:ipAssessment')}</Link>
-            <ShowMore text="placeholder description" />
-          </Box>
-          <Box sx={{ minHeight: 50 }}>
-            <Link to="/licences">{t('surveyNames:licences')}</Link>
-            <ShowMore text="placeholder description" />
-          </Box>
-          <Box sx={{ minHeight: 50 }}>
-            <Link to="/ideaevaluation">{t('surveyNames:ideaEvaluation')}</Link>
-            <ShowMore text="placeholder description" />
-          </Box>
+        <Grid item sm={12} md={5} xl={3}>
+          <Tools />
         </Grid>
       </Grid>
     </Box>

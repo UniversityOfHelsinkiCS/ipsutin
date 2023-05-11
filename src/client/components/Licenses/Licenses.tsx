@@ -36,9 +36,8 @@ const Licences = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
-        <Grid id="ipsutin-main-section" item sm={12}>
+        <Grid item>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Licences</h1>
             <RenderSurvey control={control} watch={watch} />
           </form>
           {showContact && <Contact />}
