@@ -7,13 +7,11 @@ const entryRouter = express.Router()
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res) => {
   const { surveyId } = req.params
-  const { id: userId } = req.user
   const { data, sessionToken } = req.body
 
   const existingEntry = await Entry.findOne({
     where: {
       surveyId,
-      userId,
       sessionToken,
     },
   })
@@ -28,7 +26,6 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res) => {
 
   const newEntry = await Entry.create({
     surveyId: Number(surveyId),
-    userId,
     data,
   })
 
