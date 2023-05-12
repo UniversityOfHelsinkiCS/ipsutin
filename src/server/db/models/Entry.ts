@@ -19,6 +19,8 @@ class Entry extends Model<
   declare userId: string
 
   declare data: object
+
+  declare sessionToken: string | null
 }
 
 Entry.init(
@@ -39,6 +41,10 @@ Entry.init(
     data: {
       type: DataTypes.JSONB,
       allowNull: false,
+    },
+    sessionToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

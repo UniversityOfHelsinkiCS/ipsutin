@@ -8,15 +8,31 @@ const entryRouter = express.Router()
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res) => {
   const { surveyId } = req.params
   const { id: userId } = req.user
-  const { data } = req.body
+  const { data, sessionToken } = req.body
 
-  const entry = await Entry.create({
+  const existingEntry = await Entry.findOne({
+    where: {
+      surveyId,
+      userId,
+      sessionToken,
+    },
+  })
+
+  if (existingEntry) {
+    await existingEntry.update({
+      data,
+    })
+
+    return res.status(200).send(existingEntry)
+  }
+
+  const newEntry = await Entry.create({
     surveyId: Number(surveyId),
     userId,
     data,
   })
 
-  return res.status(201).send(entry)
+  return res.status(201).send(newEntry)
 })
 
 export default entryRouter
