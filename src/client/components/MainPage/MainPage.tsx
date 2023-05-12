@@ -37,7 +37,7 @@ const MainPage = () => {
           sx={{ px: 2, display: 'flex', justifyContent: 'center' }}
         >
           <SelectFaculty setFaculty={setFaculty} faculty={faculty} />
-          <SelectSurvey setSurvey={setSurvey} survey={survey} />
+          {faculty && <SelectSurvey setSurvey={setSurvey} survey={survey} />}
           <Grid item>
             {location.pathname === '/licences' && <Licences />}
             {location.pathname === '/ipassessment' && <IpAssessment />}
