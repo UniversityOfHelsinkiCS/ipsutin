@@ -16,9 +16,9 @@ class Entry extends Model<
 
   declare surveyId: number
 
-  declare userId: string
-
   declare data: object
+
+  declare sessionToken: string | null
 }
 
 Entry.init(
@@ -32,13 +32,13 @@ Entry.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    userId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     data: {
       type: DataTypes.JSONB,
       allowNull: false,
+    },
+    sessionToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

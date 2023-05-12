@@ -16,7 +16,5 @@ Survey.hasMany(Result)
 
 Entry.belongsTo(Survey)
 Survey.hasMany(Result)
-Entry.belongsTo(User)
-User.hasMany(Entry)
 
 export { Survey, Question, Recommendation, Result, User, Entry }
