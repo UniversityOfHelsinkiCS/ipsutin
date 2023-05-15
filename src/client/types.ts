@@ -41,6 +41,7 @@ export type Locales = {
 }
 
 export type SingleChoiceType = {
+  results: any
   id: string
   label: Locales
   text: string
