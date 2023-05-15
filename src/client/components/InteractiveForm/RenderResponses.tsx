@@ -5,6 +5,7 @@ import { InputProps } from '../../types'
 
 import styles from '../../styles'
 import ShowMore from '../Common/ShowMore'
+import Markdown from '../Common/Markdown'
 
 const { cardStyles } = styles
 
@@ -23,7 +24,9 @@ const RenderResponses = ({ question, watch }: InputProps) => {
   if (answer.results)
     return (
       <Box sx={cardStyles.answerBox}>
-        <div style={{ padding: 10 }}>{answer.results.title}</div>
+        <Box sx={{ padding: 1 }}>
+          <Markdown>{answer.results.title}</Markdown>
+        </Box>
         {answer.results.data.map(
           (result: { label: string; text: string; info: string }) => (
             <Box sx={{ padding: 1 }}>
