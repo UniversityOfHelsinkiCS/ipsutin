@@ -11,6 +11,18 @@ export interface Faculty {
   name: Locales
 }
 
+export interface User {
+  id: string
+  username: string
+  firstName?: string
+  lastName?: string
+  email?: string
+  language?: string
+  isAdmin: boolean
+  iamGroups: string[]
+  newUser: boolean
+}
+
 export interface InputProps {
   control?: Control<FieldValues>
   watch?: UseFormWatch<FieldValues>

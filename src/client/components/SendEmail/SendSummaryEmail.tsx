@@ -5,15 +5,15 @@ import { Alert, Box, Button } from '@mui/material'
 import styles from '../../styles'
 import apiClient from '../../util/apiClient'
 import { InputProps } from '../../types'
+import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 const SendSummaryEmail = ({ watch }: InputProps) => {
   const [answers, setAnswers] = useState<any>({})
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
+  const { user, isLoading } = useLoggedInUser()
 
   const { common, formStyles } = styles
-
-  const ticketEmail = ''
 
   const sendResultsToEmail = async (targets: string[], text: string) => {
     apiClient.post('/summary', {
@@ -24,7 +24,7 @@ const SendSummaryEmail = ({ watch }: InputProps) => {
   }
 
   const sendResults = async () => {
-    const targets = [ticketEmail]
+    const targets = [user?.email]
     const text = `
 
     Summary of the Licences survey
@@ -71,6 +71,8 @@ const SendSummaryEmail = ({ watch }: InputProps) => {
   const submitFormData = () => {
     setAnswers(fetchAnswers())
   }
+
+  if (isLoading || !user?.email) return null
 
   return (
     <Box>
