@@ -28,7 +28,7 @@ const IdeaEvaluation = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
-        <Grid item xl={10}>
+        <Grid item xl={12}>
           <Box sx={cardStyles.outerBox}>
             <Box sx={cardStyles.card}>
               {questions.map((question) => (

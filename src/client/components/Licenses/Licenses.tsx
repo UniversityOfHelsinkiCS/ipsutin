@@ -36,7 +36,7 @@ const Licences = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
-        <Grid item>
+        <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <RenderSurvey control={control} watch={watch} />
           </form>

@@ -38,7 +38,7 @@ const MainPage = () => {
         >
           <SelectFaculty setFaculty={setFaculty} faculty={faculty} />
           {faculty && <SelectSurvey setSurvey={setSurvey} survey={survey} />}
-          <Grid item>
+          <Grid item xl={12}>
             {location.pathname === '/licences' && <Licences />}
             {location.pathname === '/ipassessment' && <IpAssessment />}
             {location.pathname === '/ideaevaluation' && <IdeaEvaluation />}
