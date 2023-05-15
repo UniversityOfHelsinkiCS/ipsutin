@@ -3,7 +3,7 @@ import { Survey } from '../models'
 const surveys = [
   {
     id: 1,
-    name: 'ipAssesment',
+    name: 'ipAssessment',
   },
   {
     id: 2,
