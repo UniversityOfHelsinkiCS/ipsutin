@@ -29,7 +29,7 @@ const RenderResponses = ({ question, watch }: InputProps) => {
         </Box>
         {answer.results.data.map(
           (result: { label: string; text: string; info: string }) => (
-            <Box sx={{ padding: 1 }}>
+            <Box sx={{ padding: 1 }} key={result.label}>
               {result.label} {result.text}
               {result.info && <ShowMore text={result.info} />}
             </Box>

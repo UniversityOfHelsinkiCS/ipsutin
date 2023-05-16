@@ -44,7 +44,7 @@ const SendContactTicket = () => {
         label={t('contact:contactTicketContentLabel')}
         fullWidth
         multiline
-        rows={20}
+        rows={10}
         margin="dense"
         {...register('content')}
         error={errors.content ? true : false} // eslint-disable-line no-unneeded-ternary

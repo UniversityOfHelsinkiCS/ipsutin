@@ -7,10 +7,10 @@ import { FormValues } from '../../types'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 
-import Contact from '../SendEmail/Contact'
+import Results from '../Results/Results'
 
 const Licences = () => {
-  const [showContact, setShowContact] = useState(false)
+  const [showResults, setShowResults] = useState(false)
   const { formStyles } = styles
 
   const getSavedInstance = useCallback(() => {
@@ -30,7 +30,7 @@ const Licences = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log(data)
-    setShowContact(true)
+    setShowResults(true)
   }
 
   return (
@@ -38,9 +38,13 @@ const Licences = () => {
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <RenderSurvey control={control} watch={watch} />
+            <RenderSurvey
+              control={control}
+              watch={watch}
+              surveyName="licenses"
+            />
           </form>
-          {showContact && <Contact />}
+          {showResults && <Results watch={watch} />}
         </Grid>
       </Grid>
     </Box>

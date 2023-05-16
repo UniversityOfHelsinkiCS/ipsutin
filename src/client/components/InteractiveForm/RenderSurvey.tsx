@@ -4,13 +4,12 @@ import { Box, Button, Stack } from '@mui/material'
 import { InputProps } from '../../types'
 import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
-import SendSummaryEmail from '../SendEmail/SendSummaryEmail'
 import styles from '../../styles'
 import useSurvey from '../../hooks/useSurvey'
 
-const RenderSurvey = ({ control, watch }: InputProps) => {
+const RenderSurvey = ({ surveyName, control, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
-  const { survey, isLoading } = useSurvey('licenses')
+  const { survey, isLoading } = useSurvey(surveyName)
   const { cardStyles, formStyles } = styles
 
   const { language } = i18n
@@ -42,9 +41,8 @@ const RenderSurvey = ({ control, watch }: InputProps) => {
               variant="contained"
               type="submit"
             >
-              {t('contact:submit')}
+              {t('common:submit')}
             </Button>
-            <SendSummaryEmail watch={watch} />
             <ResetForm />
           </Stack>
         </Box>

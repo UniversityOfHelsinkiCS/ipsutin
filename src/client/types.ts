@@ -40,6 +40,7 @@ export interface InputProps {
   faculty?: string
   setSurvey?: React.Dispatch<React.SetStateAction<string>>
   survey?: string
+  surveyName?: string
 }
 
 export interface FormValues {
