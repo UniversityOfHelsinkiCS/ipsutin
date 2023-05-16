@@ -14,7 +14,7 @@ import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 const Licences = ({ faculty }: InputProps) => {
   const [showResults, setShowResults] = useState(false)
   const { formStyles } = styles
-  const { survey, isLoading } = useSurvey('ideaEvaluation')
+  const { survey, isLoading } = useSurvey('licenses')
 
   const mutation = useSaveEntryMutation(survey?.id)
 
@@ -48,11 +48,7 @@ const Licences = ({ faculty }: InputProps) => {
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <RenderSurvey
-              control={control}
-              watch={watch}
-              surveyName="licenses"
-            />
+            <RenderSurvey control={control} watch={watch} survey={survey} />
           </form>
           {showResults && <Results watch={watch} />}
         </Grid>
