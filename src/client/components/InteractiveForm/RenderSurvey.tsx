@@ -1,25 +1,22 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, Stack } from '@mui/material'
-import { InputProps } from '../../types'
+import { InputProps, Question } from '../../types'
 import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
 import styles from '../../styles'
-import useSurvey from '../../hooks/useSurvey'
 
-const RenderSurvey = ({ surveyName, control, watch }: InputProps) => {
+const RenderSurvey = ({ survey, control, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
-  const { survey, isLoading } = useSurvey(surveyName)
+
   const { cardStyles, formStyles } = styles
 
   const { language } = i18n
 
-  if (isLoading) return null
-
   return (
     <Box sx={cardStyles.outerBox}>
       <Box sx={cardStyles.card}>
-        {survey.Questions.map((question) => (
+        {survey.Questions.map((question: Question) => (
           <div key={question.id}>
             {question.parentId === null && (
               <RenderQuestions

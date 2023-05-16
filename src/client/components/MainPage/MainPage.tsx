@@ -37,11 +37,19 @@ const MainPage = () => {
           sx={{ px: 2, display: 'flex', justifyContent: 'center' }}
         >
           <SelectFaculty setFaculty={setFaculty} faculty={faculty} />
-          {faculty && <SelectSurvey setSurvey={setSurvey} survey={survey} />}
+          {faculty && (
+            <SelectSurvey setSurvey={setSurvey} surveyName={survey} />
+          )}
           <Grid item xl={12}>
-            {location.pathname === '/licences' && <Licences />}
-            {location.pathname === '/ipassessment' && <IpAssessment />}
-            {location.pathname === '/ideaevaluation' && <IdeaEvaluation />}
+            {location.pathname === '/licences' && (
+              <Licences faculty={faculty} />
+            )}
+            {location.pathname === '/ipassessment' && (
+              <IpAssessment faculty={faculty} />
+            )}
+            {location.pathname === '/ideaevaluation' && (
+              <IdeaEvaluation faculty={faculty} />
+            )}
           </Grid>
         </Grid>
         <Grid item sm={12} md={5} xl={3}>

@@ -3,15 +3,20 @@ import { useForm } from 'react-hook-form'
 import { Box, Grid } from '@mui/material'
 
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
-import { FormValues } from '../../types'
+import { FormValues, InputProps } from '../../types'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 
 import Results from '../Results/Results'
+import useSurvey from '../../hooks/useSurvey'
+import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 
-const Licences = () => {
+const Licences = ({ faculty }: InputProps) => {
   const [showResults, setShowResults] = useState(false)
   const { formStyles } = styles
+  const { survey, isLoading } = useSurvey('ideaEvaluation')
+
+  const mutation = useSaveEntryMutation(survey?.id)
 
   const getSavedInstance = useCallback(() => {
     const savedData = sessionStorage.getItem(FORM_DATA_KEY)
@@ -29,9 +34,14 @@ const Licences = () => {
   })
 
   const onSubmit = (data: FormValues) => {
-    console.log(data)
+    const submittedData = { ...data, faculty }
+
+    mutation.mutateAsync(submittedData)
+
     setShowResults(true)
   }
+
+  if (isLoading) return null
 
   return (
     <Box sx={formStyles.formWrapper}>

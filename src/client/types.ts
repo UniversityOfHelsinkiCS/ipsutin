@@ -39,7 +39,7 @@ export interface InputProps {
   setFaculty?: React.Dispatch<React.SetStateAction<string>>
   faculty?: string
   setSurvey?: React.Dispatch<React.SetStateAction<string>>
-  survey?: string
+  survey?: any
   surveyName?: string
 }
 

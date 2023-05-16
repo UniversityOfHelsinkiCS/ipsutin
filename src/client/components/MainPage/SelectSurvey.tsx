@@ -9,7 +9,7 @@ import styles from '../../styles'
 import { InputProps } from '../../types'
 import Markdown from '../Common/Markdown'
 
-const SelectSurvey = ({ survey, setSurvey }: InputProps) => {
+const SelectSurvey = ({ surveyName, setSurvey }: InputProps) => {
   const { t } = useTranslation()
 
   const { cardStyles, formStyles } = styles
@@ -28,7 +28,7 @@ const SelectSurvey = ({ survey, setSurvey }: InputProps) => {
         <Select
           sx={cardStyles.inputField}
           data-cy="survey-select"
-          value={survey}
+          value={surveyName}
           label={t('facultySelect:inputLabel')}
           onChange={handleSurveyChange}
         >
