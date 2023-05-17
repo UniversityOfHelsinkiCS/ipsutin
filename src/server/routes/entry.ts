@@ -27,6 +27,7 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res) => {
   const newEntry = await Entry.create({
     surveyId: Number(surveyId),
     data,
+    sessionToken,
   })
 
   return res.status(201).send(newEntry)
