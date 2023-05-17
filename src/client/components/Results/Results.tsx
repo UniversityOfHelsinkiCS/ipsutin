@@ -11,8 +11,6 @@ const Results = ({ watch }: InputProps) => {
   const [openContactForm, setOpenContactForm] = useState(false)
   const { formStyles, cardStyles } = styles
 
-  console.log(watch)
-
   return (
     <Box sx={cardStyles.outerBox}>
       <Box>
