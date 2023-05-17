@@ -16,7 +16,8 @@
   },
   "results": {
     "sendSummaryMail": "Send summary email",
-    "sendSuccess": "Email sent successfully!"
+    "sendSuccess": "Email sent successfully!",
+    "title": "Results"
   },
   "facultySelect": {
     "welcomeMessage": "",
@@ -30,7 +31,7 @@
     "toolSelectionQuestion": "Which of these surveys would you like to use?"
   },
   "surveyNames": {
-    "ipAssessment": "IP assessment",
+    "ipAssessment": "IP Assessment",
     "licences": "Licences",
     "ideaEvaluation": "Idea Evaluation"
   }
