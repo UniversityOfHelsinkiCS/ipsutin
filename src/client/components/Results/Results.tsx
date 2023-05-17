@@ -39,7 +39,7 @@ const Results = ({ watch }: InputProps) => {
       </Box>
       <Box sx={formStyles.stackBoxWrapper}>
         <Stack sx={formStyles.stack} direction="row">
-          <SendSummaryEmail />
+          <SendSummaryEmail watch={watch} />
           <Button
             sx={formStyles.stackButton}
             variant="contained"
