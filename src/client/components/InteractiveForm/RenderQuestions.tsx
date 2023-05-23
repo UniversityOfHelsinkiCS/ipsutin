@@ -4,7 +4,6 @@ import { InputProps, Locales, PossibleChoiceTypes, Question } from '../../types'
 import styles from '../../styles'
 import MultiChoice from '../Choices/MultiChoice'
 import SingleChoice from '../Choices/SingleChoice'
-import Markdown from '../Common/Markdown'
 import ShowMore from '../Common/ShowMore'
 import RenderResponses from './RenderResponses'
 
@@ -26,12 +25,12 @@ const QuestionText = ({
     )
 
   return (
-    <>
-      <p className="questions">{question.title[language]}</p>
-      <Box sx={cardStyles.content}>
-        <Markdown>{question.text[language]}</Markdown>
-      </Box>
-    </>
+    <Box>
+      {question.title[language]}
+      {question.text[language] && (
+        <ShowMore text={question.text[language as keyof Locales]} />
+      )}
+    </Box>
   )
 }
 
