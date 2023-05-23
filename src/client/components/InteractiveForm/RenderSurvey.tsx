@@ -6,7 +6,12 @@ import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
 import styles from '../../styles'
 
-const RenderSurvey = ({ survey, control, watch }: InputProps) => {
+const RenderSurvey = ({
+  questions,
+  control,
+  watch,
+  surveyName,
+}: InputProps) => {
   const { t, i18n } = useTranslation()
 
   const { cardStyles, formStyles } = styles
@@ -15,15 +20,16 @@ const RenderSurvey = ({ survey, control, watch }: InputProps) => {
 
   return (
     <Box sx={cardStyles.outerBox}>
+      <h2 style={{ paddingLeft: '10px' }}>{surveyName}</h2>
       <Box sx={cardStyles.card}>
-        {survey.Questions.map((question: Question) => (
+        {questions.map((question: Question) => (
           <div key={question.id}>
             {question.parentId === null && (
               <RenderQuestions
                 control={control}
                 watch={watch}
                 question={question}
-                questions={survey.Questions}
+                questions={questions}
                 language={language}
               />
             )}

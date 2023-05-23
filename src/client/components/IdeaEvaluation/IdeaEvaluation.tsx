@@ -36,7 +36,12 @@ const IdeaEvaluation = ({ faculty }: InputProps) => {
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <RenderSurvey control={control} watch={watch} survey={survey} />
+            <RenderSurvey
+              control={control}
+              watch={watch}
+              questions={survey.Questions}
+              surveyName="Idea Evaluation"
+            />
           </form>
           {showResults && <Results watch={watch} />}
         </Grid>
