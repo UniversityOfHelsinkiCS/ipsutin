@@ -13,6 +13,7 @@ import userRouter from './user'
 import summaryRouter from './summary'
 import recommendationRouter from './recommendation'
 import facultyRouter from './faculty'
+import resultRouter from './result'
 
 const router = express()
 
@@ -29,6 +30,7 @@ router.use(userMiddleware)
 
 router.use(accessLogger)
 
+router.use('/results', resultRouter)
 router.use('/faculties', facultyRouter)
 router.use('/surveys', surveyRouter)
 router.use('/entries', entryRouter)

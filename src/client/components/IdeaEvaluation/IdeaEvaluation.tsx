@@ -4,13 +4,14 @@ import { useForm } from 'react-hook-form'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 
 import styles from '../../styles'
-import Results from '../Results/Results'
+import Results from './Results'
 import { FormValues, InputProps } from '../../types'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 import useSurvey from '../../hooks/useSurvey'
 
 const IdeaEvaluation = ({ faculty }: InputProps) => {
   const [showResults, setShowResults] = useState(false)
+  const [resultData, setResultData] = useState<FormValues>(null)
   const { formStyles } = styles
   const { survey, isLoading } = useSurvey('ideaEvaluation')
 
@@ -23,6 +24,7 @@ const IdeaEvaluation = ({ faculty }: InputProps) => {
 
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
+    setResultData(submittedData)
 
     mutation.mutateAsync(submittedData)
 
@@ -43,7 +45,7 @@ const IdeaEvaluation = ({ faculty }: InputProps) => {
               surveyName="Idea Evaluation"
             />
           </form>
-          {showResults && <Results watch={watch} />}
+          {resultData && showResults && <Results formResultData={resultData} />}
         </Grid>
       </Grid>
     </Box>

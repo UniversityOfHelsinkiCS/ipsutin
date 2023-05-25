@@ -1,5 +1,5 @@
 import { Result } from '../models'
-import getResultData from '../../data/results'
+import getResultData from '../../data/ieResults'
 
 const seedResults = async () => {
   const results: any = getResultData()
