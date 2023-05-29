@@ -26,7 +26,7 @@ const QuestionText = ({
 
   return (
     <Box>
-      {question.title[language]}
+      <div className="questions">{question.title[language]}</div>
       {question.text[language] && (
         <ShowMore text={question.text[language as keyof Locales]} />
       )}
