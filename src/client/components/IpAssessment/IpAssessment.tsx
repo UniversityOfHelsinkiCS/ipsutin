@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box, Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import styles from '../../styles'
-import Results from '../Results/Results'
-import { FormValues, InputProps } from '../../types'
-import RenderSurvey from '../InteractiveForm/RenderSurvey'
+import { FormValues, InputProps, Question } from '../../types'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
+import RenderQuestions from '../InteractiveForm/RenderQuestions'
+import useResults from '../../hooks/useResults'
 
 const IpAssessment = ({ faculty }: InputProps) => {
-  const [showTechnicalResults, setShowTechnicalResults] = useState(false)
-  const [showMathematicalResults, setShowMathematicalResults] = useState(false)
-  const [showProgramResults, setShowProgramResults] = useState(false)
   const { formStyles } = styles
   const { survey, isLoading } = useSurvey('ipAssessment')
+  const { results, isSuccess: resultsFetched } = useResults(survey?.id)
+  const { t, i18n } = useTranslation()
+
+  const { language } = i18n
 
   const mutation = useSaveEntryMutation(survey?.id)
 
@@ -22,67 +24,116 @@ const IpAssessment = ({ faculty }: InputProps) => {
     shouldUnregister: true,
   })
 
-  const onSubmitTechnical = (data: FormValues) => {
+  const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
     mutation.mutateAsync(submittedData)
-    setShowTechnicalResults(true)
   }
 
-  const onSubmitMathematical = (data: FormValues) => {
-    const submittedData = { ...data, faculty }
-    mutation.mutateAsync(submittedData)
-    setShowMathematicalResults(true)
-  }
+  if (isLoading || !resultsFetched) return null
 
-  const onSubmitProgram = (data: FormValues) => {
-    const submittedData = { ...data, faculty }
-    mutation.mutateAsync(submittedData)
-    setShowProgramResults(true)
-  }
-
-  if (isLoading) return null
-
-  const mathematical = survey.Questions.filter((question) =>
+  const technical = survey.Questions.filter((question) =>
     [101, 102, 103, 104].includes(question.id)
   )
-  const technical = survey.Questions.filter((question) =>
+  const mathematical = survey.Questions.filter((question) =>
     [105, 106, 107, 108, 109].includes(question.id)
   )
   const computerProgram = survey.Questions.filter((question) =>
     [110, 111, 112].includes(question.id)
   )
 
+  const technicalResultSequence = results
+    .filter(
+      (result: { optionLabel: string }) => result.optionLabel === 'technical'
+    )
+    .map((result: { data: any }) => result.data.sequence)
+  const mathematicalResultSequence = results
+    .filter(
+      (result: { optionLabel: string }) => result.optionLabel === 'mathematical'
+    )
+    .map((result: { data: any }) => result.data.sequence)
+  const computerProgramResultSequence = results
+    .filter(
+      (result: { optionLabel: string }) =>
+        result.optionLabel === 'computerProgram'
+    )
+    .map((result: { data: any }) => result.data.sequence)
+
+  const technicalAnswered = watch(
+    technical.map((question) => question.id.toString())
+  )
+  const mathematicalAnswered = watch(
+    mathematical.map((question) => question.id.toString())
+  )
+  const computerProgramAnswered = watch(
+    computerProgram.map((question) => question.id.toString())
+  )
+
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
         <Grid item xl={12}>
-          <form onSubmit={handleSubmit(onSubmitTechnical)}>
-            <RenderSurvey
-              control={control}
-              watch={watch}
-              questions={technical}
-              surveyName="Technical solutions"
-            />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h2 style={{ paddingLeft: '10px' }}>
+              {t('ipAssessmentSurvey:technicalTitle')}
+            </h2>
+            {technical.map((question: Question) => (
+              <div key={question.id}>
+                {question.parentId === null && (
+                  <RenderQuestions
+                    control={control}
+                    watch={watch}
+                    question={question}
+                    questions={technical}
+                    language={language}
+                  />
+                )}
+              </div>
+            ))}
+            {!technicalAnswered.some((answer) => !answer) &&
+              technicalAnswered.every((v: any) =>
+                technicalResultSequence[0].includes(v)
+              ) && <div>{t('ipAssessmentSurvey:patentable')}</div>}
+            <h2 style={{ paddingLeft: '10px' }}>
+              {t('ipAssessmentSurvey:mathematicalTitle')}
+            </h2>
+            {mathematical.map((question: Question) => (
+              <div key={question.id}>
+                {question.parentId === null && (
+                  <RenderQuestions
+                    control={control}
+                    watch={watch}
+                    question={question}
+                    questions={mathematical}
+                    language={language}
+                  />
+                )}
+              </div>
+            ))}
+            {!mathematicalAnswered.some((answer) => !answer) &&
+              mathematicalAnswered.every((v: any) =>
+                mathematicalResultSequence[0].includes(v)
+              ) && <div>{t('ipAssessmentSurvey:patentable')}</div>}
+            <h2 style={{ paddingLeft: '10px' }}>
+              {t('ipAssessmentSurvey:computerProgramTitle')}
+            </h2>
+            {computerProgram.map((question: Question) => (
+              <div key={question.id}>
+                {question.parentId === null && (
+                  <RenderQuestions
+                    control={control}
+                    watch={watch}
+                    question={question}
+                    questions={computerProgram}
+                    language={language}
+                  />
+                )}
+              </div>
+            ))}
+            {!computerProgramAnswered.some((answer) => !answer) &&
+              computerProgramAnswered.every((v: any) =>
+                computerProgramResultSequence[0].includes(v)
+              ) && <div>{t('ipAssessmentSurvey:patentable')}</div>}
           </form>
-          {showTechnicalResults && <Results watch={watch} />}
-          <form onSubmit={handleSubmit(onSubmitMathematical)}>
-            <RenderSurvey
-              control={control}
-              watch={watch}
-              questions={mathematical}
-              surveyName="Mathematical models"
-            />
-          </form>
-          {showMathematicalResults && <Results watch={watch} />}
-          <form onSubmit={handleSubmit(onSubmitProgram)}>
-            <RenderSurvey
-              control={control}
-              watch={watch}
-              questions={computerProgram}
-              surveyName="Computer programs"
-            />
-          </form>
-          {showProgramResults && <Results watch={watch} />}
         </Grid>
       </Grid>
     </Box>

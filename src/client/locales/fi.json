@@ -43,5 +43,11 @@
     "incubator": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
     "businessCollaborationTeam": "The [business collaboration team](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet) helps researchers when they wish to collaborate with businesses or apply for funding related to business collaboration from, for example, Business Finland or the Finnish Research Impact Foundation.",
     "lawyers": "The [lawyers of the research services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/tutkimussopimus-ja-lakiasiat) assist the employees of the university with legal matters related to research, for example, with agreement preparation and interpreting regulations as well as data protection matters."
+  },
+  "ipAssessmentSurvey": {
+    "technicalTitle": "Technical Solutions",
+    "mathematicalTitle": "Mathematical Models",
+    "computerProgramTitle": "Computer Programs",
+    "patentable": "Your product is potentially patentable"
   }
 }

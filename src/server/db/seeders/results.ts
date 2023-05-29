@@ -1,8 +1,12 @@
 import { Result } from '../models'
-import getResultData from '../../data/ieResults'
+import getIeResults from '../../data/ieResults'
+import getAssessmentResults from '../../data/assessmentResults'
 
 const seedResults = async () => {
-  const results: any = getResultData()
+  const ieResults: any[] = getIeResults()
+  const assessmentResults: any[] = getAssessmentResults()
+
+  const results = [...ieResults, ...assessmentResults]
 
   results.forEach(async (result: any) => {
     await Result.upsert({
