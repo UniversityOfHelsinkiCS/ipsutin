@@ -7,7 +7,7 @@ import { FormValues, InputProps } from '../../types'
 import { FORM_DATA_KEY } from '../../../config'
 import styles from '../../styles'
 
-import Results from '../Results/Results'
+import ResultButtons from '../ResultButtons/ResultButtons'
 import useSurvey from '../../hooks/useSurvey'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 
@@ -55,7 +55,7 @@ const Licences = ({ faculty }: InputProps) => {
               surveyName="Licenses"
             />
           </form>
-          {showResults && <Results watch={watch} />}
+          {showResults && <ResultButtons watch={watch} />}
         </Grid>
       </Grid>
     </Box>
