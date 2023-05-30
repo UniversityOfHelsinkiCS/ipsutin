@@ -8,10 +8,11 @@ import styles from '../../styles'
 import { InputProps, Locales } from '../../types'
 import { getIeRecommendationScores, sortRecommendations } from './util'
 import useRecommendations from '../../hooks/useRecommendations'
+import ResultButtons from '../ResultButtons/ResultButtons'
 
 const { cardStyles, resultStyles } = styles
 
-const Results = ({ formResultData }: InputProps) => {
+const Results = ({ formResultData, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
   const { survey } = useSurvey('ideaEvaluation')
@@ -58,13 +59,13 @@ const Results = ({ formResultData }: InputProps) => {
 
           <Box>
             {filteredResultsWithLabels.map((result) => (
-              <div>
+              <div key={result.id}>
                 <Box sx={cardStyles.outerBox}>
                   {result.isSelected[language as keyof Locales]}
                 </Box>
                 {result.labels.map((label) =>
                   result.data[label][language as keyof Locales] ? (
-                    <Box>
+                    <Box key={label}>
                       {
                         sortedRecommendations.find(
                           (recommendation) => recommendation.label === label
@@ -79,6 +80,7 @@ const Results = ({ formResultData }: InputProps) => {
           </Box>
         </Box>
       </Box>
+      <ResultButtons watch={watch} />
     </Box>
   )
 }
