@@ -24,16 +24,18 @@ const SendSummaryEmail = ({ watch }: InputProps) => {
   }
 
   const sendResults = async () => {
+    const modifiedText = Object.keys(answers)
+      .map((answer, index) => `${answer}: ${Object.values(answers)[index]}\n\n`)
+      .join('')
     const targets = [user?.email]
     const text = `
 
-    Summary of the Licences survey
+    Summary
     ============================
 
-    ${JSON.stringify(answers)}
+    ${modifiedText}
 
     `
-
     if (!isSent) {
       try {
         await sendResultsToEmail(targets, text)
