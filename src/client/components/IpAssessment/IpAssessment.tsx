@@ -1,6 +1,5 @@
-/* eslint-disable no-nested-ternary */
-import React from 'react'
-import { Box, Grid } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, Button, Grid, Stack } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styles from '../../styles'
@@ -8,13 +7,14 @@ import { FormValues, InputProps, Question } from '../../types'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import RenderQuestions from '../InteractiveForm/RenderQuestions'
-import useResults from '../../hooks/useResults'
-import Markdown from '../Common/Markdown'
+import Results from './Results'
+import ResetForm from '../Common/ResetForm'
 
 const IpAssessment = ({ faculty }: InputProps) => {
-  const { formStyles } = styles
+  const [resultData, setResultData] = useState<FormValues>(null)
+  const [showResults, setShowResults] = useState(false)
+  const { formStyles, cardStyles } = styles
   const { survey, isLoading } = useSurvey('ipAssessment')
-  const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { t, i18n } = useTranslation()
 
   const { language } = i18n
@@ -28,10 +28,12 @@ const IpAssessment = ({ faculty }: InputProps) => {
 
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
+    setResultData(submittedData)
     mutation.mutateAsync(submittedData)
+    setShowResults(true)
   }
 
-  if (isLoading || !resultsFetched) return null
+  if (isLoading) return null
 
   const technical = survey.Questions.filter((question) =>
     [101, 102, 103, 104].includes(question.id)
@@ -43,114 +45,81 @@ const IpAssessment = ({ faculty }: InputProps) => {
     [110, 111, 112].includes(question.id)
   )
 
-  const technicalResultSequence = results
-    .filter(
-      (result: { optionLabel: string }) => result.optionLabel === 'technical'
-    )
-    .map((result: { data: any }) => result.data.sequence)
-  const mathematicalResultSequence = results
-    .filter(
-      (result: { optionLabel: string }) => result.optionLabel === 'mathematical'
-    )
-    .map((result: { data: any }) => result.data.sequence)
-  const computerProgramResultSequence = results
-    .filter(
-      (result: { optionLabel: string }) =>
-        result.optionLabel === 'computerProgram'
-    )
-    .map((result: { data: any }) => result.data.sequence)
-
-  const technicalAnswered = watch(
-    technical.map((question) => question.id.toString())
-  )
-  const mathematicalAnswered = watch(
-    mathematical.map((question) => question.id.toString())
-  )
-  const computerProgramAnswered = watch(
-    computerProgram.map((question) => question.id.toString())
-  )
-
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <h2 style={{ paddingLeft: '10px' }}>
-              {t('ipAssessmentSurvey:technicalTitle')}
-            </h2>
-            {technical.map((question: Question) => (
-              <div key={question.id}>
-                {question.parentId === null && (
-                  <RenderQuestions
-                    control={control}
-                    watch={watch}
-                    question={question}
-                    questions={technical}
-                    language={language}
-                  />
-                )}
-              </div>
-            ))}
-            {technicalAnswered.some(
-              (answer) => !answer
-            ) ? null : technicalAnswered.every((v: any) =>
-                technicalResultSequence[0].includes(v)
-              ) ? (
-              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
-            ) : (
-              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
-            )}
-            <h2 style={{ paddingLeft: '10px' }}>
-              {t('ipAssessmentSurvey:mathematicalTitle')}
-            </h2>
-            {mathematical.map((question: Question) => (
-              <div key={question.id}>
-                {question.parentId === null && (
-                  <RenderQuestions
-                    control={control}
-                    watch={watch}
-                    question={question}
-                    questions={mathematical}
-                    language={language}
-                  />
-                )}
-              </div>
-            ))}
-            {mathematicalAnswered.some(
-              (answer) => !answer
-            ) ? null : mathematicalAnswered.every((v: any) =>
-                mathematicalResultSequence[0].includes(v)
-              ) ? (
-              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
-            ) : (
-              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
-            )}
-            <h2 style={{ paddingLeft: '10px' }}>
-              {t('ipAssessmentSurvey:computerProgramTitle')}
-            </h2>
-            {computerProgram.map((question: Question) => (
-              <div key={question.id}>
-                {question.parentId === null && (
-                  <RenderQuestions
-                    control={control}
-                    watch={watch}
-                    question={question}
-                    questions={computerProgram}
-                    language={language}
-                  />
-                )}
-              </div>
-            ))}
-            {computerProgramAnswered.some(
-              (answer) => !answer
-            ) ? null : computerProgramAnswered.every((v: any) =>
-                computerProgramResultSequence[0].includes(v)
-              ) ? (
-              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
-            ) : (
-              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
-            )}
+            <Box sx={cardStyles.outerBox}>
+              <h2 style={{ paddingLeft: '10px' }}>IP Assessment</h2>
+              <Box sx={cardStyles.card}>
+                <h3 style={{ paddingLeft: '10px' }}>
+                  {t('ipAssessmentSurvey:technicalTitle')}
+                </h3>
+                {technical.map((question: Question) => (
+                  <div key={question.id}>
+                    {question.parentId === null && (
+                      <RenderQuestions
+                        control={control}
+                        watch={watch}
+                        question={question}
+                        questions={technical}
+                        language={language}
+                      />
+                    )}
+                  </div>
+                ))}
+                <h3 style={{ paddingLeft: '10px' }}>
+                  {t('ipAssessmentSurvey:mathematicalTitle')}
+                </h3>
+                {mathematical.map((question: Question) => (
+                  <div key={question.id}>
+                    {question.parentId === null && (
+                      <RenderQuestions
+                        control={control}
+                        watch={watch}
+                        question={question}
+                        questions={mathematical}
+                        language={language}
+                      />
+                    )}
+                  </div>
+                ))}
+                <h3 style={{ paddingLeft: '10px' }}>
+                  {t('ipAssessmentSurvey:computerProgramTitle')}
+                </h3>
+                {computerProgram.map((question: Question) => (
+                  <div key={question.id}>
+                    {question.parentId === null && (
+                      <RenderQuestions
+                        control={control}
+                        watch={watch}
+                        question={question}
+                        questions={computerProgram}
+                        language={language}
+                      />
+                    )}
+                  </div>
+                ))}
+                <Box sx={formStyles.stackBoxWrapper}>
+                  <Stack sx={formStyles.stack} direction="row">
+                    <Button
+                      sx={formStyles.stackButton}
+                      id="contact-form-button"
+                      variant="contained"
+                      type="submit"
+                    >
+                      {t('common:submit')}
+                    </Button>
+                    <ResetForm />
+                  </Stack>
+                </Box>
+              </Box>
+            </Box>
           </form>
+          {resultData && showResults && (
+            <Results survey={survey} formResultData={resultData} />
+          )}
         </Grid>
       </Grid>
     </Box>
