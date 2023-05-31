@@ -8,6 +8,7 @@ import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import RenderQuestions from '../InteractiveForm/RenderQuestions'
 import useResults from '../../hooks/useResults'
+import Markdown from '../Common/Markdown'
 
 const IpAssessment = ({ faculty }: InputProps) => {
   const { formStyles } = styles
@@ -92,7 +93,7 @@ const IpAssessment = ({ faculty }: InputProps) => {
             {!technicalAnswered.some((answer) => !answer) &&
               technicalAnswered.every((v: any) =>
                 technicalResultSequence[0].includes(v)
-              ) && <div>{t('ipAssessmentSurvey:patentable')}</div>}
+              ) && <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>}
             <h2 style={{ paddingLeft: '10px' }}>
               {t('ipAssessmentSurvey:mathematicalTitle')}
             </h2>
@@ -112,7 +113,7 @@ const IpAssessment = ({ faculty }: InputProps) => {
             {!mathematicalAnswered.some((answer) => !answer) &&
               mathematicalAnswered.every((v: any) =>
                 mathematicalResultSequence[0].includes(v)
-              ) && <div>{t('ipAssessmentSurvey:patentable')}</div>}
+              ) && <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>}
             <h2 style={{ paddingLeft: '10px' }}>
               {t('ipAssessmentSurvey:computerProgramTitle')}
             </h2>
@@ -132,7 +133,7 @@ const IpAssessment = ({ faculty }: InputProps) => {
             {!computerProgramAnswered.some((answer) => !answer) &&
               computerProgramAnswered.every((v: any) =>
                 computerProgramResultSequence[0].includes(v)
-              ) && <div>{t('ipAssessmentSurvey:patentable')}</div>}
+              ) && <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>}
           </form>
         </Grid>
       </Grid>
