@@ -60,17 +60,19 @@ const Results = ({ formResultData, watch }: InputProps) => {
           <Box>
             {filteredResultsWithLabels.map((result) => (
               <div key={result.id}>
-                <Box sx={cardStyles.outerBox}>
+                <Box sx={cardStyles.question}>
                   {result.isSelected[language as keyof Locales]}
                 </Box>
                 {result.labels.map((label) =>
                   result.data[label][language as keyof Locales] ? (
                     <Box key={label}>
-                      {
-                        sortedRecommendations.find(
-                          (recommendation) => recommendation.label === label
-                        ).title[language as keyof Locales]
-                      }
+                      <strong>
+                        {
+                          sortedRecommendations.find(
+                            (recommendation) => recommendation.label === label
+                          ).title[language as keyof Locales]
+                        }
+                      </strong>
                       : {result.data[label][language as keyof Locales]}
                     </Box>
                   ) : null
