@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react'
 import { Box, Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
@@ -90,10 +91,15 @@ const IpAssessment = ({ faculty }: InputProps) => {
                 )}
               </div>
             ))}
-            {!technicalAnswered.some((answer) => !answer) &&
-              technicalAnswered.every((v: any) =>
+            {technicalAnswered.some(
+              (answer) => !answer
+            ) ? null : technicalAnswered.every((v: any) =>
                 technicalResultSequence[0].includes(v)
-              ) && <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>}
+              ) ? (
+              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+            ) : (
+              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+            )}
             <h2 style={{ paddingLeft: '10px' }}>
               {t('ipAssessmentSurvey:mathematicalTitle')}
             </h2>
@@ -110,10 +116,15 @@ const IpAssessment = ({ faculty }: InputProps) => {
                 )}
               </div>
             ))}
-            {!mathematicalAnswered.some((answer) => !answer) &&
-              mathematicalAnswered.every((v: any) =>
+            {mathematicalAnswered.some(
+              (answer) => !answer
+            ) ? null : mathematicalAnswered.every((v: any) =>
                 mathematicalResultSequence[0].includes(v)
-              ) && <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>}
+              ) ? (
+              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+            ) : (
+              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+            )}
             <h2 style={{ paddingLeft: '10px' }}>
               {t('ipAssessmentSurvey:computerProgramTitle')}
             </h2>
@@ -130,10 +141,15 @@ const IpAssessment = ({ faculty }: InputProps) => {
                 )}
               </div>
             ))}
-            {!computerProgramAnswered.some((answer) => !answer) &&
-              computerProgramAnswered.every((v: any) =>
+            {computerProgramAnswered.some(
+              (answer) => !answer
+            ) ? null : computerProgramAnswered.every((v: any) =>
                 computerProgramResultSequence[0].includes(v)
-              ) && <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>}
+              ) ? (
+              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+            ) : (
+              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+            )}
           </form>
         </Grid>
       </Grid>

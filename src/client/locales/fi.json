@@ -48,6 +48,7 @@
     "technicalTitle": "Technical Solutions",
     "mathematicalTitle": "Mathematical Models",
     "computerProgramTitle": "Computer Programs",
-    "patentable": "**Requirements for patentability potentially fulfilled**. Dicuss commercial potential and goals with HIS case owner."
+    "patentable": "**Requirements for patentability potentially fulfilled**. Dicuss commercial potential and goals with HIS case owner.",
+    "notPatentable": "**Requirements for patentability not fulfilled**. Please fill the **Licences** or **Idea Evaluation** survey."
   }
 }
