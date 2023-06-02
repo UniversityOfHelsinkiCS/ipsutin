@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
@@ -28,7 +27,7 @@ const ResultElement = ({
         borderLeft: 'solid',
         borderColor: '#9ca3af',
         borderWidth: '1px',
-      }} /* sx={resultStyles.resultElementWrapper} */
+      }}
     >
       <Box style={{ margin: '2rem 0 2rem 1rem' }}>
         <Markdown>{resultData.isSelected[language]}</Markdown>
@@ -36,7 +35,7 @@ const ResultElement = ({
       <Box
         style={{
           margin: '2rem 0 2rem 0',
-        }} /* sx={resultStyles.resultElementContent} */
+        }}
       >
         <Box
           key={`${JSON.stringify(resultData)}`}
@@ -46,7 +45,6 @@ const ResultElement = ({
             borderLeft: 'solid',
             borderWidth: '6px',
           }}
-          /* sx={{ m: 2, px: 2, borderLeft: 6, borderColor: color }} */
         >
           <Markdown>{resultData.data[language]}</Markdown>
         </Box>
