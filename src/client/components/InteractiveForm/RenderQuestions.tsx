@@ -25,11 +25,13 @@ const QuestionText = ({
     )
 
   return (
-    <Box>
-      <div className="questions">{question.title[language]}</div>
-      {question.text[language] && (
-        <ShowMore text={question.text[language as keyof Locales]} />
-      )}
+    <Box className="questions" sx={{ display: 'flex' }}>
+      <Typography component="span">
+        {question.title[language]}
+        {question.text[language] && (
+          <ShowMore text={question.text[language as keyof Locales]} />
+        )}
+      </Typography>
     </Box>
   )
 }
