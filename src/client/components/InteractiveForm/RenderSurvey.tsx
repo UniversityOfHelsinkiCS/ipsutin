@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Button, Stack } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { InputProps, Question } from '../../types'
 import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
@@ -20,7 +20,9 @@ const RenderSurvey = ({
 
   return (
     <Box sx={cardStyles.outerBox}>
-      <h2 style={{ paddingLeft: '10px' }}>{surveyName}</h2>
+      <Typography variant="h4" sx={{ m: 4 }}>
+        {surveyName}
+      </Typography>
       <Box sx={cardStyles.card}>
         {questions.map((question: Question) => (
           <div key={question.id}>
