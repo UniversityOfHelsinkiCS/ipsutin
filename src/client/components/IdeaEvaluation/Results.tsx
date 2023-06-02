@@ -4,13 +4,70 @@ import { Box, Container, Typography } from '@mui/material'
 
 import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
-import styles from '../../styles'
-import { InputProps, Locales } from '../../types'
-import { getIeRecommendationScores, sortRecommendations } from './util'
 import useRecommendations from '../../hooks/useRecommendations'
+
+import Markdown from '../Common/Markdown'
 import ResultButtons from '../ResultButtons/ResultButtons'
 
+import colors from '../../util/colors'
+import { getIeRecommendationScores, sortRecommendations } from './util'
+
+import { InputProps, Locales } from '../../types'
+import styles from '../../styles'
+
 const { cardStyles, resultStyles } = styles
+
+const ResultElement = ({
+  language,
+  resultData,
+}: {
+  language: keyof Locales
+  resultData: any
+}) => {
+  if (!resultData) return null
+
+  const dimensions = resultData.labels
+
+  return (
+    <Container
+      style={{
+        margin: '2rem 0 2rem 0',
+        borderLeft: 'solid',
+        borderColor: '#9ca3af',
+        borderWidth: '1px',
+      }}
+    >
+      <Box style={{ margin: '2rem 0 2rem 1rem' }}>
+        <Markdown>{resultData.isSelected[language]}</Markdown>
+      </Box>
+
+      <Box
+        style={{
+          margin: '2rem 0 2rem 0',
+        }}
+      >
+        {dimensions.map((dimension: string) => {
+          const color = colors[dimension] || null
+          return (
+            <Box
+              data-cy={`result-wrapper-${resultData.optionLabel}-${dimension}`}
+              key={`${JSON.stringify(resultData)}.${dimension}`}
+              style={{
+                margin: '1rem',
+                padding: '0 2rem 0 2rem ',
+                borderLeft: 'solid',
+                borderColor: color,
+                borderWidth: '6px',
+              }}
+            >
+              <Markdown>{resultData.data[dimension][language]}</Markdown>
+            </Box>
+          )
+        })}
+      </Box>
+    </Container>
+  )
+}
 
 const Results = ({ formResultData, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
@@ -25,6 +82,7 @@ const Results = ({ formResultData, watch }: InputProps) => {
     formResultData,
     recommendations
   )
+
   const sortedRecommendations = sortRecommendations(
     recommendations,
     recommendationScores
@@ -34,14 +92,15 @@ const Results = ({ formResultData, watch }: InputProps) => {
     Object.values(formResultData).includes(result.optionLabel)
   )
 
-  const sortedRecommendationLabels = sortedRecommendations.map(
+  const recommendationLabels = sortedRecommendations.map(
     (recommendation) => recommendation.label
   )
 
   const filteredResultsWithLabels = filteredResults.map((result) => ({
     ...result,
-    labels: sortedRecommendationLabels,
+    labels: recommendationLabels,
   }))
+
   return (
     <Box>
       <Box sx={cardStyles.outerBox}>
@@ -59,25 +118,11 @@ const Results = ({ formResultData, watch }: InputProps) => {
 
           <Box>
             {filteredResultsWithLabels.map((result) => (
-              <div key={result.id}>
-                <Box sx={cardStyles.question}>
-                  {result.isSelected[language as keyof Locales]}
-                </Box>
-                {result.labels.map((label) =>
-                  result.data[label][language as keyof Locales] ? (
-                    <Box key={label}>
-                      <strong>
-                        {
-                          sortedRecommendations.find(
-                            (recommendation) => recommendation.label === label
-                          ).title[language as keyof Locales]
-                        }
-                      </strong>
-                      : {result.data[label][language as keyof Locales]}
-                    </Box>
-                  ) : null
-                )}
-              </div>
+              <ResultElement
+                key={result.id}
+                language={language as keyof Locales}
+                resultData={result}
+              />
             ))}
           </Box>
         </Box>
