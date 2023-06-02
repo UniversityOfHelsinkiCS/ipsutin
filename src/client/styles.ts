@@ -64,7 +64,6 @@ const cardStyles = {
     textAlign: 'left',
   },
   inputField: {
-    mt: 2,
     width: 400,
   },
   answerBox: {
