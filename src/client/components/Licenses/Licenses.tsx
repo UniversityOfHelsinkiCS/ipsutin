@@ -2,16 +2,18 @@ import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Box, Grid } from '@mui/material'
 
-import RenderSurvey from '../InteractiveForm/RenderSurvey'
-import { FormValues, InputProps } from '../../types'
-import { FORM_DATA_KEY } from '../../../config'
-import styles from '../../styles'
-
-import ResultButtons from '../ResultButtons/ResultButtons'
 import useSurvey from '../../hooks/useSurvey'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 
+import Results from './Results'
+import RenderSurvey from '../InteractiveForm/RenderSurvey'
+
+import styles from '../../styles'
+import { FormValues, InputProps } from '../../types'
+import { FORM_DATA_KEY } from '../../../config'
+
 const Licences = ({ faculty }: InputProps) => {
+  const [resultData, setResultData] = useState<FormValues>(null)
   const [showResults, setShowResults] = useState(false)
   const { formStyles } = styles
   const { survey, isLoading } = useSurvey('licenses')
@@ -35,6 +37,7 @@ const Licences = ({ faculty }: InputProps) => {
 
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
+    setResultData(data)
 
     mutation.mutateAsync(submittedData)
 
@@ -55,7 +58,9 @@ const Licences = ({ faculty }: InputProps) => {
               surveyName="Licenses"
             />
           </form>
-          {showResults && <ResultButtons watch={watch} />}
+          {resultData && showResults && (
+            <Results survey={survey} formResultData={resultData} />
+          )}
         </Grid>
       </Grid>
     </Box>

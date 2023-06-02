@@ -24,7 +24,7 @@
     "inputLabel": "Your Faculty"
   },
   "surveySelect": {
-    "introMessage": "Start by selecting a survey",
+    "introMessage": "Continue by selecting a survey",
     "inputLabel": "Selected survey"
   },
   "helloBanner": {

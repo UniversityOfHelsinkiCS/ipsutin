@@ -5,7 +5,6 @@ import styles from '../../styles'
 import MultiChoice from '../Choices/MultiChoice'
 import SingleChoice from '../Choices/SingleChoice'
 import ShowMore from '../Common/ShowMore'
-import RenderResponses from './RenderResponses'
 
 const { cardStyles } = styles
 
@@ -91,10 +90,6 @@ const RenderQuestions = ({
             />
           ))}
       </Choice>
-
-      {watch(question.id.toString()) && (
-        <RenderResponses question={question} watch={watch} />
-      )}
     </Container>
   )
 }
