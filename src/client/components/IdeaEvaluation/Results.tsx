@@ -14,6 +14,7 @@ import { getIeRecommendationScores, sortRecommendations } from './util'
 
 import { InputProps, Locales } from '../../types'
 import styles from '../../styles'
+import RecommendationChip from '../Chip/RecommendationChip'
 
 const { cardStyles, resultStyles } = styles
 
@@ -114,6 +115,15 @@ const Results = ({ formResultData, watch }: InputProps) => {
             >
               {t('results:title')}
             </Typography>
+            <Box sx={{ mt: 2 }}>
+              {sortedRecommendations.map((recommendation) => (
+                <RecommendationChip
+                  key={recommendation.id}
+                  recommendation={recommendation}
+                  compact={false}
+                />
+              ))}
+            </Box>
           </Container>
 
           <Box>
