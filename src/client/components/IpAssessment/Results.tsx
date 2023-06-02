@@ -1,19 +1,67 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box } from '@mui/material'
-import { InputProps } from '../../types'
+import { Box, Container, Typography } from '@mui/material'
+import { InputProps, Locales, Result } from '../../types'
 import useResults from '../../hooks/useResults'
 import Markdown from '../Common/Markdown'
 import styles from '../../styles'
-import getQuestionsAndLabels from '../../util/getQuestionsAndLabels'
+// import getQuestionsAndLabels from '../../util/getQuestionsAndLabels'
+
+const { cardStyles, resultStyles } = styles
+
+const ResultElement = ({
+  language,
+  resultData,
+}: {
+  language: keyof Locales
+  resultData: Result
+}) => {
+  if (!resultData) return null
+
+  return (
+    <Container
+      style={{
+        margin: '2rem 0 2rem 0',
+        borderLeft: 'solid',
+        borderColor: '#9ca3af',
+        borderWidth: '1px',
+      }}
+    >
+      <Box style={{ margin: '2rem 0 2rem 1rem' }}>
+        <Markdown>{resultData.isSelected[language]}</Markdown>
+      </Box>
+      <Box
+        style={{
+          margin: '2rem 0 2rem 0',
+        }}
+      >
+        <Box
+          key={`${JSON.stringify(resultData)}`}
+          style={{
+            margin: '1rem',
+            padding: '0 2rem 0 2rem ',
+            borderLeft: 'solid',
+            borderWidth: '6px',
+          }}
+        >
+          <Markdown>{resultData.data[language]}</Markdown>
+        </Box>
+      </Box>
+    </Container>
+  )
+}
 
 const Results = ({ survey, formResultData }: InputProps) => {
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
-  const { t } = useTranslation()
-  const { cardStyles } = styles
+  const { t, i18n } = useTranslation()
+  const { language } = i18n
 
   if (!resultsFetched || !formResultData) return null
+
+  const resultArray = Object.values(formResultData).map((aChoice: string) => [
+    aChoice,
+  ])
 
   const technicalResultSequence = results
     .filter(
@@ -56,55 +104,81 @@ const Results = ({ survey, formResultData }: InputProps) => {
     )
   )
 
-  const questionsAndLabels = getQuestionsAndLabels({ formResultData })
+  /* const questionsAndLabels = getQuestionsAndLabels({ formResultData })
   const resultString = Object.keys(questionsAndLabels)
     .map(
       (answer, index) =>
         `${answer}: ${Object.values(questionsAndLabels)[index]}\n\n`
     )
-    .join('')
+    .join('') */
 
   return (
-    <Box sx={cardStyles.outerBox}>
-      <h2>{t('results:title')}</h2>
-      <Box sx={cardStyles.card}>
-        <Markdown>{resultString}</Markdown>
-      </Box>
-      <h3>{t('ipAssessmentSurvey:technicalTitle')}</h3>
-      <Box sx={cardStyles.card}>
-        {technicalAnswered.some(
-          (answer: any) => !answer
-        ) ? null : technicalAnswered.every((v: any) =>
-            technicalResultSequence[0].includes(v)
-          ) ? (
-          <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
-        ) : (
-          <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
-        )}
-      </Box>
-      <h3>{t('ipAssessmentSurvey:mathematicalTitle')}</h3>
-      <Box sx={cardStyles.card}>
-        {mathematicalAnswered.some(
-          (answer: any) => !answer
-        ) ? null : mathematicalAnswered.every((v: any) =>
-            mathematicalResultSequence[0].includes(v)
-          ) ? (
-          <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
-        ) : (
-          <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
-        )}
-      </Box>
-      <h3>{t('ipAssessmentSurvey:computerProgramTitle')}</h3>
-      <Box sx={cardStyles.card}>
-        {computerProgramAnswered.some(
-          (answer: any) => !answer
-        ) ? null : Object.values(computerProgramAnswered).every((v: any) =>
-            computerProgramResultSequence[0].includes(v)
-          ) ? (
-          <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
-        ) : (
-          <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
-        )}
+    <Box>
+      <Box sx={cardStyles.outerBox}>
+        <Box sx={resultStyles.resultWrapper}>
+          <Container sx={{ mt: 4 }}>
+            <Typography
+              data-cy="result-section-title"
+              variant="h5"
+              sx={resultStyles.heading}
+              component="div"
+            >
+              {t('results:title')}
+            </Typography>
+          </Container>
+
+          <Box>
+            {resultArray.map((resultLabels) =>
+              resultLabels.map((resultLabel) => (
+                <ResultElement
+                  key={JSON.stringify(resultLabel)}
+                  language={language as keyof Locales}
+                  resultData={results.find(
+                    (result: { optionLabel: string }) =>
+                      result.optionLabel === resultLabel
+                  )}
+                />
+              ))
+            )}
+          </Box>
+
+          <h3>{t('ipAssessmentSurvey:technicalTitle')}</h3>
+          <Box sx={cardStyles.card}>
+            {technicalAnswered.some(
+              (answer: any) => !answer
+            ) ? null : technicalAnswered.every((v: any) =>
+                technicalResultSequence[0].includes(v)
+              ) ? (
+              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+            ) : (
+              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+            )}
+          </Box>
+          <h3>{t('ipAssessmentSurvey:mathematicalTitle')}</h3>
+          <Box sx={cardStyles.card}>
+            {mathematicalAnswered.some(
+              (answer: any) => !answer
+            ) ? null : mathematicalAnswered.every((v: any) =>
+                mathematicalResultSequence[0].includes(v)
+              ) ? (
+              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+            ) : (
+              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+            )}
+          </Box>
+          <h3>{t('ipAssessmentSurvey:computerProgramTitle')}</h3>
+          <Box sx={cardStyles.card}>
+            {computerProgramAnswered.some(
+              (answer: any) => !answer
+            ) ? null : Object.values(computerProgramAnswered).every((v: any) =>
+                computerProgramResultSequence[0].includes(v)
+              ) ? (
+              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+            ) : (
+              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+            )}
+          </Box>
+        </Box>
       </Box>
     </Box>
   )

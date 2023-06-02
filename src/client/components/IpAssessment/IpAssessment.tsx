@@ -32,7 +32,7 @@ const IpAssessment = ({ faculty }: InputProps) => {
 
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
-    setResultData(submittedData)
+    setResultData(data)
     mutation.mutateAsync(submittedData)
     setShowResults(true)
   }
