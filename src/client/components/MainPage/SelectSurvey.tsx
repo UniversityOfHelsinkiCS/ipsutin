@@ -21,15 +21,15 @@ const SelectSurvey = ({ surveyName, setSurvey }: InputProps) => {
   return (
     <Box sx={cardStyles.card}>
       <Box sx={cardStyles.content}>
-        <Markdown>Select the survey</Markdown>
+        <Markdown>{t('surveySelect:introMessage')}</Markdown>
       </Box>
       <FormControl sx={formStyles.formControl}>
-        <InputLabel>Survey</InputLabel>
+        <InputLabel>{t('surveySelect:inputLabel')}</InputLabel>
         <Select
           sx={cardStyles.inputField}
           data-cy="survey-select"
           value={surveyName}
-          label={t('facultySelect:inputLabel')}
+          label={t('surveySelect:inputLabel')}
           onChange={handleSurveyChange}
         >
           <MenuItem value="ipassessment">
