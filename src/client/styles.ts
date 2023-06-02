@@ -166,7 +166,6 @@ const navStyles = {
 
 const recommendationStyles = {
   recommendationContainer: {
-    borderLeft: 1,
     paddingLeft: '1rem',
     marginLeft: '0.5rem',
     borderColor: 'grey.300',
