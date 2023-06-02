@@ -3,6 +3,7 @@ import { Theme } from '@mui/material/styles'
 const cardStyles = {
   card: {
     m: 2,
+    mt: 8,
     transition: '0.3s',
     textAlign: 'left',
   },

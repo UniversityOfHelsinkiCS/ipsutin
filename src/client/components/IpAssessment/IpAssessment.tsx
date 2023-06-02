@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
-import { Box, Button, Grid, Stack } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import styles from '../../styles'
-import { FormValues, InputProps, Question } from '../../types'
-import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
+
+import { Box, Button, Grid, Stack, Typography } from '@mui/material'
+
 import useSurvey from '../../hooks/useSurvey'
-import RenderQuestions from '../InteractiveForm/RenderQuestions'
+import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
+
 import Results from './Results'
 import ResetForm from '../Common/ResetForm'
+import RenderQuestions from '../InteractiveForm/RenderQuestions'
+
+import styles from '../../styles'
+import { FormValues, InputProps, Question } from '../../types'
 
 const IpAssessment = ({ faculty }: InputProps) => {
   const [resultData, setResultData] = useState<FormValues>(null)
@@ -51,11 +55,13 @@ const IpAssessment = ({ faculty }: InputProps) => {
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={cardStyles.outerBox}>
-              <h2 style={{ paddingLeft: '10px' }}>IP Assessment</h2>
+              <Typography variant="h4" sx={{ m: 4 }}>
+                IP Assessment
+              </Typography>
               <Box sx={cardStyles.card}>
-                <h3 style={{ paddingLeft: '10px' }}>
+                <Typography variant="h6" sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:technicalTitle')}
-                </h3>
+                </Typography>
                 {technical.map((question: Question) => (
                   <div key={question.id}>
                     {question.parentId === null && (
@@ -69,9 +75,11 @@ const IpAssessment = ({ faculty }: InputProps) => {
                     )}
                   </div>
                 ))}
-                <h3 style={{ paddingLeft: '10px' }}>
+              </Box>
+              <Box sx={cardStyles.card}>
+                <Typography variant="h6" sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:mathematicalTitle')}
-                </h3>
+                </Typography>
                 {mathematical.map((question: Question) => (
                   <div key={question.id}>
                     {question.parentId === null && (
@@ -85,9 +93,11 @@ const IpAssessment = ({ faculty }: InputProps) => {
                     )}
                   </div>
                 ))}
-                <h3 style={{ paddingLeft: '10px' }}>
+              </Box>
+              <Box sx={cardStyles.card}>
+                <Typography variant="h6" sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:computerProgramTitle')}
-                </h3>
+                </Typography>
                 {computerProgram.map((question: Question) => (
                   <div key={question.id}>
                     {question.parentId === null && (
@@ -101,19 +111,19 @@ const IpAssessment = ({ faculty }: InputProps) => {
                     )}
                   </div>
                 ))}
-                <Box sx={formStyles.stackBoxWrapper}>
-                  <Stack sx={formStyles.stack} direction="row">
-                    <Button
-                      sx={formStyles.stackButton}
-                      id="contact-form-button"
-                      variant="contained"
-                      type="submit"
-                    >
-                      {t('common:submit')}
-                    </Button>
-                    <ResetForm />
-                  </Stack>
-                </Box>
+              </Box>
+              <Box sx={formStyles.stackBoxWrapper}>
+                <Stack sx={formStyles.stack} direction="row">
+                  <Button
+                    sx={formStyles.stackButton}
+                    id="contact-form-button"
+                    variant="contained"
+                    type="submit"
+                  >
+                    {t('common:submit')}
+                  </Button>
+                  <ResetForm />
+                </Stack>
               </Box>
             </Box>
           </form>
