@@ -58,7 +58,8 @@ const IpAssessment = ({ faculty }: InputProps) => {
               <Typography variant="h4" sx={{ m: 4 }}>
                 IP Assessment
               </Typography>
-              <Box sx={cardStyles.card}>
+
+              <Box sx={cardStyles.separatorCard}>
                 <Typography variant="h6" sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:technicalTitle')}
                 </Typography>
@@ -76,7 +77,8 @@ const IpAssessment = ({ faculty }: InputProps) => {
                   </div>
                 ))}
               </Box>
-              <Box sx={cardStyles.card}>
+
+              <Box sx={cardStyles.separatorCard}>
                 <Typography variant="h6" sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:mathematicalTitle')}
                 </Typography>
@@ -94,7 +96,8 @@ const IpAssessment = ({ faculty }: InputProps) => {
                   </div>
                 ))}
               </Box>
-              <Box sx={cardStyles.card}>
+
+              <Box sx={cardStyles.separatorCard}>
                 <Typography variant="h6" sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:computerProgramTitle')}
                 </Typography>

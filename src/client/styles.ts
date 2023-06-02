@@ -3,7 +3,16 @@ import { Theme } from '@mui/material/styles'
 const cardStyles = {
   card: {
     m: 2,
+    mt: 4,
+    transition: '0.3s',
+    textAlign: 'left',
+  },
+  separatorCard: {
+    borderTop: 1,
+    borderColor: 'grey.300',
+    mx: 2,
     mt: 8,
+    pt: 4,
     transition: '0.3s',
     textAlign: 'left',
   },
