@@ -45,3 +45,49 @@ export interface ResultUpdates {
   data?: Object
   isSelected?: string
 }
+
+export interface Result {
+  id: number
+  surveyId: number
+  optionLabel: string
+  isSelected: TranslatedText
+  data: any
+}
+
+export interface Recommendation {
+  id: number
+  surveyId: number
+  label: string
+  title: TranslatedText
+  text: TranslatedText
+  data: {
+    [key: string]: number
+  }
+}
+
+type Visibility = {
+  options?: string[]
+}
+
+type OptionType = {
+  id: string
+  label: TranslatedText
+  text?: TranslatedText
+  data?: TranslatedText
+}
+
+type OptionData = {
+  type: string
+  options: OptionType[]
+}
+
+export interface Question {
+  id: number
+  surveyId: number
+  parentId: number
+  priority: number
+  title: TranslatedText
+  text: TranslatedText
+  optionData: OptionData
+  visibility?: Visibility
+}
