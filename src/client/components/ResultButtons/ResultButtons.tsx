@@ -1,8 +1,10 @@
-import { Box, Button, Stack } from '@mui/material'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Box, Button, Stack, Typography } from '@mui/material'
+
 import SendSummaryEmail from '../SendEmail/SendSummaryEmail'
 import Contact from '../SendEmail/Contact'
+
 import styles from '../../styles'
 
 const ResultButtons = () => {
@@ -11,7 +13,10 @@ const ResultButtons = () => {
   const { formStyles, cardStyles } = styles
 
   return (
-    <Box sx={cardStyles.outerBox}>
+    <Box sx={cardStyles.subHeading}>
+      <Typography variant="body1">
+        {t('results:proceedEmailInfoText')}
+      </Typography>
       <Box sx={formStyles.stackBoxWrapper}>
         <Stack sx={formStyles.stack} direction="row">
           <SendSummaryEmail />
