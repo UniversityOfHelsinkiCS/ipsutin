@@ -2,10 +2,13 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
-import { InputProps, Locales, Result } from '../../types'
+
 import useResults from '../../hooks/useResults'
+
 import Markdown from '../Common/Markdown'
+
 import styles from '../../styles'
+import { InputProps, Locales, Result } from '../../types'
 
 const { cardStyles, resultStyles } = styles
 
