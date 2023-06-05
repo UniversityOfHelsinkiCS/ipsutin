@@ -8,13 +8,14 @@
     "admin": "Admin"
   },
   "contact": {
-    "submit": "Contact",
-    "title": "Contact",
+    "submit": "Request appointment",
+    "title": "Request appointment",
     "contactMessage": "Message",
     "contactTicketContentLabel": "Content",
     "contactTicketSend": "Send Email"
   },
   "results": {
+    "proceedEmailInfoText": "Would you like to have the summary send to your email or request an appointment",
     "sendSummaryMail": "Send summary email",
     "sendSuccess": "Email sent successfully!",
     "title": "Results"
