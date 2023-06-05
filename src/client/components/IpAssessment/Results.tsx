@@ -6,7 +6,6 @@ import { InputProps, Locales, Result } from '../../types'
 import useResults from '../../hooks/useResults'
 import Markdown from '../Common/Markdown'
 import styles from '../../styles'
-// import getQuestionsAndLabels from '../../util/getQuestionsAndLabels'
 
 const { cardStyles, resultStyles } = styles
 
@@ -103,14 +102,6 @@ const Results = ({ survey, formResultData }: InputProps) => {
       )
     )
   )
-
-  /* const questionsAndLabels = getQuestionsAndLabels({ formResultData })
-  const resultString = Object.keys(questionsAndLabels)
-    .map(
-      (answer, index) =>
-        `${answer}: ${Object.values(questionsAndLabels)[index]}\n\n`
-    )
-    .join('') */
 
   return (
     <Box>
