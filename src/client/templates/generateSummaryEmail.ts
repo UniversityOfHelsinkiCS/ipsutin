@@ -15,11 +15,13 @@ const GenerateSummaryEmail = (surveyName: string) => {
     Hey
   </p> \
   <p>
-    Thank you for using ${name[surveyName as keyof typeof name]}.
+    Thank you for using ${name[surveyName as keyof typeof name]} survey!
   </p> \
   <p>
     ********** 
-    Summary of your ${name[surveyName as keyof typeof name]} selections 
+    Summary of your ${
+      name[surveyName as keyof typeof name]
+    } survey selections below
   </p> \
 </div> \
 `
