@@ -10,7 +10,7 @@
   "contact": {
     "submit": "Request appointment",
     "title": "Request appointment",
-    "contactMessage": "Message",
+    "contactMessage": "Please fill in the following form about your concerns",
     "contactTicketContentLabel": "Content",
     "contactTicketSend": "Send Email"
   },
