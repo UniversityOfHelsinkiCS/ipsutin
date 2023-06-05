@@ -4,10 +4,15 @@ import { Box, Container, Typography } from '@mui/material'
 
 import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
+import useRecommendations from '../../hooks/useRecommendations'
+
+import Markdown from '../Common/Markdown'
+import ResultButtons from '../ResultButtons/ResultButtons'
+
+import colors from '../../util/colors'
 import styles from '../../styles'
 import { InputProps, Locales, Result } from '../../types'
-import ResultButtons from '../ResultButtons/ResultButtons'
-import Markdown from '../Common/Markdown'
+import RecommendationChip from '../Chip/RecommendationChip'
 
 const { cardStyles, resultStyles } = styles
 
@@ -19,6 +24,8 @@ const ResultElement = ({
   resultData: Result
 }) => {
   if (!resultData) return null
+
+  const dimensions = ['allDimensions', 'clinic', 'legal', 'gnu_gpl', 'bsd_mit']
 
   return (
     <Container
@@ -32,22 +39,30 @@ const ResultElement = ({
       <Box style={{ margin: '2rem 0 2rem 1rem' }}>
         <Markdown>{resultData.isSelected[language]}</Markdown>
       </Box>
+
       <Box
         style={{
           margin: '2rem 0 2rem 0',
         }}
       >
-        <Box
-          key={`${JSON.stringify(resultData)}`}
-          style={{
-            margin: '1rem',
-            padding: '0 2rem 0 2rem ',
-            borderLeft: 'solid',
-            borderWidth: '6px',
-          }}
-        >
-          <Markdown>{resultData.data[language]}</Markdown>
-        </Box>
+        {dimensions.map((dimension: string) => {
+          const color = colors[dimension] || null
+          return (
+            <Box
+              data-cy={`result-wrapper-${resultData.optionLabel}-${dimension}`}
+              key={`${JSON.stringify(resultData)}.${dimension}`}
+              style={{
+                margin: '1rem',
+                padding: '0 2rem 0 2rem ',
+                borderLeft: 'solid',
+                borderColor: color,
+                borderWidth: '6px',
+              }}
+            >
+              <Markdown>{resultData.data[dimension][language]}</Markdown>
+            </Box>
+          )
+        })}
       </Box>
     </Container>
   )
@@ -57,10 +72,12 @@ const Results = ({ formResultData, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { survey } = useSurvey('licenses')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
+  const { recommendations, isSuccess: recommendationsFetched } =
+    useRecommendations(survey?.id)
 
   const { language } = i18n
 
-  if (!resultsFetched || !formResultData) return null
+  if (!resultsFetched || !formResultData || !recommendationsFetched) return null
 
   const resultArray = Object.values(formResultData).map((aChoice: string) => [
     aChoice,
@@ -79,6 +96,15 @@ const Results = ({ formResultData, watch }: InputProps) => {
             >
               {t('results:title')}
             </Typography>
+            <Box sx={{ mt: 2 }}>
+              {recommendations.map((recommendation) => (
+                <RecommendationChip
+                  key={recommendation.id}
+                  recommendation={recommendation}
+                  compact={false}
+                />
+              ))}
+            </Box>
           </Container>
 
           <Box>
