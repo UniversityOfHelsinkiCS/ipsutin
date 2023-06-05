@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
 
@@ -70,12 +70,21 @@ const ResultElement = ({
   )
 }
 
-const Results = ({ formResultData, watch }: InputProps) => {
+const Results = ({ formResultData }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
   const { survey } = useSurvey('ideaEvaluation')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess } = useRecommendations(survey?.id)
+
+  const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
+    if (!resultDOMElement) return
+
+    sessionStorage.setItem(
+      'ipsutin-session-resultHTML',
+      resultDOMElement.innerHTML
+    )
+  }, [])
 
   if (!resultsFetched || !formResultData || !isSuccess) return null
 
@@ -126,7 +135,7 @@ const Results = ({ formResultData, watch }: InputProps) => {
             </Box>
           </Container>
 
-          <Box>
+          <Box ref={refCallback}>
             {filteredResultsWithLabels.map((result) => (
               <ResultElement
                 key={result.id}
@@ -137,7 +146,7 @@ const Results = ({ formResultData, watch }: InputProps) => {
           </Box>
         </Box>
       </Box>
-      <ResultButtons watch={watch} />
+      <ResultButtons />
     </Box>
   )
 }

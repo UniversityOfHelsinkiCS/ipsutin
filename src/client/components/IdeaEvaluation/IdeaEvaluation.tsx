@@ -45,9 +45,7 @@ const IdeaEvaluation = ({ faculty }: InputProps) => {
               surveyName="Idea Evaluation"
             />
           </form>
-          {resultData && showResults && (
-            <Results formResultData={resultData} watch={watch} />
-          )}
+          {resultData && showResults && <Results formResultData={resultData} />}
         </Grid>
       </Grid>
     </Box>
