@@ -2,11 +2,10 @@ import { Box, Button, Stack } from '@mui/material'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import SendSummaryEmail from '../SendEmail/SendSummaryEmail'
-import { InputProps } from '../../types'
 import Contact from '../SendEmail/Contact'
 import styles from '../../styles'
 
-const ResultButtons = ({ watch }: InputProps) => {
+const ResultButtons = () => {
   const { t } = useTranslation()
   const [openContactForm, setOpenContactForm] = useState(false)
   const { formStyles, cardStyles } = styles
@@ -15,7 +14,7 @@ const ResultButtons = ({ watch }: InputProps) => {
     <Box sx={cardStyles.outerBox}>
       <Box sx={formStyles.stackBoxWrapper}>
         <Stack sx={formStyles.stack} direction="row">
-          <SendSummaryEmail watch={watch} />
+          <SendSummaryEmail />
           <Button
             sx={formStyles.stackButton}
             variant="contained"
