@@ -19,11 +19,7 @@ const ResultButtons = () => {
             sx={formStyles.stackButton}
             variant="contained"
             color="primary"
-            onClick={
-              openContactForm
-                ? () => setOpenContactForm(false)
-                : () => setOpenContactForm(true)
-            }
+            onClick={() => setOpenContactForm(!openContactForm)}
           >
             {t('contact:submit')}
           </Button>
