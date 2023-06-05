@@ -4,9 +4,9 @@ import getIeQuestions from '../../data/ieQuestions'
 import getAssessmentQuestions from '../../data/assessmentQuestions'
 
 const seedQuestions = async () => {
-  const licenseQuestions: any[] = getLicenseQuestions()
-  const ieQuestions: any[] = getIeQuestions()
-  const assessmentQuestions: any[] = getAssessmentQuestions()
+  const licenseQuestions = getLicenseQuestions()
+  const ieQuestions = getIeQuestions()
+  const assessmentQuestions = getAssessmentQuestions()
 
   const questions = [
     ...assessmentQuestions,

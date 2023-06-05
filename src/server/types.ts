@@ -77,7 +77,7 @@ type OptionType = {
 }
 
 type OptionData = {
-  type: string
+  type: 'singleChoice' | 'multipleChoice' | 'dimensions' | 'text' | 'info'
   options: OptionType[]
 }
 

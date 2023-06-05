@@ -21,7 +21,7 @@ interface OptionData {
 }
 
 interface Visibility {
-  optionIds: Array<string>
+  options?: Array<string>
 }
 
 class Question extends Model<
