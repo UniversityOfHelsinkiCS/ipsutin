@@ -131,8 +131,8 @@ const Results = ({ formResultData }: InputProps) => {
             )}
           </Box>
         </Box>
+        <ResultButtons />
       </Box>
-      <ResultButtons />
     </Box>
   )
 }
