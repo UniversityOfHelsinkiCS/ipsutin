@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
 
@@ -8,11 +8,11 @@ import useRecommendations from '../../hooks/useRecommendations'
 
 import Markdown from '../Common/Markdown'
 import ResultButtons from '../ResultButtons/ResultButtons'
+import RecommendationChip from '../Chip/RecommendationChip'
 
 import colors from '../../util/colors'
 import styles from '../../styles'
 import { InputProps, Locales, Result } from '../../types'
-import RecommendationChip from '../Chip/RecommendationChip'
 
 const { cardStyles, resultStyles } = styles
 
@@ -68,7 +68,7 @@ const ResultElement = ({
   )
 }
 
-const Results = ({ formResultData, watch }: InputProps) => {
+const Results = ({ formResultData }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { survey } = useSurvey('licenses')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
@@ -76,6 +76,13 @@ const Results = ({ formResultData, watch }: InputProps) => {
     useRecommendations(survey?.id)
 
   const { language } = i18n
+
+  const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
+    sessionStorage.setItem(
+      'ipsutin-session-resultHTML',
+      resultDOMElement.innerHTML
+    )
+  }, [])
 
   if (!resultsFetched || !formResultData || !recommendationsFetched) return null
 
@@ -107,7 +114,7 @@ const Results = ({ formResultData, watch }: InputProps) => {
             </Box>
           </Container>
 
-          <Box>
+          <Box ref={refCallback}>
             {resultArray.map((resultLabels) =>
               resultLabels.map((resultLabel) => (
                 <ResultElement
@@ -123,7 +130,7 @@ const Results = ({ formResultData, watch }: InputProps) => {
           </Box>
         </Box>
       </Box>
-      <ResultButtons watch={watch} />
+      <ResultButtons />
     </Box>
   )
 }
