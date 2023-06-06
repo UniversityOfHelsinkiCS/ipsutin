@@ -143,9 +143,11 @@ const Results = ({ survey, formResultData }: InputProps) => {
             ) ? null : technicalAnswered.every((v: any) =>
                 technicalResultSequence[0].includes(v)
               ) ? (
-              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+              <Markdown>{t('ipAssessmentSurvey:technicalPatentable')}</Markdown>
             ) : (
-              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+              <Markdown>
+                {t('ipAssessmentSurvey:technicalNotPatentable')}
+              </Markdown>
             )}
           </Box>
           <h3>{t('ipAssessmentSurvey:mathematicalTitle')}</h3>
@@ -155,9 +157,13 @@ const Results = ({ survey, formResultData }: InputProps) => {
             ) ? null : mathematicalAnswered.every((v: any) =>
                 mathematicalResultSequence[0].includes(v)
               ) ? (
-              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+              <Markdown>
+                {t('ipAssessmentSurvey:mathemathicalPatentable')}
+              </Markdown>
             ) : (
-              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+              <Markdown>
+                {t('ipAssessmentSurvey:mathemathicalNotPatentable')}
+              </Markdown>
             )}
           </Box>
           <h3>{t('ipAssessmentSurvey:computerProgramTitle')}</h3>
@@ -167,9 +173,13 @@ const Results = ({ survey, formResultData }: InputProps) => {
             ) ? null : Object.values(computerProgramAnswered).every((v: any) =>
                 computerProgramResultSequence[0].includes(v)
               ) ? (
-              <Markdown>{t('ipAssessmentSurvey:patentable')}</Markdown>
+              <Markdown>
+                {t('ipAssessmentSurvey:computerProgramPatentable')}
+              </Markdown>
             ) : (
-              <Markdown>{t('ipAssessmentSurvey:notPatentable')}</Markdown>
+              <Markdown>
+                {t('ipAssessmentSurvey:computerProgramNotPatentable')}
+              </Markdown>
             )}
           </Box>
         </Box>

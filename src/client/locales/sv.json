@@ -52,7 +52,11 @@
     "technicalTitle": "Technical Solutions",
     "mathematicalTitle": "Mathematical Models",
     "computerProgramTitle": "Computer Programs",
-    "patentable": "**Requirements for patentability potentially fulfilled**. Dicuss commercial potential and goals with HIS case owner.",
-    "notPatentable": "**Requirements for patentability not fulfilled**. Please fill the **Licences** or **Idea Evaluation** survey."
+    "technicalPatentable": "**Requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
+    "technicalNotPatentable": "**Requirements for patentability not fulfilled**. Please book an idea clinic appointment with HIS.",
+    "mathemathicalPatentable": "**Requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
+    "mathemathicalNotPatentable": "**Requirements for patentability not fulfilled**. Please book an idea clinic appointment with HIS.",
+    "computerProgramPatentable": "**Requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
+    "computerProgramNotPatentable": "**Requirements for patentability not fulfilled**. Please complete the licensing questionnaire and book and idead clinic appointment with HIS."
   }
 }
