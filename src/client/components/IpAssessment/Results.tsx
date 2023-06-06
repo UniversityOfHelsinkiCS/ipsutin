@@ -54,27 +54,50 @@ const ResultElement = ({
   )
 }
 
-const Results = ({ survey, formResultData }: InputProps) => {
-  const { results, isSuccess: resultsFetched } = useResults(survey?.id)
-  const { t, i18n } = useTranslation()
+const SectionResults = ({
+  results,
+  answers,
+}: {
+  results: Result[]
+  answers: string[]
+}) => {
+  const { i18n } = useTranslation()
   const { language } = i18n
 
-  if (!resultsFetched || !formResultData) return null
+  return (
+    <Box>
+      {answers.map((resultLabel) => (
+        <ResultElement
+          key={JSON.stringify(resultLabel)}
+          language={language as keyof Locales}
+          resultData={results.find(
+            (result: { optionLabel: string }) =>
+              result.optionLabel === resultLabel
+          )}
+        />
+      ))}
+    </Box>
+  )
+}
 
-  const resultArray = Object.values(formResultData).map((aChoice: string) => [
-    aChoice,
-  ])
+const Results = ({ survey, formResultData }: InputProps) => {
+  const { results, isSuccess: resultsFetched } = useResults(survey?.id)
+  const { t } = useTranslation()
+
+  if (!resultsFetched || !formResultData) return null
 
   const technicalResultSequence = results
     .filter(
       (result: { optionLabel: string }) => result.optionLabel === 'technical'
     )
     .map((result: { data: any }) => result.data.sequence)
+
   const mathematicalResultSequence = results
     .filter(
       (result: { optionLabel: string }) => result.optionLabel === 'mathematical'
     )
     .map((result: { data: any }) => result.data.sequence)
+
   const computerProgramResultSequence = results
     .filter(
       (result: { optionLabel: string }) =>
@@ -121,22 +144,9 @@ const Results = ({ survey, formResultData }: InputProps) => {
             </Typography>
           </Container>
 
-          <Box>
-            {resultArray.map((resultLabels) =>
-              resultLabels.map((resultLabel) => (
-                <ResultElement
-                  key={JSON.stringify(resultLabel)}
-                  language={language as keyof Locales}
-                  resultData={results.find(
-                    (result: { optionLabel: string }) =>
-                      result.optionLabel === resultLabel
-                  )}
-                />
-              ))
-            )}
-          </Box>
-
           <h3>{t('ipAssessmentSurvey:technicalTitle')}</h3>
+          <SectionResults results={results} answers={technicalAnswered} />
+
           <Box sx={cardStyles.card}>
             {technicalAnswered.some(
               (answer: any) => !answer
@@ -150,7 +160,10 @@ const Results = ({ survey, formResultData }: InputProps) => {
               </Markdown>
             )}
           </Box>
+
           <h3>{t('ipAssessmentSurvey:mathematicalTitle')}</h3>
+          <SectionResults results={results} answers={mathematicalAnswered} />
+
           <Box sx={cardStyles.card}>
             {mathematicalAnswered.some(
               (answer: any) => !answer
@@ -166,7 +179,10 @@ const Results = ({ survey, formResultData }: InputProps) => {
               </Markdown>
             )}
           </Box>
+
           <h3>{t('ipAssessmentSurvey:computerProgramTitle')}</h3>
+          <SectionResults results={results} answers={computerProgramAnswered} />
+
           <Box sx={cardStyles.card}>
             {computerProgramAnswered.some(
               (answer: any) => !answer
