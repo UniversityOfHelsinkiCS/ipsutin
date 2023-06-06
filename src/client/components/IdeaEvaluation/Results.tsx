@@ -21,13 +21,13 @@ const { cardStyles, resultStyles } = styles
 const ResultElement = ({
   language,
   resultData,
+  dimensions,
 }: {
   language: keyof Locales
   resultData: any
+  dimensions: string[]
 }) => {
   if (!resultData) return null
-
-  const dimensions = resultData.labels
 
   return (
     <Container
@@ -98,6 +98,8 @@ const Results = ({ formResultData }: InputProps) => {
     recommendationScores
   )
 
+  const commonResult = results.find((result) => result.optionLabel === 'common')
+
   const filteredResults = results.filter((result) =>
     Object.values(formResultData).includes(result.optionLabel)
   )
@@ -133,14 +135,21 @@ const Results = ({ formResultData }: InputProps) => {
                 />
               ))}
             </Box>
+            <ResultElement
+              key={commonResult.id}
+              language={language as keyof Locales}
+              resultData={commonResult}
+              dimensions={recommendationLabels}
+            />
           </Container>
 
-          <Box ref={refCallback}>
+          <Box ref={refCallback} sx={resultStyles.resultSection}>
             {filteredResultsWithLabels.map((result) => (
               <ResultElement
                 key={result.id}
                 language={language as keyof Locales}
                 resultData={result}
+                dimensions={result.labels}
               />
             ))}
           </Box>
