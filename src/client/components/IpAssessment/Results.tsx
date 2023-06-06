@@ -77,8 +77,10 @@ const SectionResults = ({
     return null
 
   return (
-    <Box>
-      <Typography>{t(`ipAssessmentSurvey:${section}Title`)}</Typography>
+    <Box sx={resultStyles.resultSection}>
+      <Typography variant="h6">
+        {t(`ipAssessmentSurvey:${section}Title`)}
+      </Typography>
       <Box>
         {filteredAnswers.map((resultLabel) => (
           <ResultElement

@@ -226,6 +226,10 @@ const resultStyles = {
   resultWrapper: {
     m: 2,
   },
+  resultSection: {
+    mx: 3,
+    mt: 4,
+  },
   heading: {
     fontWeight: '200',
     textAlign: 'left',
