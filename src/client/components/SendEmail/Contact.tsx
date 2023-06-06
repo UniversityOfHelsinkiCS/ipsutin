@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
-import styles from '../../styles'
+
 import SendContactTicket from './SendContactTicket'
+import Markdown from '../Common/Markdown'
+
+import styles from '../../styles'
 
 const Contact = () => {
   const { t } = useTranslation()
@@ -21,13 +24,13 @@ const Contact = () => {
 
   return (
     <Box>
-      <Container sx={{ mt: 2 }}>
-        <Typography variant="h5" sx={cardStyles.heading} component="div">
+      <Container sx={{ mt: 8 }}>
+        <Typography variant="h6" sx={cardStyles.heading} component="div">
           {t('contact:title')}
         </Typography>
-        <Typography sx={cardStyles.content} variant="body2">
+        <Markdown sx={cardStyles.content} variant="body2">
           {t('contact:contactMessage')}
-        </Typography>
+        </Markdown>
 
         <ContactComponent />
       </Container>
