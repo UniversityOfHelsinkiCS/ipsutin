@@ -76,8 +76,6 @@ const SectionResults = ({
   if (filteredAnswers.length === 0 || !section || !results || !sequence)
     return null
 
-  console.log(filteredAnswers)
-
   return (
     <Box>
       <Typography>{t(`ipAssessmentSurvey:${section}Title`)}</Typography>
