@@ -55,27 +55,56 @@ const ResultElement = ({
 }
 
 const SectionResults = ({
+  section,
   results,
   answers,
 }: {
+  section: 'technical' | 'mathematical' | 'computerProgram'
   results: Result[]
   answers: string[]
 }) => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { language } = i18n
+
+  // Strip the array of null values
+  const filteredAnswers = answers.filter((value) => value)
+
+  const sequence = results
+    .filter((result: { optionLabel: string }) => result.optionLabel === section)
+    .map((result: { data: any }) => result.data?.sequence)
+
+  if (filteredAnswers.length === 0 || !section || !results || !sequence)
+    return null
+
+  console.log(filteredAnswers)
 
   return (
     <Box>
-      {answers.map((resultLabel) => (
-        <ResultElement
-          key={JSON.stringify(resultLabel)}
-          language={language as keyof Locales}
-          resultData={results.find(
-            (result: { optionLabel: string }) =>
-              result.optionLabel === resultLabel
-          )}
-        />
-      ))}
+      <Typography>{t(`ipAssessmentSurvey:${section}Title`)}</Typography>
+      <Box>
+        {filteredAnswers.map((resultLabel) => (
+          <ResultElement
+            key={`${section}-${resultLabel}`}
+            language={language as keyof Locales}
+            resultData={results.find(
+              (result: { optionLabel: string }) =>
+                result.optionLabel === resultLabel
+            )}
+          />
+        ))}
+      </Box>
+
+      <Box sx={cardStyles.card}>
+        {filteredAnswers.some(
+          (answer: string) => !answer
+        ) ? null : filteredAnswers.every((aAnswer) =>
+            sequence[0].includes(aAnswer)
+          ) ? (
+          <Markdown>{t(`ipAssessmentSurvey:${section}Patentable`)}</Markdown>
+        ) : (
+          <Markdown>{t(`ipAssessmentSurvey:${section}NotPatentable`)}</Markdown>
+        )}
+      </Box>
     </Box>
   )
 }
@@ -85,25 +114,6 @@ const Results = ({ survey, formResultData }: InputProps) => {
   const { t } = useTranslation()
 
   if (!resultsFetched || !formResultData) return null
-
-  const technicalResultSequence = results
-    .filter(
-      (result: { optionLabel: string }) => result.optionLabel === 'technical'
-    )
-    .map((result: { data: any }) => result.data.sequence)
-
-  const mathematicalResultSequence = results
-    .filter(
-      (result: { optionLabel: string }) => result.optionLabel === 'mathematical'
-    )
-    .map((result: { data: any }) => result.data.sequence)
-
-  const computerProgramResultSequence = results
-    .filter(
-      (result: { optionLabel: string }) =>
-        result.optionLabel === 'computerProgram'
-    )
-    .map((result: { data: any }) => result.data.sequence)
 
   const technicalAnswered = Object.values(
     Object.fromEntries(
@@ -144,60 +154,23 @@ const Results = ({ survey, formResultData }: InputProps) => {
             </Typography>
           </Container>
 
-          <h3>{t('ipAssessmentSurvey:technicalTitle')}</h3>
-          <SectionResults results={results} answers={technicalAnswered} />
+          <SectionResults
+            section="technical"
+            results={results}
+            answers={technicalAnswered}
+          />
 
-          <Box sx={cardStyles.card}>
-            {technicalAnswered.some(
-              (answer: any) => !answer
-            ) ? null : technicalAnswered.every((v: any) =>
-                technicalResultSequence[0].includes(v)
-              ) ? (
-              <Markdown>{t('ipAssessmentSurvey:technicalPatentable')}</Markdown>
-            ) : (
-              <Markdown>
-                {t('ipAssessmentSurvey:technicalNotPatentable')}
-              </Markdown>
-            )}
-          </Box>
+          <SectionResults
+            section="mathematical"
+            results={results}
+            answers={mathematicalAnswered}
+          />
 
-          <h3>{t('ipAssessmentSurvey:mathematicalTitle')}</h3>
-          <SectionResults results={results} answers={mathematicalAnswered} />
-
-          <Box sx={cardStyles.card}>
-            {mathematicalAnswered.some(
-              (answer: any) => !answer
-            ) ? null : mathematicalAnswered.every((v: any) =>
-                mathematicalResultSequence[0].includes(v)
-              ) ? (
-              <Markdown>
-                {t('ipAssessmentSurvey:mathemathicalPatentable')}
-              </Markdown>
-            ) : (
-              <Markdown>
-                {t('ipAssessmentSurvey:mathemathicalNotPatentable')}
-              </Markdown>
-            )}
-          </Box>
-
-          <h3>{t('ipAssessmentSurvey:computerProgramTitle')}</h3>
-          <SectionResults results={results} answers={computerProgramAnswered} />
-
-          <Box sx={cardStyles.card}>
-            {computerProgramAnswered.some(
-              (answer: any) => !answer
-            ) ? null : Object.values(computerProgramAnswered).every((v: any) =>
-                computerProgramResultSequence[0].includes(v)
-              ) ? (
-              <Markdown>
-                {t('ipAssessmentSurvey:computerProgramPatentable')}
-              </Markdown>
-            ) : (
-              <Markdown>
-                {t('ipAssessmentSurvey:computerProgramNotPatentable')}
-              </Markdown>
-            )}
-          </Box>
+          <SectionResults
+            section="computerProgram"
+            results={results}
+            answers={computerProgramAnswered}
+          />
         </Box>
       </Box>
     </Box>
