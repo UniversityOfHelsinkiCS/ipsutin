@@ -31,7 +31,7 @@ const SendSummaryEmail = () => {
     })
   }
 
-  const sendResults = async () => {
+  const sendResults = () => {
     const targets = [user.email]
     const text = `\
     ${templateHTML}
