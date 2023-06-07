@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Alert, Box, Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import useLoggedInUser from '../../hooks/useLoggedInUser'
@@ -17,7 +17,7 @@ const SendSummaryEmail = () => {
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
-  const { common, formStyles } = styles
+  const { formStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
 
@@ -42,9 +42,12 @@ const SendSummaryEmail = () => {
     sendResultsToEmail(targets, text)
       .then(() => {
         setIsSent(true)
-        enqueueSnackbar(t('contact:pateErrorMessage', { email: user.email }), {
-          variant: 'success',
-        })
+        enqueueSnackbar(
+          t('contact:pateSuccessMessage', { email: user.email }),
+          {
+            variant: 'success',
+          }
+        )
       })
       .catch((err) => {
         console.log(err)
@@ -56,26 +59,16 @@ const SendSummaryEmail = () => {
 
   return (
     <Box>
-      {!isSent ? (
-        <Button
-          id="summary-email-button"
-          sx={formStyles.stackButton}
-          variant="contained"
-          color="primary"
-          disabled={!user?.email}
-          onClick={sendResults}
-        >
-          {t('results:sendSummaryMail')}
-        </Button>
-      ) : (
-        <Alert
-          data-cy="summary-email-success-alert"
-          sx={common.alertStyle}
-          severity="success"
-        >
-          {t('results:sendSuccess')}
-        </Alert>
-      )}
+      <Button
+        id="summary-email-button"
+        sx={formStyles.stackButton}
+        variant="contained"
+        color="primary"
+        disabled={!user?.email || isSent}
+        onClick={sendResults}
+      >
+        {t('results:sendSummaryMail')}
+      </Button>
     </Box>
   )
 }
