@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { Box, Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
+
+import useSurvey from '../../hooks/useSurvey'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 
-import styles from '../../styles'
 import Results from './Results'
-import { FormValues, InputProps } from '../../types'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
-import useSurvey from '../../hooks/useSurvey'
+
+import { FormValues, InputProps } from '../../types'
+import styles from '../../styles'
 
 const IdeaEvaluation = ({ faculty }: InputProps) => {
   const [showResults, setShowResults] = useState(false)
@@ -42,7 +44,7 @@ const IdeaEvaluation = ({ faculty }: InputProps) => {
               control={control}
               watch={watch}
               questions={survey.Questions}
-              surveyName="Idea Evaluation"
+              surveyName='Idea Evaluation'
             />
           </form>
           {resultData && showResults && <Results formResultData={resultData} />}
