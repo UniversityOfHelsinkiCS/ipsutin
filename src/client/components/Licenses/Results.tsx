@@ -38,7 +38,14 @@ const Results = ({ formResultData }: InputProps) => {
     [formResultData]
   )
 
-  if (!resultsFetched || !formResultData || !recommendationsFetched) return null
+  if (
+    !resultsFetched ||
+    !formResultData ||
+    !recommendationsFetched ||
+    !results ||
+    !recommendations
+  )
+    return null
 
   const commonResult = results.find((result) => result.optionLabel === 'common')
 
@@ -52,10 +59,10 @@ const Results = ({ formResultData }: InputProps) => {
         <Box sx={resultStyles.resultWrapper}>
           <Container sx={{ mt: 4 }}>
             <Typography
-              data-cy="result-section-title"
-              variant="h5"
+              data-cy='result-section-title'
+              variant='h5'
               sx={resultStyles.heading}
-              component="div"
+              component='div'
             >
               {t('results:title')}
             </Typography>
@@ -68,12 +75,14 @@ const Results = ({ formResultData }: InputProps) => {
                 />
               ))}
             </Box>
-            <ResultElement
-              key={commonResult.id}
-              language={language as keyof Locales}
-              resultData={commonResult}
-              dimensions={dimensions}
-            />
+            {commonResult && (
+              <ResultElement
+                key={commonResult.id}
+                language={language as keyof Locales}
+                resultData={commonResult}
+                dimensions={dimensions}
+              />
+            )}
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>

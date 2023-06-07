@@ -35,7 +35,14 @@ const Results = ({ formResultData }: InputProps) => {
     [formResultData]
   )
 
-  if (!resultsFetched || !formResultData || !isSuccess) return null
+  if (
+    !resultsFetched ||
+    !formResultData ||
+    !isSuccess ||
+    !recommendations ||
+    !results
+  )
+    return null
 
   const recommendationScores = getIeRecommendationScores(
     formResultData,
@@ -68,10 +75,10 @@ const Results = ({ formResultData }: InputProps) => {
         <Box sx={resultStyles.resultWrapper}>
           <Container sx={{ mt: 4 }}>
             <Typography
-              data-cy="result-section-title"
-              variant="h5"
+              data-cy='result-section-title'
+              variant='h5'
               sx={resultStyles.heading}
-              component="div"
+              component='div'
             >
               {t('results:title')}
             </Typography>
@@ -84,12 +91,14 @@ const Results = ({ formResultData }: InputProps) => {
                 />
               ))}
             </Box>
-            <ResultElement
-              key={commonResult.id}
-              language={language as keyof Locales}
-              resultData={commonResult}
-              dimensions={recommendationLabels}
-            />
+            {commonResult && (
+              <ResultElement
+                key={commonResult.id}
+                language={language as keyof Locales}
+                resultData={commonResult}
+                dimensions={recommendationLabels}
+              />
+            )}
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
