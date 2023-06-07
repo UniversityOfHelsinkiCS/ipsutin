@@ -26,18 +26,4 @@ facultyRouter.get('/', async (req, res) => {
   return res.send(faculties)
 })
 
-/* facultyRouter.get('/user', async (req: RequestWithUser, res) => {
-  const { id, iamGroups = [] } = req.user
-
-  if (!id) return res.send([])
-
-  if (inE2EMode) return res.send(mockFaculty)
-
-  const organisationData = await getUserOrganisations(id, iamGroups)
-
-  const faculties = organisationData.map(({ code, name }) => ({ code, name }))
-
-  return res.send(faculties)
-}) */
-
 export default facultyRouter
