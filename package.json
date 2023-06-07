@@ -72,9 +72,14 @@
       "airbnb",
       "airbnb-typescript",
       "prettier",
-      "plugin:cypress/recommended"
+      "plugin:cypress/recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended"
     ],
     "plugins": [
+      "react",
+      "@typescript-eslint",
+      "react-hooks",
       "prettier",
       "cypress"
     ],
@@ -83,6 +88,14 @@
       "project": "./tsconfig.json"
     },
     "rules": {
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/explicit-module-boundary-types": 0,
+      "@typescript-eslint/no-shadow": "off",
+      "react/require-default-props": "off",
+      "react/prop-types": 0,
+      "react/react-in-jsx-scope": 0,
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       "react/function-component-definition": [
         2,
         {
@@ -98,7 +111,12 @@
   "prettier": {
     "trailingComma": "es5",
     "semi": false,
-    "singleQuote": true
+    "singleQuote": true,
+    "pluginSearchDirs": false,
+    "useTabs": false,
+    "tabWidth": 2,
+    "printWidth": 80,
+    "jsxSingleQuote": true
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": "eslint",

@@ -1,21 +1,21 @@
 import { Request } from 'express'
 
 export type Faculty = {
-  fi: String
-  en: String
-  se: String
+  fi: string
+  en: string
+  se: string
 }
 
 export type Programme = {
-  key: String
+  key: string
   name: Faculty
-  level: String
-  companionFaculties: Array<String>
-  international: Boolean
+  level: string
+  companionFaculties: Array<string>
+  international: boolean
 }
 
 export interface OrganisationData {
-  code: String
+  code: string
   name: Faculty
   programmes: Array<Programme>
 }
@@ -39,11 +39,6 @@ export interface User {
 
 export interface RequestWithUser extends Request {
   user: User
-}
-
-export interface ResultUpdates {
-  data?: Object
-  isSelected?: string
 }
 
 export interface Result {
