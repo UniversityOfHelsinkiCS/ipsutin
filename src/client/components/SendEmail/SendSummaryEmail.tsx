@@ -53,8 +53,7 @@ const SendSummaryEmail = () => {
           }
         )
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
         enqueueSnackbar(t('contact:pateErrorMessage'), { variant: 'error' })
       })
   }
@@ -64,10 +63,10 @@ const SendSummaryEmail = () => {
   return (
     <Box>
       <Button
-        id="summary-email-button"
+        id='summary-email-button'
         sx={formStyles.stackButton}
-        variant="contained"
-        color="primary"
+        variant='contained'
+        color='primary'
         disabled={!user?.email || isSent}
         onClick={sendResults}
       >
