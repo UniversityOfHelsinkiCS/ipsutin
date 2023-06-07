@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Alert, Box, Button } from '@mui/material'
+import { enqueueSnackbar } from 'notistack'
 
 import useLoggedInUser from '../../hooks/useLoggedInUser'
 
@@ -31,19 +32,24 @@ const SendSummaryEmail = () => {
   }
 
   const sendResults = async () => {
-    const targets = ['henri.remonen@helsinki.fi']
+    const targets = [user.email]
     const text = `\
     ${templateHTML}
 
     ${resultHTML}
     `
 
-    try {
-      await sendResultsToEmail(targets, text)
-      setIsSent(true)
-    } catch (error) {
-      console.log(error)
-    }
+    sendResultsToEmail(targets, text)
+      .then(() => {
+        setIsSent(true)
+        enqueueSnackbar(t('contact:pateErrorMessage', { email: user.email }), {
+          variant: 'success',
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+        enqueueSnackbar(t('contact:pateErrorMessage'), { variant: 'error' })
+      })
   }
 
   if (isLoading || !user?.email) return null
