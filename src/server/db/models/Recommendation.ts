@@ -21,7 +21,7 @@ class Recommendation extends Model<
 
   declare surveyId: number
 
-  declare label: String
+  declare label: string
 
   declare title: TranslatedText
 

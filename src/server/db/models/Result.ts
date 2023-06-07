@@ -17,11 +17,11 @@ class Result extends Model<
 
   declare surveyId: number
 
-  declare optionLabel: String
+  declare optionLabel: string
 
   declare isSelected: TranslatedText
 
-  declare data: Object
+  declare data: object
 }
 
 Result.init(
