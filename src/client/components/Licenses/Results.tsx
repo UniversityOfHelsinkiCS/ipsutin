@@ -26,14 +26,17 @@ const Results = ({ formResultData }: InputProps) => {
 
   const dimensions = ['allDimensions', 'clinic', 'legal', 'gnu_gpl', 'bsd_mit']
 
-  const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
-    if (!resultDOMElement) return
+  const refCallback = useCallback(
+    (resultDOMElement: HTMLDivElement) => {
+      if (!resultDOMElement) return
 
-    sessionStorage.setItem(
-      'ipsutin-session-resultHTML',
-      resultDOMElement.innerHTML
-    )
-  }, [])
+      sessionStorage.setItem(
+        'ipsutin-session-resultHTML',
+        resultDOMElement.innerHTML
+      )
+    },
+    [formResultData]
+  )
 
   if (!resultsFetched || !formResultData || !recommendationsFetched) return null
 

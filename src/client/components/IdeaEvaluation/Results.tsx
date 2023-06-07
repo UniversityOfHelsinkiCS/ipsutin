@@ -23,14 +23,17 @@ const Results = ({ formResultData }: InputProps) => {
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess } = useRecommendations(survey?.id)
 
-  const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
-    if (!resultDOMElement) return
+  const refCallback = useCallback(
+    (resultDOMElement: HTMLDivElement) => {
+      if (!resultDOMElement) return
 
-    sessionStorage.setItem(
-      'ipsutin-session-resultHTML',
-      resultDOMElement.innerHTML
-    )
-  }, [])
+      sessionStorage.setItem(
+        'ipsutin-session-resultHTML',
+        resultDOMElement.innerHTML
+      )
+    },
+    [formResultData]
+  )
 
   if (!resultsFetched || !formResultData || !isSuccess) return null
 
