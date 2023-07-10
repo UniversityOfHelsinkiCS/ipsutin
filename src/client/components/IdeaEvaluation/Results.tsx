@@ -66,7 +66,7 @@ const Results = ({ formResultData }: InputProps) => {
     (recommendation) => recommendation.label
   )
 
-  const filteredResultsWithLabels = filteredResults
+  const sortedResultsWithLabels = filteredResults
     .map((result) => ({
       ...result,
       labels: recommendationLabels,
@@ -106,7 +106,7 @@ const Results = ({ formResultData }: InputProps) => {
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
-            {filteredResultsWithLabels.map((result) => (
+            {sortedResultsWithLabels.map((result) => (
               <ResultElement
                 key={result.id}
                 language={language as keyof Locales}

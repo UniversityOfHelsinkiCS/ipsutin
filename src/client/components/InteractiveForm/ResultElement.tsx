@@ -6,7 +6,7 @@ import Markdown from '../Common/Markdown'
 
 import colors from '../../util/colors'
 
-import { Locales } from '../../types'
+import { Locales, Result } from '../../types'
 
 const ResultElement = ({
   language,
@@ -14,7 +14,7 @@ const ResultElement = ({
   dimensions,
 }: {
   language: keyof Locales
-  resultData: any
+  resultData: Result
   dimensions: string[]
 }) => {
   if (!resultData) return null

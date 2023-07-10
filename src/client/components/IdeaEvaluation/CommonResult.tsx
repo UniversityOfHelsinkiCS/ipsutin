@@ -6,7 +6,7 @@ import Markdown from '../Common/Markdown'
 
 import colors from '../../util/colors'
 
-import { Locales } from '../../types'
+import { Locales, Result } from '../../types'
 
 const CommonResult = ({
   language,
@@ -14,7 +14,7 @@ const CommonResult = ({
   recommendation,
 }: {
   language: keyof Locales
-  resultData: any
+  resultData: Result
   recommendation: string
 }) => {
   if (!resultData) return null
