@@ -66,10 +66,14 @@ const Results = ({ formResultData }: InputProps) => {
     (recommendation) => recommendation.label
   )
 
-  const filteredResultsWithLabels = filteredResults.map((result) => ({
-    ...result,
-    labels: recommendationLabels,
-  }))
+  const filteredResultsWithLabels = filteredResults
+    .map((result) => ({
+      ...result,
+      labels: recommendationLabels,
+    }))
+    .sort((a, b) => a.id - b.id)
+
+  console.log(filteredResultsWithLabels)
 
   return (
     <Box>
