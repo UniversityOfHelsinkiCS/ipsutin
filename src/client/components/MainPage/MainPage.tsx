@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
-import { useNavigate, useLocation } from 'react-router-dom'
-import SelectFaculty from './SelectFaculty'
-import HelloBanner from './HelloBanner'
-import styles from '../../styles'
-import SelectSurvey from './SelectSurvey'
+
 import Tools from './Tools'
-import Licences from '../Licenses/Licenses'
-import IpAssessment from '../IpAssessment/IpAssessment'
-import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
+import HelloBanner from './HelloBanner'
+import SelectSurvey from './SelectSurvey'
+import SelectFaculty from './SelectFaculty'
+
+import styles from '../../styles'
 
 const MainPage = () => {
   const { formStyles } = styles
-  const navigate = useNavigate()
-  const location = useLocation()
-  const [faculty, setFaculty] = useState('')
-  const [survey, setSurvey] = useState('')
-
-  useEffect(() => {
-    navigate(`/${survey}`)
-  }, [survey, navigate])
 
   return (
     <Box sx={formStyles.formWrapper}>
@@ -38,20 +28,10 @@ const MainPage = () => {
         >
           <Grid item xl={12}>
             <Box sx={{ mx: 2, display: 'flex' }}>
-              <SelectFaculty setFaculty={setFaculty} faculty={faculty} />
-              {faculty && (
-                <SelectSurvey setSurvey={setSurvey} surveyName={survey} />
-              )}
+              <SelectFaculty />
+              <SelectSurvey />
             </Box>
-            {location.pathname === '/licences' && (
-              <Licences faculty={faculty} />
-            )}
-            {location.pathname === '/ipassessment' && (
-              <IpAssessment faculty={faculty} />
-            )}
-            {location.pathname === '/ideaevaluation' && (
-              <IdeaEvaluation faculty={faculty} />
-            )}
+            <Outlet />
           </Grid>
         </Grid>
         <Grid item sm={12} md={5} xl={3}>
