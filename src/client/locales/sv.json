@@ -41,6 +41,11 @@
     "licences": "Software Licensing",
     "ideaEvaluation": "Idea Evaluation"
   },
+  "surveyInfos": {
+    "ipAssessment": "Patentability evaluation consists of three distinct domains, meeting the patentability criteria in one domain is sufficient for patentability. Patentability evaluation or invention disclosure may or may not result in patent application.",
+    "licences": "Software licensing evaluation will assist on going through some of the elementary license selection questions. An Idea Clinic meeting is highly recommended for all situation involving companies or potential commercial use of the software / intellectual property.",
+    "ideaEvaluation": ""
+  },
   "sideBarServices": {
     "services": "Services",
     "inventionDisclosure": "[Invention disclosure](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",

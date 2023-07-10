@@ -58,6 +58,7 @@ const Licences = ({ faculty }: InputProps) => {
               watch={watch}
               questions={survey.Questions}
               surveyName={t('surveyNames:licences')}
+              surveyInfo={t('surveyInfos:licences')}
             />
           </form>
           {resultData && showResults && <Results formResultData={resultData} />}

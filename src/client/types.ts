@@ -41,6 +41,7 @@ export interface InputProps {
   setSurvey?: React.Dispatch<React.SetStateAction<string>>
   survey?: Survey
   surveyName?: string
+  surveyInfo?: string
 }
 
 export interface FormValues {

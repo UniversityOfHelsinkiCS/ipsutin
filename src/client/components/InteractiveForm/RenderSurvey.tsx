@@ -13,6 +13,7 @@ const RenderSurvey = ({
   control,
   watch,
   surveyName,
+  surveyInfo,
 }: InputProps) => {
   const { t, i18n } = useTranslation()
 
@@ -22,8 +23,11 @@ const RenderSurvey = ({
 
   return (
     <Box sx={cardStyles.outerBox}>
-      <Typography variant="h4" sx={{ m: 4 }}>
+      <Typography variant='h4' sx={{ m: 4 }}>
         {surveyName}
+      </Typography>
+      <Typography variant='h6' sx={{ m: 4 }}>
+        {surveyInfo}
       </Typography>
       <Box sx={cardStyles.card}>
         {questions.map((question: Question) => (
@@ -41,12 +45,12 @@ const RenderSurvey = ({
         ))}
 
         <Box sx={formStyles.stackBoxWrapper}>
-          <Stack sx={formStyles.stack} direction="row">
+          <Stack sx={formStyles.stack} direction='row'>
             <Button
               sx={formStyles.stackButton}
-              id="contact-form-button"
-              variant="contained"
-              type="submit"
+              id='contact-form-button'
+              variant='contained'
+              type='submit'
             >
               {t('common:submit')}
             </Button>

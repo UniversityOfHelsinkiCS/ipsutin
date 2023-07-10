@@ -58,6 +58,9 @@ const IpAssessment = ({ faculty }: InputProps) => {
               <Typography variant='h4' sx={{ m: 4 }}>
                 {t('surveyNames:ipAssessment')}
               </Typography>
+              <Typography variant='h6' sx={{ m: 4 }}>
+                {t('surveyInfos:ipAssessment')}
+              </Typography>
 
               <Box sx={cardStyles.separatorCard}>
                 <Typography variant='h6' sx={{ ml: 2 }}>
