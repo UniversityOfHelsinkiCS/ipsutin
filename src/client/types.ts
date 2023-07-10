@@ -36,9 +36,6 @@ export interface InputProps {
   formResultData?: FormValues
   answers?: object
   showContact?: SubmitHandler<FieldValues>
-  setFaculty?: React.Dispatch<React.SetStateAction<string>>
-  faculty?: string
-  setSurvey?: React.Dispatch<React.SetStateAction<string>>
   survey?: Survey
   surveyName?: string
   surveyInfo?: string
