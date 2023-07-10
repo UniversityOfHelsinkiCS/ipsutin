@@ -6,8 +6,9 @@ import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
-import ResultButtons from '../ResultButtons/ResultButtons'
+import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
+import ResultButtons from '../ResultButtons/ResultButtons'
 import RecommendationChip from '../Chip/RecommendationChip'
 
 import styles from '../../styles'
@@ -76,11 +77,11 @@ const Results = ({ formResultData }: InputProps) => {
               ))}
             </Box>
             {commonResult && (
-              <ResultElement
+              <CommonResult
                 key={commonResult.id}
                 language={language as keyof Locales}
                 resultData={commonResult}
-                dimensions={dimensions}
+                recommendation={dimensions[0]}
               />
             )}
           </Container>

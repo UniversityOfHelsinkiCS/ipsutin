@@ -11,7 +11,7 @@ import ResultButtons from '../ResultButtons/ResultButtons'
 import ResultElement from '../InteractiveForm/ResultElement'
 import RecommendationChip from '../Chip/RecommendationChip'
 
-import { getIeRecommendationScores, sortRecommendations } from './util'
+import { getRecommendationScores, sortRecommendations } from './util'
 
 import { InputProps, Locales } from '../../types'
 import styles from '../../styles'
@@ -46,7 +46,7 @@ const Results = ({ formResultData }: InputProps) => {
   )
     return null
 
-  const recommendationScores = getIeRecommendationScores(
+  const recommendationScores = getRecommendationScores(
     formResultData,
     recommendations
   )

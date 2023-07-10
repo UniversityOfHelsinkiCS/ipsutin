@@ -5,7 +5,7 @@ import { Recommendation } from '../../types'
 
 type Scores = { [key: string]: number }
 
-export const getIeRecommendationScores = (
+export const getRecommendationScores = (
   answers: FieldValues,
   recommendations: Recommendation[]
 ) => {
