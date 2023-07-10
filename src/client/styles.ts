@@ -74,7 +74,7 @@ const cardStyles = {
     textAlign: 'left',
   },
   inputField: {
-    width: 400,
+    width: 320,
   },
   answerBox: {
     my: 4,
@@ -87,7 +87,7 @@ const cardStyles = {
 
 const formStyles = {
   formWrapper: {
-    my: 2,
+    m: 2,
     maxWidth: 1560,
   },
   formControl: {
