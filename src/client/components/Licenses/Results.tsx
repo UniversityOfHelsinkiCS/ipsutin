@@ -11,6 +11,11 @@ import ResultElement from '../InteractiveForm/ResultElement'
 import ResultButtons from '../ResultButtons/ResultButtons'
 import RecommendationChip from '../Chip/RecommendationChip'
 
+import {
+  getRecommendationScores,
+  sortRecommendations,
+} from '../../util/recommendations'
+
 import styles from '../../styles'
 import { InputProps, Locales } from '../../types'
 
@@ -48,11 +53,32 @@ const Results = ({ formResultData }: InputProps) => {
   )
     return null
 
+  const recommendationScores = getRecommendationScores(
+    formResultData,
+    recommendations
+  )
+
+  const sortedRecommendations = sortRecommendations(
+    recommendations,
+    recommendationScores
+  )
+
   const commonResult = results.find((result) => result.optionLabel === 'common')
 
-  const resultArray = Object.values(formResultData).map((aChoice: string) => [
-    aChoice,
-  ])
+  const filteredResults = results.filter((result) =>
+    Object.values(formResultData).includes(result.optionLabel)
+  )
+
+  const recommendationLabels = sortedRecommendations.map(
+    (recommendation) => recommendation.label
+  )
+
+  const sortedResultsWithLabels = filteredResults
+    .map((result) => ({
+      ...result,
+      labels: ['allDimensions', ...recommendationLabels],
+    }))
+    .sort((a, b) => a.id - b.id)
 
   return (
     <Box>
@@ -68,7 +94,7 @@ const Results = ({ formResultData }: InputProps) => {
               {t('results:title')}
             </Typography>
             <Box sx={{ mt: 2 }}>
-              {recommendations.map((recommendation) => (
+              {sortedRecommendations.map((recommendation) => (
                 <RecommendationChip
                   key={recommendation.id}
                   recommendation={recommendation}
@@ -81,25 +107,20 @@ const Results = ({ formResultData }: InputProps) => {
                 key={commonResult.id}
                 language={language as keyof Locales}
                 resultData={commonResult}
-                recommendation={dimensions[0]}
+                recommendation={recommendationLabels[0]}
               />
             )}
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
-            {resultArray.map((resultLabels) =>
-              resultLabels.map((resultLabel) => (
-                <ResultElement
-                  key={JSON.stringify(resultLabel)}
-                  language={language as keyof Locales}
-                  resultData={results.find(
-                    (result: { optionLabel: string }) =>
-                      result.optionLabel === resultLabel
-                  )}
-                  dimensions={dimensions}
-                />
-              ))
-            )}
+            {sortedResultsWithLabels.map((result) => (
+              <ResultElement
+                key={result.id}
+                language={language as keyof Locales}
+                resultData={result}
+                dimensions={result.labels}
+              />
+            ))}
           </Box>
         </Box>
         <ResultButtons />
