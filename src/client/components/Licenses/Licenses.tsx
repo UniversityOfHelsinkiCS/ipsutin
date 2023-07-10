@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { Box, Grid } from '@mui/material'
 
@@ -13,6 +14,7 @@ import { FormValues, InputProps } from '../../types'
 import { FORM_DATA_KEY } from '../../../config'
 
 const Licences = ({ faculty }: InputProps) => {
+  const { t } = useTranslation()
   const [resultData, setResultData] = useState<FormValues>(null)
   const [showResults, setShowResults] = useState(false)
   const { formStyles } = styles
@@ -55,7 +57,7 @@ const Licences = ({ faculty }: InputProps) => {
               control={control}
               watch={watch}
               questions={survey.Questions}
-              surveyName="Licenses"
+              surveyName={t('surveyNames:licences')}
             />
           </form>
           {resultData && showResults && <Results formResultData={resultData} />}
