@@ -20,7 +20,7 @@ const MainPage = () => {
 
   useEffect(() => {
     navigate(`/${survey}`)
-  }, [survey])
+  }, [survey, navigate])
 
   return (
     <Box sx={formStyles.formWrapper}>

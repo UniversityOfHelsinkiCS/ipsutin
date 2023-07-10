@@ -30,8 +30,6 @@ const Results = ({ formResultData }: InputProps) => {
 
   const { language } = i18n
 
-  const dimensions = ['allDimensions', 'clinic', 'legal', 'gnu_gpl', 'bsd_mit']
-
   const refCallback = useCallback(
     (resultDOMElement: HTMLDivElement) => {
       if (!resultDOMElement) return
