@@ -55,12 +55,12 @@ const IpAssessment = ({ faculty }: InputProps) => {
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={cardStyles.outerBox}>
-              <Typography variant="h4" sx={{ m: 4 }}>
-                IP Assessment
+              <Typography variant='h4' sx={{ m: 4 }}>
+                {t('surveyNames:ipAssessment')}
               </Typography>
 
               <Box sx={cardStyles.separatorCard}>
-                <Typography variant="h6" sx={{ ml: 2 }}>
+                <Typography variant='h6' sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:technicalTitle')}
                 </Typography>
                 {technical.map((question: Question) => (
@@ -79,7 +79,7 @@ const IpAssessment = ({ faculty }: InputProps) => {
               </Box>
 
               <Box sx={cardStyles.separatorCard}>
-                <Typography variant="h6" sx={{ ml: 2 }}>
+                <Typography variant='h6' sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:mathematicalTitle')}
                 </Typography>
                 {mathematical.map((question: Question) => (
@@ -98,7 +98,7 @@ const IpAssessment = ({ faculty }: InputProps) => {
               </Box>
 
               <Box sx={cardStyles.separatorCard}>
-                <Typography variant="h6" sx={{ ml: 2 }}>
+                <Typography variant='h6' sx={{ ml: 2 }}>
                   {t('ipAssessmentSurvey:computerProgramTitle')}
                 </Typography>
                 {computerProgram.map((question: Question) => (
@@ -116,12 +116,12 @@ const IpAssessment = ({ faculty }: InputProps) => {
                 ))}
               </Box>
               <Box sx={formStyles.stackBoxWrapper}>
-                <Stack sx={formStyles.stack} direction="row">
+                <Stack sx={formStyles.stack} direction='row'>
                   <Button
                     sx={formStyles.stackButton}
-                    id="contact-form-button"
-                    variant="contained"
-                    type="submit"
+                    id='contact-form-button'
+                    variant='contained'
+                    type='submit'
                   >
                     {t('common:submit')}
                   </Button>

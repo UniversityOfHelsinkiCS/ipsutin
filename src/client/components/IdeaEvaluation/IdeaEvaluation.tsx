@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
@@ -12,6 +13,7 @@ import { FormValues, InputProps } from '../../types'
 import styles from '../../styles'
 
 const IdeaEvaluation = ({ faculty }: InputProps) => {
+  const { t } = useTranslation()
   const [showResults, setShowResults] = useState(false)
   const [resultData, setResultData] = useState<FormValues>(null)
   const { formStyles } = styles
@@ -44,7 +46,7 @@ const IdeaEvaluation = ({ faculty }: InputProps) => {
               control={control}
               watch={watch}
               questions={survey.Questions}
-              surveyName='Idea Evaluation'
+              surveyName={t('surveyNames:ideaEvaluation')}
             />
           </form>
           {resultData && showResults && <Results formResultData={resultData} />}
