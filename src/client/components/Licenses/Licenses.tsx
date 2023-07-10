@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { Box, Grid } from '@mui/material'
@@ -10,15 +11,19 @@ import Results from './Results'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
 import styles from '../../styles'
-import { FormValues, InputProps } from '../../types'
+import { FormValues } from '../../types'
+
 import { FORM_DATA_KEY } from '../../../config'
 
-const Licences = ({ faculty }: InputProps) => {
+const Licences = () => {
   const { t } = useTranslation()
-  const [resultData, setResultData] = useState<FormValues>(null)
-  const [showResults, setShowResults] = useState(false)
-  const { formStyles } = styles
+  const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('licenses')
+  const [showResults, setShowResults] = useState(false)
+  const [resultData, setResultData] = useState<FormValues>(null)
+
+  const faculty = searchParams.get('faculty')
+  const { formStyles } = styles
 
   const mutation = useSaveEntryMutation(survey?.id)
 
@@ -46,7 +51,7 @@ const Licences = ({ faculty }: InputProps) => {
     setShowResults(true)
   }
 
-  if (isLoading) return null
+  if (isLoading || !faculty) return null
 
   return (
     <Box sx={formStyles.formWrapper}>

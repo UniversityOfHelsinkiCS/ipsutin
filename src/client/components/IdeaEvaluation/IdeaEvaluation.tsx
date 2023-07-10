@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
-import { useForm } from 'react-hook-form'
 
 import useSurvey from '../../hooks/useSurvey'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
@@ -9,17 +10,19 @@ import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import Results from './Results'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
-import { FormValues, InputProps } from '../../types'
+import { FormValues } from '../../types'
 import styles from '../../styles'
 
-const IdeaEvaluation = ({ faculty }: InputProps) => {
+const IdeaEvaluation = () => {
   const { t } = useTranslation()
+  const [searchParams] = useSearchParams()
+  const { survey, isLoading } = useSurvey('ideaEvaluation')
+  const mutation = useSaveEntryMutation(survey?.id)
   const [showResults, setShowResults] = useState(false)
   const [resultData, setResultData] = useState<FormValues>(null)
-  const { formStyles } = styles
-  const { survey, isLoading } = useSurvey('ideaEvaluation')
 
-  const mutation = useSaveEntryMutation(survey?.id)
+  const faculty = searchParams.get('faculty')
+  const { formStyles } = styles
 
   const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',

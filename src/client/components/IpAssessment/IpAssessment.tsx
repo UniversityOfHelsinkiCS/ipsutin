@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
@@ -12,18 +13,19 @@ import ResetForm from '../Common/ResetForm'
 import RenderQuestions from '../InteractiveForm/RenderQuestions'
 
 import styles from '../../styles'
-import { FormValues, InputProps, Question } from '../../types'
+import { FormValues, Question } from '../../types'
 
-const IpAssessment = ({ faculty }: InputProps) => {
+const IpAssessment = () => {
+  const { t, i18n } = useTranslation()
+  const [searchParams] = useSearchParams()
+  const { survey, isLoading } = useSurvey('ipAssessment')
+  const mutation = useSaveEntryMutation(survey?.id)
   const [resultData, setResultData] = useState<FormValues>(null)
   const [showResults, setShowResults] = useState(false)
+
+  const faculty = searchParams.get('faculty')
   const { formStyles, cardStyles } = styles
-  const { survey, isLoading } = useSurvey('ipAssessment')
-  const { t, i18n } = useTranslation()
-
   const { language } = i18n
-
-  const mutation = useSaveEntryMutation(survey?.id)
 
   const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
@@ -37,7 +39,7 @@ const IpAssessment = ({ faculty }: InputProps) => {
     setShowResults(true)
   }
 
-  if (isLoading) return null
+  if (isLoading || !faculty) return null
 
   const technical = survey.Questions.filter((question) =>
     [101, 102, 103, 104].includes(question.id)
