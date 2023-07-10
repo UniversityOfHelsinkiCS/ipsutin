@@ -6,11 +6,13 @@ import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
+import CommonResult from './CommonResult'
 import ResultButtons from '../ResultButtons/ResultButtons'
 import ResultElement from '../InteractiveForm/ResultElement'
 import RecommendationChip from '../Chip/RecommendationChip'
 
 import { getIeRecommendationScores, sortRecommendations } from './util'
+
 import { InputProps, Locales } from '../../types'
 import styles from '../../styles'
 
@@ -92,11 +94,11 @@ const Results = ({ formResultData }: InputProps) => {
               ))}
             </Box>
             {commonResult && (
-              <ResultElement
+              <CommonResult
                 key={commonResult.id}
                 language={language as keyof Locales}
                 resultData={commonResult}
-                dimensions={recommendationLabels}
+                recommendation={recommendationLabels[0]}
               />
             )}
           </Container>
