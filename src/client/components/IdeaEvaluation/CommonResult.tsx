@@ -20,7 +20,7 @@ const CommonResult = ({
   if (!resultData) return null
 
   return (
-    <Container>
+    <Box>
       <Box style={{ margin: '2rem 0 2rem 0' }}>
         <Markdown>{resultData.isSelected[language]}</Markdown>
       </Box>
@@ -34,7 +34,7 @@ const CommonResult = ({
           data-cy={`result-wrapper-${resultData.optionLabel}-${recommendation}`}
           key={`${JSON.stringify(resultData)}.${recommendation}`}
           style={{
-            margin: '2rem 0 4rem 0',
+            margin: '0 0 4rem 0',
             padding: '0 2rem 0 2rem ',
             borderLeft: 'solid',
             borderColor: colors[recommendation],
@@ -44,7 +44,7 @@ const CommonResult = ({
           <Markdown>{resultData.data[recommendation][language]}</Markdown>
         </Box>
       </Box>
-    </Container>
+    </Box>
   )
 }
 
