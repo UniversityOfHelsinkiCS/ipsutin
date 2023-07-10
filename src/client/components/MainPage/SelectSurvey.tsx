@@ -1,22 +1,41 @@
-import React from 'react'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { Box } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import {
+  useSearchParams,
+  useNavigate,
+  createSearchParams,
+} from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import styles from '../../styles'
-import { InputProps } from '../../types'
+
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material'
+
 import Markdown from '../Common/Markdown'
 
-const SelectSurvey = ({ surveyName, setSurvey }: InputProps) => {
+import styles from '../../styles'
+
+const SelectSurvey = () => {
   const { t } = useTranslation()
+  const [survey, setSurvey] = useState<string>('')
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
 
   const { cardStyles, formStyles } = styles
 
-  const handleSurveyChange = (event: SelectChangeEvent) => {
-    setSurvey(event.target.value)
-  }
+  const faculty = searchParams.get('faculty')
+
+  useEffect(() => {
+    const params = { faculty }
+    navigate({
+      pathname: `/${survey}`,
+      search: `?${createSearchParams(params)}`,
+    })
+  }, [faculty, navigate, searchParams, survey])
 
   return (
     <Box sx={cardStyles.card}>
@@ -27,16 +46,16 @@ const SelectSurvey = ({ surveyName, setSurvey }: InputProps) => {
         <InputLabel>{t('surveySelect:inputLabel')}</InputLabel>
         <Select
           sx={cardStyles.inputField}
-          data-cy="survey-select"
-          value={surveyName}
+          data-cy='survey-select'
+          value={survey || ''}
           label={t('surveySelect:inputLabel')}
-          onChange={handleSurveyChange}
+          onChange={(e: SelectChangeEvent) => setSurvey(e.target.value)}
         >
-          <MenuItem value="ipassessment">
+          <MenuItem value='ipassessment'>
             {t('surveyNames:ipAssessment')}
           </MenuItem>
-          <MenuItem value="licences">{t('surveyNames:licences')}</MenuItem>
-          <MenuItem value="ideaevaluation">
+          <MenuItem value='licences'>{t('surveyNames:licences')}</MenuItem>
+          <MenuItem value='ideaevaluation'>
             {t('surveyNames:ideaEvaluation')}
           </MenuItem>
         </Select>
