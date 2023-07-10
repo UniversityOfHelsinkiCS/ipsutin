@@ -6,7 +6,7 @@ import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
-import CommonResult from './CommonResult'
+import CommonResult from '../InteractiveForm/CommonResult'
 import ResultButtons from '../ResultButtons/ResultButtons'
 import ResultElement from '../InteractiveForm/ResultElement'
 import RecommendationChip from '../Chip/RecommendationChip'
