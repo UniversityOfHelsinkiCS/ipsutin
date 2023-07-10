@@ -73,8 +73,6 @@ const Results = ({ formResultData }: InputProps) => {
     }))
     .sort((a, b) => a.id - b.id)
 
-  console.log(filteredResultsWithLabels)
-
   return (
     <Box>
       <Box sx={cardStyles.outerBox}>
