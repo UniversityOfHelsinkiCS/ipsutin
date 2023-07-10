@@ -1,15 +1,15 @@
-import React from 'react'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { Box } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import styles from '../../styles'
-import { InputProps, Faculty, Locales } from '../../types'
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+
 import useFaculties from '../../hooks/useFaculty'
+
 import Markdown from '../Common/Markdown'
+
 import extraOrganisations from '../../util/organisations'
+import styles from '../../styles'
+import { Faculty, Locales } from '../../types'
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
   const sortedFaculties = faculties.sort((a, b) => {
@@ -22,21 +22,28 @@ const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
   return sortedFaculties
 }
 
-const SelectFaculty = ({ setFaculty, faculty }: InputProps) => {
+const SelectFaculty = () => {
   const { t, i18n } = useTranslation()
-  const { language } = i18n
   const { faculties, isLoading: facultiesLoading } = useFaculties()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [faculty, setFaculty] = useState<Faculty>()
 
+  const { language } = i18n
   const { cardStyles, formStyles } = styles
+
+  useEffect(() => {
+    if (facultiesLoading) return
+
+    const facultyCode = searchParams.get('faculty')
+    const selectedFaculty = faculties.find((f) => f.code === facultyCode)
+
+    if (selectedFaculty) setFaculty(selectedFaculty)
+  }, [faculties, facultiesLoading, searchParams])
 
   if (facultiesLoading) return null
 
   const sortedFaculties = sortFaculties(faculties, language as keyof Locales)
   const organisations = sortedFaculties.concat(extraOrganisations)
-
-  const handleFacultyChange = (event: SelectChangeEvent) => {
-    setFaculty(event.target.value)
-  }
 
   return (
     <Box sx={cardStyles.card}>
@@ -47,16 +54,19 @@ const SelectFaculty = ({ setFaculty, faculty }: InputProps) => {
         <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
         <Select
           sx={cardStyles.inputField}
-          data-cy="faculty-select"
-          value={faculty}
+          data-cy='faculty-select'
           label={t('facultySelect:inputLabel')}
-          onChange={handleFacultyChange}
+          value={faculty?.code || ''}
         >
           {organisations.map((f: Faculty) => (
             <MenuItem
               data-cy={`faculty-option-${f.code}`}
               key={f.code}
               value={f.code}
+              onClick={() => {
+                setSearchParams({ faculty: f.code })
+                setFaculty(f)
+              }}
             >
               {f.name[language as keyof Locales]}
             </MenuItem>
