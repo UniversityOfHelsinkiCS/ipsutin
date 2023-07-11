@@ -7,7 +7,7 @@ import {
 } from 'sequelize'
 
 import { sequelize } from '../connection'
-import { TranslatedText } from '../../types'
+import { Locales } from '../../types'
 
 class Result extends Model<
   InferAttributes<Result>,
@@ -19,7 +19,7 @@ class Result extends Model<
 
   declare optionLabel: string
 
-  declare isSelected: TranslatedText
+  declare isSelected: Locales
 
   declare data: object
 }

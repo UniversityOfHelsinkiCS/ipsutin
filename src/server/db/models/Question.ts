@@ -8,11 +8,11 @@ import {
 
 import { sequelize } from '../connection'
 
-import { TranslatedText } from '../../types'
+import { Locales } from '../../types'
 
 interface Option {
   id: string
-  label: TranslatedText
+  label: Locales
 }
 
 interface OptionData {
@@ -36,9 +36,9 @@ class Question extends Model<
 
   declare priority: number
 
-  declare title: TranslatedText
+  declare title: Locales
 
-  declare text: TranslatedText
+  declare text: Locales
 
   declare optionData: OptionData
 

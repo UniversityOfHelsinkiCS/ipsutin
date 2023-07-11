@@ -7,7 +7,7 @@ import {
 } from 'sequelize'
 
 import { sequelize } from '../connection'
-import { TranslatedText } from '../../types'
+import { Locales } from '../../types'
 
 export type RecommendationData = {
   [key: string]: number
@@ -23,9 +23,9 @@ class Recommendation extends Model<
 
   declare label: string
 
-  declare title: TranslatedText
+  declare title: Locales
 
-  declare text: TranslatedText
+  declare text: Locales
 
   declare data: RecommendationData
 }

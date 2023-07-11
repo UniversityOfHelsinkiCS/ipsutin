@@ -7,7 +7,7 @@ import { inProduction } from '../../config'
 
 const errorHandler = (
   error: Error,
-  _req: Request,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

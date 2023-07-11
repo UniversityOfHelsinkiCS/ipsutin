@@ -1,5 +1,4 @@
 import { init as initSentry, Integrations } from '@sentry/node'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Integrations as TracingIntegrations } from '@sentry/tracing'
 import { Express } from 'express-serve-static-core'
 

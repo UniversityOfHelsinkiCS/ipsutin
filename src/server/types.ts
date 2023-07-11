@@ -1,14 +1,14 @@
 import { Request } from 'express'
 
-export type Faculty = {
+export interface Locales {
   fi: string
+  sv: string
   en: string
-  se: string
 }
 
 export type Programme = {
   key: string
-  name: Faculty
+  name: Locales
   level: string
   companionFaculties: Array<string>
   international: boolean
@@ -16,14 +16,8 @@ export type Programme = {
 
 export interface OrganisationData {
   code: string
-  name: Faculty
+  name: Locales
   programmes: Array<Programme>
-}
-
-export interface TranslatedText {
-  fi: string
-  sv: string
-  en: string
 }
 
 export interface User {
@@ -45,7 +39,7 @@ export interface Result {
   id: number
   surveyId: number
   optionLabel: string
-  isSelected: TranslatedText
+  isSelected: Locales
   data: any
 }
 
@@ -53,8 +47,8 @@ export interface Recommendation {
   id: number
   surveyId: number
   label: string
-  title: TranslatedText
-  text: TranslatedText
+  title: Locales
+  text: Locales
   data: {
     [key: string]: number
   }
@@ -66,9 +60,9 @@ type Visibility = {
 
 type OptionType = {
   id: string
-  label: TranslatedText
-  text?: TranslatedText
-  data?: TranslatedText
+  label: Locales
+  text?: Locales
+  data?: Locales
 }
 
 type OptionData = {
@@ -81,8 +75,8 @@ export interface Question {
   surveyId: number
   parentId: number
   priority: number
-  title: TranslatedText
-  text: TranslatedText
+  title: Locales
+  text: Locales
   optionData: OptionData
   visibility?: Visibility
 }
