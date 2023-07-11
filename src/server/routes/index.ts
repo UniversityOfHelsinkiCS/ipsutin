@@ -4,9 +4,9 @@ import { Handlers as SentryHandlers } from '@sentry/node'
 
 import shibbolethMiddleware from '../middeware/shibboleth'
 import userMiddleware from '../middeware/user'
-import initializeSentry from '../util/sentry'
 import errorHandler from '../middeware/error'
 import accessLogger from '../middeware/access'
+
 import surveyRouter from './survey'
 import entryRouter from './entry'
 import userRouter from './user'
@@ -14,6 +14,11 @@ import summaryRouter from './summary'
 import recommendationRouter from './recommendation'
 import facultyRouter from './faculty'
 import resultRouter from './result'
+import testRouter from './test'
+
+import initializeSentry from '../util/sentry'
+
+import { inStaging } from '../../config'
 
 const router = express()
 
@@ -30,6 +35,7 @@ router.use(userMiddleware)
 
 router.use(accessLogger)
 
+if (inStaging) router.use('/test', testRouter)
 router.use('/results', resultRouter)
 router.use('/faculties', facultyRouter)
 router.use('/surveys', surveyRouter)
