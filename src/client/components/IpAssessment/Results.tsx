@@ -1,11 +1,12 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
 
 import useResults from '../../hooks/useResults'
 
 import Markdown from '../Common/Markdown'
+import ResultButtons from '../ResultButtons/ResultButtons'
 
 import styles from '../../styles'
 import { InputProps, Locales, Result } from '../../types'
@@ -78,7 +79,7 @@ const SectionResults = ({
 
   return (
     <Box sx={resultStyles.resultSection}>
-      <Typography variant="h6">
+      <Typography variant='h6'>
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
       <Box>
@@ -113,6 +114,18 @@ const Results = ({ survey, formResultData }: InputProps) => {
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { t } = useTranslation()
 
+  const refCallback = useCallback(
+    (resultDOMElement: HTMLDivElement) => {
+      if (!resultDOMElement) return
+
+      sessionStorage.setItem(
+        'ipsutin-session-resultHTML',
+        resultDOMElement.innerHTML
+      )
+    },
+    [formResultData]
+  )
+
   if (!resultsFetched || !formResultData) return null
 
   const technicalAnswered = Object.values(
@@ -145,33 +158,36 @@ const Results = ({ survey, formResultData }: InputProps) => {
         <Box sx={resultStyles.resultWrapper}>
           <Container sx={{ mt: 4 }}>
             <Typography
-              data-cy="result-section-title"
-              variant="h5"
+              data-cy='result-section-title'
+              variant='h5'
               sx={resultStyles.heading}
-              component="div"
+              component='div'
             >
               {t('results:title')}
             </Typography>
           </Container>
 
-          <SectionResults
-            section="technical"
-            results={results}
-            answers={technicalAnswered}
-          />
+          <Box ref={refCallback}>
+            <SectionResults
+              section='technical'
+              results={results}
+              answers={technicalAnswered}
+            />
 
-          <SectionResults
-            section="mathematical"
-            results={results}
-            answers={mathematicalAnswered}
-          />
+            <SectionResults
+              section='mathematical'
+              results={results}
+              answers={mathematicalAnswered}
+            />
 
-          <SectionResults
-            section="computerProgram"
-            results={results}
-            answers={computerProgramAnswered}
-          />
+            <SectionResults
+              section='computerProgram'
+              results={results}
+              answers={computerProgramAnswered}
+            />
+          </Box>
         </Box>
+        <ResultButtons />
       </Box>
     </Box>
   )

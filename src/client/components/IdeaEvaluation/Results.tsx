@@ -98,6 +98,9 @@ const Results = ({ formResultData }: InputProps) => {
                 />
               ))}
             </Box>
+          </Container>
+
+          <Box ref={refCallback} sx={resultStyles.resultSection}>
             {commonResult && (
               <CommonResult
                 key={commonResult.id}
@@ -106,9 +109,6 @@ const Results = ({ formResultData }: InputProps) => {
                 recommendation={recommendationLabels[0]}
               />
             )}
-          </Container>
-
-          <Box ref={refCallback} sx={resultStyles.resultSection}>
             {sortedResultsWithLabels.map((result) => (
               <ResultElement
                 key={result.id}
