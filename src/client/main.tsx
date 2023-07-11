@@ -9,8 +9,10 @@ import router from './components/routes/router'
 
 import queryClient from './util/queryClient'
 import initializeI18n from './util/il18n'
+import initializeSentry from './util/sentry'
 
 initializeI18n()
+initializeSentry()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
