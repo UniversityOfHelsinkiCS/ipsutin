@@ -36,6 +36,7 @@ router.use(userMiddleware)
 router.use(accessLogger)
 
 if (inStaging) router.use('/test', testRouter)
+
 router.use('/results', resultRouter)
 router.use('/faculties', facultyRouter)
 router.use('/surveys', surveyRouter)
