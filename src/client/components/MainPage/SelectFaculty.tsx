@@ -35,22 +35,27 @@ const SelectFaculty = () => {
   const { cardStyles, formStyles } = styles
 
   useEffect(() => {
-    if (userFacultiesLoading || !userFaculties) return
-
-    const userFaculty = userFaculties[0]
-
-    setSearchParams({ faculty: userFaculty.code })
-    setFaculty(userFaculty)
-  }, [setSearchParams, userFaculties, userFacultiesLoading])
-
-  useEffect(() => {
-    if (facultiesLoading) return
+    if (facultiesLoading || userFacultiesLoading) return
 
     const facultyCode = searchParams.get('faculty')
     const selectedFaculty = faculties.find((f) => f.code === facultyCode)
 
-    if (selectedFaculty) setFaculty(selectedFaculty)
-  }, [faculties, facultiesLoading, searchParams])
+    if (selectedFaculty) {
+      setFaculty(selectedFaculty)
+    } else if (userFaculties) {
+      const userFaculty = userFaculties[0]
+
+      setSearchParams({ faculty: userFaculty.code })
+      setFaculty(userFaculty)
+    }
+  }, [
+    faculties,
+    facultiesLoading,
+    searchParams,
+    setSearchParams,
+    userFaculties,
+    userFacultiesLoading,
+  ])
 
   if (facultiesLoading) return null
 
