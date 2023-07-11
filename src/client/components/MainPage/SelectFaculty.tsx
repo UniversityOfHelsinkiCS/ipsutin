@@ -4,12 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 import useFaculties from '../../hooks/useFaculty'
+import useUserFaculties from '../../hooks/useUserFaculties'
 
 import Markdown from '../Common/Markdown'
 
 import extraOrganisations from '../../util/organisations'
-import styles from '../../styles'
+
 import { Faculty, Locales } from '../../types'
+import styles from '../../styles'
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
   const sortedFaculties = faculties.sort((a, b) => {
@@ -24,12 +26,22 @@ const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
 
 const SelectFaculty = () => {
   const { t, i18n } = useTranslation()
-  const { faculties, isLoading: facultiesLoading } = useFaculties()
   const [searchParams, setSearchParams] = useSearchParams()
   const [faculty, setFaculty] = useState<Faculty>()
+  const { faculties, isLoading: facultiesLoading } = useFaculties()
+  const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
 
   const { language } = i18n
   const { cardStyles, formStyles } = styles
+
+  useEffect(() => {
+    if (userFacultiesLoading || !userFaculties) return
+
+    const userFaculty = userFaculties[0]
+
+    setSearchParams({ faculty: userFaculty.code })
+    setFaculty(userFaculty)
+  }, [setSearchParams, userFaculties, userFacultiesLoading])
 
   useEffect(() => {
     if (facultiesLoading) return
