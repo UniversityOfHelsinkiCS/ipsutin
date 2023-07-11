@@ -42,10 +42,10 @@ const SelectFaculty = () => {
 
     if (selectedFaculty) {
       setFaculty(selectedFaculty)
-    } else if (userFaculties) {
+    } else if (userFaculties.length > 0) {
       const userFaculty = userFaculties[0]
 
-      setSearchParams({ faculty: userFaculty.code })
+      setSearchParams({ faculty: userFaculty?.code })
       setFaculty(userFaculty)
     }
   }, [
