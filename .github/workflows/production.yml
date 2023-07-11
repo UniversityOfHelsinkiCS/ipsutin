@@ -40,10 +40,13 @@ jobs:
     needs: build-and-push
     steps:
       - uses: actions/checkout@v3
+
       - name: Pull image and create a container
-        run: docker create --name ipsutin toska/ipsutin:latest
+        run: docker create --name ipsutin quay.io/toska/ipsutin:production
+
       - name: Copy assets from the container
         run: docker cp ipsutin:/opt/app-root/src ./app
+        
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         env:
