@@ -3,6 +3,7 @@ import {
   useSearchParams,
   useNavigate,
   createSearchParams,
+  useLocation,
 } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -21,21 +22,24 @@ import styles from '../../styles'
 
 const SelectSurvey = () => {
   const { t } = useTranslation()
-  const [survey, setSurvey] = useState<string>('')
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
+  const [survey, setSurvey] = useState<string>('')
 
   const { cardStyles, formStyles } = styles
 
   const faculty = searchParams.get('faculty')
+  const path = survey || location.pathname.substring(1)
 
   useEffect(() => {
     const params = { faculty }
+
     navigate({
-      pathname: `/${survey}`,
+      pathname: path,
       search: `?${createSearchParams(params)}`,
     })
-  }, [faculty, navigate, searchParams, survey])
+  }, [faculty, location.pathname, navigate, path, searchParams, survey])
 
   return (
     <Box sx={cardStyles.card}>
@@ -47,7 +51,7 @@ const SelectSurvey = () => {
         <Select
           sx={cardStyles.inputField}
           data-cy='survey-select'
-          value={survey || ''}
+          value={path}
           label={t('surveySelect:inputLabel')}
           onChange={(e: SelectChangeEvent) => setSurvey(e.target.value)}
         >
