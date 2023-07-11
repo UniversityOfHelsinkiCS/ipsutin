@@ -1,13 +1,14 @@
 import React from 'react'
-import { ThemeProvider } from '@mui/material/styles'
+
 import { Box } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
 import { SnackbarProvider } from 'notistack'
 
 import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
 
 import useTheme from './theme'
-import Router from './Router'
+import MainPage from './components/MainPage/MainPage'
 
 const App = () => {
   const theme = useTheme()
@@ -24,12 +25,12 @@ const App = () => {
           <NavBar />
           <Box
             flexGrow={1}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            minHeight="50vh"
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            minHeight='50vh'
           >
-            <Router />
+            <MainPage />
           </Box>
           <Footer />
         </Box>

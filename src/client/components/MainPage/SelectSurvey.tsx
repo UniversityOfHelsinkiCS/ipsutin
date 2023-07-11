@@ -53,7 +53,9 @@ const SelectSurvey = () => {
           data-cy='survey-select'
           value={path}
           label={t('surveySelect:inputLabel')}
-          onChange={(e: SelectChangeEvent) => setSurvey(e.target.value)}
+          onChange={(e: SelectChangeEvent) => {
+            setSurvey(e.target.value)
+          }}
         >
           <MenuItem value='ipassessment'>
             {t('surveyNames:ipAssessment')}
