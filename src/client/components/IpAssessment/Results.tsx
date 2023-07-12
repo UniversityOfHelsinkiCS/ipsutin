@@ -5,12 +5,18 @@ import { Box, Container, Typography } from '@mui/material'
 
 import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
+import useRecommendations from '../../hooks/useRecommendations'
 
 import Markdown from '../Common/Markdown'
 import ResultButtons from '../ResultButtons/ResultButtons'
+import RecommendationChip from '../Chip/RecommendationChip'
 
 import styles from '../../styles'
 import { IPAssessmentResult, InputProps, Locales } from '../../types'
+import {
+  getRecommendationScores,
+  sortRecommendations,
+} from '../../util/recommendations'
 
 const { cardStyles, resultStyles } = styles
 
@@ -42,49 +48,31 @@ const ResultElement = ({
 const SectionResults = ({
   section,
   results,
-  answers,
 }: {
   section: 'technical' | 'mathematical' | 'computerProgram'
   results: IPAssessmentResult[]
-  answers: string[]
 }) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
 
-  // Strip the array of null values
-  const filteredAnswers = answers.filter((value) => value)
-
-  // find the wanted questions for this section
-  const sequence = results.filter(
-    (result) =>
-      result.data.type === section &&
-      filteredAnswers.includes(result.optionLabel)
-  )
-
-  const isPotentiallyPatentable = sequence.every(
+  const isPotentiallyPatentable = results.every(
     (result) => result.data.potentiallyPatentable
   )
 
-  if (filteredAnswers.length === 0 || !section || !results || !sequence)
-    return null
+  if (!section || !results) return null
 
   return (
     <Box sx={resultStyles.resultSection}>
       <Typography variant='h6'>
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
-      <Box>
-        {filteredAnswers.map((resultLabel) => (
-          <ResultElement
-            key={`${section}-${resultLabel}`}
-            language={language as keyof Locales}
-            resultData={results.find(
-              (result: { optionLabel: string }) =>
-                result.optionLabel === resultLabel
-            )}
-          />
-        ))}
-      </Box>
+      {results.map((result) => (
+        <ResultElement
+          key={result.id}
+          language={language as keyof Locales}
+          resultData={result}
+        />
+      ))}
 
       <Box sx={cardStyles.card}>
         {isPotentiallyPatentable ? (
@@ -98,9 +86,11 @@ const SectionResults = ({
 }
 
 const Results = ({ formResultData }: InputProps) => {
+  const { t } = useTranslation()
   const { survey } = useSurvey('ipAssessment')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
-  const { t } = useTranslation()
+  const { recommendations, isSuccess: recommendationsFetched } =
+    useRecommendations(survey?.id)
 
   const refCallback = useCallback(
     (resultDOMElement: HTMLDivElement) => {
@@ -114,44 +104,52 @@ const Results = ({ formResultData }: InputProps) => {
     [formResultData]
   )
 
-  if (!resultsFetched || !formResultData) return null
+  if (
+    !results ||
+    !resultsFetched ||
+    !formResultData ||
+    !recommendations ||
+    !recommendationsFetched
+  )
+    return null
 
-  const technicalAnswered = Object.values(
-    Object.fromEntries(
-      Object.entries(formResultData).filter(([key]) =>
-        ['101', '102', '103', '104'].includes(key)
-      )
-    )
+  const recommendationScores = getRecommendationScores(
+    formResultData,
+    recommendations
   )
 
-  const mathematicalAnswered = Object.values(
-    Object.fromEntries(
-      Object.entries(formResultData).filter(([key]) =>
-        ['105', '106', '107', '108', '109'].includes(key)
-      )
-    )
+  const sortedRecommendations = sortRecommendations(
+    recommendations,
+    recommendationScores
   )
 
-  const computerProgramAnswered = Object.values(
-    Object.fromEntries(
-      Object.entries(formResultData).filter(([key]) =>
-        ['110', '111', '112'].includes(key)
-      )
-    )
+  const commonResult = results.find((result) => result.optionLabel === 'common')
+
+  const filteredResults = results.filter((result) =>
+    Object.values(formResultData).includes(result.optionLabel)
   )
 
-  // The following code blocks are used for determining the overall result which should
-  // indicate the overall potential patentability.
-  const commonSequence = results.filter((result) =>
-    [
-      ...technicalAnswered,
-      ...mathematicalAnswered,
-      ...computerProgramAnswered,
-    ].includes(result.optionLabel)
+  const recommendationLabels = sortedRecommendations.map(
+    (recommendation) => recommendation.label
   )
 
-  const isPotentiallyPatentable = commonSequence.every(
-    (result) => result.data.potentiallyPatentable
+  const sortedResultsWithLabels = filteredResults
+    .map((result) => ({
+      ...result,
+      labels: ['allDimensions', ...recommendationLabels],
+    }))
+    .sort((a, b) => a.id - b.id)
+
+  const technicalResults = sortedResultsWithLabels.filter(
+    (result: IPAssessmentResult) => result.data.type === 'technical'
+  )
+
+  const mathematicalResults = sortedResultsWithLabels.filter(
+    (result: IPAssessmentResult) => result.data.type === 'mathematical'
+  )
+
+  const computerProgramResults = sortedResultsWithLabels.filter(
+    (result: IPAssessmentResult) => result.data.type === 'computerProgram'
   )
 
   return (
@@ -167,32 +165,35 @@ const Results = ({ formResultData }: InputProps) => {
             >
               {t('results:title')}
             </Typography>
-            <Box sx={{ my: 4 }}>
+            <Box sx={{ mt: 2 }}>
+              {sortedRecommendations.map((recommendation) => (
+                <RecommendationChip
+                  key={recommendation.id}
+                  recommendation={recommendation}
+                  compact={false}
+                />
+              ))}
+            </Box>
+            {/* <Box sx={{ my: 4 }}>
               {isPotentiallyPatentable ? (
                 <Markdown>{t(`ipAssessmentSurvey:patentable`)}</Markdown>
               ) : (
                 <Markdown>{t(`ipAssessmentSurvey:notPatentable`)}</Markdown>
               )}
-            </Box>
+            </Box> */}
           </Container>
 
           <Box ref={refCallback}>
-            <SectionResults
-              section='technical'
-              results={results}
-              answers={technicalAnswered}
-            />
+            <SectionResults section='technical' results={technicalResults} />
 
             <SectionResults
               section='mathematical'
-              results={results}
-              answers={mathematicalAnswered}
+              results={mathematicalResults}
             />
 
             <SectionResults
               section='computerProgram'
-              results={results}
-              answers={computerProgramAnswered}
+              results={computerProgramResults}
             />
           </Box>
         </Box>
