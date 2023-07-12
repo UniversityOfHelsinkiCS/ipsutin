@@ -40,7 +40,16 @@ export interface Result {
   surveyId: number
   optionLabel: string
   isSelected: Locales
-  data: any
+  data: {
+    [key: string]: Locales
+  }
+}
+
+export interface IPAssessmentResult extends Omit<Result, 'data'> {
+  data: {
+    type?: 'technical' | 'mathematical' | 'computerProgram'
+    potentiallyPatentable?: boolean
+  }
 }
 
 export interface Recommendation {
