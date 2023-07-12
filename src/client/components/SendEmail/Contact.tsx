@@ -7,12 +7,11 @@ import Markdown from '../Common/Markdown'
 
 import styles from '../../styles'
 
-const Contact = () => {
+const Contact = ({ method = 'email' }) => {
   const { t } = useTranslation()
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  const [contactMethod, setContactMethod] = useState('email')
+  const [contactMethod, setContactMethod] = useState(method)
 
-  const { cardStyles, formStyles } = styles
+  const { cardStyles } = styles
 
   const components: { [key: string]: () => JSX.Element } = {
     email: SendContactTicket,
@@ -25,10 +24,10 @@ const Contact = () => {
   return (
     <Box>
       <Container sx={{ mt: 8 }}>
-        <Typography variant="h6" sx={cardStyles.heading} component="div">
+        <Typography variant='h6' sx={cardStyles.heading} component='div'>
           {t('contact:title')}
         </Typography>
-        <Markdown sx={cardStyles.content} variant="body2">
+        <Markdown sx={cardStyles.content} variant='body2'>
           {t('contact:contactMessage')}
         </Markdown>
 
