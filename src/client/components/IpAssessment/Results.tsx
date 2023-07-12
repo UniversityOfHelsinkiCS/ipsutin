@@ -140,6 +140,20 @@ const Results = ({ formResultData }: InputProps) => {
     )
   )
 
+  // The following code blocks are used for determining the overall result which should
+  // indicate the overall potential patentability.
+  const commonSequence = results.filter((result) =>
+    [
+      ...technicalAnswered,
+      ...mathematicalAnswered,
+      ...computerProgramAnswered,
+    ].includes(result.optionLabel)
+  )
+
+  const isPotentiallyPatentable = commonSequence.every(
+    (result) => result.data.potentiallyPatentable
+  )
+
   return (
     <Box>
       <Box sx={cardStyles.outerBox}>
@@ -153,6 +167,13 @@ const Results = ({ formResultData }: InputProps) => {
             >
               {t('results:title')}
             </Typography>
+            <Box sx={{ my: 4 }}>
+              {isPotentiallyPatentable ? (
+                <Markdown>{t(`ipAssessmentSurvey:patentable`)}</Markdown>
+              ) : (
+                <Markdown>{t(`ipAssessmentSurvey:notPatentable`)}</Markdown>
+              )}
+            </Box>
           </Container>
 
           <Box ref={refCallback}>

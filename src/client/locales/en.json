@@ -56,6 +56,8 @@
     "lawyers": "The [lawyers of the research services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/tutkimussopimus-ja-lakiasiat) assist the employees of the university with legal matters related to research, for example, with agreement preparation and interpreting regulations as well as data protection matters."
   },
   "ipAssessmentSurvey": {
+    "patentable": "### Overall recommendation is to file an invention disclosure to HIS.",
+    "notPatentable": "### Overall recommendation is to schedule an idea clinic appointment with HIS.",
     "technicalTitle": "Technical Solutions",
     "mathematicalTitle": "Mathematical Models",
     "computerProgramTitle": "Computer Programs",
