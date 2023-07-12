@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
@@ -7,16 +6,17 @@ import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
+import CommonResult from '../InteractiveForm/CommonResult'
 import Markdown from '../Common/Markdown'
 import ResultButtons from '../ResultButtons/ResultButtons'
 import RecommendationChip from '../Chip/RecommendationChip'
 
-import styles from '../../styles'
 import { IPAssessmentResult, InputProps, Locales } from '../../types'
 import {
   getRecommendationScores,
   sortRecommendations,
 } from '../../util/recommendations'
+import styles from '../../styles'
 
 const { cardStyles, resultStyles } = styles
 
@@ -86,11 +86,13 @@ const SectionResults = ({
 }
 
 const Results = ({ formResultData }: InputProps) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { survey } = useSurvey('ipAssessment')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
+
+  const { language } = i18n
 
   const refCallback = useCallback(
     (resultDOMElement: HTMLDivElement) => {
@@ -174,16 +176,17 @@ const Results = ({ formResultData }: InputProps) => {
                 />
               ))}
             </Box>
-            {/* <Box sx={{ my: 4 }}>
-              {isPotentiallyPatentable ? (
-                <Markdown>{t(`ipAssessmentSurvey:patentable`)}</Markdown>
-              ) : (
-                <Markdown>{t(`ipAssessmentSurvey:notPatentable`)}</Markdown>
-              )}
-            </Box> */}
           </Container>
 
           <Box ref={refCallback}>
+            {commonResult && (
+              <CommonResult
+                key={commonResult.id}
+                language={language as keyof Locales}
+                resultData={commonResult}
+                recommendation={recommendationLabels[0]}
+              />
+            )}
             <SectionResults section='technical' results={technicalResults} />
 
             <SectionResults
