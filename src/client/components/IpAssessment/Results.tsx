@@ -3,13 +3,14 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
 
+import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
 
 import Markdown from '../Common/Markdown'
 import ResultButtons from '../ResultButtons/ResultButtons'
 
 import styles from '../../styles'
-import { InputProps, Locales, Result } from '../../types'
+import { IPAssessmentResult, InputProps, Locales } from '../../types'
 
 const { cardStyles, resultStyles } = styles
 
@@ -18,7 +19,7 @@ const ResultElement = ({
   resultData,
 }: {
   language: keyof Locales
-  resultData: Result
+  resultData: IPAssessmentResult
 }) => {
   if (!resultData) return null
 
@@ -34,23 +35,6 @@ const ResultElement = ({
       <Box style={{ margin: '2rem 0 2rem 1rem' }}>
         <Markdown>{resultData.isSelected[language]}</Markdown>
       </Box>
-      <Box
-        style={{
-          margin: '2rem 0 2rem 0',
-        }}
-      >
-        <Box
-          key={`${JSON.stringify(resultData)}`}
-          style={{
-            margin: '1rem',
-            padding: '0 2rem 0 2rem ',
-            borderLeft: 'solid',
-            borderWidth: '6px',
-          }}
-        >
-          <Markdown>{resultData.data[language]}</Markdown>
-        </Box>
-      </Box>
     </Container>
   )
 }
@@ -61,7 +45,7 @@ const SectionResults = ({
   answers,
 }: {
   section: 'technical' | 'mathematical' | 'computerProgram'
-  results: Result[]
+  results: IPAssessmentResult[]
   answers: string[]
 }) => {
   const { t, i18n } = useTranslation()
@@ -70,9 +54,16 @@ const SectionResults = ({
   // Strip the array of null values
   const filteredAnswers = answers.filter((value) => value)
 
-  const sequence = results
-    .filter((result: { optionLabel: string }) => result.optionLabel === section)
-    .map((result: { data: any }) => result.data?.sequence)
+  // find the wanted questions for this section
+  const sequence = results.filter(
+    (result) =>
+      result.data.type === section &&
+      filteredAnswers.includes(result.optionLabel)
+  )
+
+  const isPotentiallyPatentable = sequence.every(
+    (result) => result.data.potentiallyPatentable
+  )
 
   if (filteredAnswers.length === 0 || !section || !results || !sequence)
     return null
@@ -96,11 +87,7 @@ const SectionResults = ({
       </Box>
 
       <Box sx={cardStyles.card}>
-        {filteredAnswers.some(
-          (answer: string) => !answer
-        ) ? null : filteredAnswers.every((aAnswer) =>
-            sequence[0].includes(aAnswer)
-          ) ? (
+        {isPotentiallyPatentable ? (
           <Markdown>{t(`ipAssessmentSurvey:${section}Patentable`)}</Markdown>
         ) : (
           <Markdown>{t(`ipAssessmentSurvey:${section}NotPatentable`)}</Markdown>
@@ -110,7 +97,8 @@ const SectionResults = ({
   )
 }
 
-const Results = ({ survey, formResultData }: InputProps) => {
+const Results = ({ formResultData }: InputProps) => {
+  const { survey } = useSurvey('ipAssessment')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { t } = useTranslation()
 

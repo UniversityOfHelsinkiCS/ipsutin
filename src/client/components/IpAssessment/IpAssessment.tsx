@@ -135,9 +135,7 @@ const IpAssessment = () => {
               </Box>
             </Box>
           </form>
-          {resultData && showResults && (
-            <Results survey={survey} formResultData={resultData} />
-          )}
+          {resultData && showResults && <Results formResultData={resultData} />}
         </Grid>
       </Grid>
     </Box>
