@@ -41,7 +41,9 @@ const CommonResult = ({
             borderWidth: '6px',
           }}
         >
-          <Markdown>{resultData.data[recommendation][language]}</Markdown>
+          <Markdown>
+            {resultData.data.resultData[recommendation][language]}
+          </Markdown>
         </Box>
       </Box>
     </Box>

@@ -51,7 +51,9 @@ const ResultElement = ({
                 borderWidth: '6px',
               }}
             >
-              <Markdown>{resultData.data[dimension][language]}</Markdown>
+              <Markdown>
+                {resultData.data.resultData[dimension][language]}
+              </Markdown>
             </Box>
           )
         })}

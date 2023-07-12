@@ -59,7 +59,7 @@ const SectionResults = ({
     (result) => result.data.potentiallyPatentable
   )
 
-  if (!section || !results) return null
+  if (!section || results.length === 0) return null
 
   return (
     <Box sx={resultStyles.resultSection}>
@@ -129,7 +129,7 @@ const Results = ({ formResultData }: InputProps) => {
 
   const filteredResults = results.filter((result) =>
     Object.values(formResultData).includes(result.optionLabel)
-  )
+  ) as unknown as IPAssessmentResult[]
 
   const recommendationLabels = sortedRecommendations.map(
     (recommendation) => recommendation.label
@@ -153,6 +153,8 @@ const Results = ({ formResultData }: InputProps) => {
   const computerProgramResults = sortedResultsWithLabels.filter(
     (result: IPAssessmentResult) => result.data.type === 'computerProgram'
   )
+
+  console.log(computerProgramResults)
 
   return (
     <Box>

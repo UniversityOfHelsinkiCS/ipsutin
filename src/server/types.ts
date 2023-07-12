@@ -41,7 +41,9 @@ export interface Result {
   optionLabel: string
   isSelected: Locales
   data: {
-    [key: string]: Locales
+    resultData: {
+      [key: string]: Locales
+    }
   }
 }
 
@@ -49,6 +51,9 @@ export interface IPAssessmentResult extends Omit<Result, 'data'> {
   data: {
     type?: 'technical' | 'mathematical' | 'computerProgram'
     potentiallyPatentable?: boolean
+    resultData: {
+      [key: string]: Locales
+    }
   }
 }
 
