@@ -62,7 +62,7 @@ const SectionResults = ({
   if (!section || results.length === 0) return null
 
   return (
-    <Box sx={resultStyles.resultSection}>
+    <Box>
       <Typography variant='h6'>
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
@@ -154,8 +154,6 @@ const Results = ({ formResultData }: InputProps) => {
     (result: IPAssessmentResult) => result.data.type === 'computerProgram'
   )
 
-  console.log(computerProgramResults)
-
   return (
     <Box>
       <Box sx={cardStyles.outerBox}>
@@ -180,7 +178,7 @@ const Results = ({ formResultData }: InputProps) => {
             </Box>
           </Container>
 
-          <Box ref={refCallback}>
+          <Box ref={refCallback} sx={resultStyles.resultSection}>
             {commonResult && (
               <CommonResult
                 key={commonResult.id}
