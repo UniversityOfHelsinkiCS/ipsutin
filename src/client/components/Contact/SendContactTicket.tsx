@@ -12,7 +12,7 @@ import Markdown from '../Common/Markdown'
 import styles from '../../styles'
 import apiClient from '../../util/apiClient'
 
-interface ContactTickerProps {
+interface ContactTicketProps {
   title: string
   content: string
   ticketEmail: string
@@ -22,7 +22,7 @@ const SendContactTicket = ({
   title,
   content,
   ticketEmail,
-}: ContactTickerProps) => {
+}: ContactTicketProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()

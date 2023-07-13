@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 
+import Service from './Service'
 import SendContactTicket from './SendContactTicket'
 
 import { RecommendationLabel } from '../../types'
@@ -13,7 +14,7 @@ interface Action {
 const Contact = ({ action }: Action) => {
   const { t } = useTranslation()
 
-  const components: { [key: string]: ReactElement } = {
+  const components: { [key in RecommendationLabel]?: ReactElement } = {
     clinic: (
       <SendContactTicket
         title={t('contact:clinicTitle')}
@@ -26,6 +27,24 @@ const Contact = ({ action }: Action) => {
         title={t('contact:legalTitle')}
         content={t('contact:legalContent')}
         ticketEmail='legal@helsinki.fi'
+      />
+    ),
+    disclosure: (
+      <Service
+        title={t('contact:disclosureTitle')}
+        content={t('contact:disclosureContent')}
+      />
+    ),
+    incubator: (
+      <Service
+        title={t('contact:incubatorTitle')}
+        content={t('contact:incubatorContent')}
+      />
+    ),
+    relations: (
+      <Service
+        title={t('contact:relationsTitle')}
+        content={t('contact:relationsContent')}
       />
     ),
   }
