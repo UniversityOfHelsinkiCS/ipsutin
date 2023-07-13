@@ -110,16 +110,16 @@ const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
         {errors.content && (
           <Typography variant='body2'>{errors.content?.message}</Typography>
         )}
-        <Box sx={{ mt: 4 }}>
-          <Button
-            data-cy='send-contact-ticket-button'
-            variant='contained'
-            disabled={isSent}
-            onClick={handleSubmit(onSubmit)}
-          >
-            {t('contact:contactTicketSend')}
-          </Button>
-        </Box>
+
+        <Button
+          data-cy='send-contact-ticket-button'
+          variant='contained'
+          sx={{ mt: 4 }}
+          disabled={isSent}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {t('contact:contactTicketSend')}
+        </Button>
       </form>
     </Box>
   )

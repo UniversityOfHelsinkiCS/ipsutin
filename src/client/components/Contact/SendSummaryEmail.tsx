@@ -58,13 +58,14 @@ const SendSummaryEmail = () => {
   if (isLoading || !user?.email) return null
 
   return (
-    <Box sx={{ mt: 4 }}>
+    <Box sx={{ mt: 8 }}>
       <Typography variant='body1'>
         {t('summary:summaryEmailInfoText')}
       </Typography>
       <Button
         id='summary-email-button'
         variant='contained'
+        sx={{ mt: 4 }}
         color='primary'
         disabled={!user?.email || isSent}
         onClick={sendResults}
