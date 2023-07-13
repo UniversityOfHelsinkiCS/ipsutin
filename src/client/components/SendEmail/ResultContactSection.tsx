@@ -2,12 +2,12 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 
-import SendSummaryEmail from '../SendEmail/SendSummaryEmail'
-import Contact from '../SendEmail/Contact'
+import SendSummaryEmail from './SendSummaryEmail'
+import Contact from './Contact'
 
 import styles from '../../styles'
 
-const ResultButtons = () => {
+const ResultContactSection = () => {
   const { t } = useTranslation()
   const { cardStyles } = styles
 
@@ -23,4 +23,4 @@ const ResultButtons = () => {
   )
 }
 
-export default ResultButtons
+export default ResultContactSection

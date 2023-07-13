@@ -8,7 +8,7 @@ import useRecommendations from '../../hooks/useRecommendations'
 
 import CommonResult from '../InteractiveForm/CommonResult'
 import Markdown from '../Common/Markdown'
-import ResultButtons from '../ResultButtons/ResultButtons'
+import ResultContactSection from '../SendEmail/ResultContactSection'
 import RecommendationChip from '../Chip/RecommendationChip'
 
 import { IPAssessmentResult, InputProps, Locales } from '../../types'
@@ -200,7 +200,7 @@ const Results = ({ formResultData }: InputProps) => {
             />
           </Box>
         </Box>
-        <ResultButtons />
+        <ResultContactSection />
       </Box>
     </Box>
   )

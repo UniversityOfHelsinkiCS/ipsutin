@@ -7,7 +7,7 @@ import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
 import CommonResult from '../InteractiveForm/CommonResult'
-import ResultButtons from '../ResultButtons/ResultButtons'
+import ResultContactSection from '../SendEmail/ResultContactSection'
 import ResultElement from '../InteractiveForm/ResultElement'
 import RecommendationChip from '../Chip/RecommendationChip'
 
@@ -119,7 +119,7 @@ const Results = ({ formResultData }: InputProps) => {
             ))}
           </Box>
         </Box>
-        <ResultButtons />
+        <ResultContactSection />
       </Box>
     </Box>
   )
