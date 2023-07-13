@@ -17,7 +17,7 @@ const CommonResult = ({
   resultData: Result
   recommendation: string
 }) => {
-  if (!resultData) return null
+  if (!resultData || !recommendation) return null
 
   return (
     <Box>

@@ -35,7 +35,13 @@ const SelectFaculty = () => {
   const { cardStyles, formStyles } = styles
 
   useEffect(() => {
-    if (facultiesLoading || userFacultiesLoading) return
+    if (
+      !faculties ||
+      !userFaculties ||
+      facultiesLoading ||
+      userFacultiesLoading
+    )
+      return
 
     const facultyCode = searchParams.get('faculty')
     const selectedFaculty = faculties.find((f) => f.code === facultyCode)
@@ -57,7 +63,7 @@ const SelectFaculty = () => {
     userFacultiesLoading,
   ])
 
-  if (facultiesLoading) return null
+  if (!faculties || facultiesLoading) return null
 
   const sortedFaculties = sortFaculties(faculties, language as keyof Locales)
   const organisations = sortedFaculties.concat(extraOrganisations)
