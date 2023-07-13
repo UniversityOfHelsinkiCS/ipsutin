@@ -8,7 +8,7 @@ import useRecommendations from '../../hooks/useRecommendations'
 
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
-import ResultContactSection from '../SendEmail/ResultContactSection'
+import ResultContactSection from '../Contact/ResultContactSection'
 import RecommendationChip from '../Chip/RecommendationChip'
 
 import {

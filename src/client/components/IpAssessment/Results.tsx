@@ -8,7 +8,7 @@ import useRecommendations from '../../hooks/useRecommendations'
 
 import CommonResult from '../InteractiveForm/CommonResult'
 import Markdown from '../Common/Markdown'
-import ResultContactSection from '../SendEmail/ResultContactSection'
+import ResultContactSection from '../Contact/ResultContactSection'
 import RecommendationChip from '../Chip/RecommendationChip'
 
 import { IPAssessmentResult, InputProps, Locales } from '../../types'
