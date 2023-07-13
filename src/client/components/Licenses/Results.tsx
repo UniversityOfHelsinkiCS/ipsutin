@@ -6,9 +6,10 @@ import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
+import Contact from '../Contact/Contact'
+import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
-import ResultContactSection from '../Contact/ResultContactSection'
 import RecommendationChip from '../Chip/RecommendationChip'
 
 import {
@@ -71,6 +72,8 @@ const Results = ({ formResultData }: InputProps) => {
     (recommendation) => recommendation.label
   )
 
+  const recommendedAction = recommendationLabels[0]
+
   const sortedResultsWithLabels = filteredResults
     .map((result) => ({
       ...result,
@@ -108,7 +111,7 @@ const Results = ({ formResultData }: InputProps) => {
                 key={commonResult.id}
                 language={language as keyof Locales}
                 resultData={commonResult}
-                recommendation={recommendationLabels[0]}
+                recommendation={recommendedAction}
               />
             )}
             {sortedResultsWithLabels.map((result) => (
@@ -121,7 +124,10 @@ const Results = ({ formResultData }: InputProps) => {
             ))}
           </Box>
         </Box>
-        <ResultContactSection />
+        <Box sx={cardStyles.subHeading}>
+          <SendSummaryEmail />
+          <Contact action={recommendedAction} />
+        </Box>
       </Box>
     </Box>
   )

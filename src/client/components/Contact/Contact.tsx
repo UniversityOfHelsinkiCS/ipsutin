@@ -4,7 +4,13 @@ import { Box } from '@mui/material'
 
 import SendContactTicket from './SendContactTicket'
 
-const Contact = ({ action = 'clinic' }) => {
+import { RecommendationLabel } from '../../types'
+
+interface Action {
+  action: RecommendationLabel
+}
+
+const Contact = ({ action }: Action) => {
   const { t } = useTranslation()
 
   const components: { [key: string]: ReactElement } = {

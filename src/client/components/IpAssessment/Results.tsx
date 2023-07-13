@@ -6,9 +6,10 @@ import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
-import CommonResult from '../InteractiveForm/CommonResult'
 import Markdown from '../Common/Markdown'
-import ResultContactSection from '../Contact/ResultContactSection'
+import Contact from '../Contact/Contact'
+import SendSummaryEmail from '../Contact/SendSummaryEmail'
+import CommonResult from '../InteractiveForm/CommonResult'
 import RecommendationChip from '../Chip/RecommendationChip'
 
 import { IPAssessmentResult, InputProps, Locales } from '../../types'
@@ -202,7 +203,10 @@ const Results = ({ formResultData }: InputProps) => {
             />
           </Box>
         </Box>
-        <ResultContactSection contactAction={recommendedAction} />
+        <Box sx={cardStyles.subHeading}>
+          <SendSummaryEmail />
+          <Contact action={recommendedAction} />
+        </Box>
       </Box>
     </Box>
   )
