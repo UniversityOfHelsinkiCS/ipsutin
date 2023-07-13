@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import SendContactTicket from './SendContactTicket'
 import Markdown from '../Common/Markdown'
@@ -22,17 +22,15 @@ const Contact = ({ method = 'clinic' }) => {
   if (!ContactComponent) return null
 
   return (
-    <Box>
-      <Container sx={{ mt: 8 }}>
-        <Typography variant='h6' sx={cardStyles.heading} component='div'>
-          {t('contact:title')}
-        </Typography>
-        <Markdown sx={cardStyles.content} variant='body2'>
-          {t('contact:contactMessage')}
-        </Markdown>
+    <Box sx={{ mt: 8 }}>
+      <Typography variant='h6' sx={cardStyles.heading} component='div'>
+        {t('contact:title')}
+      </Typography>
+      <Markdown sx={cardStyles.content} variant='body2'>
+        {t('contact:contactMessage')}
+      </Markdown>
 
-        {ContactComponent}
-      </Container>
+      {ContactComponent}
     </Box>
   )
 }

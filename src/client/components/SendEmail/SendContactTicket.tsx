@@ -31,6 +31,8 @@ const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
     },
   })
 
+  if (!user || isLoading) return null
+
   const sendResultsToEmail = async (targets: string[], text: string) => {
     apiClient.post('/summary', {
       targets,
@@ -101,10 +103,9 @@ const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
       {errors.content && (
         <Typography variant='body2'>{errors.content?.message}</Typography>
       )}
-      <Box sx={formStyles.stackBoxWrapper}>
+      <Box sx={{ mt: 4 }}>
         <Button
           data-cy='send-contact-ticket-button'
-          sx={formStyles.stackButton}
           variant='contained'
           disabled={isSent}
           onClick={handleSubmit(onSubmit)}

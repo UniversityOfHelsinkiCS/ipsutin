@@ -61,10 +61,9 @@ const SendSummaryEmail = () => {
   if (isLoading || !user?.email) return null
 
   return (
-    <Box>
+    <Box sx={{ mt: 4 }}>
       <Button
         id='summary-email-button'
-        sx={formStyles.stackButton}
         variant='contained'
         color='primary'
         disabled={!user?.email || isSent}
