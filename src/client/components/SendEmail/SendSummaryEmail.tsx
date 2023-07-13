@@ -8,7 +8,6 @@ import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 import generateSummaryEmail from '../../templates/generateSummaryEmail'
 
-import styles from '../../styles'
 import apiClient from '../../util/apiClient'
 
 const SendSummaryEmail = () => {
@@ -16,8 +15,6 @@ const SendSummaryEmail = () => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
-
-  const { formStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
 
