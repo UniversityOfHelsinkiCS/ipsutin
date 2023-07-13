@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 
 import SendContactTicket from './SendContactTicket'
 
-const Contact = ({ method = 'clinic' }) => {
+const Contact = ({ action = 'clinic' }) => {
   const { t } = useTranslation()
 
   const components: { [key: string]: ReactElement } = {
@@ -24,7 +24,7 @@ const Contact = ({ method = 'clinic' }) => {
     ),
   }
 
-  const ContactComponent = components[method]
+  const ContactComponent = components[action]
 
   if (!ContactComponent) return null
 

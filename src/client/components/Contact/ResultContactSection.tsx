@@ -6,13 +6,19 @@ import Contact from './Contact'
 
 import styles from '../../styles'
 
-const ResultContactSection = () => {
+import { RecommendationLabel } from '../../types'
+
+interface ContactAction {
+  contactAction?: RecommendationLabel
+}
+
+const ResultContactSection = ({ contactAction }: ContactAction) => {
   const { cardStyles } = styles
 
   return (
     <Box sx={cardStyles.subHeading}>
       <SendSummaryEmail />
-      <Contact />
+      <Contact action={contactAction} />
     </Box>
   )
 }

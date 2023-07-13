@@ -142,6 +142,8 @@ const Results = ({ formResultData }: InputProps) => {
     }))
     .sort((a, b) => a.id - b.id)
 
+  const recommendedAction = recommendationLabels[0]
+
   const technicalResults = sortedResultsWithLabels.filter(
     (result: IPAssessmentResult) => result.data.type === 'technical'
   )
@@ -184,7 +186,7 @@ const Results = ({ formResultData }: InputProps) => {
                 key={commonResult.id}
                 language={language as keyof Locales}
                 resultData={commonResult}
-                recommendation={recommendationLabels[0]}
+                recommendation={recommendedAction}
               />
             )}
             <SectionResults section='technical' results={technicalResults} />
@@ -200,7 +202,7 @@ const Results = ({ formResultData }: InputProps) => {
             />
           </Box>
         </Box>
-        <ResultContactSection />
+        <ResultContactSection contactAction={recommendedAction} />
       </Box>
     </Box>
   )

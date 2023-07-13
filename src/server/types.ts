@@ -57,10 +57,19 @@ export interface IPAssessmentResult extends Omit<Result, 'data'> {
   }
 }
 
+export type RecommendationLabel =
+  | 'his'
+  | 'clinic'
+  | 'corporate'
+  | 'incubator'
+  | 'legal'
+  | 'gnu_gpl'
+  | 'bsd_mit'
+
 export interface Recommendation {
   id: number
   surveyId: number
-  label: string
+  label: RecommendationLabel
   title: Locales
   text: Locales
   data: {
