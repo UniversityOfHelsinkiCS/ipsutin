@@ -7,6 +7,8 @@ import { enqueueSnackbar } from 'notistack'
 
 import { Alert, Box, Button, Stack, TextField, Typography } from '@mui/material'
 
+import useLoggedInUser from '../../hooks/useLoggedInUser'
+
 import apiClient from '../../util/apiClient'
 
 import styles from '../../styles'
@@ -14,10 +16,9 @@ import styles from '../../styles'
 const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
+  const { user, isLoading } = useLoggedInUser()
 
-  console.log(ticketEmail)
-
-  const { formStyles, common } = styles
+  const { formStyles } = styles
 
   const {
     register,
@@ -40,7 +41,33 @@ const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
 
   const onSubmit = async ({ content }: { content: string }) => {
     const targets = [ticketEmail]
-    const text = content
+    const text = ` \
+    <div> \
+    <h3> \
+      <strong> \
+        Ipsutin Contact Ticket
+      </strong> \
+    </h3> \
+    <p> \
+      **********
+      <strong>
+        ${t('contact:contactTicketSenderEmail')} ${user?.email} \
+      </strong> \
+      <strong>
+        ${t('contact:contactTicketSenderFullname')} ${user?.firstName} ${
+      user?.lastName
+    } \
+      </strong> \
+    </p> \
+    <p> \
+      **********
+      <strong>
+        ${t('contact:contactTicketUserMessage')} \
+      </strong> \
+      ${content} \
+    </p> \
+    </div> \
+    `
 
     sendResultsToEmail(targets, text)
       .then(() => {
