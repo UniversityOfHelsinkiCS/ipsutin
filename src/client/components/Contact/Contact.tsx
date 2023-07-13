@@ -1,12 +1,27 @@
 import React, { ReactElement } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 
 import SendContactTicket from './SendContactTicket'
 
 const Contact = ({ method = 'clinic' }) => {
-  const components: { [key: string]: ReactElement<any, any> } = {
-    clinic: <SendContactTicket ticketEmail='his@helsinki.fi' />,
-    legal: <SendContactTicket ticketEmail='legal@helsinki.fi' />,
+  const { t } = useTranslation()
+
+  const components: { [key: string]: ReactElement } = {
+    clinic: (
+      <SendContactTicket
+        title={t('contact:hisTitle')}
+        content={t('contact:hisContent')}
+        ticketEmail='his@helsinki.fi'
+      />
+    ),
+    legal: (
+      <SendContactTicket
+        title={t('contact:legalTitle')}
+        content={t('contact:legalContent')}
+        ticketEmail='legal@helsinki.fi'
+      />
+    ),
   }
 
   const ContactComponent = components[method]

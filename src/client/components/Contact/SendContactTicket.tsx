@@ -12,7 +12,17 @@ import Markdown from '../Common/Markdown'
 import styles from '../../styles'
 import apiClient from '../../util/apiClient'
 
-const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
+interface ContactTickerProps {
+  title: string
+  content: string
+  ticketEmail: string
+}
+
+const SendContactTicket = ({
+  title,
+  content,
+  ticketEmail,
+}: ContactTickerProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
@@ -88,10 +98,10 @@ const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
   return (
     <Box>
       <Typography variant='h6' sx={cardStyles.heading} component='div'>
-        {t('contact:title')}
+        {title}
       </Typography>
       <Markdown sx={cardStyles.content} variant='body2'>
-        {t('contact:contactMessage')}
+        {content}
       </Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>

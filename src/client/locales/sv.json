@@ -15,8 +15,10 @@
   },
   "contact": {
     "submit": "Request appointment",
-    "title": "Request appointment",
-    "contactMessage": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response",
+    "hisTitle": "Request appointment with Helsinki Innovation Services",
+    "hisContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response",
+    "legalTitle": "Request appointment with University of Helsinki Legal Services",
+    "legalContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response",
     "contactTicketContentLabel": "Content",
     "contactTicketSend": "Send Request",
     "contactTicketSenderEmail": "User's email:",
