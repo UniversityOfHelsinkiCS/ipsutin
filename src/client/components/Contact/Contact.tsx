@@ -16,8 +16,8 @@ const Contact = ({ action }: Action) => {
   const components: { [key: string]: ReactElement } = {
     clinic: (
       <SendContactTicket
-        title={t('contact:hisTitle')}
-        content={t('contact:hisContent')}
+        title={t('contact:clinicTitle')}
+        content={t('contact:clinicContent')}
         ticketEmail='his@helsinki.fi'
       />
     ),

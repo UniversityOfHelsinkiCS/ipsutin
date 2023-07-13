@@ -42,7 +42,7 @@ export interface Result {
   isSelected: Locales
   data: {
     resultData: {
-      [key: string]: Locales
+      [key in RecommendationLabel]?: Locales
     }
   }
 }
@@ -52,15 +52,16 @@ export interface IPAssessmentResult extends Omit<Result, 'data'> {
     type?: 'technical' | 'mathematical' | 'computerProgram'
     potentiallyPatentable?: boolean
     resultData: {
-      [key: string]: Locales
+      [key in RecommendationLabel]?: Locales
     }
   }
 }
 
 export type RecommendationLabel =
-  | 'his'
+  | 'allDimensions'
+  | 'disclosure'
   | 'clinic'
-  | 'corporate'
+  | 'relations'
   | 'incubator'
   | 'legal'
   | 'gnu_gpl'

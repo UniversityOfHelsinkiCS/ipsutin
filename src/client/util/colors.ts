@@ -1,7 +1,9 @@
-const colors: { [key: string]: string } = {
-  his: '#ed1975',
+import { RecommendationLabel } from '../types'
+
+const colors: { [key in RecommendationLabel]?: string } = {
+  disclosure: '#ed1975',
   clinic: '#8261a1',
-  corporate: '#23439b',
+  relations: '#23439b',
   incubator: '#199995',
   legal: '#afd255',
   gnu_gpl: '#eb4034',
