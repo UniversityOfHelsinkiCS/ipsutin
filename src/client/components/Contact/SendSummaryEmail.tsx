@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Box, Button } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import useLoggedInUser from '../../hooks/useLoggedInUser'
@@ -44,14 +44,14 @@ const SendSummaryEmail = () => {
       .then(() => {
         setIsSent(true)
         enqueueSnackbar(
-          t('contact:pateSuccessMessage', { email: user.email }),
+          t('summary:pateSuccessMessage', { email: user.email }),
           {
             variant: 'success',
           }
         )
       })
       .catch(() => {
-        enqueueSnackbar(t('contact:pateErrorMessage'), { variant: 'error' })
+        enqueueSnackbar(t('summary:pateErrorMessage'), { variant: 'error' })
       })
   }
 
@@ -59,6 +59,9 @@ const SendSummaryEmail = () => {
 
   return (
     <Box sx={{ mt: 4 }}>
+      <Typography variant='body1'>
+        {t('summary:summaryEmailInfoText')}
+      </Typography>
       <Button
         id='summary-email-button'
         variant='contained'
@@ -66,7 +69,7 @@ const SendSummaryEmail = () => {
         disabled={!user?.email || isSent}
         onClick={sendResults}
       >
-        {t('results:sendSummaryMail')}
+        {t('summary:sendSummaryMail')}
       </Button>
     </Box>
   )
