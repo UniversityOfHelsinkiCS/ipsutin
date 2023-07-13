@@ -1,24 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 
-import { Alert, Box, Button, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, TextField, Typography } from '@mui/material'
 
 import useLoggedInUser from '../../hooks/useLoggedInUser'
 
-import apiClient from '../../util/apiClient'
+import Markdown from '../Common/Markdown'
 
 import styles from '../../styles'
+import apiClient from '../../util/apiClient'
 
 const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
-  const { formStyles } = styles
+  const { cardStyles } = styles
 
   const {
     register,
@@ -87,33 +86,42 @@ const SendContactTicket = ({ ticketEmail }: { ticketEmail: string }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        data-cy='contact-ticket-textfield'
-        size='small'
-        name='content'
-        label={t('contact:contactTicketContentLabel')}
-        fullWidth
-        multiline
-        rows={10}
-        margin='dense'
-        {...register('content')}
-        error={errors.content ? true : false} // eslint-disable-line no-unneeded-ternary
-      />
-      {errors.content && (
-        <Typography variant='body2'>{errors.content?.message}</Typography>
-      )}
-      <Box sx={{ mt: 4 }}>
-        <Button
-          data-cy='send-contact-ticket-button'
-          variant='contained'
-          disabled={isSent}
-          onClick={handleSubmit(onSubmit)}
-        >
-          {t('contact:contactTicketSend')}
-        </Button>
-      </Box>
-    </form>
+    <Box>
+      <Typography variant='h6' sx={cardStyles.heading} component='div'>
+        {t('contact:title')}
+      </Typography>
+      <Markdown sx={cardStyles.content} variant='body2'>
+        {t('contact:contactMessage')}
+      </Markdown>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          data-cy='contact-ticket-textfield'
+          size='small'
+          name='content'
+          label={t('contact:contactTicketContentLabel')}
+          fullWidth
+          multiline
+          rows={10}
+          margin='dense'
+          {...register('content')}
+          error={errors.content ? true : false} // eslint-disable-line no-unneeded-ternary
+        />
+        {errors.content && (
+          <Typography variant='body2'>{errors.content?.message}</Typography>
+        )}
+        <Box sx={{ mt: 4 }}>
+          <Button
+            data-cy='send-contact-ticket-button'
+            variant='contained'
+            disabled={isSent}
+            onClick={handleSubmit(onSubmit)}
+          >
+            {t('contact:contactTicketSend')}
+          </Button>
+        </Box>
+      </form>
+    </Box>
   )
 }
 
