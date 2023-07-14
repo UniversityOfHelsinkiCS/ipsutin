@@ -7,6 +7,7 @@ import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
 
 import Contact from '../Contact/Contact'
+import ExtraAction from '../Action/ExtraAction'
 import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
@@ -127,6 +128,7 @@ const Results = ({ formResultData }: InputProps) => {
         <Box sx={cardStyles.subHeading}>
           <SendSummaryEmail />
           <Contact action={recommendedAction} />
+          <ExtraAction surveyName='licenses' />
         </Box>
       </Box>
     </Box>

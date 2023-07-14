@@ -23,6 +23,16 @@ const ExtraAction = ({ surveyName }: ExtraActionProps) => {
         <Link to='/ipassessment'>{t('surveyNames:ipAssessment')}</Link>
       </Suggestion>
     ),
+    licenses: (
+      <Suggestion>
+        <Link to='/ideaevaluation'>{t('surveyNames:ideaEvaluation')}</Link>
+      </Suggestion>
+    ),
+    ipAssessment: (
+      <Suggestion>
+        <Link to='/ideaevaluation'>{t('surveyNames:ideaEvaluation')}</Link>
+      </Suggestion>
+    ),
   }
 
   const ExtraActionComponent = components[surveyName]
