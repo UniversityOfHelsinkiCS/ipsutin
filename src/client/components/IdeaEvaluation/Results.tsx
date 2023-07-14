@@ -19,6 +19,7 @@ import {
 
 import { InputProps, Locales } from '../../types'
 import styles from '../../styles'
+import ExtraAction from '../Action/ExtraAction'
 
 const { cardStyles, resultStyles } = styles
 
@@ -125,6 +126,7 @@ const Results = ({ formResultData }: InputProps) => {
         <Box sx={cardStyles.subHeading}>
           <SendSummaryEmail />
           <Contact action={recommendedAction} />
+          <ExtraAction surveyName='ideaEvaluation' />
         </Box>
       </Box>
     </Box>
