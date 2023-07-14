@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query'
 
 import apiClient from '../util/apiClient'
-import { Survey } from '../types'
+import { Survey, SurveyName } from '../types'
 
-const useSurvey = (name: string) => {
+const useSurvey = (name: SurveyName) => {
   const queryKey = ['survey', name]
 
   const query = async (): Promise<Survey> => {
