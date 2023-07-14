@@ -76,9 +76,11 @@ export type Visibility = {
   options: string[]
 }
 
+export type SurveyName = 'licenses' | 'ideaEvaluation' | 'ipAssessment'
+
 export interface Survey {
   id: number
-  name: string
+  name: SurveyName
   createdAt: Date
   updatedAt: Date
   Questions: Question[]
