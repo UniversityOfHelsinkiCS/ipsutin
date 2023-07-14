@@ -25,6 +25,10 @@
     "incubatorContent": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
     "relationsTitle": "Visit the Business collaboration page for more information",
     "relationsContent": "The [business collaboration team](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet) helps researchers when they wish to collaborate with businesses or apply for funding related to business collaboration from, for example, Business Finland or the Finnish Research Impact Foundation.",
+    "gnugplTitle": "Before making the decision we suggest you fill in Idea Evaluation and Patentability Evaluation surveys.",
+    "gnugplContent": "",
+    "bsdmitTitle": "Before making the decision we suggest you fill in Idea Evaluation and Patentability Evaluation surveys.",
+    "bsdmitContent": "",
     "contactTicketContentLabel": "Content",
     "contactTicketSend": "Send Request",
     "contactTicketSenderEmail": "User's email:",
@@ -33,6 +37,9 @@
     "contactTicketUserSummary": "User's summary:",
     "pateSuccessMessage": "Contact request sent to {{ email }}",
     "pateErrorMessage": "Could not send contact request"
+  },
+  "extraAction": {
+    "info": "Based on your selections you may also be interested in these"
   },
   "results": {
     "title": "Results"

@@ -47,6 +47,18 @@ const Contact = ({ action }: Action) => {
         content={t('contact:relationsContent')}
       />
     ),
+    gnu_gpl: (
+      <Service
+        title={t('contact:gnugplTitle')}
+        content={t('contact:gnugplContent')}
+      />
+    ),
+    bsd_mit: (
+      <Service
+        title={t('contact:bsdmitTitle')}
+        content={t('contact:bsdmitContent')}
+      />
+    ),
   }
 
   const ContactComponent = components[action]
