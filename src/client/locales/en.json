@@ -39,9 +39,7 @@
     "pateErrorMessage": "Could not send contact request"
   },
   "extraAction": {
-    "title": "Based on your selections you may also be interested in these",
-    "ideaEvaluationSuggestionTitle": "Patentability Evaluation form",
-    "ideaEvaluationSuggestionContent": ""
+    "title": "Based on your selections you may also be interested in these"
   },
   "results": {
     "title": "Results"

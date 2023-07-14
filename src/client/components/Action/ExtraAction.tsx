@@ -19,10 +19,7 @@ const ExtraAction = ({ surveyName }: ExtraActionProps) => {
 
   const components: { [key in SurveyName]?: ReactElement } = {
     ideaEvaluation: (
-      <Suggestion
-        title={t('extraAction:ideaEvaluationSuggestionTitle')}
-        content={t('extraAction:ideaEvaluationSuggestionContent')}
-      >
+      <Suggestion>
         <Link to='/ipassessment'>{t('surveyNames:ipAssessment')}</Link>
       </Suggestion>
     ),

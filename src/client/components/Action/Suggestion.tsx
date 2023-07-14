@@ -6,8 +6,8 @@ import Markdown from '../Common/Markdown'
 import styles from '../../styles'
 
 interface SuggestionProps {
-  title: string
-  content: string
+  title?: string
+  content?: string
   children: React.ReactNode
 }
 
