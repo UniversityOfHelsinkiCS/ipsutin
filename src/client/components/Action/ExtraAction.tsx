@@ -2,24 +2,22 @@ import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 
-import { RecommendationLabel } from '../../types'
+import { SurveyName } from '../../types'
 
-interface Action {
-  action: RecommendationLabel
+interface ExtraActionProps {
+  surveyName: SurveyName
 }
 
-const Contact = ({ action }: Action) => {
+const ExtraAction = ({ surveyName }: ExtraActionProps) => {
   const { t } = useTranslation()
 
-  const components: { [key in RecommendationLabel]?: ReactElement } = {
-    gnu_gpl: <>asdf</>,
-  }
+  const components: { [key in SurveyName]?: ReactElement } = {}
 
-  const ExtraActionComponent = components[action]
+  const ExtraActionComponent = components[surveyName]
 
   if (!ExtraActionComponent) return null
 
   return <Box sx={{ mt: 8 }}>{ExtraActionComponent}</Box>
 }
 
-export default Contact
+export default ExtraAction
