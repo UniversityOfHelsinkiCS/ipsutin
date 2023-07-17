@@ -11,8 +11,8 @@ import generateSummaryEmail from '../../templates/generateSummaryEmail'
 import apiClient from '../../util/apiClient'
 
 const SendSummaryEmail = () => {
-  const location = useLocation()
   const { t } = useTranslation()
+  const location = useLocation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
