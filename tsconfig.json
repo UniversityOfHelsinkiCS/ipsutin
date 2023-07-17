@@ -19,7 +19,9 @@
     "forceConsistentCasingInFileNames": true,
     "noEmitOnError": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": { "@backend/*": ["src/server/*"] }
   },
   "include": ["src/**/*", "types/@unfuck-utf8-headers-middleware.d..ts"],
   "ts-node": {

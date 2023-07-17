@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query'
 
+import { User } from '@backend/types'
+
 import apiClient from '../util/apiClient'
-import { User } from '../types'
 
 const useLoggedInUser = () => {
   const queryKey = 'user'

@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Box, Container } from '@mui/material'
 
+import { Locales, RecommendationLabel, Result } from '@backend/types'
+
 import Markdown from '../Common/Markdown'
 
 import colors from '../../util/colors'
-
-import { Locales, Result } from '../../types'
 
 const ResultElement = ({
   language,
@@ -15,7 +15,7 @@ const ResultElement = ({
 }: {
   language: keyof Locales
   resultData: Result
-  dimensions: string[]
+  dimensions: RecommendationLabel[]
 }) => {
   if (!resultData) return null
 
@@ -37,7 +37,7 @@ const ResultElement = ({
           margin: '2rem 0 2rem 0',
         }}
       >
-        {dimensions.map((dimension: string) => {
+        {dimensions.map((dimension) => {
           const color = colors[dimension] || null
           return (
             <Box

@@ -1,10 +1,15 @@
 import React from 'react'
 import { Box, Container, Typography } from '@mui/material'
-import { InputProps, Locales, PossibleChoiceTypes, Question } from '../../types'
-import styles from '../../styles'
+
+import { Locales, PossibleChoiceTypes, Question } from '@backend/types'
+
 import MultiChoice from '../Choices/MultiChoice'
 import SingleChoice from '../Choices/SingleChoice'
 import ShowMore from '../Common/ShowMore'
+
+import { InputProps } from '../../types'
+
+import styles from '../../styles'
 
 const { cardStyles } = styles
 
@@ -17,7 +22,7 @@ const QuestionText = ({
 }) => {
   if (question.optionData.type === 'info')
     return (
-      <Typography component="span">
+      <Typography component='span'>
         {question.title[language]}
         <ShowMore text={question.text[language as keyof Locales]} />
       </Typography>
@@ -25,8 +30,8 @@ const QuestionText = ({
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Typography component="span">
-        <span className="questions">{question.title[language]}</span>
+      <Typography component='span'>
+        <span className='questions'>{question.title[language]}</span>
         {question.text[language] && (
           <ShowMore text={question.text[language as keyof Locales]} />
         )}

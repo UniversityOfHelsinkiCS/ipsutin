@@ -1,4 +1,4 @@
-import { User } from '../types'
+import { User } from '@backend/types'
 
 const generateShareResultsEmail = (surveyName: string, user: User) => {
   const name = {

@@ -1,4 +1,4 @@
-import { Faculty } from '../types'
+import { Faculty } from '@backend/types'
 
 const extraOrganisations: Faculty[] = [
   {

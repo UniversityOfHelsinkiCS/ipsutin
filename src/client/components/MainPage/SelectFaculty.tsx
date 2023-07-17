@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
+import { Faculty, Locales } from '@backend/types'
+
 import useFaculties from '../../hooks/useFaculty'
 import useUserFaculties from '../../hooks/useUserFaculties'
 
@@ -10,7 +12,6 @@ import Markdown from '../Common/Markdown'
 
 import extraOrganisations from '../../util/organisations'
 
-import { Faculty, Locales } from '../../types'
 import styles from '../../styles'
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {

@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Box } from '@mui/material'
 
+import { Locales, RecommendationLabel, Result } from '@backend/types'
+
 import Markdown from '../Common/Markdown'
 
 import colors from '../../util/colors'
-
-import { Locales, Result } from '../../types'
 
 const CommonResult = ({
   language,
@@ -15,7 +15,7 @@ const CommonResult = ({
 }: {
   language: keyof Locales
   resultData: Result
-  recommendation: string
+  recommendation: RecommendationLabel
 }) => {
   if (!resultData || !recommendation) return null
 

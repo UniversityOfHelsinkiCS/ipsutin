@@ -6,6 +6,22 @@ export interface Locales {
   en: string
 }
 
+export interface User {
+  id: string
+  username: string
+  firstName?: string
+  lastName?: string
+  email?: string
+  language?: string
+  isAdmin: boolean
+  iamGroups: string[]
+  newUser?: boolean
+}
+
+export interface RequestWithUser extends Request {
+  user: User
+}
+
 export type Programme = {
   key: string
   name: Locales
@@ -20,20 +36,7 @@ export interface OrganisationData {
   programmes: Array<Programme>
 }
 
-export interface User {
-  id: string
-  username: string
-  firsName?: string
-  lastName?: string
-  email?: string
-  language?: string
-  isAdmin: boolean
-  iamGroups: string[]
-}
-
-export interface RequestWithUser extends Request {
-  user: User
-}
+export type Faculty = Omit<OrganisationData, 'programmes'>
 
 export interface Result {
   id: number
@@ -78,19 +81,21 @@ export interface Recommendation {
   }
 }
 
-type Visibility = {
+export type Visibility = {
   options?: string[]
 }
 
-type OptionType = {
+export type OptionType = {
   id: string
   label: Locales
   text?: Locales
   data?: Locales
 }
 
-type OptionData = {
-  type: 'singleChoice' | 'multipleChoice' | 'dimensions' | 'text' | 'info'
+export type PossibleChoiceTypes = 'singleChoice' | 'multipleChoice' | 'info'
+
+export type OptionData = {
+  type: PossibleChoiceTypes
   options: OptionType[]
 }
 

@@ -2,7 +2,8 @@ import React from 'react'
 import { Chip, Tooltip } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-import { Locales, Recommendation } from '../../types'
+import { Locales, Recommendation } from '@backend/types'
+
 import colors from '../../util/colors'
 
 const RecommendationChip: React.FC<{
@@ -23,14 +24,14 @@ const RecommendationChip: React.FC<{
       <Chip
         data-cy={`recommendation-chip-${recommendation.id}`}
         label={recommendation.title[language as keyof Locales].substring(0, 3)}
-        size="small"
+        size='small'
         sx={style}
       />
     </Tooltip>
   ) : (
     <Chip
       label={recommendation.title[language as keyof Locales]}
-      size="small"
+      size='small'
       sx={style}
     />
   )

@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import { FieldValues } from 'react-hook-form'
-import { Recommendation } from '../types'
+import { Recommendation } from '@backend/types'
 
 type Scores = { [key: string]: number }
 

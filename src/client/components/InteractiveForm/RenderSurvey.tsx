@@ -6,7 +6,8 @@ import RenderQuestions from './RenderQuestions'
 import ResetForm from '../Common/ResetForm'
 
 import styles from '../../styles'
-import { InputProps, Question } from '../../types'
+
+import { InputProps } from '../../types'
 
 const RenderSurvey = ({
   questions,
@@ -30,7 +31,7 @@ const RenderSurvey = ({
         {surveyInfo}
       </Typography>
       <Box sx={cardStyles.card}>
-        {questions.map((question: Question) => (
+        {questions.map((question) => (
           <div key={question.id}>
             {question.parentId === null && (
               <RenderQuestions

@@ -6,22 +6,7 @@ import {
   SubmitHandler,
 } from 'react-hook-form'
 
-export interface Faculty {
-  code: string
-  name: Locales
-}
-
-export interface User {
-  id: string
-  username: string
-  firstName?: string
-  lastName?: string
-  email?: string
-  language?: string
-  isAdmin: boolean
-  iamGroups: string[]
-  newUser: boolean
-}
+import { Locales, Question } from '@backend/types'
 
 export interface InputProps {
   control?: Control<FieldValues>
@@ -45,12 +30,6 @@ export interface FormValues {
   [key: number]: Record<string, { [key: string]: boolean }>
 }
 
-export type Locales = {
-  en: string
-  fi: string
-  sv: string
-}
-
 export type SingleChoiceType = {
   results: any
   id: string
@@ -62,20 +41,6 @@ export interface MultipleChoiceType extends SingleChoiceType {
   data: Locales
 }
 
-export type ChoiceType = SingleChoiceType[] | MultipleChoiceType[]
-
-export type PossibleChoiceTypes = 'singleChoice' | 'multipleChoice' | 'info'
-
-export interface OptionData {
-  type: string
-  options: ChoiceType
-}
-
-/** List of question selection id's that controls the visibility of a tool */
-export type Visibility = {
-  options: string[]
-}
-
 export type SurveyName = 'licenses' | 'ideaEvaluation' | 'ipAssessment'
 
 export interface Survey {
@@ -84,60 +49,4 @@ export interface Survey {
   createdAt: Date
   updatedAt: Date
   Questions: Question[]
-}
-
-export interface Question {
-  id: number
-  surveyId: number
-  parentId: number
-  priority: number
-  title: Locales
-  text: Locales
-  optionData: OptionData
-  visibility: Visibility
-  createdAt: Date
-  updatedAt: Date
-}
-
-export interface Result {
-  id: number
-  surveyId: number
-  optionLabel: string
-  isSelected: Locales
-  data: {
-    resultData: {
-      [key in RecommendationLabel]?: Locales
-    }
-  }
-}
-
-export interface IPAssessmentResult extends Omit<Result, 'data'> {
-  data: {
-    type?: 'technical' | 'mathematical' | 'computerProgram'
-    potentiallyPatentable?: boolean
-    resultData: {
-      [key in RecommendationLabel]?: Locales
-    }
-  }
-}
-
-export type RecommendationLabel =
-  | 'allDimensions'
-  | 'disclosure'
-  | 'clinic'
-  | 'relations'
-  | 'incubator'
-  | 'legal'
-  | 'gnu_gpl'
-  | 'bsd_mit'
-
-export interface Recommendation {
-  id: number
-  surveyId: number
-  label: RecommendationLabel
-  title: Locales
-  text: Locales
-  data: {
-    [key: string]: number
-  }
 }

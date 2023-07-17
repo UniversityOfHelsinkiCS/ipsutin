@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next'
 
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 
+import { Question } from '@backend/types'
+
 import useSurvey from '../../hooks/useSurvey'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 
@@ -13,7 +15,8 @@ import ResetForm from '../Common/ResetForm'
 import RenderQuestions from '../InteractiveForm/RenderQuestions'
 
 import styles from '../../styles'
-import { FormValues, Question } from '../../types'
+
+import { FormValues } from '../../types'
 
 const IpAssessment = () => {
   const { t, i18n } = useTranslation()

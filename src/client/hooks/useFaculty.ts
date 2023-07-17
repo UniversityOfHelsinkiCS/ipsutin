@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query'
 
+import { Faculty } from '@backend/types'
+
 import apiClient from '../util/apiClient'
-import { Faculty } from '../types'
 
 const useFaculties = () => {
   const queryKey = 'faculties'

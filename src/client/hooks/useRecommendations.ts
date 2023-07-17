@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query'
 
+import { Recommendation } from '@backend/types'
+
 import apiClient from '../util/apiClient'
-import { Recommendation } from '../types'
 
 const useRecommendations = (surveyId: number) => {
   const queryKey = ['recommendations', surveyId]

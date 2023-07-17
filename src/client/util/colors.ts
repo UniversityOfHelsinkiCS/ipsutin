@@ -1,4 +1,4 @@
-import { RecommendationLabel } from '../types'
+import { RecommendationLabel } from '@backend/types'
 
 const colors: { [key in RecommendationLabel]?: string } = {
   disclosure: '#ed1975',
