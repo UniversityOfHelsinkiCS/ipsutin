@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   useSearchParams,
-  useNavigate,
   createSearchParams,
   useLocation,
+  useNavigate,
 } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -30,16 +30,23 @@ const SelectSurvey = () => {
   const { cardStyles, formStyles } = styles
 
   const faculty = searchParams.get('faculty')
-  const path = survey || location.pathname.substring(1)
 
   useEffect(() => {
     const params = { faculty }
 
     navigate({
-      pathname: path,
+      pathname: location.pathname,
       search: `?${createSearchParams(params)}`,
     })
-  }, [faculty, location.pathname, navigate, path, searchParams, survey])
+  }, [faculty, location.pathname, navigate, searchParams, survey])
+
+  const handleSurveyChange = (event: SelectChangeEvent) => {
+    setSurvey(event.target.value)
+    navigate({
+      pathname: `/${event.target.value}`,
+      search: location.search,
+    })
+  }
 
   return (
     <Box sx={cardStyles.card}>
@@ -51,11 +58,9 @@ const SelectSurvey = () => {
         <Select
           sx={cardStyles.inputField}
           data-cy='survey-select'
-          value={path}
+          value={location.pathname.substring(1)}
           label={t('surveySelect:inputLabel')}
-          onChange={(e: SelectChangeEvent) => {
-            setSurvey(e.target.value)
-          }}
+          onChange={handleSurveyChange}
         >
           <MenuItem value='ipassessment'>
             {t('surveyNames:ipAssessment')}
