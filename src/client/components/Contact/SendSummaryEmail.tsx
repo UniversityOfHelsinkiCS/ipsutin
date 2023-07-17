@@ -8,7 +8,7 @@ import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 import generateSummaryEmail from '../../templates/generateSummaryEmail'
 
-import apiClient from '../../util/apiClient'
+import sendResultsToEmail from '../../util/mailing'
 
 const SendSummaryEmail = () => {
   const { t } = useTranslation()
@@ -24,15 +24,8 @@ const SendSummaryEmail = () => {
 
   const templateHTML = generateSummaryEmail(location.pathname.substring(1))
 
-  const sendResultsToEmail = async (targets: string[], text: string) => {
-    apiClient.post('/summary', {
-      targets,
-      text,
-      subject: 'Ipsutin summary',
-    })
-  }
-
   const sendResults = () => {
+    const subject = 'Ipsutin summary'
     const targets = [user.email]
     const text = `\
     ${templateHTML}
@@ -40,7 +33,7 @@ const SendSummaryEmail = () => {
     ${resultHTML}
     `
 
-    sendResultsToEmail(targets, text)
+    sendResultsToEmail(targets, text, subject)
       .then(() => {
         setIsSent(true)
         enqueueSnackbar(

@@ -9,8 +9,9 @@ import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 import Markdown from '../Common/Markdown'
 
+import sendResultsToEmail from '../../util/mailing'
+
 import styles from '../../styles'
-import apiClient from '../../util/apiClient'
 
 interface ContactTicketProps {
   title: string
@@ -42,15 +43,8 @@ const SendContactTicket = ({
 
   if (!user || isLoading) return null
 
-  const sendResultsToEmail = async (targets: string[], text: string) => {
-    apiClient.post('/summary', {
-      targets,
-      text,
-      subject: 'Ipsutin contact',
-    })
-  }
-
   const onSubmit = ({ content }: { content: string }) => {
+    const subject = 'Ipsutin contact request'
     const targets = [ticketEmail]
     const text = ` \
     <div> \
@@ -80,7 +74,7 @@ const SendContactTicket = ({
     </div> \
     `
 
-    sendResultsToEmail(targets, text)
+    sendResultsToEmail(targets, text, subject)
       .then(() => {
         setIsSent(true)
         enqueueSnackbar(
