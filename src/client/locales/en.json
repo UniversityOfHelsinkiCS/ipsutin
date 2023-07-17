@@ -43,7 +43,9 @@
     "shareResultsTitle": "If you would like to share your results fill in the emails below",
     "shareResultsContent": "New emails are inputted by typing the email address and pressing enter",
     "shareResultInputPlaceholder": "Type in a new email...",
-    "shareResultSendEmails": "Send emails"
+    "shareResultSendEmails": "Send emails",
+    "pateSuccessMessage": "Shared results with provided email addresses",
+    "pateErrorMessage": "Could not share results"
   },
   "results": {
     "title": "Results"

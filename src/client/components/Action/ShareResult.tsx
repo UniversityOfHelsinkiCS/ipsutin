@@ -68,15 +68,12 @@ const ShareResult = () => {
     sendEmail(emails, text, subject)
       .then(() => {
         setIsSent(true)
-        enqueueSnackbar(
-          t('summary:pateSuccessMessage', { email: user.email }),
-          {
-            variant: 'success',
-          }
-        )
+        enqueueSnackbar(t('extraAction:pateSuccessMessage'), {
+          variant: 'success',
+        })
       })
       .catch(() => {
-        enqueueSnackbar(t('summary:pateErrorMessage'), { variant: 'error' })
+        enqueueSnackbar(t('extraAction:pateErrorMessage'), { variant: 'error' })
       })
   }
 
