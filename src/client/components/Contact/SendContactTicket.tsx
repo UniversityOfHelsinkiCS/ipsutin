@@ -9,7 +9,7 @@ import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 import Markdown from '../Common/Markdown'
 
-import sendResultsToEmail from '../../util/mailing'
+import sendEmail from '../../util/mailing'
 
 import styles from '../../styles'
 
@@ -74,7 +74,7 @@ const SendContactTicket = ({
     </div> \
     `
 
-    sendResultsToEmail(targets, text, subject)
+    sendEmail(targets, text, subject)
       .then(() => {
         setIsSent(true)
         enqueueSnackbar(

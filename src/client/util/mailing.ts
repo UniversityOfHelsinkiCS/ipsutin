@@ -1,10 +1,6 @@
 import apiClient from './apiClient'
 
-const sendResultsToEmail = async (
-  targets: string[],
-  text: string,
-  subject: string
-) => {
+const sendEmail = async (targets: string[], text: string, subject: string) => {
   apiClient.post('/summary', {
     targets,
     text,
@@ -12,4 +8,4 @@ const sendResultsToEmail = async (
   })
 }
 
-export default sendResultsToEmail
+export default sendEmail

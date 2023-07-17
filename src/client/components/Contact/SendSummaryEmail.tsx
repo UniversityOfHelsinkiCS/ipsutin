@@ -8,7 +8,7 @@ import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 import generateSummaryEmail from '../../templates/generateSummaryEmail'
 
-import sendResultsToEmail from '../../util/mailing'
+import sendEmail from '../../util/mailing'
 
 const SendSummaryEmail = () => {
   const { t } = useTranslation()
@@ -33,7 +33,7 @@ const SendSummaryEmail = () => {
     ${resultHTML}
     `
 
-    sendResultsToEmail(targets, text, subject)
+    sendEmail(targets, text, subject)
       .then(() => {
         setIsSent(true)
         enqueueSnackbar(
