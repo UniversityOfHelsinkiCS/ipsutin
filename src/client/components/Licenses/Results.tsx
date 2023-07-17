@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, Typography } from '@mui/material'
 
-import { Locales } from '@backend/types'
+import { Locales, RecommendationLabel } from '@backend/types'
 
 import useSurvey from '../../hooks/useSurvey'
 import useResults from '../../hooks/useResults'
@@ -123,7 +123,7 @@ const Results = ({ formResultData }: InputProps) => {
                 key={result.id}
                 language={language as keyof Locales}
                 resultData={result}
-                dimensions={result.labels}
+                dimensions={result.labels as RecommendationLabel[]}
               />
             ))}
           </Box>
