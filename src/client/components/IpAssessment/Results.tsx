@@ -9,6 +9,7 @@ import useRecommendations from '../../hooks/useRecommendations'
 import Markdown from '../Common/Markdown'
 import Contact from '../Contact/Contact'
 import ExtraAction from '../Action/ExtraAction'
+import ShareResult from '../Action/ShareResult'
 import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 import RecommendationChip from '../Chip/RecommendationChip'
@@ -208,6 +209,7 @@ const Results = ({ formResultData }: InputProps) => {
           <SendSummaryEmail />
           <Contact action={recommendedAction} />
           <ExtraAction surveyName='ipAssessment' />
+          <ShareResult />
         </Box>
       </Box>
     </Box>

@@ -8,6 +8,8 @@ import useRecommendations from '../../hooks/useRecommendations'
 
 import Contact from '../Contact/Contact'
 import SendSummaryEmail from '../Contact/SendSummaryEmail'
+import ExtraAction from '../Action/ExtraAction'
+import ShareResult from '../Action/ShareResult'
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
 import RecommendationChip from '../Chip/RecommendationChip'
@@ -19,7 +21,6 @@ import {
 
 import { InputProps, Locales } from '../../types'
 import styles from '../../styles'
-import ExtraAction from '../Action/ExtraAction'
 
 const { cardStyles, resultStyles } = styles
 
@@ -127,6 +128,7 @@ const Results = ({ formResultData }: InputProps) => {
           <SendSummaryEmail />
           <Contact action={recommendedAction} />
           <ExtraAction surveyName='ideaEvaluation' />
+          <ShareResult />
         </Box>
       </Box>
     </Box>
