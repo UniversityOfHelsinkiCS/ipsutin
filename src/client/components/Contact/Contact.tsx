@@ -26,7 +26,7 @@ const Contact = ({ action }: Action) => {
       <SendContactTicket
         title={t('contact:legalTitle')}
         content={t('contact:legalContent')}
-        ticketEmail='legal@helsinki.fi'
+        ticketEmail='his@helsinki.fi' // Check this later on
       />
     ),
     disclosure: (
