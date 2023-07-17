@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 
@@ -30,7 +30,7 @@ const SendContactTicket = ({
   const { cardStyles } = styles
 
   const {
-    register,
+    control,
     formState: { errors },
     handleSubmit,
   } = useForm({
@@ -105,21 +105,25 @@ const SendContactTicket = ({
       </Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          data-cy='contact-ticket-textfield'
-          size='small'
+        <Controller
           name='content'
-          label={t('contact:contactTicketContentLabel')}
-          fullWidth
-          multiline
-          rows={10}
-          margin='dense'
-          {...register('content')}
-          error={errors.content ? true : false} // eslint-disable-line no-unneeded-ternary
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              data-cy='contact-ticket-textfield'
+              size='small'
+              name='content'
+              label={t('contact:contactTicketContentLabel')}
+              fullWidth
+              multiline
+              rows={10}
+              margin='dense'
+              error={!!errors?.content}
+              helperText={errors?.content && errors.content.message}
+            />
+          )}
         />
-        {errors.content && (
-          <Typography variant='body2'>{errors.content?.message}</Typography>
-        )}
 
         <Button
           data-cy='send-contact-ticket-button'
