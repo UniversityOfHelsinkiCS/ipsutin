@@ -22,9 +22,9 @@ const SendSummaryEmail = () => {
     setIsSent(false)
   }, [resultHTML])
 
-  const templateHTML = generateSummaryEmail(location.pathname.substring(1))
-
   const sendResults = () => {
+    const templateHTML = generateSummaryEmail(location.pathname.substring(1))
+
     const subject = 'Ipsutin summary'
     const targets = [user.email]
     const text = `\

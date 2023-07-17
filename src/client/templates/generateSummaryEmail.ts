@@ -1,4 +1,4 @@
-const GenerateSummaryEmail = (surveyName: string) => {
+const generateSummaryEmail = (surveyName: string) => {
   const name = {
     ipassessment: 'IP Assessment',
     licences: 'Licences',
@@ -27,4 +27,4 @@ const GenerateSummaryEmail = (surveyName: string) => {
 `
 }
 
-export default GenerateSummaryEmail
+export default generateSummaryEmail
