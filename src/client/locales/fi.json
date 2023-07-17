@@ -42,7 +42,8 @@
     "info": "Based on your selections you may also be interested in these",
     "shareResultsTitle": "If you would like to share your results fill in the emails below",
     "shareResultsContent": "New emails are inputted by typing the email address and pressing enter",
-    "shareResultInputPlaceholder": "Type in a new email..."
+    "shareResultInputPlaceholder": "Type in a new email...",
+    "shareResultSendEmails": "Send emails"
   },
   "results": {
     "title": "Results"

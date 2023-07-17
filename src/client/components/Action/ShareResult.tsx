@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
 import {
   Autocomplete,
@@ -12,6 +13,8 @@ import {
 
 import Markdown from '../Common/Markdown'
 
+import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
+
 import styles from '../../styles'
 
 const ShareResult = () => {
@@ -20,16 +23,21 @@ const ShareResult = () => {
 
   const { cardStyles } = styles
 
-  const { control, handleSubmit } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: 'onBlur',
+    resolver: zodResolver(ShareResultsZod),
     defaultValues: {
       emails: [],
     },
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: ShareResultEmails) => {
     console.log(data)
-    setIsSent(true)
+    if (!errors?.emails) setIsSent(true)
   }
 
   return (
@@ -45,7 +53,7 @@ const ShareResult = () => {
         <Controller
           name='emails'
           control={control}
-          render={({ field, fieldState }) => (
+          render={({ field }) => (
             <Autocomplete
               {...field}
               data-cy='share-results'
@@ -56,6 +64,7 @@ const ShareResult = () => {
               selectOnFocus
               clearOnBlur
               handleHomeEndKeys
+              disabled={isSent}
               onChange={(_, data) => field.onChange(data)}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
@@ -64,6 +73,11 @@ const ShareResult = () => {
                     key={option}
                     variant='outlined'
                     label={option}
+                    color={
+                      errors.emails && errors?.emails[index]
+                        ? 'error'
+                        : 'success'
+                    }
                     {...getTagProps({ index })}
                   />
                 ))
@@ -76,8 +90,8 @@ const ShareResult = () => {
                   margin='dense'
                   variant='outlined'
                   placeholder={t('extraAction:shareResultInputPlaceholder')}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message}
+                  error={!!errors?.emails}
+                  disabled={isSent}
                 />
               )}
             />
@@ -90,7 +104,7 @@ const ShareResult = () => {
           disabled={isSent}
           onClick={handleSubmit(onSubmit)}
         >
-          {t('contact:contactTicketSend')}
+          {t('extraAction:shareResultSendEmails')}
         </Button>
       </form>
     </Box>
