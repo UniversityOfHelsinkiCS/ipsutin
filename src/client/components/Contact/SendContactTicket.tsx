@@ -50,7 +50,7 @@ const SendContactTicket = ({
     })
   }
 
-  const onSubmit = async ({ content }: { content: string }) => {
+  const onSubmit = ({ content }: { content: string }) => {
     const targets = [ticketEmail]
     const text = ` \
     <div> \
