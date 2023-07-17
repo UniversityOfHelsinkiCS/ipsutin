@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
+import { enqueueSnackbar } from 'notistack'
 import {
   Autocomplete,
   Box,
@@ -11,17 +13,30 @@ import {
   Typography,
 } from '@mui/material'
 
+import useLoggedInUser from '../../hooks/useLoggedInUser'
+
 import Markdown from '../Common/Markdown'
 
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
 
+import generateShareResultsEmail from '../../templates/generateShareResultsEmail'
+
 import styles from '../../styles'
+import sendEmail from '../../util/mailing'
 
 const ShareResult = () => {
   const { t } = useTranslation()
+  const location = useLocation()
   const [isSent, setIsSent] = useState(false)
+  const { user, isLoading } = useLoggedInUser()
 
   const { cardStyles } = styles
+
+  const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
+
+  useEffect(() => {
+    setIsSent(false)
+  }, [resultHTML])
 
   const {
     control,
@@ -35,10 +50,37 @@ const ShareResult = () => {
     },
   })
 
-  const onSubmit = (data: ShareResultEmails) => {
-    console.log(data)
-    if (!errors?.emails) setIsSent(true)
+  const onSubmit = ({ emails }: ShareResultEmails) => {
+    if (errors?.emails || emails.length === 0) return
+
+    const templateHTML = generateShareResultsEmail(
+      location.pathname.substring(1),
+      user
+    )
+
+    const subject = 'Ipsutin shared results'
+    const text = `\
+    ${templateHTML}
+
+    ${resultHTML}
+    `
+
+    sendEmail(emails, text, subject)
+      .then(() => {
+        setIsSent(true)
+        enqueueSnackbar(
+          t('summary:pateSuccessMessage', { email: user.email }),
+          {
+            variant: 'success',
+          }
+        )
+      })
+      .catch(() => {
+        enqueueSnackbar(t('summary:pateErrorMessage'), { variant: 'error' })
+      })
   }
+
+  if (isLoading || !user?.email) return null
 
   return (
     <Box sx={{ mt: 8 }}>
