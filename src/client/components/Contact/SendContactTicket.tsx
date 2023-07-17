@@ -119,6 +119,7 @@ const SendContactTicket = ({
               multiline
               rows={10}
               margin='dense'
+              disabled={isSent}
               error={!!errors?.content}
               helperText={errors?.content && errors.content.message}
             />
