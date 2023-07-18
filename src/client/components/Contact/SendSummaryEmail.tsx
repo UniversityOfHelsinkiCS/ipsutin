@@ -10,11 +10,15 @@ import generateSummaryEmail from '../../templates/generateSummaryEmail'
 
 import sendEmail from '../../util/mailing'
 
+import styles from '../../styles'
+
 const SendSummaryEmail = () => {
   const { t } = useTranslation()
   const location = useLocation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
+
+  const { cardStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
 
@@ -52,19 +56,20 @@ const SendSummaryEmail = () => {
 
   return (
     <Box sx={{ mt: 8 }}>
-      <Typography variant='body1'>
+      <Typography variant='h6' sx={cardStyles.heading} component='div'>
         {t('summary:summaryEmailInfoText')}
       </Typography>
-      <Button
-        id='summary-email-button'
-        variant='contained'
-        sx={{ mt: 4 }}
-        color='primary'
-        disabled={!user?.email || isSent}
-        onClick={sendResults}
-      >
-        {t('summary:sendSummaryMail')}
-      </Button>
+      <Box>
+        <Button
+          id='summary-email-button'
+          variant='contained'
+          color='primary'
+          disabled={!user?.email || isSent}
+          onClick={sendResults}
+        >
+          {t('summary:sendSummaryMail')}
+        </Button>
+      </Box>
     </Box>
   )
 }

@@ -14,15 +14,7 @@ interface SuggestionProps {
 const { cardStyles } = styles
 
 const Suggestion = ({ title, content, children }: SuggestionProps) => (
-  <Box>
-    <Typography variant='h6' sx={cardStyles.heading} component='div'>
-      {title}
-    </Typography>
-    <Markdown sx={cardStyles.content} variant='body2'>
-      {content}
-    </Markdown>
-    {children}
-  </Box>
+  <Box>{children}</Box>
 )
 
 export default Suggestion

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 
 import { RecommendationLabel } from '@backend/types'
 
@@ -38,17 +38,38 @@ const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
   const components: { [key in SurveyName]?: ReactElement } = {
     ideaEvaluation: (
       <Suggestion>
-        <Link to='/ipassessment'>{t('surveyNames:ipAssessment')}</Link>
+        <Button
+          data-cy='suggestion-to-ipassessment-button'
+          variant='contained'
+          component={Link}
+          to='/ipassessment'
+        >
+          {t('surveyNames:ipAssessment')}
+        </Button>
       </Suggestion>
     ),
     licenses: (
       <Suggestion>
-        <Link to='/ideaevaluation'>{t('surveyNames:ideaEvaluation')}</Link>
+        <Button
+          data-cy='suggestion-to-ideaevaluation-button'
+          variant='contained'
+          component={Link}
+          to='/ideaevaluation'
+        >
+          {t('surveyNames:ideaEvaluation')}
+        </Button>
       </Suggestion>
     ),
     ipAssessment: (
       <Suggestion>
-        <Link to='/ideaevaluation'>{t('surveyNames:ideaEvaluation')}</Link>
+        <Button
+          data-cy='suggestion-to-ideaevaluation-button'
+          variant='contained'
+          component={Link}
+          to='/ideaevaluation'
+        >
+          {t('surveyNames:ideaEvaluation')}
+        </Button>
       </Suggestion>
     ),
   }
@@ -57,12 +78,7 @@ const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
 
   return (
     <Box sx={{ mt: 8 }}>
-      <Typography
-        data-cy='extra-action-section-title'
-        variant='h6'
-        sx={cardStyles.heading}
-        component='div'
-      >
+      <Typography variant='h6' sx={cardStyles.heading} component='div'>
         {t('extraAction:title')}
       </Typography>
 

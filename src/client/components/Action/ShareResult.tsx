@@ -139,7 +139,7 @@ const ShareResult = () => {
         <Button
           data-cy='send-share-results-button'
           variant='contained'
-          sx={{ mt: 4 }}
+          sx={{ mt: 2 }}
           disabled={isSent}
           onClick={handleSubmit(onSubmit)}
         >
