@@ -123,7 +123,7 @@ const SendContactTicket = ({
         <Button
           data-cy='send-contact-ticket-button'
           variant='contained'
-          sx={{ mt: 4 }}
+          sx={{ mt: 2 }}
           disabled={isSent}
           onClick={handleSubmit(onSubmit)}
         >
