@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
-  useSearchParams,
   createSearchParams,
   useLocation,
   useNavigate,
+  useSearchParams,
 } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-
 import {
   Box,
   FormControl,
@@ -16,9 +15,8 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 
-import Markdown from '../Common/Markdown'
-
 import styles from '../../styles'
+import Markdown from '../Common/Markdown'
 
 const SelectSurvey = () => {
   const { t } = useTranslation()

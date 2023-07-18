@@ -1,11 +1,10 @@
 import {
   Control,
-  UseFormWatch,
   FieldValues,
-  UseFormRegister,
   SubmitHandler,
+  UseFormRegister,
+  UseFormWatch,
 } from 'react-hook-form'
-
 import { Locales, Question } from '@backend/types'
 
 export interface InputProps {

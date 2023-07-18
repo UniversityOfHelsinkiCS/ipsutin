@@ -1,8 +1,8 @@
 import axios from 'axios'
 import * as dotenv from 'dotenv'
 
-import { PATE_URL } from '../util/config'
 import { inProduction, inStaging } from '../../config'
+import { PATE_URL } from '../util/config'
 
 dotenv.config()
 

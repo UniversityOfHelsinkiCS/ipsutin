@@ -1,24 +1,22 @@
-import express from 'express'
-import cors from 'cors'
 import { Handlers as SentryHandlers } from '@sentry/node'
-
-import shibbolethMiddleware from '../middeware/shibboleth'
-import userMiddleware from '../middeware/user'
-import errorHandler from '../middeware/error'
-import accessLogger from '../middeware/access'
-
-import surveyRouter from './survey'
-import entryRouter from './entry'
-import userRouter from './user'
-import summaryRouter from './summary'
-import recommendationRouter from './recommendation'
-import facultyRouter from './faculty'
-import resultRouter from './result'
-import testRouter from './test'
-
-import initializeSentry from '../util/sentry'
+import cors from 'cors'
+import express from 'express'
 
 import { inStaging } from '../../config'
+import accessLogger from '../middeware/access'
+import errorHandler from '../middeware/error'
+import shibbolethMiddleware from '../middeware/shibboleth'
+import userMiddleware from '../middeware/user'
+import initializeSentry from '../util/sentry'
+
+import entryRouter from './entry'
+import facultyRouter from './faculty'
+import recommendationRouter from './recommendation'
+import resultRouter from './result'
+import summaryRouter from './summary'
+import surveyRouter from './survey'
+import testRouter from './test'
+import userRouter from './user'
 
 const router = express()
 

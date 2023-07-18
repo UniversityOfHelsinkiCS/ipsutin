@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { Survey, Question } from '../db/models'
+import { Question, Survey } from '../db/models'
 
 const surveyRouter = express.Router()
 

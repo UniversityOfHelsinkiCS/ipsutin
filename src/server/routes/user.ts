@@ -1,7 +1,7 @@
 import express from 'express'
 
-import { RequestWithUser } from '../types'
 import { User } from '../db/models'
+import { RequestWithUser } from '../types'
 
 const userRouter = express.Router()
 

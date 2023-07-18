@@ -1,7 +1,7 @@
-import { Question } from '../models'
-import getLicenseQuestions from '../../data/licenseQuestions'
-import getIeQuestions from '../../data/ieQuestions'
 import getAssessmentQuestions from '../../data/assessmentQuestions'
+import getIeQuestions from '../../data/ieQuestions'
+import getLicenseQuestions from '../../data/licenseQuestions'
+import { Question } from '../models'
 
 const seedQuestions = async () => {
   const licenseQuestions = getLicenseQuestions()

@@ -1,12 +1,9 @@
 import React from 'react'
-
+import { Locales, RecommendationLabel, Result } from '@backend/types'
 import { Box, Container } from '@mui/material'
 
-import { Locales, RecommendationLabel, Result } from '@backend/types'
-
-import Markdown from '../Common/Markdown'
-
 import colors from '../../util/colors'
+import Markdown from '../Common/Markdown'
 
 const ResultElement = ({
   language,

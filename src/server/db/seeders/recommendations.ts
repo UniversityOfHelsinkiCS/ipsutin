@@ -1,7 +1,7 @@
-import { Recommendation } from '../models'
+import getAssessmentRecommendations from '../../data/assessmentRecommendations'
 import getIeRecommendations from '../../data/ieRecommendations'
 import getLicenseRecommendations from '../../data/licenseRecommendations'
-import getAssessmentRecommendations from '../../data/assessmentRecommendations'
+import { Recommendation } from '../models'
 
 const seedRecommendations = async () => {
   const ieRecommendations = getIeRecommendations()

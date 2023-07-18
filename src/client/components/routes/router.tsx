@@ -1,11 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import App from '../../App'
-import Licences from '../Licenses/Licenses'
-import IpAssessment from '../IpAssessment/IpAssessment'
-import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
-
 import { PUBLIC_URL } from '../../../config'
+import App from '../../App'
+import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
+import IpAssessment from '../IpAssessment/IpAssessment'
+import Licences from '../Licenses/Licenses'
 
 const router = createBrowserRouter(
   [

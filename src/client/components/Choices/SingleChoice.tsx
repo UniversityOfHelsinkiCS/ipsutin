@@ -1,8 +1,7 @@
 import React from 'react'
 import { Controller } from 'react-hook-form'
-import { RadioGroup, FormControlLabel, Radio, Box } from '@mui/material'
-
 import { Locales } from '@backend/types'
+import { Box, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 
 import { InputProps } from '../../types'
 

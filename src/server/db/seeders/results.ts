@@ -1,7 +1,7 @@
-import { Result } from '../models'
 import getAssessmentResults from '../../data/assessmentResults'
 import getIeResults from '../../data/ieResults'
 import getLicenseResults from '../../data/licenseResults'
+import { Result } from '../models'
 
 const seedResults = async () => {
   const assessmentResults = getAssessmentResults()

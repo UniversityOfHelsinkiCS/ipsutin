@@ -1,11 +1,11 @@
 import express from 'express'
 import path from 'path'
 
-import router from './routes'
-import { PORT } from './util/config'
 import { connectToDatabase } from './db/connection'
 import seed from './db/seeders'
+import { PORT } from './util/config'
 import logger from './util/logger'
+import router from './routes'
 
 const app = express()
 

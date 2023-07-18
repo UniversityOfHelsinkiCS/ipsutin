@@ -1,9 +1,9 @@
-import Survey from './Survey'
+import Entry from './Entry'
 import Question from './Question'
 import Recommendation from './Recommendation'
 import Result from './Result'
+import Survey from './Survey'
 import User from './User'
-import Entry from './Entry'
 
 Question.belongsTo(Survey)
 Survey.hasMany(Question)
@@ -17,4 +17,4 @@ Survey.hasMany(Result)
 Entry.belongsTo(Survey)
 Survey.hasMany(Result)
 
-export { Survey, Question, Recommendation, Result, User, Entry }
+export { Entry, Question, Recommendation, Result, Survey, User }

@@ -1,8 +1,8 @@
 import {
-  Model,
+  DataTypes,
   InferAttributes,
   InferCreationAttributes,
-  DataTypes,
+  Model,
 } from 'sequelize'
 
 import { sequelize } from '../connection'

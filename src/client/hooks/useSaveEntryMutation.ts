@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query'
-import { FormValues } from '../types'
 
+import { FormValues } from '../types'
 import apiClient from '../util/apiClient'
 
 const useSaveEntryMutation = (surveyId: number) => {

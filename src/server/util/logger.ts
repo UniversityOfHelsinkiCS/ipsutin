@@ -1,5 +1,4 @@
 import os from 'os'
-
 import winston from 'winston'
 import WinstonGelfTransporter from 'winston-gelf-transporter'
 

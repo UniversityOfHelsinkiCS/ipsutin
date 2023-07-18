@@ -1,28 +1,24 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { IPAssessmentResult, Locales } from '@backend/types'
 import { Box, Container, Typography } from '@mui/material'
 
-import { IPAssessmentResult, Locales } from '@backend/types'
-
-import useSurvey from '../../hooks/useSurvey'
-import useResults from '../../hooks/useResults'
 import useRecommendations from '../../hooks/useRecommendations'
-
-import Markdown from '../Common/Markdown'
-import Contact from '../Contact/Contact'
-import ExtraAction from '../Action/ExtraAction'
-import ShareResult from '../Action/ShareResult'
-import SendSummaryEmail from '../Contact/SendSummaryEmail'
-import CommonResult from '../InteractiveForm/CommonResult'
-import RecommendationChip from '../Chip/RecommendationChip'
-
+import useResults from '../../hooks/useResults'
+import useSurvey from '../../hooks/useSurvey'
+import styles from '../../styles'
 import { InputProps } from '../../types'
-
 import {
   getRecommendationScores,
   sortRecommendations,
 } from '../../util/recommendations'
-import styles from '../../styles'
+import ExtraAction from '../Action/ExtraAction'
+import ShareResult from '../Action/ShareResult'
+import RecommendationChip from '../Chip/RecommendationChip'
+import Markdown from '../Common/Markdown'
+import Contact from '../Contact/Contact'
+import SendSummaryEmail from '../Contact/SendSummaryEmail'
+import CommonResult from '../InteractiveForm/CommonResult'
 
 const { cardStyles, resultStyles } = styles
 

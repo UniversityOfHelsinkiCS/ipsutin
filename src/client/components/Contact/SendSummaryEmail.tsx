@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { Box, Button, Typography } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import useLoggedInUser from '../../hooks/useLoggedInUser'
-
-import generateSummaryEmail from '../../templates/generateSummaryEmail'
-
-import sendEmail from '../../util/mailing'
-
 import styles from '../../styles'
+import generateSummaryEmail from '../../templates/generateSummaryEmail'
+import sendEmail from '../../util/mailing'
 
 const SendSummaryEmail = () => {
   const { t } = useTranslation()

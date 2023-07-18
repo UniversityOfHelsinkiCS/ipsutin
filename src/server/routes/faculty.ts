@@ -1,10 +1,8 @@
 import express from 'express'
 
 import { inE2EMode } from '../../config'
-
-import { getOrganisationData, getUserOrganisations } from '../util/jami'
-
 import { RequestWithUser } from '../types'
+import { getOrganisationData, getUserOrganisations } from '../util/jami'
 
 const mockFaculty = [
   {

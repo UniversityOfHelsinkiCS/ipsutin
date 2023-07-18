@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
-import { enqueueSnackbar } from 'notistack'
+import { useLocation } from 'react-router-dom'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Autocomplete,
   Box,
@@ -12,17 +11,14 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-
-import useLoggedInUser from '../../hooks/useLoggedInUser'
-
-import Markdown from '../Common/Markdown'
+import { enqueueSnackbar } from 'notistack'
 
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
-
-import generateShareResultsEmail from '../../templates/generateShareResultsEmail'
-
+import useLoggedInUser from '../../hooks/useLoggedInUser'
 import styles from '../../styles'
+import generateShareResultsEmail from '../../templates/generateShareResultsEmail'
 import sendEmail from '../../util/mailing'
+import Markdown from '../Common/Markdown'
 
 const ShareResult = () => {
   const { t } = useTranslation()

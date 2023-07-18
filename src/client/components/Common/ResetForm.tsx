@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
+
 import styles from '../../styles'
 
 const ResetForm = () => {
@@ -15,8 +16,8 @@ const ResetForm = () => {
   return (
     <Button
       sx={formStyles.stackButton}
-      type="button"
-      data-cy="reset-form-button"
+      type='button'
+      data-cy='reset-form-button'
       onClick={resetForm}
     >
       {t('reset')}

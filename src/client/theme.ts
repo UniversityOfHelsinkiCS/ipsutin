@@ -1,14 +1,14 @@
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
-
 import { useMemo } from 'react'
 import {
   createTheme,
   responsiveFontSizes,
   ThemeOptions,
 } from '@mui/material/styles'
+
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 /**
  * Module augmentation to extend default theme with new colours: https://mui.com/material-ui/customization/palette/#customization

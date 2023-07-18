@@ -1,7 +1,7 @@
 import React from 'react'
-
-import { Box, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { Box, Typography } from '@mui/material'
+
 import styles from '../../styles'
 import Markdown from '../Common/Markdown'
 
@@ -12,10 +12,10 @@ const Tools = () => {
   return (
     <Box sx={recommendationStyles.recommendationContainer}>
       <Typography
-        data-cy="recommendation-section-title"
-        variant="h5"
+        data-cy='recommendation-section-title'
+        variant='h5'
         sx={cardStyles.heading}
-        component="span"
+        component='span'
       >
         {t('sideBarServices:services')}
       </Typography>

@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
-import useSurvey from '../../hooks/useSurvey'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
-
-import Results from './Results'
+import useSurvey from '../../hooks/useSurvey'
+import styles from '../../styles'
+import { FormValues } from '../../types'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
-import { FormValues } from '../../types'
-import styles from '../../styles'
+import Results from './Results'
 
 const IdeaEvaluation = () => {
   const { t } = useTranslation()

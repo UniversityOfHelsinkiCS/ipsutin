@@ -1,19 +1,17 @@
 import React, { useCallback, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
-import useSurvey from '../../hooks/useSurvey'
+import { FORM_DATA_KEY } from '../../../config'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
-
-import Results from './Results'
-import RenderSurvey from '../InteractiveForm/RenderSurvey'
-
+import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import { FormValues } from '../../types'
+import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
-import { FORM_DATA_KEY } from '../../../config'
+import Results from './Results'
 
 const Licences = () => {
   const { t } = useTranslation()

@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query'
-
 import { Faculty } from '@backend/types'
 
 import apiClient from '../util/apiClient'

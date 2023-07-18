@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
 import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { RouterProvider } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 
 import router from './components/routes/router'
-
-import queryClient from './util/queryClient'
 import initializeI18n from './util/il18n'
+import queryClient from './util/queryClient'
 import initializeSentry from './util/sentry'
 
 initializeI18n()

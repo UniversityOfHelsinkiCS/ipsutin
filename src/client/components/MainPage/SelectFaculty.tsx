@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-
+import { useSearchParams } from 'react-router-dom'
 import { Faculty, Locales } from '@backend/types'
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 import useFaculties from '../../hooks/useFaculty'
 import useUserFaculties from '../../hooks/useUserFaculties'
-
-import Markdown from '../Common/Markdown'
-
-import extraOrganisations from '../../util/organisations'
-
 import styles from '../../styles'
+import extraOrganisations from '../../util/organisations'
+import Markdown from '../Common/Markdown'
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
   const sortedFaculties = faculties.sort((a, b) => {

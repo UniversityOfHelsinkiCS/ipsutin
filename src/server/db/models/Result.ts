@@ -1,13 +1,13 @@
 import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
   CreationOptional,
   DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
 } from 'sequelize'
 
-import { sequelize } from '../connection'
 import { Locales } from '../../types'
+import { sequelize } from '../connection'
 
 class Result extends Model<
   InferAttributes<Result>,

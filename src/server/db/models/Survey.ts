@@ -1,13 +1,14 @@
 import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
   CreationOptional,
   DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
   NonAttribute,
 } from 'sequelize'
 
 import { sequelize } from '../connection'
+
 import Question from './Question'
 
 class Survey extends Model<

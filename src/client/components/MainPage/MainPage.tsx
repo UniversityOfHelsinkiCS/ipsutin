@@ -2,12 +2,12 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
-import Tools from './Tools'
-import HelloBanner from './HelloBanner'
-import SelectSurvey from './SelectSurvey'
-import SelectFaculty from './SelectFaculty'
-
 import styles from '../../styles'
+
+import HelloBanner from './HelloBanner'
+import SelectFaculty from './SelectFaculty'
+import SelectSurvey from './SelectSurvey'
+import Tools from './Tools'
 
 const MainPage = () => {
   const { formStyles } = styles

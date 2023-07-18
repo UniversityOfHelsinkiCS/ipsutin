@@ -2,12 +2,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, Stack, Typography } from '@mui/material'
 
-import RenderQuestions from './RenderQuestions'
+import styles from '../../styles'
+import { InputProps } from '../../types'
 import ResetForm from '../Common/ResetForm'
 
-import styles from '../../styles'
-
-import { InputProps } from '../../types'
+import RenderQuestions from './RenderQuestions'
 
 const RenderSurvey = ({
   questions,

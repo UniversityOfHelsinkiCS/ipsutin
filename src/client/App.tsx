@@ -1,14 +1,12 @@
 import React from 'react'
-
 import { Box } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import { SnackbarProvider } from 'notistack'
 
 import Footer from './components/Footer'
-import NavBar from './components/NavBar/NavBar'
-
-import useTheme from './theme'
 import MainPage from './components/MainPage/MainPage'
+import NavBar from './components/NavBar/NavBar'
+import useTheme from './theme'
 
 const App = () => {
   const theme = useTheme()

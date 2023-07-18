@@ -23,6 +23,7 @@
     "axios": "^1.2.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "i18next": "^22.4.9",
@@ -83,7 +84,8 @@
       "@typescript-eslint",
       "react-hooks",
       "prettier",
-      "cypress"
+      "cypress",
+      "simple-import-sort"
     ],
     "parserOptions": {
       "parser": "@babel/eslint-parser",
@@ -107,8 +109,51 @@
       ],
       "react/jsx-props-no-spreading": "off",
       "import/no-cycle": "off",
-      "import/extensions": "off"
-    }
+      "import/extensions": "off",
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error"
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.js",
+          "*.jsx",
+          "*.ts",
+          "*.tsx"
+        ],
+        "rules": {
+          "simple-import-sort/imports": [
+            "error",
+            {
+              "groups": [
+                [
+                  "^react",
+                  "^@?\\w"
+                ],
+                [
+                  "^(@|components)(/.*|$)"
+                ],
+                [
+                  "^\\u0000"
+                ],
+                [
+                  "^\\.\\.(?!/?$)",
+                  "^\\.\\./?$"
+                ],
+                [
+                  "^\\./(?=.*/)(?!/?$)",
+                  "^\\.(?!/?$)",
+                  "^\\./?$"
+                ],
+                [
+                  "^.+\\.?(css)$"
+                ]
+              ]
+            }
+          ]
+        }
+      }
+    ]
   },
   "prettier": {
     "trailingComma": "es5",

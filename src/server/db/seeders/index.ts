@@ -1,8 +1,9 @@
 import logger from '../../util/logger'
-import seedSurveys from './surveys'
+
 import seedQuestions from './questions'
 import seedRecommendations from './recommendations'
 import seedResults from './results'
+import seedSurveys from './surveys'
 import seedUsers from './user'
 
 const seed = async () => {

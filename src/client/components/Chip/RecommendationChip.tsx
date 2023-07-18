@@ -1,8 +1,7 @@
 import React from 'react'
-import { Chip, Tooltip } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-
 import { Locales, Recommendation } from '@backend/types'
+import { Chip, Tooltip } from '@mui/material'
 
 import colors from '../../util/colors'
 

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { IconButton, Collapse, Box } from '@mui/material'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import { Box, Collapse, IconButton } from '@mui/material'
+
 import Markdown from './Markdown'
 
 const ShowMore = ({
@@ -21,7 +22,7 @@ const ShowMore = ({
         <HelpOutlineIcon />
         {!expand ? <ExpandMore /> : <ExpandLess />}
       </IconButton>
-      <Collapse in={expand} timeout="auto">
+      <Collapse in={expand} timeout='auto'>
         <Box sx={{ mt: 2 }}>
           <Markdown>{text}</Markdown>
         </Box>

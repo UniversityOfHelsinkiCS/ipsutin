@@ -1,9 +1,8 @@
-import { Request, Response, NextFunction } from 'express'
 import Sentry from '@sentry/node'
-
-import logger from '../util/logger'
+import { NextFunction, Request, Response } from 'express'
 
 import { inProduction } from '../../config'
+import logger from '../util/logger'
 
 const errorHandler = (
   error: Error,

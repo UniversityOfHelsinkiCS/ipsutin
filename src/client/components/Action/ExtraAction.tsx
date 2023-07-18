@@ -1,15 +1,13 @@
 import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import { RecommendationLabel } from '@backend/types'
 import { Box, Button, Typography } from '@mui/material'
 
-import { RecommendationLabel } from '@backend/types'
-
-import Suggestion from './Suggestion'
-
+import styles from '../../styles'
 import { SurveyName } from '../../types'
 
-import styles from '../../styles'
+import Suggestion from './Suggestion'
 
 interface ExtraActionProps {
   action: RecommendationLabel

@@ -1,22 +1,18 @@
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-
+import { useSearchParams } from 'react-router-dom'
+import { Question } from '@backend/types'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 
-import { Question } from '@backend/types'
-
-import useSurvey from '../../hooks/useSurvey'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
-
-import Results from './Results'
+import useSurvey from '../../hooks/useSurvey'
+import styles from '../../styles'
+import { FormValues } from '../../types'
 import ResetForm from '../Common/ResetForm'
 import RenderQuestions from '../InteractiveForm/RenderQuestions'
 
-import styles from '../../styles'
-
-import { FormValues } from '../../types'
+import Results from './Results'
 
 const IpAssessment = () => {
   const { t, i18n } = useTranslation()

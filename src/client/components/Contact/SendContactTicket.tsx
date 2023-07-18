@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { Box, Button, TextField, Typography } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
-import { Box, Button, TextField, Typography } from '@mui/material'
-
 import useLoggedInUser from '../../hooks/useLoggedInUser'
-
-import Markdown from '../Common/Markdown'
-
-import sendEmail from '../../util/mailing'
-
 import styles from '../../styles'
+import sendEmail from '../../util/mailing'
+import Markdown from '../Common/Markdown'
 
 interface ContactTicketProps {
   title: string

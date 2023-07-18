@@ -1,9 +1,8 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 
-import Markdown from '../Common/Markdown'
-
 import styles from '../../styles'
+import Markdown from '../Common/Markdown'
 
 interface ServiceProps {
   title: string

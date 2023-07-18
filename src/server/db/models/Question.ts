@@ -1,14 +1,13 @@
 import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
   CreationOptional,
   DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
 } from 'sequelize'
 
-import { sequelize } from '../connection'
-
 import { Locales } from '../../types'
+import { sequelize } from '../connection'
 
 interface Option {
   id: string

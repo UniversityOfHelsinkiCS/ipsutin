@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
+import { RecommendationLabel } from '@backend/types'
 import { Box } from '@mui/material'
 
-import { RecommendationLabel } from '@backend/types'
-
-import Service from './Service'
 import SendContactTicket from './SendContactTicket'
+import Service from './Service'
 
 interface Action {
   action: RecommendationLabel
