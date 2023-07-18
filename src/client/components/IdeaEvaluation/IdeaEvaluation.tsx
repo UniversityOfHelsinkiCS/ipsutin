@@ -24,7 +24,7 @@ const IdeaEvaluation = () => {
   )
 
   const [showResults, setShowResults] = useState(sessionLocation === 'results')
-  const [resultData, setResultData] = useState<FormValues>(null)
+  const [resultData, setResultData] = useState<FormValues>({})
 
   const faculty = searchParams.get('faculty')
   const { formStyles } = styles
