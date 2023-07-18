@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { Question } from '@backend/types'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 
+import { IP_ASSESSMENT_DATA_KEY } from '../../../config'
+import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
@@ -18,27 +20,60 @@ const IpAssessment = () => {
   const { t, i18n } = useTranslation()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ipAssessment')
-  const mutation = useSaveEntryMutation(survey?.id)
-  const [resultData, setResultData] = useState<FormValues>(null)
-  const [showResults, setShowResults] = useState(false)
+
+  const sessionLocation = sessionStorage.getItem(
+    'ipsutin-ip-assessment-session-location'
+  )
+
+  const [showResults, setShowResults] = useState(sessionLocation === 'results')
+  const [resultData, setResultData] = useState<FormValues>({})
 
   const faculty = searchParams.get('faculty')
   const { formStyles, cardStyles } = styles
   const { language } = i18n
 
-  const { handleSubmit, control, watch } = useForm({
+  const mutation = useSaveEntryMutation(survey?.id)
+
+  const getSavedInstance = useCallback(() => {
+    const savedData = sessionStorage.getItem(IP_ASSESSMENT_DATA_KEY)
+    if (savedData) return JSON.parse(savedData)
+
+    return {}
+  }, [])
+
+  const savedFormData = getSavedInstance()
+
+  useEffect(() => {
+    const savedFormDataString = JSON.stringify(savedFormData)
+    const resultDataString = JSON.stringify(resultData)
+
+    if (savedFormDataString !== resultDataString) {
+      setResultData(savedFormData)
+    }
+  }, [savedFormData, resultData])
+
+  const { handleSubmit, control, watch, getValues } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
+    defaultValues: savedFormData,
   })
 
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
+
     setResultData(data)
     mutation.mutateAsync(submittedData)
+
+    sessionStorage.setItem('ipsutin-ip-assessment-session-location', 'results')
     setShowResults(true)
   }
 
-  if (isLoading || !faculty) return null
+  usePersistForm({
+    value: getValues(),
+    sessionStorageKey: IP_ASSESSMENT_DATA_KEY,
+  })
+
+  if (!survey || isLoading || !faculty) return null
 
   const technical = survey.Questions.filter((question) =>
     [101, 102, 103, 104].includes(question.id)
