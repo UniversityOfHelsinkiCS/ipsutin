@@ -83,6 +83,8 @@ const Results = ({ formResultData }: InputProps) => {
     }))
     .sort((a, b) => a.id - b.id)
 
+  console.log(recommendedAction)
+
   return (
     <Box>
       <Box sx={cardStyles.outerBox}>
@@ -129,7 +131,7 @@ const Results = ({ formResultData }: InputProps) => {
         <Box sx={cardStyles.subHeading}>
           <SendSummaryEmail />
           <Contact action={recommendedAction} />
-          <ExtraAction surveyName='ideaEvaluation' />
+          <ExtraAction action={recommendedAction} surveyName='ideaEvaluation' />
           <ShareResult />
         </Box>
       </Box>

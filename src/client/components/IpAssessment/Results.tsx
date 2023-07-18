@@ -211,7 +211,7 @@ const Results = ({ formResultData }: InputProps) => {
         <Box sx={cardStyles.subHeading}>
           <SendSummaryEmail />
           <Contact action={recommendedAction} />
-          <ExtraAction surveyName='ipAssessment' />
+          <ExtraAction action={recommendedAction} surveyName='ipAssessment' />
           <ShareResult />
         </Box>
       </Box>

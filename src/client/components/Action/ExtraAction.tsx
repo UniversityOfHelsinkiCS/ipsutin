@@ -3,19 +3,37 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 
+import { RecommendationLabel } from '@backend/types'
+
+import Suggestion from './Suggestion'
+
 import { SurveyName } from '../../types'
 
 import styles from '../../styles'
-import Suggestion from './Suggestion'
 
 interface ExtraActionProps {
+  action: RecommendationLabel
   surveyName: SurveyName
 }
 
 const { cardStyles } = styles
 
-const ExtraAction = ({ surveyName }: ExtraActionProps) => {
+const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
   const { t } = useTranslation()
+
+  if (!action || !surveyName) return null
+
+  // After Software Licensing and Patentability Evaluation,
+  // recommend Idea Evaluation when action is not to book Idea Clinic.
+  if (
+    action === 'clinic' &&
+    (surveyName === 'licenses' || surveyName === 'ipAssessment')
+  )
+    return null
+
+  // After Idea Evaluation, propose linking to Patentability Evaluation as a possible
+  // follow-up action when proposal is not to file invention disclosure
+  if (action === 'disclosure' && surveyName === 'ideaEvaluation') return null
 
   const components: { [key in SurveyName]?: ReactElement } = {
     ideaEvaluation: (
@@ -36,8 +54,6 @@ const ExtraAction = ({ surveyName }: ExtraActionProps) => {
   }
 
   const ExtraActionComponent = components[surveyName]
-
-  if (!ExtraActionComponent) return null
 
   return (
     <Box sx={{ mt: 8 }}>
