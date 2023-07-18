@@ -79,8 +79,6 @@ const Results = ({ formResultData }: InputProps) => {
     }))
     .sort((a, b) => a.id - b.id)
 
-  console.log(recommendedAction)
-
   return (
     <Box>
       <Box sx={cardStyles.outerBox}>

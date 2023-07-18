@@ -67,7 +67,7 @@ const Licences = () => {
 
   usePersistForm({ value: getValues(), sessionStorageKey: LICENSES_DATA_KEY })
 
-  if (isLoading || !faculty) return null
+  if (!survey || isLoading || !faculty) return null
 
   return (
     <Box sx={formStyles.formWrapper}>

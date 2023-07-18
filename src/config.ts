@@ -14,5 +14,7 @@ export const DEFAULT_SURVEY_NAME =
   process.env.DEFAULT_SURVEY_NAME || 'testSurvey'
 
 export const LICENSES_DATA_KEY = 'ipsutin_licenses_local_save'
-export const IDEA_VALUATION_DATA_KEY = 'ipsutin_idea_evaluation_local_save'
+
+export const IDEA_EVALUATION_DATA_KEY = 'ipsutin_idea_evaluation_local_save'
+
 export const IP_ASSESSMENT_DATA_KEY = 'ipsutin_ip_assessment_local_save'
