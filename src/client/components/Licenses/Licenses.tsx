@@ -44,7 +44,7 @@ const Licences = () => {
     }
   }, [savedFormData, resultData])
 
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, getValues } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
     defaultValues: savedFormData,
@@ -59,7 +59,7 @@ const Licences = () => {
     setShowResults(true)
   }
 
-  usePersistForm({ value: watch(), sessionStorageKey: LICENSES_DATA_KEY })
+  usePersistForm({ value: getValues(), sessionStorageKey: LICENSES_DATA_KEY })
 
   if (isLoading || !faculty) return null
 
