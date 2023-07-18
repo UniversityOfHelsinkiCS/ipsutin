@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
-import { FORM_DATA_KEY } from '../../../config'
+import { LICENSES_DATA_KEY } from '../../../config'
+import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
@@ -18,7 +19,7 @@ const Licences = () => {
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('licenses')
   const [showResults, setShowResults] = useState(false)
-  const [resultData, setResultData] = useState<FormValues>(null)
+  const [resultData, setResultData] = useState<FormValues>({})
 
   const faculty = searchParams.get('faculty')
   const { formStyles } = styles
@@ -26,13 +27,22 @@ const Licences = () => {
   const mutation = useSaveEntryMutation(survey?.id)
 
   const getSavedInstance = useCallback(() => {
-    const savedData = sessionStorage.getItem(FORM_DATA_KEY)
+    const savedData = sessionStorage.getItem(LICENSES_DATA_KEY)
     if (savedData) return JSON.parse(savedData)
 
     return {}
   }, [])
 
   const savedFormData = getSavedInstance()
+
+  useEffect(() => {
+    const savedFormDataString = JSON.stringify(savedFormData)
+    const resultDataString = JSON.stringify(resultData)
+
+    if (savedFormDataString !== resultDataString) {
+      setResultData(savedFormData)
+    }
+  }, [savedFormData, resultData])
 
   const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
@@ -48,6 +58,8 @@ const Licences = () => {
 
     setShowResults(true)
   }
+
+  usePersistForm({ value: watch(), sessionStorageKey: LICENSES_DATA_KEY })
 
   if (isLoading || !faculty) return null
 
