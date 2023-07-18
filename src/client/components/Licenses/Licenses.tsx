@@ -18,7 +18,12 @@ const Licences = () => {
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('licenses')
-  const [showResults, setShowResults] = useState(false)
+
+  const sessionLocation = sessionStorage.getItem(
+    'ipsutin-licenses-session-location'
+  )
+
+  const [showResults, setShowResults] = useState(sessionLocation === 'results')
   const [resultData, setResultData] = useState<FormValues>({})
 
   const faculty = searchParams.get('faculty')
@@ -52,10 +57,11 @@ const Licences = () => {
 
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
-    setResultData(data)
 
+    setResultData(data)
     mutation.mutateAsync(submittedData)
 
+    sessionStorage.setItem('ipsutin-licenses-session-location', 'results')
     setShowResults(true)
   }
 
