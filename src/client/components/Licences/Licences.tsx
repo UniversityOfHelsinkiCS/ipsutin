@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
@@ -27,28 +27,10 @@ const Licences = () => {
 
   const mutation = useSaveEntryMutation(survey?.id)
 
-  const getSavedInstance = useCallback(() => {
-    const savedData = sessionStorage.getItem(LICENCES_DATA_KEY)
-    if (savedData) return JSON.parse(savedData)
-
-    return {}
-  }, [])
-
-  const savedFormData = getSavedInstance()
-
-  useEffect(() => {
-    const savedFormDataString = JSON.stringify(savedFormData)
-    const resultDataString = JSON.stringify(resultData)
-
-    if (savedFormDataString !== resultDataString) {
-      setResultData(savedFormData)
-    }
-  }, [savedFormData, resultData, setResultData])
-
-  const { handleSubmit, control, watch, getValues } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
-    defaultValues: savedFormData,
+    defaultValues: resultData,
   })
 
   const onSubmit = (data: FormValues) => {
@@ -60,7 +42,7 @@ const Licences = () => {
     navigate('./results')
   }
 
-  usePersistForm({ value: getValues(), sessionStorageKey: LICENCES_DATA_KEY })
+  usePersistForm({ value: watch(), sessionStorageKey: LICENCES_DATA_KEY })
 
   if (!survey || isLoading || !faculty) return null
 

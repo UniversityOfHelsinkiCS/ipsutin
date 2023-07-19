@@ -1,7 +1,7 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -23,12 +23,16 @@ const LicenceResultDataProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [resultData, setResultData] = useState<FormValues>({})
-
-  useEffect(() => {
+  const getSavedInstance = useCallback(() => {
     const savedData = sessionStorage.getItem(LICENCES_DATA_KEY)
-    if (savedData) setResultData(JSON.parse(savedData))
+    if (savedData) return JSON.parse(savedData)
+
+    return {}
   }, [])
+
+  const savedFormData = getSavedInstance()
+
+  const [resultData, setResultData] = useState<FormValues>(savedFormData)
 
   const contextValue = useMemo(
     () => ({ resultData, setResultData }),
