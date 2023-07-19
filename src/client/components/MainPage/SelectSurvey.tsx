@@ -29,6 +29,8 @@ const SelectSurvey = () => {
 
   const faculty = searchParams.get('faculty')
 
+  const routeParts = location.pathname.split('/').filter(Boolean)
+
   useEffect(() => {
     const params = { faculty }
 
@@ -56,7 +58,7 @@ const SelectSurvey = () => {
         <Select
           sx={cardStyles.inputField}
           data-cy='survey-select'
-          value={location.pathname.substring(1)}
+          value={routeParts[0]}
           label={t('surveySelect:inputLabel')}
           onChange={handleSurveyChange}
         >
