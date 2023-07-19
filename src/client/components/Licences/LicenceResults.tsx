@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { Locales, RecommendationLabel } from '@backend/types'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 
 import useRecommendations from '../../hooks/useRecommendations'
 import useResults from '../../hooks/useResults'
@@ -25,6 +26,7 @@ const { cardStyles, resultStyles } = styles
 
 const LicenceResults = () => {
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
   const { survey } = useSurvey('licenses')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
@@ -87,7 +89,7 @@ const LicenceResults = () => {
         <Box sx={resultStyles.resultWrapper}>
           <Container sx={{ mt: 4 }}>
             <Typography
-              data-cy='result-section-title'
+              data-cy='licences-result-section-title'
               variant='h5'
               sx={resultStyles.heading}
               component='div'
@@ -123,6 +125,13 @@ const LicenceResults = () => {
               />
             ))}
           </Box>
+          <Button
+            data-cy='licences-back-to-selections-button'
+            sx={{ m: 1 }}
+            onClick={() => navigate(-2)}
+          >
+            {'<'} {t('results:backToMessage')}
+          </Button>
         </Box>
         <Box sx={cardStyles.subHeading}>
           <SendSummaryEmail />
