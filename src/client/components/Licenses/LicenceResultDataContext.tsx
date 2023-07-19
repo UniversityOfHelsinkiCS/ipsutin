@@ -11,7 +11,7 @@ const LicenseResultDataContext = createContext<
   ResultDataContextValue | undefined
 >(undefined)
 
-const LicenseResultDataProvider = ({
+const LicenceResultDataProvider = ({
   children,
 }: {
   children: React.ReactNode
@@ -30,7 +30,7 @@ const LicenseResultDataProvider = ({
   )
 }
 
-const useLicenseResultData = (): ResultDataContextValue => {
+const useLicenceResultData = (): ResultDataContextValue => {
   const context = useContext(LicenseResultDataContext)
   if (!context) {
     throw new Error('useResultData must be used within a ResultDataProvider')
@@ -38,4 +38,4 @@ const useLicenseResultData = (): ResultDataContextValue => {
   return context
 }
 
-export { LicenseResultDataProvider, useLicenseResultData }
+export { LicenceResultDataProvider, useLicenceResultData }

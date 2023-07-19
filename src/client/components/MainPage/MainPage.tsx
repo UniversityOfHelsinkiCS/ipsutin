@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import styles from '../../styles'
-import { LicenseResultDataProvider } from '../Licenses/LicenseResultDataContext'
+import { LicenceResultDataProvider } from '../Licenses/LicenceResultDataContext'
 
 import HelloBanner from './HelloBanner'
 import SelectFaculty from './SelectFaculty'
@@ -32,9 +32,9 @@ const MainPage = () => {
             <SelectFaculty />
             <SelectSurvey />
           </Box>
-          <LicenseResultDataProvider>
+          <LicenceResultDataProvider>
             <Outlet />
-          </LicenseResultDataProvider>
+          </LicenceResultDataProvider>
         </Grid>
 
         <Grid item sm={12} md={5} xl={3}>

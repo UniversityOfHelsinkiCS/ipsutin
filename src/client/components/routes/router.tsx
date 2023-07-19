@@ -4,7 +4,7 @@ import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
 import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
 import IpAssessment from '../IpAssessment/IpAssessment'
-import LicenseResults from '../Licenses/LicenseResults'
+import LicenceResults from '../Licenses/LicenceResults'
 import Licences from '../Licenses/Licenses'
 
 const router = createBrowserRouter(
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
             },
             {
               path: 'results',
-              element: <LicenseResults />,
+              element: <LicenceResults />,
             },
           ],
         },

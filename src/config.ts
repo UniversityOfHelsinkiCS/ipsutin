@@ -13,7 +13,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || ''
 export const DEFAULT_SURVEY_NAME =
   process.env.DEFAULT_SURVEY_NAME || 'testSurvey'
 
-export const LICENSES_DATA_KEY = 'ipsutin_licenses_local_save'
+export const LICENCES_DATA_KEY = 'ipsutin_licenses_local_save'
 
 export const IDEA_EVALUATION_DATA_KEY = 'ipsutin_idea_evaluation_local_save'
 

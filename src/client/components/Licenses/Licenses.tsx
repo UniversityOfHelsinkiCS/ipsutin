@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
-import { LICENSES_DATA_KEY } from '../../../config'
+import { LICENCES_DATA_KEY } from '../../../config'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
@@ -12,7 +12,7 @@ import styles from '../../styles'
 import { FormValues } from '../../types'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
-import { useLicenseResultData } from './LicenseResultDataContext'
+import { useLicenceResultData } from './LicenceResultDataContext'
 
 const Licences = () => {
   const { t } = useTranslation()
@@ -20,7 +20,7 @@ const Licences = () => {
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('licenses')
 
-  const { resultData, setResultData } = useLicenseResultData()
+  const { resultData, setResultData } = useLicenceResultData()
 
   const faculty = searchParams.get('faculty')
   const { formStyles } = styles
@@ -28,7 +28,7 @@ const Licences = () => {
   const mutation = useSaveEntryMutation(survey?.id)
 
   const getSavedInstance = useCallback(() => {
-    const savedData = sessionStorage.getItem(LICENSES_DATA_KEY)
+    const savedData = sessionStorage.getItem(LICENCES_DATA_KEY)
     if (savedData) return JSON.parse(savedData)
 
     return {}
@@ -60,7 +60,7 @@ const Licences = () => {
     navigate('./results')
   }
 
-  usePersistForm({ value: getValues(), sessionStorageKey: LICENSES_DATA_KEY })
+  usePersistForm({ value: getValues(), sessionStorageKey: LICENCES_DATA_KEY })
 
   if (!survey || isLoading || !faculty) return null
 

@@ -19,18 +19,18 @@ import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
 
-import { useLicenseResultData } from './LicenseResultDataContext'
+import { useLicenceResultData } from './LicenceResultDataContext'
 
 const { cardStyles, resultStyles } = styles
 
-const LicenseResults = () => {
+const LicenceResults = () => {
   const { t, i18n } = useTranslation()
   const { survey } = useSurvey('licenses')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
 
-  const { resultData } = useLicenseResultData()
+  const { resultData } = useLicenceResultData()
 
   const { language } = i18n
 
@@ -135,4 +135,4 @@ const LicenseResults = () => {
   )
 }
 
-export default LicenseResults
+export default LicenceResults
