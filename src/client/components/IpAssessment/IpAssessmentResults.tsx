@@ -7,7 +7,6 @@ import useRecommendations from '../../hooks/useRecommendations'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
-import { InputProps } from '../../types'
 import {
   getRecommendationScores,
   sortRecommendations,
@@ -19,6 +18,8 @@ import Markdown from '../Common/Markdown'
 import Contact from '../Contact/Contact'
 import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
+
+import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
 const { cardStyles, resultStyles } = styles
 
@@ -87,12 +88,14 @@ const SectionResults = ({
   )
 }
 
-const IpAssessmentResults = ({ formResultData }: InputProps) => {
+const IpAssessmentResults = () => {
   const { t, i18n } = useTranslation()
   const { survey } = useSurvey('ipAssessment')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
+
+  const { resultData } = useIpAssessmentResultData()
 
   const { language } = i18n
 
@@ -108,14 +111,14 @@ const IpAssessmentResults = ({ formResultData }: InputProps) => {
   if (
     !results ||
     !resultsFetched ||
-    !formResultData ||
+    !resultData ||
     !recommendations ||
     !recommendationsFetched
   )
     return null
 
   const recommendationScores = getRecommendationScores(
-    formResultData,
+    resultData,
     recommendations
   )
 
@@ -127,7 +130,7 @@ const IpAssessmentResults = ({ formResultData }: InputProps) => {
   const commonResult = results.find((result) => result.optionLabel === 'common')
 
   const filteredResults = results.filter((result) =>
-    Object.values(formResultData).includes(result.optionLabel)
+    Object.values(resultData).includes(result.optionLabel)
   ) as unknown as IPAssessmentResult[]
 
   const recommendationLabels = sortedRecommendations.map(
