@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import { IDEA_EVALUATION_DATA_KEY } from '../../../config'
@@ -17,6 +17,7 @@ import { useIdeaEvaluationResultData } from './IdeaEvaluationResultContext'
 const IdeaEvaluation = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ideaEvaluation')
 
@@ -39,7 +40,10 @@ const IdeaEvaluation = () => {
     setResultData(submittedData)
     mutation.mutateAsync(submittedData)
 
-    navigate('./results')
+    navigate({
+      pathname: './results',
+      search: location.search,
+    })
   }
 
   usePersistForm({
