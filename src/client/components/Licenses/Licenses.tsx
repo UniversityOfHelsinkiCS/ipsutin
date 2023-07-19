@@ -12,7 +12,8 @@ import styles from '../../styles'
 import { FormValues } from '../../types'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
-import Results from './Results'
+import { useLicenseResultData } from './LicenseResultDataContext'
+import LicenseResults from './LicenseResults'
 
 const Licences = () => {
   const { t } = useTranslation()
@@ -24,7 +25,7 @@ const Licences = () => {
   )
 
   const [showResults, setShowResults] = useState(sessionLocation === 'results')
-  const [resultData, setResultData] = useState<FormValues>({})
+  const { resultData, setResultData } = useLicenseResultData()
 
   const faculty = searchParams.get('faculty')
   const { formStyles } = styles
@@ -47,7 +48,7 @@ const Licences = () => {
     if (savedFormDataString !== resultDataString) {
       setResultData(savedFormData)
     }
-  }, [savedFormData, resultData])
+  }, [savedFormData, resultData, setResultData])
 
   const { handleSubmit, control, watch, getValues } = useForm({
     mode: 'onBlur',
@@ -82,7 +83,7 @@ const Licences = () => {
               surveyInfo={t('surveyInfos:licences')}
             />
           </form>
-          {resultData && showResults && <Results formResultData={resultData} />}
+          {resultData && showResults && <LicenseResults />}
         </Grid>
       </Grid>
     </Box>
