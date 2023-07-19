@@ -4,8 +4,8 @@ import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
 import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
 import IpAssessment from '../IpAssessment/IpAssessment'
-import LicenceResults from '../Licenses/LicenceResults'
-import Licences from '../Licenses/Licenses'
+import LicenceResults from '../Licences/LicenceResults'
+import Licences from '../Licences/Licences'
 
 const router = createBrowserRouter(
   [
