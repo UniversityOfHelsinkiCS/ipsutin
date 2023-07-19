@@ -7,7 +7,6 @@ import useRecommendations from '../../hooks/useRecommendations'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
-import { InputProps } from '../../types'
 import {
   getRecommendationScores,
   sortRecommendations,
@@ -20,14 +19,18 @@ import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
 
+import { useLicenseResultData } from './LicenseResultDataContext'
+
 const { cardStyles, resultStyles } = styles
 
-const Results = ({ formResultData }: InputProps) => {
+const LicenseResults = () => {
   const { t, i18n } = useTranslation()
   const { survey } = useSurvey('licenses')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
+
+  const { resultData } = useLicenseResultData()
 
   const { language } = i18n
 
@@ -42,7 +45,7 @@ const Results = ({ formResultData }: InputProps) => {
 
   if (
     !resultsFetched ||
-    !formResultData ||
+    !resultData ||
     !recommendationsFetched ||
     !results ||
     !recommendations
@@ -50,7 +53,7 @@ const Results = ({ formResultData }: InputProps) => {
     return null
 
   const recommendationScores = getRecommendationScores(
-    formResultData,
+    resultData,
     recommendations
   )
 
@@ -62,7 +65,7 @@ const Results = ({ formResultData }: InputProps) => {
   const commonResult = results.find((result) => result.optionLabel === 'common')
 
   const filteredResults = results.filter((result) =>
-    Object.values(formResultData).includes(result.optionLabel)
+    Object.values(resultData).includes(result.optionLabel)
   )
 
   const recommendationLabels = sortedRecommendations.map(
@@ -132,4 +135,4 @@ const Results = ({ formResultData }: InputProps) => {
   )
 }
 
-export default Results
+export default LicenseResults
