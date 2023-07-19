@@ -25,12 +25,13 @@ const { cardStyles, resultStyles } = styles
 
 const IdeaEvaluationResults = () => {
   const { t, i18n } = useTranslation()
-  const { language } = i18n
   const { survey } = useSurvey('ideaEvaluation')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess } = useRecommendations(survey?.id)
 
   const { resultData } = useIdeaEvaluationResultData()
+
+  const { language } = i18n
 
   const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
     if (!resultDOMElement) return
