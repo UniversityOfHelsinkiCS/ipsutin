@@ -87,7 +87,7 @@ const SectionResults = ({
   )
 }
 
-const Results = ({ formResultData }: InputProps) => {
+const IpAssessmentResults = ({ formResultData }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { survey } = useSurvey('ipAssessment')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
@@ -212,4 +212,4 @@ const Results = ({ formResultData }: InputProps) => {
   )
 }
 
-export default Results
+export default IpAssessmentResults

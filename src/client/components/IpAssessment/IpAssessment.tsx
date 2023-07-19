@@ -14,7 +14,7 @@ import { FormValues } from '../../types'
 import ResetForm from '../Common/ResetForm'
 import RenderQuestions from '../InteractiveForm/RenderQuestions'
 
-import Results from './Results'
+import Results from './IpAssessmentResults'
 
 const IpAssessment = () => {
   const { t, i18n } = useTranslation()
