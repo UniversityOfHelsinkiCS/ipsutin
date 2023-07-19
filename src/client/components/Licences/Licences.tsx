@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import { LICENCES_DATA_KEY } from '../../../config'
@@ -17,6 +17,7 @@ import { useLicenceResultData } from './LicenceResultDataContext'
 const Licences = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('licenses')
 
@@ -39,7 +40,10 @@ const Licences = () => {
     setResultData(data)
     mutation.mutateAsync(submittedData)
 
-    navigate('./results')
+    navigate({
+      pathname: './results',
+      search: location.search,
+    })
   }
 
   usePersistForm({ value: watch(), sessionStorageKey: LICENCES_DATA_KEY })
