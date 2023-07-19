@@ -48,7 +48,8 @@
     "pateErrorMessage": "Could not share results"
   },
   "results": {
-    "title": "Results"
+    "title": "Results",
+    "backToMessage": "Go back to survey"
   },
   "facultySelect": {
     "introMessage": "Start by selecting your faculty",
