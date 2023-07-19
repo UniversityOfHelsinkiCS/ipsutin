@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import { IDEA_EVALUATION_DATA_KEY } from '../../../config'
@@ -12,47 +12,25 @@ import styles from '../../styles'
 import { FormValues } from '../../types'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
-import Results from './Results'
+import { useIdeaEvaluationResultData } from './IdeaEvaluationResultContext'
 
 const IdeaEvaluation = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ideaEvaluation')
 
-  const sessionLocation = sessionStorage.getItem(
-    'ipsutin-idea-evaluation-session-location'
-  )
-
-  const [showResults, setShowResults] = useState(sessionLocation === 'results')
-  const [resultData, setResultData] = useState<FormValues>({})
+  const { resultData, setResultData } = useIdeaEvaluationResultData()
 
   const faculty = searchParams.get('faculty')
   const { formStyles } = styles
 
   const mutation = useSaveEntryMutation(survey?.id)
 
-  const getSavedInstance = useCallback(() => {
-    const savedData = sessionStorage.getItem(IDEA_EVALUATION_DATA_KEY)
-    if (savedData) return JSON.parse(savedData)
-
-    return {}
-  }, [])
-
-  const savedFormData = getSavedInstance()
-
-  useEffect(() => {
-    const savedFormDataString = JSON.stringify(savedFormData)
-    const resultDataString = JSON.stringify(resultData)
-
-    if (savedFormDataString !== resultDataString) {
-      setResultData(savedFormData)
-    }
-  }, [savedFormData, resultData])
-
-  const { handleSubmit, control, watch, getValues } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
-    defaultValues: savedFormData,
+    defaultValues: resultData,
   })
 
   const onSubmit = (data: FormValues) => {
@@ -61,15 +39,11 @@ const IdeaEvaluation = () => {
     setResultData(submittedData)
     mutation.mutateAsync(submittedData)
 
-    sessionStorage.setItem(
-      'ipsutin-idea-evaluation-session-location',
-      'results'
-    )
-    setShowResults(true)
+    navigate('./results')
   }
 
   usePersistForm({
-    value: getValues(),
+    value: watch(),
     sessionStorageKey: IDEA_EVALUATION_DATA_KEY,
   })
 
@@ -87,7 +61,6 @@ const IdeaEvaluation = () => {
               surveyName={t('surveyNames:ideaEvaluation')}
             />
           </form>
-          {resultData && showResults && <Results formResultData={resultData} />}
         </Grid>
       </Grid>
     </Box>

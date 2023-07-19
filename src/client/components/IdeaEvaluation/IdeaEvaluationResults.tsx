@@ -7,7 +7,6 @@ import useRecommendations from '../../hooks/useRecommendations'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
-import { InputProps } from '../../types'
 import {
   getRecommendationScores,
   sortRecommendations,
@@ -20,14 +19,18 @@ import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
 
+import { useIdeaEvaluationResultData } from './IdeaEvaluationResultContext'
+
 const { cardStyles, resultStyles } = styles
 
-const IdeaEvaluationResults = ({ formResultData }: InputProps) => {
+const IdeaEvaluationResults = () => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
   const { survey } = useSurvey('ideaEvaluation')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess } = useRecommendations(survey?.id)
+
+  const { resultData } = useIdeaEvaluationResultData()
 
   const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
     if (!resultDOMElement) return
@@ -40,7 +43,7 @@ const IdeaEvaluationResults = ({ formResultData }: InputProps) => {
 
   if (
     !resultsFetched ||
-    !formResultData ||
+    !resultData ||
     !isSuccess ||
     !recommendations ||
     !results
@@ -48,7 +51,7 @@ const IdeaEvaluationResults = ({ formResultData }: InputProps) => {
     return null
 
   const recommendationScores = getRecommendationScores(
-    formResultData,
+    resultData,
     recommendations
   )
 
@@ -60,7 +63,7 @@ const IdeaEvaluationResults = ({ formResultData }: InputProps) => {
   const commonResult = results.find((result) => result.optionLabel === 'common')
 
   const filteredResults = results.filter((result) =>
-    Object.values(formResultData).includes(result.optionLabel)
+    Object.values(resultData).includes(result.optionLabel)
   )
 
   const recommendationLabels = sortedRecommendations.map(
