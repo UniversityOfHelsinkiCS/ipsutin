@@ -1,13 +1,10 @@
 import { useEffect } from 'react'
 
-import { FormValues } from '../types'
+import { FormValues, SurveySave } from '../types'
 
 interface PersistForm {
   value: FormValues
-  sessionStorageKey:
-    | 'ipsutin_licenses_local_save'
-    | 'ipsutin_idea_evaluation_local_save'
-    | 'ipsutin_ip_assessment_local_save'
+  sessionStorageKey: SurveySave
 }
 
 const usePersistForm = ({ value, sessionStorageKey }: PersistForm) =>

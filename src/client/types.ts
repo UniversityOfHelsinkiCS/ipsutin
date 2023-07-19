@@ -30,6 +30,7 @@ export interface FormValues {
 }
 
 export type SingleChoiceType = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   results: any
   id: string
   label: Locales
@@ -49,3 +50,8 @@ export interface Survey {
   updatedAt: Date
   Questions: Question[]
 }
+
+export type SurveySave =
+  | 'ipsutin_licenses_local_save'
+  | 'ipsutin_idea_evaluation_local_save'
+  | 'ipsutin_ip_assessment_local_save'
