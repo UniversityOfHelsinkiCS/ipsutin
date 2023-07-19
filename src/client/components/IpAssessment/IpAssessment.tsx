@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { Question } from '@backend/types'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 
@@ -19,6 +19,7 @@ import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 const IpAssessment = () => {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ipAssessment')
 
@@ -43,7 +44,10 @@ const IpAssessment = () => {
     setResultData(data)
     mutation.mutateAsync(submittedData)
 
-    navigate('./results')
+    navigate({
+      pathname: './results',
+      search: location.search,
+    })
   }
 
   usePersistForm({
