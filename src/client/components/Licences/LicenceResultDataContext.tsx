@@ -1,5 +1,12 @@
-import React, { createContext, useContext, useMemo, useState } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
+import { LICENCES_DATA_KEY } from '../../../config'
 import { FormValues } from '../../types'
 
 interface ResultDataContextValue {
@@ -17,6 +24,11 @@ const LicenceResultDataProvider = ({
   children: React.ReactNode
 }) => {
   const [resultData, setResultData] = useState<FormValues>({})
+
+  useEffect(() => {
+    const savedData = sessionStorage.getItem(LICENCES_DATA_KEY)
+    if (savedData) setResultData(JSON.parse(savedData))
+  }, [])
 
   const contextValue = useMemo(
     () => ({ resultData, setResultData }),
