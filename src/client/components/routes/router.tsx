@@ -5,6 +5,7 @@ import App from '../../App'
 import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
 import IdeaEvaluationResults from '../IdeaEvaluation/IdeaEvaluationResults'
 import IpAssessment from '../IpAssessment/IpAssessment'
+import IpAssessmentResults from '../IpAssessment/IpAssessmentResults'
 import LicenceResults from '../Licences/LicenceResults'
 import Licences from '../Licences/Licences'
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
             {
               index: true,
               element: <IpAssessment />,
+            },
+            {
+              path: 'results',
+              element: <IpAssessmentResults />,
             },
           ],
         },

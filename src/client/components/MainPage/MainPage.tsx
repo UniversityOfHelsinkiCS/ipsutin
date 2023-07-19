@@ -4,6 +4,7 @@ import { Box, Grid } from '@mui/material'
 
 import styles from '../../styles'
 import { IdeaEvaluationResultDataProvider } from '../IdeaEvaluation/IdeaEvaluationResultContext'
+import { IpAssessmentResultDataProvider } from '../IpAssessment/IpAssessmentResultDataContext'
 import { LicenceResultDataProvider } from '../Licences/LicenceResultDataContext'
 
 import HelloBanner from './HelloBanner'
@@ -35,7 +36,9 @@ const MainPage = () => {
           </Box>
           <LicenceResultDataProvider>
             <IdeaEvaluationResultDataProvider>
-              <Outlet />
+              <IpAssessmentResultDataProvider>
+                <Outlet />
+              </IpAssessmentResultDataProvider>
             </IdeaEvaluationResultDataProvider>
           </LicenceResultDataProvider>
         </Grid>
