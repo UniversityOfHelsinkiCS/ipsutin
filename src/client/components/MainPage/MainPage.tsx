@@ -18,6 +18,7 @@ const MainPage = () => {
         <Grid item sm={12}>
           <HelloBanner />
         </Grid>
+
         <Grid
           container
           item
@@ -26,14 +27,13 @@ const MainPage = () => {
           xl={8}
           sx={{ display: 'flex', justifyContent: 'center' }}
         >
-          <Grid item xl={12}>
-            <Box sx={{ mx: 2, display: 'flex' }}>
-              <SelectFaculty />
-              <SelectSurvey />
-            </Box>
-            <Outlet />
-          </Grid>
+          <Box sx={{ mx: 2, display: 'flex' }}>
+            <SelectFaculty />
+            <SelectSurvey />
+          </Box>
+          <Outlet />
         </Grid>
+
         <Grid item sm={12} md={5} xl={3}>
           <Tools />
         </Grid>
