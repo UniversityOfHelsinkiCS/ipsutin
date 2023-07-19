@@ -58,7 +58,7 @@ const SelectSurvey = () => {
         <Select
           sx={cardStyles.inputField}
           data-cy='survey-select'
-          value={routeParts[0]}
+          value={routeParts[0] || ''}
           label={t('surveySelect:inputLabel')}
           onChange={handleSurveyChange}
         >
