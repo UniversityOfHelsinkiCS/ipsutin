@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import { LICENSES_DATA_KEY } from '../../../config'
@@ -13,18 +13,13 @@ import { FormValues } from '../../types'
 import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
 import { useLicenseResultData } from './LicenseResultDataContext'
-import LicenseResults from './LicenseResults'
 
 const Licences = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('licenses')
 
-  const sessionLocation = sessionStorage.getItem(
-    'ipsutin-licenses-session-location'
-  )
-
-  const [showResults, setShowResults] = useState(sessionLocation === 'results')
   const { resultData, setResultData } = useLicenseResultData()
 
   const faculty = searchParams.get('faculty')
@@ -62,8 +57,7 @@ const Licences = () => {
     setResultData(data)
     mutation.mutateAsync(submittedData)
 
-    sessionStorage.setItem('ipsutin-licenses-session-location', 'results')
-    setShowResults(true)
+    navigate('./results')
   }
 
   usePersistForm({ value: getValues(), sessionStorageKey: LICENSES_DATA_KEY })
@@ -83,7 +77,6 @@ const Licences = () => {
               surveyInfo={t('surveyInfos:licences')}
             />
           </form>
-          {resultData && showResults && <LicenseResults />}
         </Grid>
       </Grid>
     </Box>
