@@ -22,7 +22,7 @@ import ResultElement from '../InteractiveForm/ResultElement'
 
 const { cardStyles, resultStyles } = styles
 
-const Results = ({ formResultData }: InputProps) => {
+const IdeaEvaluationResults = ({ formResultData }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
   const { survey } = useSurvey('ideaEvaluation')
@@ -130,4 +130,4 @@ const Results = ({ formResultData }: InputProps) => {
   )
 }
 
-export default Results
+export default IdeaEvaluationResults
