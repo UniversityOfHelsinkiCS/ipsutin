@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { Locales } from '@backend/types'
-import { Box, Button, Container, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
 import useRecommendations from '../../hooks/useRecommendations'
 import useResults from '../../hooks/useResults'
@@ -15,6 +14,7 @@ import {
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RecommendationChip from '../Chip/RecommendationChip'
+import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
 import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
@@ -26,7 +26,6 @@ const { cardStyles, resultStyles } = styles
 
 const IdeaEvaluationResults = () => {
   const { t, i18n } = useTranslation()
-  const navigate = useNavigate()
   const { survey } = useSurvey('ideaEvaluation')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
@@ -133,13 +132,7 @@ const IdeaEvaluationResults = () => {
               />
             ))}
           </Box>
-          <Button
-            data-cy='idea-evaluation-back-to-selections-button'
-            sx={{ m: 1 }}
-            onClick={() => navigate('..')}
-          >
-            {'<'} {t('results:backToMessage')}
-          </Button>
+          <NavigateBack />
         </Box>
         <Box sx={cardStyles.subHeading}>
           <SendSummaryEmail />

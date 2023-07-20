@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { IPAssessmentResult, Locales } from '@backend/types'
-import { Box, Button, Container, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
 import useRecommendations from '../../hooks/useRecommendations'
 import useResults from '../../hooks/useResults'
@@ -16,6 +15,7 @@ import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RecommendationChip from '../Chip/RecommendationChip'
 import Markdown from '../Common/Markdown'
+import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
 import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
@@ -96,7 +96,6 @@ const SectionResults = ({
 
 const IpAssessmentResults = () => {
   const { t, i18n } = useTranslation()
-  const navigate = useNavigate()
   const { survey } = useSurvey('ipAssessment')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
@@ -218,13 +217,7 @@ const IpAssessmentResults = () => {
               results={computerProgramResults}
             />
           </Box>
-          <Button
-            data-cy='ip-assessment-back-to-selections-button'
-            sx={{ m: 1 }}
-            onClick={() => navigate('..')}
-          >
-            {'<'} {t('results:backToMessage')}
-          </Button>
+          <NavigateBack />
         </Box>
         <Box sx={cardStyles.subHeading}>
           <SendSummaryEmail />
