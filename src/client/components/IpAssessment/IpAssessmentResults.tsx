@@ -67,7 +67,12 @@ const SectionResults = ({
 
   return (
     <Box>
-      <Typography variant='h6'>
+      <Typography
+        data-cy={`ip-assessment-${section}-result-title`}
+        variant='h6'
+        sx={resultStyles.heading}
+        component='div'
+      >
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
       {results.map((result) => (
