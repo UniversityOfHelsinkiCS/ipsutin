@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IPAssessmentResult, Locales } from '@backend/types'
@@ -106,6 +106,14 @@ const IpAssessmentResults = () => {
 
   const { language } = i18n
 
+  useEffect(() => {
+    if (recommendationsFetched) {
+      document
+        ?.getElementById('ip-assessment-result-section')
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [recommendationsFetched])
+
   const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
     if (!resultDOMElement) return
 
@@ -166,7 +174,7 @@ const IpAssessmentResults = () => {
   )
 
   return (
-    <Box>
+    <Box id='ip-assessment-result-section'>
       <Box sx={cardStyles.outerBox}>
         <Box sx={resultStyles.resultWrapper}>
           <Container sx={{ mt: 4 }}>

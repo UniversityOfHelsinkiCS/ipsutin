@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
@@ -28,6 +28,14 @@ const IdeaEvaluation = () => {
 
   const mutation = useSaveEntryMutation(survey?.id)
 
+  useEffect(() => {
+    if (!isLoading) {
+      document
+        ?.getElementById('idea-evaluation-main-section')
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [isLoading])
+
   const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
@@ -54,7 +62,7 @@ const IdeaEvaluation = () => {
   if (!survey || isLoading || !faculty) return null
 
   return (
-    <Box sx={formStyles.formWrapper}>
+    <Box id='idea-evaluation-main-section' sx={formStyles.formWrapper}>
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>

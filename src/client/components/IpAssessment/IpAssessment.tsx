@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
@@ -31,6 +31,14 @@ const IpAssessment = () => {
   const { language } = i18n
 
   const mutation = useSaveEntryMutation(survey?.id)
+
+  useEffect(() => {
+    if (!isLoading) {
+      document
+        ?.getElementById('ip-assessment-main-section')
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [isLoading])
 
   const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
@@ -68,7 +76,7 @@ const IpAssessment = () => {
   )
 
   return (
-    <Box sx={formStyles.formWrapper}>
+    <Box id='ip-assessment-main-section' sx={formStyles.formWrapper}>
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>

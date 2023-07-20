@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Locales } from '@backend/types'
@@ -29,11 +29,20 @@ const IdeaEvaluationResults = () => {
   const navigate = useNavigate()
   const { survey } = useSurvey('ideaEvaluation')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
-  const { recommendations, isSuccess } = useRecommendations(survey?.id)
+  const { recommendations, isSuccess: recommendationsFetched } =
+    useRecommendations(survey?.id)
 
   const { resultData } = useIdeaEvaluationResultData()
 
   const { language } = i18n
+
+  useEffect(() => {
+    if (recommendationsFetched) {
+      document
+        ?.getElementById('idea-evaluation-result-section')
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [recommendationsFetched])
 
   const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
     if (!resultDOMElement) return
@@ -47,7 +56,7 @@ const IdeaEvaluationResults = () => {
   if (
     !resultsFetched ||
     !resultData ||
-    !isSuccess ||
+    !recommendationsFetched ||
     !recommendations ||
     !results
   )
@@ -83,7 +92,7 @@ const IdeaEvaluationResults = () => {
     .sort((a, b) => a.id - b.id)
 
   return (
-    <Box>
+    <Box id='idea-evaluation-result-section'>
       <Box sx={cardStyles.outerBox}>
         <Box sx={resultStyles.resultWrapper}>
           <Container sx={{ mt: 4 }}>
