@@ -39,7 +39,7 @@ const ShareResult = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: 'onBlur',
+    mode: 'all',
     resolver: zodResolver(ShareResultsZod),
     defaultValues: {
       emails: [],
