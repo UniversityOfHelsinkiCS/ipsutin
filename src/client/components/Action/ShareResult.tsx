@@ -26,6 +26,7 @@ const ShareResult = () => {
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
+  const routeParts = location.pathname.split('/').filter(Boolean)
   const { cardStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
@@ -49,10 +50,7 @@ const ShareResult = () => {
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
 
-    const templateHTML = generateShareResultsEmail(
-      location.pathname.substring(1),
-      user
-    )
+    const templateHTML = generateShareResultsEmail(routeParts[0], user)
 
     const subject = 'Ipsutin shared results'
     const text = `\

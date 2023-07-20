@@ -15,6 +15,7 @@ const SendSummaryEmail = () => {
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
+  const routeParts = location.pathname.split('/').filter(Boolean)
   const { cardStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
@@ -24,7 +25,7 @@ const SendSummaryEmail = () => {
   }, [resultHTML])
 
   const sendResults = () => {
-    const templateHTML = generateSummaryEmail(location.pathname.substring(1))
+    const templateHTML = generateSummaryEmail(routeParts[0])
 
     const subject = 'Ipsutin summary'
     const targets = [user.email]
