@@ -136,7 +136,7 @@ const LicenceResults = () => {
           <Button
             data-cy='licences-back-to-selections-button'
             sx={{ m: 1 }}
-            onClick={() => navigate(-2)}
+            onClick={() => navigate('..')}
           >
             {'<'} {t('results:backToMessage')}
           </Button>
