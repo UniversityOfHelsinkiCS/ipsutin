@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IPAssessmentResult, Locales } from '@backend/types'
 import { Box, Container, Typography } from '@mui/material'
 
 import useRecommendations from '../../hooks/useRecommendations'
+import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
@@ -101,6 +102,7 @@ const IpAssessmentResults = () => {
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
 
+  const refCallback = useResultRefCallback()
   const { resultData } = useIpAssessmentResultData()
 
   const { language } = i18n
@@ -112,15 +114,6 @@ const IpAssessmentResults = () => {
         ?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [recommendationsFetched])
-
-  const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
-    if (!resultDOMElement) return
-
-    sessionStorage.setItem(
-      'ipsutin-session-resultHTML',
-      resultDOMElement.innerHTML
-    )
-  }, [])
 
   if (
     !results ||
