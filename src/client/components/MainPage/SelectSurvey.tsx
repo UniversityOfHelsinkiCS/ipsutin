@@ -48,6 +48,8 @@ const SelectSurvey = () => {
     })
   }
 
+  if (faculty === 'null') return null
+
   return (
     <Box sx={cardStyles.card}>
       <Box sx={cardStyles.content}>
