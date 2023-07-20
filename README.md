@@ -1,4 +1,4 @@
-# Ipsutin
+# <img src=./public/pirated_eagle.gif width=100px /> Ipsutin [![Deploy to production](https://github.com/UniversityOfHelsinkiCS/ipsutin/actions/workflows/production.yml/badge.svg)](https://github.com/UniversityOfHelsinkiCS/ipsutin/actions/workflows/production.yml) [![Deploy to staging](https://github.com/UniversityOfHelsinkiCS/ipsutin/actions/workflows/staging.yml/badge.svg)](https://github.com/UniversityOfHelsinkiCS/ipsutin/actions/workflows/staging.yml) [![E2E Tests](https://github.com/UniversityOfHelsinkiCS/ipsutin/actions/workflows/test.yml/badge.svg)](https://github.com/UniversityOfHelsinkiCS/ipsutin/actions/workflows/test.yml)
 
 ## Requirements
 
