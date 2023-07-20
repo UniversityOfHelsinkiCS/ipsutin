@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Locales, RecommendationLabel } from '@backend/types'
@@ -35,6 +35,14 @@ const LicenceResults = () => {
   const { resultData } = useLicenceResultData()
 
   const { language } = i18n
+
+  useEffect(() => {
+    if (recommendationsFetched) {
+      document
+        ?.getElementById('licences-result-section')
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [recommendationsFetched])
 
   const refCallback = useCallback((resultDOMElement: HTMLDivElement) => {
     if (!resultDOMElement) return
@@ -84,7 +92,7 @@ const LicenceResults = () => {
     .sort((a, b) => a.id - b.id)
 
   return (
-    <Box>
+    <Box id='licences-result-section'>
       <Box sx={cardStyles.outerBox}>
         <Box sx={resultStyles.resultWrapper}>
           <Container sx={{ mt: 4 }}>
