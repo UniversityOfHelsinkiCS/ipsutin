@@ -37,3 +37,6 @@ export const sortRecommendations = (
       if (scoreA > scoreB) return -1
       return 0
     })
+
+export const getRecommendationLabels = (recommendations: Recommendation[]) =>
+  recommendations.map((recommendation) => recommendation.label)
