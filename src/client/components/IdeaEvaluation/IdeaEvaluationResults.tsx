@@ -9,9 +9,11 @@ import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import {
+  getRecommendationLabels,
   getRecommendationScores,
   sortRecommendations,
 } from '../../util/recommendations'
+import { getCommonResult, getResultsWithLabels } from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RecommendationChip from '../Chip/RecommendationChip'
@@ -54,6 +56,8 @@ const IdeaEvaluationResults = () => {
   )
     return null
 
+  const commonResult = getCommonResult(results)
+
   const recommendationScores = getRecommendationScores(
     resultData,
     recommendations
@@ -64,24 +68,15 @@ const IdeaEvaluationResults = () => {
     recommendationScores
   )
 
-  const commonResult = results.find((result) => result.optionLabel === 'common')
+  const recommendationLabels = getRecommendationLabels(sortedRecommendations)
 
-  const filteredResults = results.filter((result) =>
-    Object.values(resultData).includes(result.optionLabel)
-  )
-
-  const recommendationLabels = sortedRecommendations.map(
-    (recommendation) => recommendation.label
+  const sortedResultsWithLabels = getResultsWithLabels(
+    results,
+    resultData,
+    recommendationLabels
   )
 
   const recommendedAction = recommendationLabels[0]
-
-  const sortedResultsWithLabels = filteredResults
-    .map((result) => ({
-      ...result,
-      labels: recommendationLabels,
-    }))
-    .sort((a, b) => a.id - b.id)
 
   return (
     <Box id='idea-evaluation-result-section'>
