@@ -16,9 +16,7 @@ const Service = ({ title, content }: ServiceProps) => (
     <Typography variant='h6' sx={cardStyles.heading} component='div'>
       {title}
     </Typography>
-    <Markdown sx={cardStyles.content} variant='body2'>
-      {content}
-    </Markdown>
+    <Markdown>{content}</Markdown>
   </Box>
 )
 

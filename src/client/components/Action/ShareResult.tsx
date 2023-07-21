@@ -78,9 +78,7 @@ const ShareResult = () => {
       <Typography variant='h6' sx={cardStyles.heading} component='div'>
         {t('extraAction:shareResultsTitle')}
       </Typography>
-      <Markdown sx={cardStyles.content} variant='body2'>
-        {t('extraAction:shareResultsContent')}
-      </Markdown>
+      <Markdown>{t('extraAction:shareResultsContent')}</Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
