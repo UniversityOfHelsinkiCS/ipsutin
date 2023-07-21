@@ -55,9 +55,9 @@ const SendContactTicket = ({
         ${t('contact:contactTicketSenderEmail')} ${user?.email} \
       </strong> \
       <strong>
-        ${t('contact:contactTicketSenderFullname')} ${user?.firstName} ${
-      user?.lastName
-    } \
+        ${t(
+          'contact:contactTicketSenderFullname'
+        )} ${user?.firstName} ${user?.lastName} \
       </strong> \
     </p> \
     <p> \
@@ -90,9 +90,7 @@ const SendContactTicket = ({
       <Typography variant='h6' sx={cardStyles.heading} component='div'>
         {title}
       </Typography>
-      <Markdown sx={cardStyles.content} variant='body2'>
-        {content}
-      </Markdown>
+      <Markdown>{content}</Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
