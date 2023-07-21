@@ -32,7 +32,11 @@ const defaultComponents = {
   h4: H4,
 }
 
-const Markdown = ({ children, ...props }: any) => {
+interface MarkdownProps {
+  children: string
+}
+
+const Markdown = ({ children, ...rest }: MarkdownProps) => {
   if (!children) return null
 
   // https://stackoverflow.com/questions/69026492/adding-multiple-line-break-in-react-markdown
@@ -43,7 +47,7 @@ const Markdown = ({ children, ...props }: any) => {
       remarkPlugins={[remarkBreaks]}
       components={{ ...defaultComponents }}
       linkTarget='_blank'
-      {...props}
+      {...rest}
     >
       {content}
     </ReactMarkdown>
