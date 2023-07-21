@@ -9,9 +9,11 @@ import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import {
+  getRecommendationLabels,
   getRecommendationScores,
   sortRecommendations,
 } from '../../util/recommendations'
+import { getCommonResult, getResultsWithLabels } from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RecommendationChip from '../Chip/RecommendationChip'
@@ -124,6 +126,8 @@ const IpAssessmentResults = () => {
   )
     return null
 
+  const commonResult = getCommonResult(results)
+
   const recommendationScores = getRecommendationScores(
     resultData,
     recommendations
@@ -134,22 +138,12 @@ const IpAssessmentResults = () => {
     recommendationScores
   )
 
-  const commonResult = results.find((result) => result.optionLabel === 'common')
+  const recommendationLabels = getRecommendationLabels(sortedRecommendations)
 
-  const filteredResults = results.filter((result) =>
-    Object.values(resultData).includes(result.optionLabel)
-  ) as unknown as IPAssessmentResult[]
-
-  const recommendationLabels = sortedRecommendations.map(
-    (recommendation) => recommendation.label
-  )
-
-  const sortedResultsWithLabels = filteredResults
-    .map((result) => ({
-      ...result,
-      labels: ['allDimensions', ...recommendationLabels],
-    }))
-    .sort((a, b) => a.id - b.id)
+  const sortedResultsWithLabels = getResultsWithLabels(results, resultData, [
+    'allDimensions',
+    ...recommendationLabels,
+  ])
 
   const recommendedAction = recommendationLabels[0]
 
