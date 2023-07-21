@@ -168,7 +168,7 @@ const recommendationStyles = {
     borderColor: 'grey.300',
     m: 2,
     px: 2,
-    top: '8rem',
+    top: '1rem',
     textAlign: 'left',
     position: 'sticky',
   },
