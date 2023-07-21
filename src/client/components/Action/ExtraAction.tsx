@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { RecommendationLabel } from '@backend/types'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import styles from '../../styles'
 import { SurveyName } from '../../types'
+import LinkWithQuery from '../Common/LinkWithQuery'
 
 import Suggestion from './Suggestion'
 
@@ -36,38 +36,32 @@ const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
   const components: { [key in SurveyName]?: ReactElement } = {
     ideaEvaluation: (
       <Suggestion>
-        <Button
+        <LinkWithQuery
           data-cy='suggestion-to-ipassessment-button'
-          variant='contained'
-          component={Link}
           to='/ipassessment'
         >
           {t('surveyNames:ipAssessment')}
-        </Button>
+        </LinkWithQuery>
       </Suggestion>
     ),
     licenses: (
       <Suggestion>
-        <Button
+        <LinkWithQuery
           data-cy='suggestion-to-ideaevaluation-button'
-          variant='contained'
-          component={Link}
           to='/ideaevaluation'
         >
           {t('surveyNames:ideaEvaluation')}
-        </Button>
+        </LinkWithQuery>
       </Suggestion>
     ),
     ipAssessment: (
       <Suggestion>
-        <Button
+        <LinkWithQuery
           data-cy='suggestion-to-ideaevaluation-button'
-          variant='contained'
-          component={Link}
           to='/ideaevaluation'
         >
           {t('surveyNames:ideaEvaluation')}
-        </Button>
+        </LinkWithQuery>
       </Suggestion>
     ),
   }
