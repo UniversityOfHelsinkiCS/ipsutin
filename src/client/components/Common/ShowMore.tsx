@@ -18,12 +18,12 @@ const ShowMore = ({
 
   return (
     <>
-      <IconButton sx={{ ml: 2 }} onClick={() => setExpand(!expand)}>
+      <IconButton onClick={() => setExpand(!expand)}>
         <HelpOutlineIcon />
         {!expand ? <ExpandMore /> : <ExpandLess />}
       </IconButton>
       <Collapse in={expand} timeout='auto'>
-        <Box sx={{ mt: 2 }}>
+        <Box sx={{ my: 2, pl: 2 }}>
           <Markdown>{text}</Markdown>
         </Box>
       </Collapse>
