@@ -57,7 +57,7 @@ const cardStyles = {
   },
   subHeading: {
     fontWeight: '200',
-    mt: 8,
+    mt: 4,
     mx: 4,
     mb: 2,
     pl: 2,
