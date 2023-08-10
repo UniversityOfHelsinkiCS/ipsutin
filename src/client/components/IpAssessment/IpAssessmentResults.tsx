@@ -20,7 +20,6 @@ import RecommendationChip from '../Chip/RecommendationChip'
 import Markdown from '../Common/Markdown'
 import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
-import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 
 import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
@@ -207,7 +206,6 @@ const IpAssessmentResults = () => {
           <NavigateBack />
         </Box>
         <Box sx={cardStyles.subHeading}>
-          <SendSummaryEmail />
           <Contact action={recommendedAction} />
           <ExtraAction action={recommendedAction} surveyName='ipAssessment' />
           <ShareResult />

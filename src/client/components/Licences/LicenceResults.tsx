@@ -19,7 +19,6 @@ import ShareResult from '../Action/ShareResult'
 import RecommendationChip from '../Chip/RecommendationChip'
 import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
-import SendSummaryEmail from '../Contact/SendSummaryEmail'
 import CommonResult from '../InteractiveForm/CommonResult'
 import ResultElement from '../InteractiveForm/ResultElement'
 
@@ -122,7 +121,6 @@ const LicenceResults = () => {
           <NavigateBack />
         </Box>
         <Box sx={cardStyles.subHeading}>
-          <SendSummaryEmail />
           <Contact action={recommendedAction} />
           <ExtraAction action={recommendedAction} surveyName='licenses' />
           <ShareResult />

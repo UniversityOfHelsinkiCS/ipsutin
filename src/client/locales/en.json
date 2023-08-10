@@ -7,12 +7,6 @@
     "openForm": "Proceed to the questions",
     "admin": "Admin"
   },
-  "summary": {
-    "summaryEmailInfoText": "Would you like to have the summary send to your email",
-    "sendSummaryMail": "Send summary email",
-    "pateSuccessMessage": "Summary email sent to {{ email }}",
-    "pateErrorMessage": "Could not send summary email"
-  },
   "contact": {
     "submit": "Request appointment",
     "clinicTitle": "Request appointment with Idea Clinic",
@@ -40,10 +34,10 @@
   },
   "extraAction": {
     "title": "Based on your selections you may also be interested in these",
-    "shareResultsTitle": "If you would like to share your results fill in the emails below",
+    "shareResultsTitle": "Would you like to have the summary send to your email or share your results with others",
     "shareResultsContent": "New emails are inputted by typing the email address and pressing enter",
-    "shareResultInputPlaceholder": "Type in a new email...",
-    "shareResultSendEmails": "Send emails",
+    "shareResultInputPlaceholder": "Type in email addresses to share",
+    "shareResultSendEmails": "Send summary email",
     "pateSuccessMessage": "Shared results with provided email addresses",
     "pateErrorMessage": "Could not share results"
   },

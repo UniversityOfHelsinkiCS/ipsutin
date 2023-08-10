@@ -31,12 +31,9 @@ const ShareResult = () => {
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
 
-  useEffect(() => {
-    setIsSent(false)
-  }, [resultHTML])
-
   const {
     control,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -46,6 +43,14 @@ const ShareResult = () => {
       emails: [],
     },
   })
+
+  useEffect(() => {
+    setIsSent(false)
+  }, [resultHTML])
+
+  useEffect(() => {
+    if (user?.email) reset({ emails: [user.email] })
+  }, [reset, user])
 
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
