@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import useLoggedInUser from '../../hooks/useLoggedInUser'
-import styles from '../../styles'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
 
@@ -23,8 +22,6 @@ const SendContactTicket = ({
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
-
-  const { cardStyles } = styles
 
   const {
     control,
@@ -87,9 +84,9 @@ const SendContactTicket = ({
 
   return (
     <Box>
-      <Typography variant='h6' sx={cardStyles.heading} component='div'>
-        {title}
-      </Typography>
+      <Box sx={{ mb: 1 }}>
+        <Markdown>{title}</Markdown>
+      </Box>
       <Markdown>{content}</Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>
