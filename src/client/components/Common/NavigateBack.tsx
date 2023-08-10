@@ -18,7 +18,7 @@ const NavigateBack = () => {
   return (
     <Button
       data-cy='back-to-survey-button'
-      sx={{ m: 1 }}
+      sx={{ ml: 2 }}
       onClick={onNavigateBack}
     >
       {'<'} {t('results:backToMessage')}
