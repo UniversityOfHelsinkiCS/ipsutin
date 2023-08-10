@@ -11,7 +11,13 @@ const LinkWithQuery = ({ to, children, ...rest }: LinkWithQueryProps) => {
   const { search } = useLocation()
 
   return (
-    <Button variant='contained' component={Link} to={to + search} {...rest}>
+    <Button
+      variant='contained'
+      target='_blank'
+      component={Link}
+      to={to + search}
+      {...rest}
+    >
       {children}
     </Button>
   )
