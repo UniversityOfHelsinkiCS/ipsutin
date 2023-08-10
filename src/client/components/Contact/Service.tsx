@@ -1,22 +1,21 @@
-import React from 'react'
-import { Box, Typography } from '@mui/material'
+import React, { ReactNode } from 'react'
+import { Box } from '@mui/material'
 
-import styles from '../../styles'
 import Markdown from '../Common/Markdown'
 
 interface ServiceProps {
   title: string
   content: string
+  children?: ReactNode
 }
 
-const { cardStyles } = styles
-
-const Service = ({ title, content }: ServiceProps) => (
+const Service = ({ title, content, children }: ServiceProps) => (
   <Box>
-    <Typography variant='h6' sx={cardStyles.heading} component='div'>
-      {title}
-    </Typography>
+    <Box sx={{ mb: 1 }}>
+      <Markdown>{title}</Markdown>
+    </Box>
     <Markdown>{content}</Markdown>
+    {children}
   </Box>
 )
 
