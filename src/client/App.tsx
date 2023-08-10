@@ -1,10 +1,10 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import { SnackbarProvider } from 'notistack'
 
 import Footer from './components/Footer'
-import MainPage from './components/MainPage/MainPage'
 import NavBar from './components/NavBar/NavBar'
 import useTheme from './theme'
 
@@ -28,7 +28,7 @@ const App = () => {
             alignItems='center'
             minHeight='50vh'
           >
-            <MainPage />
+            <Outlet />
           </Box>
           <Footer />
         </Box>

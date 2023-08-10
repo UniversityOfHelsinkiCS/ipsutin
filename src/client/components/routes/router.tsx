@@ -2,12 +2,14 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
+import Admin from '../Admin/Admin'
 import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
 import IdeaEvaluationResults from '../IdeaEvaluation/IdeaEvaluationResults'
 import IpAssessment from '../IpAssessment/IpAssessment'
 import IpAssessmentResults from '../IpAssessment/IpAssessmentResults'
 import LicenceResults from '../Licences/LicenceResults'
 import Licences from '../Licences/Licences'
+import MainPage from '../MainPage/MainPage'
 
 const router = createBrowserRouter(
   [
@@ -16,43 +18,53 @@ const router = createBrowserRouter(
       element: <App />,
       children: [
         {
-          path: 'licences',
+          path: '',
+          element: <MainPage />,
           children: [
             {
-              index: true,
-              element: <Licences />,
+              path: 'licences',
+              children: [
+                {
+                  index: true,
+                  element: <Licences />,
+                },
+                {
+                  path: 'results',
+                  element: <LicenceResults />,
+                },
+              ],
             },
             {
-              path: 'results',
-              element: <LicenceResults />,
+              path: 'ipassessment',
+              children: [
+                {
+                  index: true,
+                  element: <IpAssessment />,
+                },
+                {
+                  path: 'results',
+                  element: <IpAssessmentResults />,
+                },
+              ],
+            },
+            {
+              path: 'ideaevaluation',
+              children: [
+                {
+                  index: true,
+                  element: <IdeaEvaluation />,
+                },
+                {
+                  path: 'results',
+                  element: <IdeaEvaluationResults />,
+                },
+              ],
             },
           ],
         },
         {
-          path: 'ipassessment',
-          children: [
-            {
-              index: true,
-              element: <IpAssessment />,
-            },
-            {
-              path: 'results',
-              element: <IpAssessmentResults />,
-            },
-          ],
-        },
-        {
-          path: 'ideaevaluation',
-          children: [
-            {
-              index: true,
-              element: <IdeaEvaluation />,
-            },
-            {
-              path: 'results',
-              element: <IdeaEvaluationResults />,
-            },
-          ],
+          path: '/admin',
+          element: <Admin />,
         },
       ],
     },
