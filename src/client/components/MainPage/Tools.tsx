@@ -20,19 +20,19 @@ const Tools = () => {
         {t('sideBarServices:services')}
       </Typography>
       <Box sx={recommendationStyles.recommendationBox}>
-        <Markdown>{t('sideBarServices:inventionDisclosure')}</Markdown>
+        <Markdown>{t('sideBarServices:disclosure')}</Markdown>
       </Box>
       <Box sx={recommendationStyles.recommendationBox}>
-        <Markdown>{t('sideBarServices:ideaClinic')}</Markdown>
+        <Markdown>{t('sideBarServices:clinic')}</Markdown>
       </Box>
       <Box sx={recommendationStyles.recommendationBox}>
         <Markdown>{t('sideBarServices:incubator')}</Markdown>
       </Box>
       <Box sx={recommendationStyles.recommendationBox}>
-        <Markdown>{t('sideBarServices:businessCollaborationTeam')}</Markdown>
+        <Markdown>{t('sideBarServices:relations')}</Markdown>
       </Box>
       <Box sx={recommendationStyles.recommendationBox}>
-        <Markdown>{t('sideBarServices:lawyers')}</Markdown>
+        <Markdown>{t('sideBarServices:legal')}</Markdown>
       </Box>
     </Box>
   )
