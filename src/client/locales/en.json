@@ -8,6 +8,7 @@
     "admin": "Admin"
   },
   "contact": {
+    "title": "Recommended action",
     "submit": "Request appointment",
     "clinicTitle": "Request appointment with Idea Clinic",
     "clinicContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response",
@@ -69,6 +70,15 @@
     "ipAssessment": "Patentability evaluation consists of three distinct domains, meeting the patentability criteria in one domain is sufficient for patentability. Patentability evaluation or invention disclosure may or may not result in patent application.",
     "licences": "Software licensing evaluation will assist on going through some of the elementary license selection questions. An Idea Clinic meeting is highly recommended for all situation involving companies or potential commercial use of the software / intellectual property.",
     "ideaEvaluation": ""
+  },
+  "services": {
+    "disclosure": "Invention Disclosure",
+    "disclosureExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus",
+    "clinic": "Idea Clinic",
+    "incubator": "Incubator and Entrepreneurship Services",
+    "incubatorExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut",
+    "relations": "Business Collaboration Team",
+    "relationsExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet"
   },
   "sideBarServices": {
     "services": "Services",

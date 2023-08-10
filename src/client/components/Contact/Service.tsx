@@ -15,7 +15,7 @@ const Service = ({ title, content, children }: ServiceProps) => (
       <Markdown>{title}</Markdown>
     </Box>
     <Markdown>{content}</Markdown>
-    {children}
+    <Box sx={{ mt: 2 }}>{children}</Box>
   </Box>
 )
 
