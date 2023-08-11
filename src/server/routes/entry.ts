@@ -1,6 +1,6 @@
 import express from 'express'
 
-import accessHandler from '../middeware/admin'
+import accessHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry } from '../services/entry'
 import { RequestWithUser } from '../types'
 
