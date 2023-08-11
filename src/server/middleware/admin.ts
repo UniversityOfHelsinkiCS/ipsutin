@@ -2,7 +2,7 @@ import { NextFunction, Response } from 'express'
 
 import { RequestWithUser } from '../types'
 
-const accessHandler = (
+const adminHandler = (
   req: RequestWithUser,
   res: Response,
   next: NextFunction
@@ -12,4 +12,4 @@ const accessHandler = (
   return next()
 }
 
-export default accessHandler
+export default adminHandler

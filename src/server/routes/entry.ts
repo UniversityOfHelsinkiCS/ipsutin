@@ -1,12 +1,12 @@
 import express from 'express'
 
-import accessHandler from '../middleware/admin'
+import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry } from '../services/entry'
 import { RequestWithUser } from '../types'
 
 const entryRouter = express.Router()
 
-entryRouter.get('/', accessHandler, async (req: RequestWithUser, res) => {
+entryRouter.get('/', adminHandler, async (req: RequestWithUser, res) => {
   const entries = await getEntries()
 
   return res.status(200).send(entries)
@@ -14,7 +14,7 @@ entryRouter.get('/', accessHandler, async (req: RequestWithUser, res) => {
 
 entryRouter.get(
   '/:entryId',
-  accessHandler,
+  adminHandler,
   async (req: RequestWithUser, res) => {
     const { entryId } = req.params
 
