@@ -1,15 +1,15 @@
 import express from 'express'
 
-import { Entry } from '../db/models'
 import accessHandler from '../middeware/admin'
+import { createEntry, getEntries, getEntry } from '../services/entry'
 import { RequestWithUser } from '../types'
 
 const entryRouter = express.Router()
 
 entryRouter.get('/', accessHandler, async (req: RequestWithUser, res) => {
-  const entry = await Entry.findAll({})
+  const entries = await getEntries()
 
-  return res.status(200).send(entry)
+  return res.status(200).send(entries)
 })
 
 entryRouter.get(
@@ -18,9 +18,7 @@ entryRouter.get(
   async (req: RequestWithUser, res) => {
     const { entryId } = req.params
 
-    const entry = await Entry.findByPk(entryId)
-
-    if (!entry) throw new Error('Entry not found')
+    const entry = await getEntry(entryId)
 
     return res.status(200).send(entry)
   }
@@ -28,30 +26,10 @@ entryRouter.get(
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res) => {
   const { surveyId } = req.params
-  const { data, sessionToken } = req.body
 
-  const existingEntry = await Entry.findOne({
-    where: {
-      surveyId,
-      sessionToken,
-    },
-  })
+  const entry = await createEntry(surveyId, req.body)
 
-  if (existingEntry) {
-    await existingEntry.update({
-      data,
-    })
-
-    return res.status(200).send(existingEntry)
-  }
-
-  const newEntry = await Entry.create({
-    surveyId: Number(surveyId),
-    data,
-    sessionToken,
-  })
-
-  return res.status(201).send(newEntry)
+  return res.status(201).send(entry)
 })
 
 export default entryRouter
