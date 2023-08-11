@@ -27,6 +27,7 @@ export interface InputProps {
 
 export interface FormValues {
   [key: number]: Record<string, { [key: string]: boolean }>
+  faculty?: string
 }
 
 export type SingleChoiceType = {
