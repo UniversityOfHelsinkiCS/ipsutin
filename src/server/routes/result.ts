@@ -1,17 +1,13 @@
 import express from 'express'
 
-import { Result } from '../db/models'
+import { getResults } from '../services/result'
 
 const resultRouter = express.Router()
 
 resultRouter.get('/:surveyId', async (req, res) => {
   const { surveyId } = req.params
 
-  const results = await Result.findAll({
-    where: {
-      surveyId,
-    },
-  })
+  const results = await getResults(surveyId)
 
   return res.send(results)
 })

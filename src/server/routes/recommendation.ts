@@ -1,17 +1,13 @@
 import express from 'express'
 
-import { Recommendation } from '../db/models'
+import { getRecommendations } from '../services/recommendation'
 
 const recommendationRouter = express.Router()
 
 recommendationRouter.get('/:surveyId', async (req, res) => {
   const { surveyId } = req.params
 
-  const recommendations = await Recommendation.findAll({
-    where: {
-      surveyId,
-    },
-  })
+  const recommendations = await getRecommendations(surveyId)
 
   return res.send(recommendations)
 })
