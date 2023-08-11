@@ -1,9 +1,30 @@
 import express from 'express'
 
 import { Entry } from '../db/models'
+import accessHandler from '../middeware/admin'
 import { RequestWithUser } from '../types'
 
 const entryRouter = express.Router()
+
+entryRouter.get('/', accessHandler, async (req: RequestWithUser, res) => {
+  const entry = await Entry.findAll({})
+
+  return res.status(200).send(entry)
+})
+
+entryRouter.get(
+  '/:entryId',
+  accessHandler,
+  async (req: RequestWithUser, res) => {
+    const { entryId } = req.params
+
+    const entry = await Entry.findByPk(entryId)
+
+    if (!entry) throw new Error('Entry not found')
+
+    return res.status(200).send(entry)
+  }
+)
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res) => {
   const { surveyId } = req.params
