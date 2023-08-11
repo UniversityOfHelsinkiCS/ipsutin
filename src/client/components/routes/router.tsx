@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
 import Admin from '../Admin/Admin'
+import RenderEntries from '../Admin/Entries/RenderEntries'
 import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
 import IdeaEvaluationResults from '../IdeaEvaluation/IdeaEvaluationResults'
 import IpAssessment from '../IpAssessment/IpAssessment'
@@ -65,6 +66,12 @@ const router = createBrowserRouter(
         {
           path: '/admin',
           element: <Admin />,
+          children: [
+            {
+              path: 'entries',
+              element: <RenderEntries />,
+            },
+          ],
         },
       ],
     },

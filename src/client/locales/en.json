@@ -1,6 +1,8 @@
 {
   "admin": {
-    "indexTab": "Admin"
+    "indexTab": "Analytics",
+    "entryTab": "Entries",
+    "entriesTitle": "Entries"
   },
   "common": {
     "appName": "Ipsutin",
