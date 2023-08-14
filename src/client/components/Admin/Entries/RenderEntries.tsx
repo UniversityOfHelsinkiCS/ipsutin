@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridRowSelectionModel } from '@mui/x-data-grid'
 
 import { useEntries } from '../../../hooks/useEntry'
 import { Survey } from '../../../types'
@@ -9,10 +9,12 @@ import { Survey } from '../../../types'
 const RenderEntries = () => {
   const { t } = useTranslation()
   const { entries, isLoading } = useEntries()
+  const [rowSelectionModel, setRowSelectionModel] =
+    React.useState<GridRowSelectionModel>([])
 
   if (isLoading || !entries) return null
 
-  // console.log(entries)
+  console.log(rowSelectionModel)
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -51,7 +53,7 @@ const RenderEntries = () => {
           {t('admin:entriesTitle')}
         </Typography>
       </Box>
-      <Box sx={{ mt: 4, mx: 4 }}>
+      <Box sx={{ mt: 4, mx: 4, height: '75vh' }}>
         <DataGrid
           rows={entries}
           columns={columns}
@@ -63,8 +65,9 @@ const RenderEntries = () => {
             },
           }}
           pageSizeOptions={[10, 25, 50, 100]}
-          checkboxSelection
-          disableRowSelectionOnClick
+          onRowSelectionModelChange={(newRowSelectionModel) => {
+            setRowSelectionModel(newRowSelectionModel)
+          }}
         />
       </Box>
     </Box>
