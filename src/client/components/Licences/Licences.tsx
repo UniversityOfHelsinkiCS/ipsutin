@@ -19,7 +19,7 @@ const Licences = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams] = useSearchParams()
-  const { survey, isLoading } = useSurvey('licenses')
+  const { survey, isLoading } = useSurvey('licences')
 
   const { resultData, setResultData } = useLicenceResultData()
 

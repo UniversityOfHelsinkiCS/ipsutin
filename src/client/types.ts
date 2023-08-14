@@ -42,7 +42,7 @@ export interface MultipleChoiceType extends SingleChoiceType {
   data: Locales
 }
 
-export type SurveyName = 'licenses' | 'ideaEvaluation' | 'ipAssessment'
+export type SurveyName = 'licences' | 'ideaEvaluation' | 'ipAssessment'
 
 export interface Survey {
   id: number

@@ -7,7 +7,7 @@ const surveys = [
   },
   {
     id: 2,
-    name: 'licenses',
+    name: 'licences',
   },
   {
     id: 3,
