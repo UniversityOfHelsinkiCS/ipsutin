@@ -1,10 +1,10 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
 
 import { useEntries } from '../../../hooks/useEntry'
-
-import EntryItem from './EntryItem'
+import { Survey } from '../../../types'
 
 const RenderEntries = () => {
   const { t } = useTranslation()
@@ -12,7 +12,33 @@ const RenderEntries = () => {
 
   if (isLoading || !entries) return null
 
-  console.log(entries)
+  // console.log(entries)
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 90 },
+    {
+      field: 'Survey',
+      headerName: 'Survey',
+      width: 300,
+      valueGetter: ({ value }: { value: Survey }) =>
+        t(`surveyNames:${value.name}`),
+    },
+    {
+      field: 'createdAt',
+      headerName: 'Created',
+      width: 250,
+    },
+    {
+      field: 'updatedAt',
+      headerName: 'Updated',
+      width: 250,
+    },
+    {
+      field: 'sessionToken',
+      headerName: 'Session identifier',
+      width: 150,
+    },
+  ]
 
   return (
     <Box sx={{ mx: 2, mt: 8 }}>
@@ -22,9 +48,20 @@ const RenderEntries = () => {
         </Typography>
       </Box>
       <Box sx={{ mt: 4, mx: 4 }}>
-        {entries.map((entry) => (
-          <EntryItem key={entry.id} entry={entry} />
-        ))}
+        <DataGrid
+          rows={entries}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 25,
+              },
+            },
+          }}
+          pageSizeOptions={[10, 25, 50, 100]}
+          checkboxSelection
+          disableRowSelectionOnClick
+        />
       </Box>
     </Box>
   )
