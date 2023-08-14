@@ -71,6 +71,10 @@ const router = createBrowserRouter(
               path: 'entries',
               element: <RenderEntries />,
             },
+            {
+              path: 'entries/view/:entryId',
+              element: <>asdf</>,
+            },
           ],
         },
       ],

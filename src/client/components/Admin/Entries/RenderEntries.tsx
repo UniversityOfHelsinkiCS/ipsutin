@@ -1,6 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { Box, Button } from '@mui/material'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { DataGrid, GridRowSelectionModel } from '@mui/x-data-grid'
 
 import { useEntries } from '../../../hooks/useEntry'
@@ -10,11 +12,9 @@ const RenderEntries = () => {
   const { t } = useTranslation()
   const { entries, isLoading } = useEntries()
   const [rowSelectionModel, setRowSelectionModel] =
-    React.useState<GridRowSelectionModel>([])
+    React.useState<GridRowSelectionModel>()
 
   if (isLoading || !entries) return null
-
-  console.log(rowSelectionModel)
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -47,12 +47,24 @@ const RenderEntries = () => {
   ]
 
   return (
-    <Box sx={{ mx: 2, mt: 8 }}>
-      <Box sx={{ my: 4 }}>
-        <Typography sx={{ my: 4, pl: 1 }} variant='h4'>
-          {t('admin:entriesTitle')}
-        </Typography>
-      </Box>
+    <Box sx={{ mx: 2 }}>
+      {rowSelectionModel && (
+        <Button
+          component={Link}
+          to={`./view/${rowSelectionModel[0]}`}
+          sx={{
+            position: 'absolute',
+            top: '120px',
+            right: 0,
+            mr: 6,
+            alignSelf: 'center',
+          }}
+          variant='contained'
+          onClick={() => {}}
+        >
+          {t('admin:viewSelectedEntry')}
+        </Button>
+      )}
       <Box sx={{ mt: 4, mx: 4, height: '75vh' }}>
         <DataGrid
           rows={entries}
