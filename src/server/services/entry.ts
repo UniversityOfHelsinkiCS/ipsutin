@@ -2,7 +2,7 @@ import { NewEntry, NewEntryZod } from '../../validators/entries'
 import { Entry } from '../db/models'
 
 export const getEntries = async (): Promise<Entry[]> => {
-  const entries = await Entry.findAll({})
+  const entries = await Entry.findAll({ order: [['updatedAt', 'DESC']] })
 
   return entries
 }
