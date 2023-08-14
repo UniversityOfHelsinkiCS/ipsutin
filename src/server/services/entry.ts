@@ -1,8 +1,11 @@
 import { NewEntry, NewEntryZod } from '../../validators/entries'
-import { Entry } from '../db/models'
+import { Entry, Survey } from '../db/models'
 
 export const getEntries = async (): Promise<Entry[]> => {
-  const entries = await Entry.findAll({ order: [['updatedAt', 'DESC']] })
+  const entries = await Entry.findAll({
+    include: Survey,
+    order: [['updatedAt', 'DESC']],
+  })
 
   return entries
 }
