@@ -27,11 +27,15 @@ const RenderEntries = () => {
       field: 'createdAt',
       headerName: 'Created',
       width: 250,
+      valueFormatter: ({ value }: { value: Date }) =>
+        new Date(value).toLocaleString(),
     },
     {
       field: 'updatedAt',
       headerName: 'Updated',
       width: 250,
+      valueFormatter: ({ value }: { value: Date }) =>
+        new Date(value).toLocaleString(),
     },
     {
       field: 'sessionToken',
