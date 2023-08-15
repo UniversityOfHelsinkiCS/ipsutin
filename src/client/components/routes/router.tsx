@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
 import Admin from '../Admin/Admin'
+import Entry from '../Admin/Entries/Entry'
 import RenderEntries from '../Admin/Entries/RenderEntries'
 import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
 import IdeaEvaluationResults from '../IdeaEvaluation/IdeaEvaluationResults'
@@ -73,7 +74,7 @@ const router = createBrowserRouter(
             },
             {
               path: 'entries/view/:entryId',
-              element: <>asdf</>,
+              element: <Entry />,
             },
           ],
         },
