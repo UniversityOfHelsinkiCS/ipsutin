@@ -21,7 +21,7 @@ import Markdown from '../Common/Markdown'
 import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
 import CommonResult from '../InteractiveForm/CommonResult'
-import IpAssessmentResultElement from '../InteractiveForm/IpAssessmentResultElement'
+import ResultElement from '../InteractiveForm/ResultElement'
 
 import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
@@ -54,10 +54,11 @@ const IpAssessmentSectionResults = ({
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
       {results.map((result) => (
-        <IpAssessmentResultElement
+        <ResultElement
           key={result.id}
           language={language as keyof Locales}
           resultData={result}
+          dimensions={[]}
         />
       ))}
 
