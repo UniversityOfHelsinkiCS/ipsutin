@@ -1,17 +1,17 @@
 import getAssessmentRecommendations from '../../data/assessmentRecommendations'
 import getIeRecommendations from '../../data/ieRecommendations'
-import getLicenseRecommendations from '../../data/licenseRecommendations'
+import getLicenceRecommendations from '../../data/licenceRecommendations'
 import { Recommendation } from '../models'
 
 const seedRecommendations = async () => {
   const ieRecommendations = getIeRecommendations()
-  const licenseRecommendations = getLicenseRecommendations()
+  const licenceRecommendations = getLicenceRecommendations()
   const assessmentRecommendations = getAssessmentRecommendations()
 
   const recommendations = [
     ...assessmentRecommendations,
     ...ieRecommendations,
-    ...licenseRecommendations,
+    ...licenceRecommendations,
   ]
 
   recommendations.forEach(async (recommendation) => {
