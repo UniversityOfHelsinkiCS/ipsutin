@@ -25,7 +25,7 @@ const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
   // recommend Idea Evaluation when action is not to book Idea Clinic.
   if (
     action === 'clinic' &&
-    (surveyName === 'licenses' || surveyName === 'ipAssessment')
+    (surveyName === 'licences' || surveyName === 'ipAssessment')
   )
     return null
 
@@ -44,7 +44,7 @@ const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
         </LinkWithQuery>
       </Suggestion>
     ),
-    licenses: (
+    licences: (
       <Suggestion>
         <LinkWithQuery
           data-cy='suggestion-to-ideaevaluation-button'

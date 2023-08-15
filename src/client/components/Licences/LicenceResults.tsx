@@ -76,6 +76,8 @@ const LicenceResults = () => {
 
   const recommendedAction = recommendationLabels[0]
 
+  console.log(recommendedAction)
+
   return (
     <Box id='licences-result-section'>
       <Box sx={cardStyles.outerBox}>

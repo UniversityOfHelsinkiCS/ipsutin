@@ -1,4 +1,9 @@
 {
+  "admin": {
+    "indexTab": "Analytics",
+    "entryTab": "Entries",
+    "viewSelectedEntry": "View selected entry"
+  },
   "common": {
     "appName": "Ipsutin",
     "submit": "Submit",
@@ -15,11 +20,11 @@
     "legalTitle": "Request appointment with University of Helsinki Legal Services",
     "legalContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response",
     "disclosureTitle": "Visit the Invention Disclosure page for more information",
-    "disclosureContent": "[Invention disclosure](https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
+    "disclosureContent": "[Invention disclosure](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
     "incubatorTitle": "Visit the Incubator and Entrepreneurship Services page for more information",
-    "incubatorContent": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
+    "incubatorContent": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
     "relationsTitle": "Visit the Business collaboration page for more information",
-    "relationsContent": "The [business collaboration team](https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet) helps researchers when they wish to collaborate with businesses or apply for funding related to business collaboration from, for example, Business Finland or the Finnish Research Impact Foundation.",
+    "relationsContent": "The [business collaboration team](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet) helps researchers when they wish to collaborate with businesses or apply for funding related to business collaboration from, for example, Business Finland or the Finnish Research Impact Foundation.",
     "gnugplTitle": "Before making the decision we suggest you fill in Idea Evaluation and Patentability Evaluation surveys.",
     "gnugplContent": "",
     "bsdmitTitle": "Before making the decision we suggest you fill in Idea Evaluation and Patentability Evaluation surveys.",
@@ -73,20 +78,20 @@
   },
   "services": {
     "disclosure": "Invention Disclosure",
-    "disclosureExtLink": "https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus",
+    "disclosureExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus",
     "clinic": "Idea Clinic",
     "incubator": "Incubator and Entrepreneurship Services",
-    "incubatorExtLink": "https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut",
+    "incubatorExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut",
     "relations": "Business Collaboration Team",
-    "relationsExtLink": "https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet"
+    "relationsExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet"
   },
   "sideBarServices": {
     "services": "Services",
-    "disclosure": "[Invention disclosure](https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
+    "disclosure": "[Invention disclosure](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
     "clinic": "Idea Clinic is personal 1-to-1 meeting to explore the possibilities of your idea with a commercialization expert. You may request a meeting by filling in the Idea survey or by emailing [his@helsinki.fi](mailto:his@helsinki.fi)",
-    "incubator": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
-    "relations": "The [business collaboration team](https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet) helps researchers when they wish to collaborate with businesses or apply for funding related to business collaboration from, for example, Business Finland or the Finnish Research Impact Foundation.",
-    "legal": "The [lawyers of the research services](https://flamma.helsinki.fi/sv/group/tutkimuksen-tuki/tutkimussopimus-ja-lakiasiat) assist the employees of the university with legal matters related to research, for example, with agreement preparation and interpreting regulations as well as data protection matters."
+    "incubator": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
+    "relations": "The [business collaboration team](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet) helps researchers when they wish to collaborate with businesses or apply for funding related to business collaboration from, for example, Business Finland or the Finnish Research Impact Foundation.",
+    "legal": "The [lawyers of the research services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/tutkimussopimus-ja-lakiasiat) assist the employees of the university with legal matters related to research, for example, with agreement preparation and interpreting regulations as well as data protection matters."
   },
   "ipAssessmentSurvey": {
     "patentable": "### Overall recommendation is to file an invention disclosure to HIS.",
