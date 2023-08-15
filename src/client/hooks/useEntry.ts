@@ -1,12 +1,12 @@
 import { useQuery } from 'react-query'
-import { Entry } from '@backend/db/models'
 
+import { EntryWithSurvey } from '../types'
 import apiClient from '../util/apiClient'
 
 export const useEntries = () => {
   const queryKey = ['entries']
 
-  const query = async (): Promise<Entry[]> => {
+  const query = async (): Promise<EntryWithSurvey[]> => {
     const { data } = await apiClient.get(`/entries`)
 
     return data
@@ -23,7 +23,7 @@ export const useEntries = () => {
 export const useEntry = (entryId: string | undefined) => {
   const queryKey = ['entry', entryId]
 
-  const query = async (): Promise<Entry> => {
+  const query = async (): Promise<EntryWithSurvey> => {
     const { data } = await apiClient.get(`/entries/${entryId}`)
 
     return data

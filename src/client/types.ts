@@ -52,6 +52,17 @@ export interface Survey {
   Questions: Question[]
 }
 
+export interface EntryWithSurvey {
+  id: number
+  surveyId: number
+  data: FormValues
+  sessionToken: string
+  createdAt: Date
+  updatedAt: Date
+  Survey: Survey
+  SurveyId: number
+}
+
 export type SurveySave =
   | 'ipsutin_licenses_local_save'
   | 'ipsutin_idea_evaluation_local_save'
