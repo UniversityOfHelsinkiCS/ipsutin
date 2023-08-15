@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IPAssessmentResult, Locales } from '@backend/types'
 import { Box, Container, Typography } from '@mui/material'
@@ -17,62 +17,14 @@ import { getCommonResult, getResultsWithLabels } from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RecommendationChip from '../Chip/RecommendationChip'
-import Markdown from '../Common/Markdown'
 import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
 import CommonResult from '../InteractiveForm/CommonResult'
-import ResultElement from '../InteractiveForm/ResultElement'
+import IpAssessmentSectionResults from '../InteractiveForm/IpAssessmentSectionResults'
 
 import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
 const { cardStyles, resultStyles } = styles
-
-const IpAssessmentSectionResults = ({
-  section,
-  results,
-}: {
-  section: 'technical' | 'mathematical' | 'computerProgram'
-  results: IPAssessmentResult[]
-}) => {
-  const { t, i18n } = useTranslation()
-  const { language } = i18n
-
-  const isPotentiallyPatentable = results.every(
-    (result) => result.data.potentiallyPatentable
-  )
-
-  if (!section || results.length === 0) return null
-
-  return (
-    <Box sx={{ mt: 8 }}>
-      <Typography
-        data-cy={`ip-assessment-${section}-result-section-title`}
-        variant='h5'
-        sx={resultStyles.heading}
-        component='div'
-      >
-        {t(`ipAssessmentSurvey:${section}Title`)}
-      </Typography>
-
-      {results.map((result) => (
-        <ResultElement
-          key={result.id}
-          language={language as keyof Locales}
-          resultData={result}
-          dimensions={[]}
-        />
-      ))}
-
-      <Box sx={cardStyles.card}>
-        {isPotentiallyPatentable ? (
-          <Markdown>{t(`ipAssessmentSurvey:${section}Patentable`)}</Markdown>
-        ) : (
-          <Markdown>{t(`ipAssessmentSurvey:${section}NotPatentable`)}</Markdown>
-        )}
-      </Box>
-    </Box>
-  )
-}
 
 const IpAssessmentResults = () => {
   const { t, i18n } = useTranslation()
