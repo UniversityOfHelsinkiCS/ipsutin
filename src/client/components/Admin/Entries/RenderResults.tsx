@@ -18,7 +18,7 @@ import RecommendationChip from '../../Chip/RecommendationChip'
 import CommonResult from '../../InteractiveForm/CommonResult'
 import ResultElement from '../../InteractiveForm/ResultElement'
 
-import IpAssessmentResults from './IpAssessmentResults'
+import IpAssessmentResultElements from './IpAssessmentResultElements'
 
 const { resultStyles } = styles
 
@@ -68,8 +68,7 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
 
   const resultComponents: { [key in SurveyName]: ReactElement } = {
     ipAssessment: (
-      <IpAssessmentResults
-        resultData={resultData}
+      <IpAssessmentResultElements
         sortedResultsWithLabels={sortedResultsWithLabels}
       />
     ),

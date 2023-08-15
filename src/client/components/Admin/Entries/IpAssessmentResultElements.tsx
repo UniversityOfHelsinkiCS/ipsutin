@@ -3,8 +3,8 @@ import { IPAssessmentResult } from '@backend/types'
 
 import IpAssessmentSectionResults from '../../InteractiveForm/IpAssessmentSectionResults'
 
-const IpAssessmentResults = ({ resultData, sortedResultsWithLabels }: any) => {
-  if (!resultData || !sortedResultsWithLabels) return null
+const IpAssessmentResultElements = ({ sortedResultsWithLabels }: any) => {
+  if (!sortedResultsWithLabels) return null
 
   const technicalResults = sortedResultsWithLabels.filter(
     (result: IPAssessmentResult) => result.data.type === 'technical'
@@ -38,4 +38,4 @@ const IpAssessmentResults = ({ resultData, sortedResultsWithLabels }: any) => {
   )
 }
 
-export default IpAssessmentResults
+export default IpAssessmentResultElements
