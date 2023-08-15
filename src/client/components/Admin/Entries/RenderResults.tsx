@@ -16,9 +16,8 @@ import {
 import { getCommonResult, getResultsWithLabels } from '../../../util/results'
 import RecommendationChip from '../../Chip/RecommendationChip'
 import CommonResult from '../../InteractiveForm/CommonResult'
-
-import DefaultResultElements from './DefaultResultElements'
-import IpAssessmentResultElements from './IpAssessmentResultElements'
+import DefaultResultElements from '../../InteractiveForm/DefaultResultElements'
+import IpAssessmentResultElements from '../../InteractiveForm/IpAssessmentResultElements'
 
 const { resultStyles } = styles
 

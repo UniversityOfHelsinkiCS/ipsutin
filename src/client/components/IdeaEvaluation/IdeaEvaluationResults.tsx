@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales } from '@backend/types'
 import { Box, Container, Typography } from '@mui/material'
@@ -20,7 +20,7 @@ import RecommendationChip from '../Chip/RecommendationChip'
 import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
 import CommonResult from '../InteractiveForm/CommonResult'
-import ResultElement from '../InteractiveForm/ResultElement'
+import DefaultResultElements from '../InteractiveForm/DefaultResultElements'
 
 import { useIdeaEvaluationResultData } from './IdeaEvaluationResultContext'
 
@@ -110,14 +110,10 @@ const IdeaEvaluationResults = () => {
                 recommendation={recommendedAction}
               />
             )}
-            {sortedResultsWithLabels.map((result) => (
-              <ResultElement
-                key={result.id}
-                language={language as keyof Locales}
-                resultData={result}
-                dimensions={result.labels}
-              />
-            ))}
+
+            <DefaultResultElements
+              sortedResultsWithLabels={sortedResultsWithLabels}
+            />
           </Box>
           <NavigateBack />
         </Box>

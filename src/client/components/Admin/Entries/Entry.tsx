@@ -19,8 +19,6 @@ const Entry = () => {
 
   if (!entry || isLoading || !results || !resultsFetched) return null
 
-  console.log(entry)
-
   return (
     <Box sx={cardStyles.outerBox}>
       <Box sx={resultStyles.resultWrapper}>

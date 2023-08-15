@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { IPAssessmentResult, Locales } from '@backend/types'
+import { Locales } from '@backend/types'
 import { Box, Container, Typography } from '@mui/material'
 
 import useRecommendations from '../../hooks/useRecommendations'
@@ -20,7 +20,7 @@ import RecommendationChip from '../Chip/RecommendationChip'
 import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
 import CommonResult from '../InteractiveForm/CommonResult'
-import IpAssessmentSectionResults from '../InteractiveForm/IpAssessmentSectionResults'
+import IpAssessmentResultElements from '../InteractiveForm/IpAssessmentResultElements'
 
 import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
@@ -76,18 +76,6 @@ const IpAssessmentResults = () => {
 
   const recommendedAction = recommendationLabels[0]
 
-  const technicalResults = sortedResultsWithLabels.filter(
-    (result: IPAssessmentResult) => result.data.type === 'technical'
-  )
-
-  const mathematicalResults = sortedResultsWithLabels.filter(
-    (result: IPAssessmentResult) => result.data.type === 'mathematical'
-  )
-
-  const computerProgramResults = sortedResultsWithLabels.filter(
-    (result: IPAssessmentResult) => result.data.type === 'computerProgram'
-  )
-
   return (
     <Box id='ip-assessment-result-section'>
       <Box sx={cardStyles.outerBox}>
@@ -122,19 +110,8 @@ const IpAssessmentResults = () => {
               />
             )}
 
-            <IpAssessmentSectionResults
-              section='technical'
-              results={technicalResults}
-            />
-
-            <IpAssessmentSectionResults
-              section='mathematical'
-              results={mathematicalResults}
-            />
-
-            <IpAssessmentSectionResults
-              section='computerProgram'
-              results={computerProgramResults}
+            <IpAssessmentResultElements
+              sortedResultsWithLabels={sortedResultsWithLabels}
             />
           </Box>
           <NavigateBack />

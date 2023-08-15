@@ -1,8 +1,9 @@
 import React from 'react'
 import { IPAssessmentResult } from '@backend/types'
 
-import { ResultElementsProps } from '../../../types'
-import IpAssessmentSectionResults from '../../InteractiveForm/IpAssessmentSectionResults'
+import { ResultElementsProps } from '../../types'
+
+import IpAssessmentSectionResults from './IpAssessmentSectionResults'
 
 const IpAssessmentResultElements = ({
   sortedResultsWithLabels,
