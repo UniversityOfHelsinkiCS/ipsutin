@@ -44,15 +44,16 @@ const IpAssessmentSectionResults = ({
   if (!section || results.length === 0) return null
 
   return (
-    <Box>
+    <Box sx={{ mt: 8 }}>
       <Typography
-        data-cy={`ip-assessment-${section}-result-title`}
-        variant='h6'
+        data-cy={`ip-assessment-${section}-result-section-title`}
+        variant='h5'
         sx={resultStyles.heading}
         component='div'
       >
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
+
       {results.map((result) => (
         <ResultElement
           key={result.id}
