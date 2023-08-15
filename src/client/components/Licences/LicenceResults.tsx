@@ -28,7 +28,7 @@ const { cardStyles, resultStyles } = styles
 
 const LicenceResults = () => {
   const { t, i18n } = useTranslation()
-  const { survey } = useSurvey('licenses')
+  const { survey } = useSurvey('licences')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
@@ -122,7 +122,7 @@ const LicenceResults = () => {
         </Box>
         <Box sx={cardStyles.subHeading}>
           <Contact action={recommendedAction} />
-          <ExtraAction action={recommendedAction} surveyName='licenses' />
+          <ExtraAction action={recommendedAction} surveyName='licences' />
           <ShareResult />
         </Box>
       </Box>
