@@ -11,7 +11,7 @@ export const getEntries = async (): Promise<Entry[]> => {
 }
 
 export const getEntry = async (entryId: string): Promise<Entry> => {
-  const entry = await Entry.findByPk(entryId)
+  const entry = await Entry.findByPk(entryId, { include: Survey })
 
   if (!entry) throw new Error('Entry not found')
 
