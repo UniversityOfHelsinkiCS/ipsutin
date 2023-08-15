@@ -21,37 +21,13 @@ import Markdown from '../Common/Markdown'
 import NavigateBack from '../Common/NavigateBack'
 import Contact from '../Contact/Contact'
 import CommonResult from '../InteractiveForm/CommonResult'
+import IpAssessmentResultElement from '../InteractiveForm/IpAssessmentResultElement'
 
 import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
 const { cardStyles, resultStyles } = styles
 
-const ResultElement = ({
-  language,
-  resultData,
-}: {
-  language: keyof Locales
-  resultData: IPAssessmentResult
-}) => {
-  if (!resultData) return null
-
-  return (
-    <Container
-      style={{
-        margin: '2rem 0 2rem 0',
-        borderLeft: 'solid',
-        borderColor: '#9ca3af',
-        borderWidth: '1px',
-      }}
-    >
-      <Box style={{ margin: '2rem 0 2rem 1rem' }}>
-        <Markdown>{resultData.isSelected[language]}</Markdown>
-      </Box>
-    </Container>
-  )
-}
-
-const SectionResults = ({
+const IpAssessmentSectionResults = ({
   section,
   results,
 }: {
@@ -78,7 +54,7 @@ const SectionResults = ({
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
       {results.map((result) => (
-        <ResultElement
+        <IpAssessmentResultElement
           key={result.id}
           language={language as keyof Locales}
           resultData={result}
@@ -191,14 +167,18 @@ const IpAssessmentResults = () => {
                 recommendation={recommendedAction}
               />
             )}
-            <SectionResults section='technical' results={technicalResults} />
 
-            <SectionResults
+            <IpAssessmentSectionResults
+              section='technical'
+              results={technicalResults}
+            />
+
+            <IpAssessmentSectionResults
               section='mathematical'
               results={mathematicalResults}
             />
 
-            <SectionResults
+            <IpAssessmentSectionResults
               section='computerProgram'
               results={computerProgramResults}
             />
