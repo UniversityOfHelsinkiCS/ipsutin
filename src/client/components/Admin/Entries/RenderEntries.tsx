@@ -1,13 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { Entry } from '@backend/db/models'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import { Box, Button } from '@mui/material'
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid'
 
 import { useEntries } from '../../../hooks/useEntry'
-import { Survey } from '../../../types'
+import { EntryWithSurvey, Survey } from '../../../types'
 
 const RenderEntries = () => {
   const { t } = useTranslation()
@@ -20,7 +19,7 @@ const RenderEntries = () => {
       field: 'id',
       headerName: 'ID',
       width: 90,
-      renderCell: (cellValue: GridRenderCellParams<Entry>) => (
+      renderCell: (cellValue: GridRenderCellParams<EntryWithSurvey>) => (
         <Button
           size='small'
           endIcon={<VisibilityIcon />}
