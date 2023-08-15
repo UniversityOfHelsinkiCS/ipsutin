@@ -1,9 +1,10 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { Entry } from '@backend/db/models'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 import { Box, Button } from '@mui/material'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { DataGrid, GridRowSelectionModel } from '@mui/x-data-grid'
+import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid'
 
 import { useEntries } from '../../../hooks/useEntry'
 import { Survey } from '../../../types'
@@ -11,13 +12,27 @@ import { Survey } from '../../../types'
 const RenderEntries = () => {
   const { t } = useTranslation()
   const { entries, isLoading } = useEntries()
-  const [rowSelectionModel, setRowSelectionModel] =
-    React.useState<GridRowSelectionModel>()
 
   if (isLoading || !entries) return null
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 90,
+      renderCell: (cellValue: GridRenderCellParams<Entry>) => (
+        <Button
+          size='small'
+          endIcon={<VisibilityIcon />}
+          component={Link}
+          to={`./view/${cellValue.value}`}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          {cellValue.value}
+        </Button>
+      ),
+    },
     {
       field: 'Survey',
       headerName: 'Survey',
@@ -48,23 +63,6 @@ const RenderEntries = () => {
 
   return (
     <Box sx={{ mx: 2 }}>
-      {rowSelectionModel && (
-        <Button
-          component={Link}
-          to={`./view/${rowSelectionModel[0]}`}
-          sx={{
-            position: 'absolute',
-            top: '120px',
-            right: 0,
-            mr: 6,
-            alignSelf: 'center',
-          }}
-          variant='contained'
-          onClick={() => {}}
-        >
-          {t('admin:viewSelectedEntry')}
-        </Button>
-      )}
       <Box sx={{ mt: 4, mx: 4, height: '75vh' }}>
         <DataGrid
           rows={entries}
@@ -77,9 +75,6 @@ const RenderEntries = () => {
             },
           }}
           pageSizeOptions={[10, 25, 50, 100]}
-          onRowSelectionModelChange={(newRowSelectionModel) => {
-            setRowSelectionModel(newRowSelectionModel)
-          }}
         />
       </Box>
     </Box>
