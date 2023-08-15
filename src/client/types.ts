@@ -5,7 +5,7 @@ import {
   UseFormRegister,
   UseFormWatch,
 } from 'react-hook-form'
-import { Locales, Question } from '@backend/types'
+import { Locales, Question, RecommendationLabel, Result } from '@backend/types'
 
 export interface InputProps {
   control?: Control<FieldValues>
@@ -42,7 +42,20 @@ export interface MultipleChoiceType extends SingleChoiceType {
   data: Locales
 }
 
+export interface ResultElementsProps {
+  sortedResultsWithLabels: ResultWithLabels[]
+}
+
+export interface ResultWithLabels extends Result {
+  labels: RecommendationLabel[]
+}
+
 export type SurveyName = 'licences' | 'ideaEvaluation' | 'ipAssessment'
+
+export type SurveySave =
+  | 'ipsutin_licenses_local_save'
+  | 'ipsutin_idea_evaluation_local_save'
+  | 'ipsutin_ip_assessment_local_save'
 
 export interface Survey {
   id: number
@@ -62,8 +75,3 @@ export interface EntryWithSurvey {
   Survey: Survey
   SurveyId: number
 }
-
-export type SurveySave =
-  | 'ipsutin_licenses_local_save'
-  | 'ipsutin_idea_evaluation_local_save'
-  | 'ipsutin_ip_assessment_local_save'

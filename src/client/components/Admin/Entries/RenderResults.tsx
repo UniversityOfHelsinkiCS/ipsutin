@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales } from '@backend/types'
 import { Box } from '@mui/material'
@@ -16,8 +16,8 @@ import {
 import { getCommonResult, getResultsWithLabels } from '../../../util/results'
 import RecommendationChip from '../../Chip/RecommendationChip'
 import CommonResult from '../../InteractiveForm/CommonResult'
-import ResultElement from '../../InteractiveForm/ResultElement'
 
+import DefaultResultElements from './DefaultResultElements'
 import IpAssessmentResultElements from './IpAssessmentResultElements'
 
 const { resultStyles } = styles
@@ -73,28 +73,14 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
       />
     ),
     licences: (
-      <>
-        {sortedResultsWithLabels.map((result) => (
-          <ResultElement
-            key={result.id}
-            language={language as keyof Locales}
-            resultData={result}
-            dimensions={result.labels}
-          />
-        ))}
-      </>
+      <DefaultResultElements
+        sortedResultsWithLabels={sortedResultsWithLabels}
+      />
     ),
     ideaEvaluation: (
-      <>
-        {sortedResultsWithLabels.map((result) => (
-          <ResultElement
-            key={result.id}
-            language={language as keyof Locales}
-            resultData={result}
-            dimensions={result.labels}
-          />
-        ))}
-      </>
+      <DefaultResultElements
+        sortedResultsWithLabels={sortedResultsWithLabels}
+      />
     ),
   }
 

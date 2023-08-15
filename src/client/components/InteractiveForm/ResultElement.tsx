@@ -1,6 +1,11 @@
 import React from 'react'
-import { Locales, RecommendationLabel, Result } from '@backend/types'
+import {
+  IPAssessmentResult,
+  Locales,
+  RecommendationLabel,
+} from '@backend/types'
 import { Box, Container } from '@mui/material'
+import { ResultWithLabels } from 'src/client/types'
 
 import colors from '../../util/colors'
 import Markdown from '../Common/Markdown'
@@ -11,7 +16,7 @@ const ResultElement = ({
   dimensions,
 }: {
   language: keyof Locales
-  resultData: Result
+  resultData: ResultWithLabels | IPAssessmentResult
   dimensions: RecommendationLabel[]
 }) => {
   if (!resultData) return null

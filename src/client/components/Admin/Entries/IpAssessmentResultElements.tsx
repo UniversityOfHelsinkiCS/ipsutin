@@ -1,9 +1,12 @@
 import React from 'react'
 import { IPAssessmentResult } from '@backend/types'
 
+import { ResultElementsProps } from '../../../types'
 import IpAssessmentSectionResults from '../../InteractiveForm/IpAssessmentSectionResults'
 
-const IpAssessmentResultElements = ({ sortedResultsWithLabels }: any) => {
+const IpAssessmentResultElements = ({
+  sortedResultsWithLabels,
+}: ResultElementsProps) => {
   if (!sortedResultsWithLabels) return null
 
   const technicalResults = sortedResultsWithLabels.filter(
