@@ -18,6 +18,8 @@ import RecommendationChip from '../../Chip/RecommendationChip'
 import CommonResult from '../../InteractiveForm/CommonResult'
 import ResultElement from '../../InteractiveForm/ResultElement'
 
+import IpAssessmentResults from './IpAssessmentResults'
+
 const { resultStyles } = styles
 
 interface RenderResultsType {
@@ -66,16 +68,10 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
 
   const resultComponents: { [key in SurveyName]: ReactElement } = {
     ipAssessment: (
-      <>
-        {sortedResultsWithLabels.map((result) => (
-          <ResultElement
-            key={result.id}
-            language={language as keyof Locales}
-            resultData={result}
-            dimensions={result.labels}
-          />
-        ))}
-      </>
+      <IpAssessmentResults
+        resultData={resultData}
+        sortedResultsWithLabels={sortedResultsWithLabels}
+      />
     ),
     licences: (
       <>
