@@ -2,7 +2,14 @@
   "admin": {
     "indexTab": "Analytics",
     "entryTab": "Entries",
-    "viewSelectedEntry": "View selected entry"
+    "entryInfoTitle": "Entry information",
+    "entryViewTitle": "Below are the results relating this entry",
+    "entryViewID": "ID",
+    "entryViewSurvey": "Survey",
+    "entryViewFaculty": "Faculty",
+    "entryViewCreated": "Created",
+    "entryViewUpdated": "Updated",
+    "entryViewSessionToken": "Session Identifier"
   },
   "common": {
     "appName": "Ipsutin",
