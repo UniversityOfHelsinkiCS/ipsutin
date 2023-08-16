@@ -28,7 +28,7 @@ const RenderAnalytics = () => {
           sx={resultStyles.heading}
           component='div'
         >
-          {t('admin:entryViewTitle')}
+          {t('admin:analyticsViewTitle')}
         </Typography>
       </Container>
 
