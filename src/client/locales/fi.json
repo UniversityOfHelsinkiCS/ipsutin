@@ -1,6 +1,7 @@
 {
   "admin": {
     "indexTab": "Analytics",
+    "analyticsViewTitle": "Here you can view different analytics and stats about the usage of Ipsutin",
     "entryTab": "Entries",
     "entryInfoTitle": "Entry information",
     "entryViewTitle": "Below are the results relating this entry",
