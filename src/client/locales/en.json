@@ -2,7 +2,8 @@
   "admin": {
     "indexTab": "Analytics",
     "entryTab": "Entries",
-    "viewSelectedEntry": "View selected entry"
+    "entryInfoTitle": "Entry information",
+    "entryViewTitle": "Below are the results relating this entry"
   },
   "common": {
     "appName": "Ipsutin",

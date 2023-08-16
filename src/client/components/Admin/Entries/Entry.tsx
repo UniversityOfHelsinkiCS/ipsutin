@@ -29,7 +29,7 @@ const Entry = () => {
             sx={resultStyles.heading}
             component='div'
           >
-            {t('results:title')}
+            {t('admin:entryInfoTitle')}
           </Typography>
         </Container>
 

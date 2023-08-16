@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales } from '@backend/types'
-import { Box } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
 import useRecommendations from '../../../hooks/useRecommendations'
 import useResults from '../../../hooks/useResults'
@@ -27,7 +27,7 @@ interface RenderResultsType {
 }
 
 const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { survey } = useSurvey(surveyName)
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
@@ -89,6 +89,16 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
 
   return (
     <>
+      <Container sx={{ mt: 4 }}>
+        <Typography
+          data-cy='result-section-title'
+          variant='h5'
+          sx={resultStyles.heading}
+          component='div'
+        >
+          {t('admin:entryViewTitle')}
+        </Typography>
+      </Container>
       <Box sx={resultStyles.resultSection}>
         {sortedRecommendations.map((recommendation) => (
           <RecommendationChip
