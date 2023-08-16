@@ -31,6 +31,20 @@ const Entry = () => {
           >
             {t('admin:entryInfoTitle')}
           </Typography>
+          <Box>
+            <Typography variant='body2' sx={cardStyles.question}>
+              Survey: {t(`surveyNames:${entry.Survey.name}`)}
+            </Typography>
+            <Typography variant='body2' sx={cardStyles.question}>
+              Faculty: {entry.data.faculty}
+            </Typography>
+            <Typography variant='body2' sx={cardStyles.question}>
+              Created: {new Date(entry.createdAt).toLocaleString()}
+            </Typography>
+            <Typography variant='body2' sx={cardStyles.question}>
+              Updated: {new Date(entry.updatedAt).toLocaleString()}
+            </Typography>
+          </Box>
         </Container>
 
         <RenderResults surveyName={entry.Survey.name} resultData={entry.data} />
