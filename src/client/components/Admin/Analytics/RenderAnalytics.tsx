@@ -8,6 +8,7 @@ import styles from '../../../styles'
 import LoadingProgress from '../../Common/LoadingProgress'
 
 import FacultyAnalytics from './FacultyAnalytics'
+import SurveyAnalytics from './SurveyAnalytics'
 
 const { resultStyles } = styles
 
@@ -34,6 +35,7 @@ const RenderAnalytics = () => {
       </Container>
 
       <FacultyAnalytics entries={entries} faculties={faculties} />
+      <SurveyAnalytics entries={entries} />
     </>
   )
 }
