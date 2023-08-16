@@ -33,16 +33,19 @@ const Entry = () => {
           </Typography>
           <Box>
             <Typography variant='body2' sx={cardStyles.question}>
-              Survey: {t(`surveyNames:${entry.Survey.name}`)}
+              {t('admin:entryViewSurvey')}:{' '}
+              {t(`surveyNames:${entry.Survey.name}`)}
             </Typography>
             <Typography variant='body2' sx={cardStyles.question}>
-              Faculty: {entry.data.faculty}
+              {t('admin:entryViewFaculty')}: {entry.data.faculty}
             </Typography>
             <Typography variant='body2' sx={cardStyles.question}>
-              Created: {new Date(entry.createdAt).toLocaleString()}
+              {t('admin:entryViewCreated')}:{' '}
+              {new Date(entry.createdAt).toLocaleString()}
             </Typography>
             <Typography variant='body2' sx={cardStyles.question}>
-              Updated: {new Date(entry.updatedAt).toLocaleString()}
+              {t('admin:entryViewUpdated')}:{' '}
+              {new Date(entry.updatedAt).toLocaleString()}
             </Typography>
           </Box>
         </Container>
