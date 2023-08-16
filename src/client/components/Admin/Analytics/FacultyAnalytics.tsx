@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Faculty } from '@backend/types'
-import { Container, Paper, Typography } from '@mui/material'
+import { Box, Container, Paper, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Bar,
@@ -76,24 +76,28 @@ const FacultyAnalytics = ({
       >
         Faculty Analytics
       </Typography>
-      <BarChart
-        width={1000}
-        height={500}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
+      <Box
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       >
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='code' />
-        <YAxis />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-        <Bar dataKey='count' barSize={20} fill='#8884d8' />
-      </BarChart>
+        <BarChart
+          width={960}
+          height={480}
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='code' />
+          <YAxis />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend />
+          <Bar dataKey='count' barSize={20} fill='#8884d8' />
+        </BarChart>
+      </Box>
     </Container>
   )
 }
