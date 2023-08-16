@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
 import Admin from '../Admin/Admin'
-import FacultyAnalytics from '../Admin/Analytics/FacultyAnalytics'
+import RenderAnalytics from '../Admin/Analytics/RenderAnalytics'
 import Entry from '../Admin/Entries/Entry'
 import RenderEntries from '../Admin/Entries/RenderEntries'
 import IdeaEvaluation from '../IdeaEvaluation/IdeaEvaluation'
@@ -71,7 +71,7 @@ const router = createBrowserRouter(
           children: [
             {
               index: true,
-              element: <FacultyAnalytics />,
+              element: <RenderAnalytics />,
             },
             {
               path: 'entries',

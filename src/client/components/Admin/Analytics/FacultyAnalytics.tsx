@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { CircularProgress, Container, Paper, Typography } from '@mui/material'
+import { Faculty } from '@backend/types'
+import { Container, Paper, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Bar,
@@ -11,11 +12,7 @@ import {
   YAxis,
 } from 'recharts'
 
-import { useEntries } from '../../../hooks/useEntry'
-import useFaculties from '../../../hooks/useFaculty'
-import styles from '../../../styles'
-
-const { resultStyles } = styles
+import { EntryWithSurvey } from '../../../types'
 
 interface TooltipProps {
   active?: boolean
@@ -46,14 +43,13 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   return null
 }
 
-const FacultyAnalytics = () => {
-  const { entries, isLoading: isEntriesLoading } = useEntries()
-  const { faculties, isLoading: isFacultiesLoading } = useFaculties()
-
-  if (isEntriesLoading || isFacultiesLoading) {
-    return <CircularProgress />
-  }
-
+const FacultyAnalytics = ({
+  entries,
+  faculties,
+}: {
+  entries: EntryWithSurvey[]
+  faculties: Faculty[]
+}) => {
   const facultyCounts: { [key: string]: number } = {}
 
   // Count the number of entries for each faculty
@@ -74,8 +70,8 @@ const FacultyAnalytics = () => {
     <Container sx={{ mt: 4 }}>
       <Typography
         data-cy='faculty-analytics-title'
-        variant='h5'
-        sx={resultStyles.heading}
+        variant='h6'
+        sx={{ fontWeight: 'semibold', my: 2 }}
         component='div'
       >
         Faculty Analytics
