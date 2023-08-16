@@ -1,12 +1,10 @@
-import React from 'react'
-import { Box, CircularProgress, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { CircularProgress, Container, Paper, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Bar,
   BarChart,
   CartesianGrid,
-  Cell,
-  LabelList,
   Legend,
   Tooltip,
   XAxis,
@@ -18,6 +16,35 @@ import useFaculties from '../../../hooks/useFaculty'
 import styles from '../../../styles'
 
 const { resultStyles } = styles
+
+interface TooltipProps {
+  active?: boolean
+  payload?: any
+  label?: string
+}
+
+const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
+  const { i18n } = useTranslation()
+  const { language } = i18n
+
+  if (active && payload && payload.length) {
+    const [{ payload: data }] = payload
+
+    return (
+      <Paper sx={{ p: 1, opacity: '70%' }}>
+        <Typography
+          variant='h6'
+          sx={{ fontWeight: 'semibold' }}
+        >{`${label} : ${payload[0].value}`}</Typography>
+        <Typography variant='body2' sx={{ fontWeight: 200 }}>
+          {data?.faculty[language]}
+        </Typography>
+      </Paper>
+    )
+  }
+
+  return null
+}
 
 const FacultyAnalytics = () => {
   const { entries, isLoading: isEntriesLoading } = useEntries()
@@ -44,31 +71,34 @@ const FacultyAnalytics = () => {
   }))
 
   return (
-    <Box sx={{ mx: 2 }}>
-      <Box sx={{ mt: 4, mx: 4 }}>
-        <Typography
-          data-cy='faculty-analytics-title'
-          variant='h5'
-          sx={resultStyles.heading}
-          component='div'
-        >
-          Faculty Analytics
-        </Typography>
-        <BarChart width={600} height={400} data={data}>
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='faculty' />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey='count' fill='#8884d8'>
-            {data.map((entry) => (
-              <Cell key={`cell-${entry}`} fill='#8884d8' />
-            ))}
-            <LabelList dataKey='code' position='top' />
-          </Bar>
-        </BarChart>
-      </Box>
-    </Box>
+    <Container sx={{ mt: 4 }}>
+      <Typography
+        data-cy='faculty-analytics-title'
+        variant='h5'
+        sx={resultStyles.heading}
+        component='div'
+      >
+        Faculty Analytics
+      </Typography>
+      <BarChart
+        width={1000}
+        height={500}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='code' />
+        <YAxis />
+        <Tooltip content={<CustomTooltip />} />
+        <Legend />
+        <Bar dataKey='count' barSize={20} fill='#8884d8' />
+      </BarChart>
+    </Container>
   )
 }
 
