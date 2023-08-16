@@ -35,21 +35,27 @@ const RenderEntries = () => {
     {
       field: 'Survey',
       headerName: 'Survey',
-      width: 300,
+      width: 200,
       valueGetter: ({ value }: { value: Survey }) =>
         t(`surveyNames:${value.name}`),
     },
     {
+      field: 'faculty',
+      headerName: 'Faculty',
+      width: 75,
+      valueGetter: ({ row }: { row: EntryWithSurvey }) => row.data.faculty,
+    },
+    {
       field: 'createdAt',
       headerName: 'Created',
-      width: 250,
+      width: 175,
       valueFormatter: ({ value }: { value: Date }) =>
         new Date(value).toLocaleString(),
     },
     {
       field: 'updatedAt',
       headerName: 'Updated',
-      width: 250,
+      width: 175,
       valueFormatter: ({ value }: { value: Date }) =>
         new Date(value).toLocaleString(),
     },
