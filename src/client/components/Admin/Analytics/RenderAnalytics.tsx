@@ -9,6 +9,7 @@ import LoadingProgress from '../../Common/LoadingProgress'
 
 import FacultyAnalytics from './FacultyAnalytics'
 import SurveyAnalytics from './SurveyAnalytics'
+import UserCountAnalytics from './UserCountAnalytics'
 
 const { resultStyles } = styles
 
@@ -38,8 +39,15 @@ const RenderAnalytics = () => {
         <Grid xs={12} lg={8}>
           <FacultyAnalytics entries={entries} faculties={faculties} />
         </Grid>
-        <Grid xs={12} lg={4}>
-          <SurveyAnalytics entries={entries} />
+        <Grid xs={12} lg={8}>
+          <Grid container spacing={2}>
+            <Grid xs={8}>
+              <SurveyAnalytics entries={entries} />
+            </Grid>
+            <Grid xs={4}>
+              <UserCountAnalytics />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </>
