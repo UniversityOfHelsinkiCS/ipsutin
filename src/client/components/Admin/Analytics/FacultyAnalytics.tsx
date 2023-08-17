@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { Faculty } from '@backend/types'
-import { Box, Container, Paper, Typography } from '@mui/material'
+import { Box, Paper, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Bar,
   BarChart,
   CartesianGrid,
   Legend,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -67,29 +68,26 @@ const FacultyAnalytics = ({
   }))
 
   return (
-    <Container sx={{ mt: 4 }}>
-      <Typography
-        data-cy='faculty-analytics-title'
-        variant='h6'
-        sx={{ fontWeight: 'semibold', my: 2 }}
-        component='div'
-      >
-        Faculty Analytics
-      </Typography>
+    <Box sx={{ mx: 2, mt: 4 }}>
       <Box
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        sx={{
+          px: 2,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
-        <BarChart
-          width={960}
-          height={480}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
+        <Typography
+          data-cy='faculty-analytics-title'
+          variant='h6'
+          sx={{ fontWeight: 'bold' }}
+          component='div'
         >
+          Faculty Analytics
+        </Typography>
+      </Box>
+      <ResponsiveContainer width='100%' height={480}>
+        <BarChart data={data}>
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey='code' />
           <YAxis />
@@ -97,8 +95,8 @@ const FacultyAnalytics = ({
           <Legend />
           <Bar dataKey='count' barSize={20} fill='#8884d8' />
         </BarChart>
-      </Box>
-    </Container>
+      </ResponsiveContainer>
+    </Box>
   )
 }
 

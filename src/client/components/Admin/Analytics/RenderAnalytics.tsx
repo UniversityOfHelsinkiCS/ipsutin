@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Container, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 
 import { useEntries } from '../../../hooks/useEntry'
 import useFaculties from '../../../hooks/useFaculty'
@@ -34,8 +34,14 @@ const RenderAnalytics = () => {
         </Typography>
       </Container>
 
-      <FacultyAnalytics entries={entries} faculties={faculties} />
-      <SurveyAnalytics entries={entries} />
+      <Grid container spacing={2}>
+        <Grid xs={12} lg={8}>
+          <FacultyAnalytics entries={entries} faculties={faculties} />
+        </Grid>
+        <Grid xs={12} lg={4}>
+          <SurveyAnalytics entries={entries} />
+        </Grid>
+      </Grid>
     </>
   )
 }

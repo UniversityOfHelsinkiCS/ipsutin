@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Cell, Pie, PieChart } from 'recharts'
+import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
 import { EntryWithSurvey, SurveyName } from '../../../types'
 
@@ -61,19 +61,26 @@ const SurveyAnalytics = ({ entries }: { entries: EntryWithSurvey[] }) => {
   }))
 
   return (
-    <Container sx={{ mt: 4 }}>
-      <Typography
-        data-cy='survey-analytics-title'
-        variant='h6'
-        sx={{ fontWeight: 'semibold', my: 2 }}
-        component='div'
-      >
-        Survey Analytics
-      </Typography>
+    <Box sx={{ mx: 2, mt: 4 }}>
       <Box
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        sx={{
+          px: 2,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
-        <PieChart width={960} height={480}>
+        <Typography
+          data-cy='survey-analytics-title'
+          variant='h6'
+          sx={{ fontWeight: 'bold' }}
+          component='div'
+        >
+          Survey Analytics
+        </Typography>
+      </Box>
+      <ResponsiveContainer width='100%' height={480}>
+        <PieChart>
           <Pie
             data={data}
             dataKey='count'
@@ -92,8 +99,8 @@ const SurveyAnalytics = ({ entries }: { entries: EntryWithSurvey[] }) => {
             ))}
           </Pie>
         </PieChart>
-      </Box>
-    </Container>
+      </ResponsiveContainer>
+    </Box>
   )
 }
 
