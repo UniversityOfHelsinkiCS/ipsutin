@@ -39,8 +39,8 @@ const UserCountAnalytics = () => {
           <Pie
             data={data}
             dataKey='value'
-            innerRadius='70%'
-            outerRadius='80%'
+            innerRadius='50%'
+            outerRadius='60%'
             fill='#CCC'
             startAngle={225}
             endAngle={-45}

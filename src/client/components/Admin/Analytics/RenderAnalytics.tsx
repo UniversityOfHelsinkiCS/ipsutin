@@ -36,15 +36,15 @@ const RenderAnalytics = () => {
       </Container>
 
       <Grid container spacing={2}>
-        <Grid xs={12} lg={8}>
+        <Grid xs={12} xl={8}>
           <FacultyAnalytics entries={entries} faculties={faculties} />
         </Grid>
-        <Grid xs={12} lg={8}>
+        <Grid xs={12} xl={8}>
           <Grid container spacing={2}>
-            <Grid xs={8}>
+            <Grid xs={6}>
               <SurveyAnalytics entries={entries} />
             </Grid>
-            <Grid xs={4}>
+            <Grid xs={6}>
               <UserCountAnalytics />
             </Grid>
           </Grid>
