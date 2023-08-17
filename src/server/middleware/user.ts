@@ -7,9 +7,7 @@ const parseIamGroups = (iamGroups: string) =>
   iamGroups?.split(';').filter(Boolean) ?? []
 
 const checkAdmin = (iamGroups: string[]) =>
-  iamGroups.some((iamGroup) =>
-    ['hy-ypa-opa-ote', 'grp-toska'].includes(iamGroup)
-  )
+  iamGroups.some((iamGroup) => ['grp-toska', 'grp-his'].includes(iamGroup))
 
 const userMiddleware = (req: any, _res: Response, next: NextFunction) => {
   const headers = inDevelopment ? mockHeaders : req.headers
