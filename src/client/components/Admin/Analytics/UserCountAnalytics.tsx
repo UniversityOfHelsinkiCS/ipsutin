@@ -4,6 +4,32 @@ import { Box, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Cell, Label, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
+const CustomLabel = ({
+  viewBox,
+  userCounts,
+}: {
+  viewBox?: any
+  userCounts: UserCount[]
+}) => {
+  const { cx, cy } = viewBox
+  const totalUsers = userCounts[0].value + userCounts[1].value
+  return (
+    <g>
+      <text x={cx} y={cy} dy={-30} textAnchor='middle' fill='#000'>
+        <tspan fill='#82ca9d' fontSize='32'>
+          {userCounts[0].value}
+        </tspan>
+      </text>
+      <text x={cx} y={cy} dy={0} textAnchor='middle' fill='#000'>
+        <tspan fontSize='16'>Today</tspan>
+      </text>
+      <text x={cx} y={cy} dy={40} textAnchor='middle' fill='#CCC'>
+        <tspan fontSize='16'>{`${totalUsers} alltime`}</tspan>
+      </text>
+    </g>
+  )
+}
+
 const UserCountAnalytics = ({ userCounts }: { userCounts: UserCount[] }) => (
   <Box sx={{ mx: 2, mt: 4 }}>
     <Box
@@ -37,9 +63,7 @@ const UserCountAnalytics = ({ userCounts }: { userCounts: UserCount[] }) => (
           blendStroke
         >
           <Label
-            content={
-              <Typography variant='h6'>{userCounts[0].value}</Typography>
-            }
+            content={<CustomLabel userCounts={userCounts} />}
             position='center'
           />
           <Cell key='todaysUserCount' fill='#82ca9d' />
