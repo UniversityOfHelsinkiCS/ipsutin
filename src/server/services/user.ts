@@ -1,11 +1,7 @@
+import { UserCount } from '@backend/types'
 import { Op } from 'sequelize'
 
 import { User } from '../db/models'
-
-interface UserCount {
-  name: 'today' | 'deltaAllTime'
-  value: number
-}
 
 // eslint-disable-next-line import/prefer-default-export
 export const getUserCounts = async (): Promise<UserCount[]> => {

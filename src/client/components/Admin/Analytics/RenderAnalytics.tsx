@@ -4,6 +4,7 @@ import { Container, Grid, Typography } from '@mui/material'
 
 import { useEntries } from '../../../hooks/useEntry'
 import useFaculties from '../../../hooks/useFaculty'
+import useUserCounts from '../../../hooks/useUserCounts'
 import styles from '../../../styles'
 import LoadingProgress from '../../Common/LoadingProgress'
 
@@ -15,10 +16,11 @@ const { resultStyles } = styles
 
 const RenderAnalytics = () => {
   const { t } = useTranslation()
+  const { userCounts, isLoading: isUserCountLoading } = useUserCounts()
   const { entries, isLoading: isEntriesLoading } = useEntries()
   const { faculties, isLoading: isFacultiesLoading } = useFaculties()
 
-  if (isEntriesLoading || isFacultiesLoading) {
+  if (isUserCountLoading || isEntriesLoading || isFacultiesLoading) {
     return <LoadingProgress />
   }
 
@@ -36,16 +38,16 @@ const RenderAnalytics = () => {
       </Container>
 
       <Grid container spacing={2}>
-        <Grid xs={12} xl={8}>
+        <Grid item xs={12} xl={8}>
           <FacultyAnalytics entries={entries} faculties={faculties} />
         </Grid>
-        <Grid xs={12} xl={8}>
+        <Grid item xs={12} xl={8}>
           <Grid container spacing={2}>
-            <Grid xs={6}>
+            <Grid item xs={6}>
               <SurveyAnalytics entries={entries} />
             </Grid>
-            <Grid xs={6}>
-              <UserCountAnalytics />
+            <Grid item xs={6}>
+              <UserCountAnalytics userCounts={userCounts} />
             </Grid>
           </Grid>
         </Grid>

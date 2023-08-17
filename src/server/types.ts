@@ -22,6 +22,11 @@ export interface RequestWithUser extends Request {
   user: User
 }
 
+export interface UserCount {
+  name: 'today' | 'deltaAllTime'
+  value: number
+}
+
 export type Programme = {
   key: string
   name: Locales
