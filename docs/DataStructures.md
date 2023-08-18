@@ -135,7 +135,7 @@ The `Question` model represents a question within a survey. It stores various at
     "parentId": 1, // define the parent question's id number here
     "priority": 0, // NOTE that the priority should start from 0 inside the child tree
     "title": {
-      "fi": "Kysymys lapsi",
+      "fi": "Lapsi kysymys",
       "sv": "Fråga barn",
       "en": "Child Question"
     },
@@ -304,3 +304,72 @@ The `Question` model represents a question within a survey. It stores various at
   }
 ]
 ```
+
+# Result
+
+The `Result` model is used to map FormValues (the selections of a given survey) into a data structure of corresponding results.
+
+## Properties
+
+- `id` (number): The unique identifier for the result.
+- `surveyId` (number): The ID of the survey associated with this result.
+- `optionLabel` (string): The label representing the selected option.
+- `isSelected` (Locales): The localized label indicating whether the option is selected. This will always be rendered if question.option.id is optionLabel. This is pretty much a Title for the results usually indicating or reminder that the option was selected.
+- `data` (object): The data structure containing result information. data.resultData contains all the more niche results for linked to a certain recommendation label. For full reference of the possible recommendationLabels check project specification, recommendationLabel type from the types.ts file or discuss with the client.
+
+## Usage
+
+### Defining result data
+
+```json
+{
+  "id": 1,
+  "surveyId": 1,
+  "optionLabel": "option1", // This is supposed to link the result to a questions option.id that the result should be linked to check reference option1 from the Question examples.
+  "isSelected": {
+    // This is supposed to indicate the 'Title' or the 'main' text of the result in the result page, this is visible on all times if the option was selected.
+    "fi": "Olet valinnut Lapsi kysymykseen vastaukseksi: 'Valittu'.",
+    "sv": "Du har valt 'Vald' som svaret för Barnfrågan.",
+    "en": "You have selected 'Selected' as the answer for the Child Question."
+  },
+  "data": {
+    "resultData": {
+      "allDimensions": {
+        // This will render a sub result below the isSelected with a black left border.
+        "fi": "Tähän kohtaan voidaan kirjoittaa aina näkyvää tekstiä.",
+        "sv": "I detta avsnitt kan du skriva text som alltid är synlig.",
+        "en": "At this point, you can write text that is always visible."
+      },
+      "disclosure": {
+        // These are only rendered if the corresponding 'recommendation' is active. For full reference of the possible values check the projects recommendationLabel type.
+        "fi": "Tämä tulisi näkyviin, vain jos suosituksissa olisi mukana 'disclosure', muuten tätä ei näytetä.",
+        "sv": "Detta kommer att visas endast om 'disclosure' ingår i rekommendationerna; annars kommer detta inte att visas.",
+        "en": "This will be displayed only if 'disclosure' is included in the recommendations; otherwise, this will not be shown."
+      },
+      "clinic": {
+        "fi": "Tämä tulisi näkyviin, vain jos suosituksissa olisi mukana 'clinic', muuten tätä ei näytetä myöskään.",
+        "sv": "etta kommer att visas endast om 'clinic' ingår i rekommendationerna; annars kommer detta inte att visas.",
+        "en": "This will be displayed only if 'clinic' is included in the recommendations; otherwise, this will not be shown."
+      },
+      "relations": {
+        "fi": "Sama idea jatkuu myös lopuissa suosituksissa.",
+        "sv": "Samma koncept gäller även för de återstående rekommendationerna.",
+        "en": "The same concept applies to the remaining recommendations as well."
+      }
+      // ... Other recommendation labels available to this survey.
+    }
+  }
+}
+```
+
+# Entry
+
+The `Entry` model represents the data submitted for a survey. It captures the values provided by users in response to survey questions.
+
+## Properties
+
+- `id` (number): The unique identifier for the entry.
+- `surveyId` (number): The ID of the survey to which this entry belongs.
+- `userId` (string): The ID of the user who submitted the entry (optional).
+- `data` (object): The data submitted for the survey. This is typically an object containing responses to various survey questions.
+- `sessionToken` (string | null): A session token associated with the entry, if applicable.
