@@ -18,7 +18,11 @@ export const getEntry = async (entryId: string): Promise<Entry> => {
   return entry
 }
 
-export const createEntry = async (surveyId: string, body: NewEntry) => {
+export const createEntry = async (
+  userId: string,
+  surveyId: string,
+  body: NewEntry
+) => {
   const parsedBody = NewEntryZod.safeParse(body)
 
   if (!parsedBody.success) throw new Error('Validation failed')
@@ -27,6 +31,7 @@ export const createEntry = async (surveyId: string, body: NewEntry) => {
   const existingEntry = await Entry.findOne({
     where: {
       surveyId,
+      userId,
       sessionToken,
     },
   })
@@ -41,6 +46,7 @@ export const createEntry = async (surveyId: string, body: NewEntry) => {
 
   const newEntry = await Entry.create({
     surveyId: Number(surveyId),
+    userId,
     data,
     sessionToken,
   })

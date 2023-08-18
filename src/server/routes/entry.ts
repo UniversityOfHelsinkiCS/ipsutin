@@ -26,8 +26,9 @@ entryRouter.get(
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res) => {
   const { surveyId } = req.params
+  const { id: userId } = req.user
 
-  const entry = await createEntry(surveyId, req.body)
+  const entry = await createEntry(userId, surveyId, req.body)
 
   return res.status(201).send(entry)
 })
