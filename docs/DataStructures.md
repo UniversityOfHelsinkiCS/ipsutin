@@ -367,22 +367,22 @@ The `Result` model is used to map FormValues (the selections of a given survey) 
 ```json
   [
     {
-      id: 34,
-      surveyId: 1,
-      optionLabel: 'someOptionInAQuestion',
-      isSelected: {
-        fi: 'Does the software provide a solution to a problem? ***Maybe***',
-        sv: 'Does the software provide a solution to a problem? ***Maybe***',
-        en: 'Does the software provide a solution to a problem? ***Maybe***',
+      "id": 34,
+      "surveyId": 1,
+      "optionLabel": 'someOptionInAQuestion',
+      "isSelected": {
+        "fi": 'Does the software provide a solution to a problem? ***Maybe***',
+        "sv": 'Does the software provide a solution to a problem? ***Maybe***',
+        "en": 'Does the software provide a solution to a problem? ***Maybe***',
       },
-      data: {
-        type: 'software', // Here we have provided a type field for determining a survey specific result type
-        someOtherFieldRelated: true, // Here we could also add some other fields we see fit to provide the best results to the end user.
-        resultData: {
-          allDimensions: {
-            fi: '',
-            sv: '',
-            en: '',
+      "data": {
+        "type": 'software', // Here we have provided a type field for determining a survey specific result type
+        "someOtherFieldRelated": true, // Here we could also add some other fields we see fit to provide the best results to the end user.
+        "resultData": {
+          "allDimensions": {
+            "fi": '',
+            "sv": '',
+            "en": '',
           },
           {
             /* see the projects recommendationLabels type or project specification for recommendationLabels} */
@@ -391,22 +391,22 @@ The `Result` model is used to map FormValues (the selections of a given survey) 
       }
     },
     {
-      id: 35,
-      surveyId: 1,
-      optionLabel: 'anotherOptionInAQuestion',
-      isSelected: {
-        fi: 'Does the hardware update reduce the risk of a failure? ***Yes***',
-        sv: 'Does the hardware update reduce the risk of a failure? ***Yes***',
-        en: 'Does the hardware update reduce the risk of a failure? ***Yes***',
+      "id": 35,
+      "surveyId": 1,
+      "optionLabel": 'anotherOptionInAQuestion',
+      "isSelected": {
+        "fi": 'Does the hardware update reduce the risk of a failure? ***Yes***',
+        "sv": 'Does the hardware update reduce the risk of a failure? ***Yes***',
+        "en": 'Does the hardware update reduce the risk of a failure? ***Yes***',
       },
-      data: {
-        type: 'hardware', // remember to type these new fields!
-        someOtherFieldRelated: false,
-        resultData: {
-          allDimensions: {
-            fi: '',
-            sv: '',
-            en: '',
+      "data": {
+        "type": 'hardware', // remember to type these new fields!
+        "someOtherFieldRelated": false,
+        "resultData": {
+          "allDimensions": {
+            "fi": '',
+            "sv": '',
+            "en": '',
           },
           {
             /* see the projects recommendationLabels type or project specification for recommendationLabels} */
