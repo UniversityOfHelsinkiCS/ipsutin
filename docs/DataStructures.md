@@ -417,6 +417,108 @@ The `Result` model is used to map FormValues (the selections of a given survey) 
   ]
 ```
 
+# Recommendation
+
+The `Recommendation` model represents recommendations associated with survey options. It includes information about the impact of various options on the recommendation. Recommendations are given points based on the question option selections and the most recommended recommendation usually leads to a certain action.
+
+## Properties
+
+- `id` (number): The unique identifier for the recommendation.
+- `surveyId` (number): The ID of the survey to which this recommendation belongs.
+- `label` (string): The label identifying the recommendation (e.g., 'disclosure', 'clinic').
+- `title` (Locales): The localized title of the recommendation.
+- `text` (Locales): The localized description or text of the recommendation.
+- `data` (RecommendationData): A data object containing key-value pairs representing the impact of options on the recommendation. The data property within the Recommendation model contains key-value pairs that represent the impact of different options on the recommendation. The numerical values assigned to options indicate the level of impact on the recommendation.
+
+### Data Property explanation
+
+Give the following points for a certain option in the data field:
+
+- 0: The option does not affect this recommendation at all.
+- +3: The option has a significant positive impact on the recommendation.
+- +1: The option has a moderate positive impact on the recommendation.
+- -3: The option has a negative impact on the recommendation.
+- -9: The option has a strong negative impact and excludes the recommendation completely.
+
+## Usage
+
+### Defining recommendations
+
+```json
+[
+  {
+    "id": 1,
+    "surveyId": 1,
+    "label": "disclosure", // this is the recommendation we want to score here. Check available recommendations from the types or specification
+    "title": {
+      "fi": "Keksintöilmoitus",
+      "sv": "Uppfinningsanmälan",
+      "en": "Invention Disclosure"
+    },
+    "text": {
+      "fi": "Suositus tehdä keksintöilmoitus.",
+      "sv": "Rekommendation att lämna in en uppfinningsanmälan.",
+      "en": "Recommendation to file an Invention Disclosure."
+    },
+    "data": {
+      "option1": 3,
+      "option2": 0,
+      "option3": -3,
+      "option4": 0,
+      "childOption1": 1,
+      "childOption2": 0
+    }
+  },
+  {
+    "id": 2,
+    "surveyId": 1,
+    "label": "clinic",
+    "title": {
+      "fi": "Ideaklinikka",
+      "sv": "Ideaklinik",
+      "en": "Idea Clinic"
+    },
+    "text": {
+      // No need to provide the text values, really depending of the application.
+      "fi": "",
+      "sv": "",
+      "en": ""
+    },
+    "data": {
+      "option1": 0,
+      "option2": 1,
+      "option3": 3,
+      "option4": 0,
+      "childOption1": 0,
+      "childOption2": 0
+    }
+  },
+  {
+    "id": 3,
+    "surveyId": 1,
+    "label": "relations",
+    "title": {
+      "fi": "Yritysyhteistyö",
+      "sv": "Uppfinningsanmälan",
+      "en": "Business relations"
+    },
+    "text": {
+      "fi": "",
+      "sv": "",
+      "en": ""
+    },
+    "data": {
+      "option1": 0,
+      "option2": -3,
+      "option3": 0,
+      "option4": 3,
+      "childOption1": 0,
+      "childOption2": 1
+    }
+  }
+]
+```
+
 # Entry
 
 The `Entry` model represents the data submitted for a survey. It captures the values provided by users in response to survey questions.
