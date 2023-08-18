@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Box } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 
 import Markdown from '../Common/Markdown'
 
@@ -7,10 +7,11 @@ interface ServiceProps {
   title: string
   content: string
   children?: ReactNode
+  sx?: SxProps<Theme>
 }
 
-const Service = ({ title, content, children }: ServiceProps) => (
-  <Box>
+const Service = ({ title, content, children, sx }: ServiceProps) => (
+  <Box sx={sx}>
     <Box sx={{ mb: 1 }}>
       <Markdown>{title}</Markdown>
     </Box>
