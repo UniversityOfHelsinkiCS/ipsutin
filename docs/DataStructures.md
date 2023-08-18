@@ -315,7 +315,7 @@ The `Result` model is used to map FormValues (the selections of a given survey) 
 - `surveyId` (number): The ID of the survey associated with this result.
 - `optionLabel` (string): The label representing the selected option.
 - `isSelected` (Locales): The localized label indicating whether the option is selected. This will always be rendered if question.option.id is optionLabel. This is pretty much a Title for the results usually indicating or reminder that the option was selected.
-- `data` (object): The data structure containing result information. data.resultData contains all the more niche results for linked to a certain recommendation label. For full reference of the possible recommendationLabels check project specification, recommendationLabel type from the types.ts file or discuss with the client.
+- `data` (object): The data structure containing result information. data.resultData contains all the more niche results for linked to a certain recommendation label. For full reference of the possible recommendationLabels check project specification, recommendationLabel type from the types.ts file or discuss with the client. You may also provide other data fields such as type or other survey specific stuff without the need for model migrations.
 
 ## Usage
 
@@ -360,6 +360,61 @@ The `Result` model is used to map FormValues (the selections of a given survey) 
     }
   }
 }
+```
+
+### Example of additional result data fields
+
+```json
+  [
+    {
+      id: 34,
+      surveyId: 1,
+      optionLabel: 'someOptionInAQuestion',
+      isSelected: {
+        fi: 'Does the software provide a solution to a problem? ***Maybe***',
+        sv: 'Does the software provide a solution to a problem? ***Maybe***',
+        en: 'Does the software provide a solution to a problem? ***Maybe***',
+      },
+      data: {
+        type: 'software', // Here we have provided a type field for determining a survey specific result type
+        someOtherFieldRelated: true, // Here we could also add some other fields we see fit to provide the best results to the end user.
+        resultData: {
+          allDimensions: {
+            fi: '',
+            sv: '',
+            en: '',
+          },
+          {
+            /* see the projects recommendationLabels type or project specification for recommendationLabels} */
+          }
+        },
+      }
+    },
+    {
+      id: 35,
+      surveyId: 1,
+      optionLabel: 'anotherOptionInAQuestion',
+      isSelected: {
+        fi: 'Does the hardware update reduce the risk of a failure? ***Yes***',
+        sv: 'Does the hardware update reduce the risk of a failure? ***Yes***',
+        en: 'Does the hardware update reduce the risk of a failure? ***Yes***',
+      },
+      data: {
+        type: 'hardware', // remember to type these new fields!
+        someOtherFieldRelated: false,
+        resultData: {
+          allDimensions: {
+            fi: '',
+            sv: '',
+            en: '',
+          },
+          {
+            /* see the projects recommendationLabels type or project specification for recommendationLabels} */
+          }
+        },
+      }
+    },
+  ]
 ```
 
 # Entry
