@@ -64,7 +64,7 @@ const Contact = ({ action }: Action) => {
         <SendContactTicket
           title={t('contact:relationsTitle')}
           content={t('contact:relationsContent')}
-          ticketEmail='researchlawyers@helsinki.fi'
+          ticketEmail='businessteam@helsinki.fi'
         />
         <Service
           title={t('services:relationsTitle')}
