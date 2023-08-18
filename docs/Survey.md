@@ -152,3 +152,155 @@ const RenderSurvey = ({
 
 export default RenderSurvey
 ```
+
+## `SingleChoice` Component
+
+The `SingleChoice` component is a React component used to render a single-choice question with radio button options. This component is designed to be integrated into a larger form to provide users with the ability to select one option from the available choices.
+
+### Props
+
+The `SingleChoice` component accepts the following props:
+
+- `control` (object): The `control` object provided by the `react-hook-form` library, which is used to manage form control and validation.
+
+- `question` (Question object): The question object containing information about the question, including its options.
+
+- `children` (ReactNode): Optional child elements that can be included within the `SingleChoice` component.
+
+- `language` (string): The current language used for localization.
+
+### Component Structure
+
+The `SingleChoice` component utilizes the `Controller` component from `react-hook-form` to manage the state of the radio button options. It maps over the options provided in the `question` object and renders radio button choices using Material-UI's `Radio` and `FormControlLabel` components. The `RadioGroup` component is used to group the radio buttons together.
+
+### Example Usage
+
+```tsx
+import React from 'react'
+
+import { InputProps } from '../../types'
+import SingleChoice from '../Choices/SingleChoice'
+
+const RenderQuestions = ({
+  control,
+  watch,
+  question,
+  questions,
+  language,
+}: InputProps) => {
+  if (question.visibility?.options) {
+    const [...options] = question.visibility.options
+
+    if (question.parentId !== null) {
+      const parent = watch(question.parentId.toString())
+
+      if (!options.includes(parent)) return null
+    }
+  }
+
+  const childQuestions = questions.filter(
+    (childQuestion) => question.id === childQuestion.parentId
+  )
+
+  return (
+    <SingleChoice
+      key={question.id}
+      control={control}
+      watch={watch}
+      question={question}
+      language={language}
+    >
+      {childQuestions &&
+        childQuestions.map((children) => (
+          <RenderQuestions
+            key={children.id}
+            control={control}
+            watch={watch}
+            question={children}
+            questions={questions}
+            language={language}
+          />
+        ))}
+    </SingleChoice>
+  )
+}
+
+export default RenderQuestions
+```
+
+## `MultiChoice` Component
+
+The `MultiChoice` component is a React component used to render a multiple-choice question with checkbox options. This component is intended to be integrated into a larger form to allow users to select multiple options from the available choices.
+
+### Props
+
+The `MultiChoice` component accepts the following props:
+
+- `control` (object): The `control` object provided by the `react-hook-form` library, which is used to manage form control and validation.
+
+- `question` (Question object): The question object containing information about the question, including its options.
+
+- `children` (ReactNode): Optional child elements that can be included within the `MultiChoice` component.
+
+- `language` (string): The current language used for localization.
+
+### Component Structure
+
+The `MultiChoice` component maps over the options provided in the `question` object and renders checkbox choices using Material-UI's `Checkbox` and `FormControlLabel` components. It utilizes the `Controller` component from `react-hook-form` to manage the state of the checkbox options within the form.
+
+Additionally, the component supports rendering additional data using the `ShowMore` component, providing users with extra information about each choice when available.
+
+### Example Usage
+
+```tsx
+import React from 'react'
+
+import { InputProps } from '../../types'
+import MultiChoice from '../Choices/MultiChoice'
+
+const RenderQuestions = ({
+  control,
+  watch,
+  question,
+  questions,
+  language,
+}: InputProps) => {
+  if (question.visibility?.options) {
+    const [...options] = question.visibility.options
+
+    if (question.parentId !== null) {
+      const parent = watch(question.parentId.toString())
+
+      if (!options.includes(parent)) return null
+    }
+  }
+
+  const childQuestions = questions.filter(
+    (childQuestion) => question.id === childQuestion.parentId
+  )
+
+  return (
+    <MultiChoice
+      key={question.id}
+      control={control}
+      watch={watch}
+      question={question}
+      language={language}
+    >
+      {childQuestions &&
+        childQuestions.map((children) => (
+          <RenderQuestions
+            key={children.id}
+            control={control}
+            watch={watch}
+            question={children}
+            questions={questions}
+            language={language}
+          />
+        ))}
+    </MultiChoice>
+  )
+}
+
+export default RenderQuestions
+```
