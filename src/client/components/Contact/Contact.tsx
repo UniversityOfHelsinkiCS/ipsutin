@@ -18,6 +18,8 @@ const { cardStyles } = styles
 const Contact = ({ action }: Action) => {
   const { t } = useTranslation()
 
+  // Action prop is the most recommended 'service' that is used to determine which of the
+  // following components are rendered.
   const components: { [key in RecommendationLabel]?: ReactElement } = {
     clinic: (
       <SendContactTicket
@@ -94,6 +96,7 @@ const Contact = ({ action }: Action) => {
     ),
   }
 
+  // Get the corresponding components for the most recommended action from the components tree.
   const ContactComponent = components[action]
 
   if (!ContactComponent) return null
