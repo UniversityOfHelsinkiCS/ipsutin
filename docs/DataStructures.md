@@ -1,3 +1,12 @@
+# Survey
+
+The `Survey` model represents a high level abstraction of a single survey withing the application. This allows the application to have multiple different surveys that each contains different set of `questions`, `recommendations` and `results`.
+
+## Properties
+
+- `id` (number): The unique identifier for the survey.
+- `name` (number): The name used to identify the survey and fetch it's data from the backend services. Use &#128042;&#128188; (camelCase) as you probably should anyways.
+
 # Question
 
 The `Question` model represents a question within a survey. It stores various attributes related to the question, including its content, options, and visibility settings.
@@ -15,9 +24,7 @@ The `Question` model represents a question within a survey. It stores various at
 
 ## Usage
 
-### Defining a single question
-
-#### Single choice question
+### Defining single choice question
 
 ```json
 {
@@ -61,7 +68,7 @@ The `Question` model represents a question within a survey. It stores various at
 }
 ```
 
-#### Multiple choice question
+### Defining multiple choice question
 
 ```json
 {
@@ -98,7 +105,7 @@ The `Question` model represents a question within a survey. It stores various at
 }
 ```
 
-#### Defining child questions
+### Defining child questions
 
 ```json
 [
@@ -153,7 +160,7 @@ The `Question` model represents a question within a survey. It stores various at
 ]
 ```
 
-#### Example of a larger set of questions
+### Example of a larger set of questions
 
 ```json
 [
