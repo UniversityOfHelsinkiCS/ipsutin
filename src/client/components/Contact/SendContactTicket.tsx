@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, SxProps, TextField, Theme } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import useLoggedInUser from '../../hooks/useLoggedInUser'
@@ -12,12 +12,14 @@ interface ContactTicketProps {
   title: string
   content: string
   ticketEmail: string
+  sx?: SxProps<Theme>
 }
 
 const SendContactTicket = ({
   title,
   content,
   ticketEmail,
+  sx,
 }: ContactTicketProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
@@ -83,7 +85,7 @@ const SendContactTicket = ({
   }
 
   return (
-    <Box>
+    <Box sx={sx}>
       <Box sx={{ mb: 1 }}>
         <Markdown>{title}</Markdown>
       </Box>
