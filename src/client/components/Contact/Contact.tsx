@@ -35,8 +35,8 @@ const Contact = ({ action }: Action) => {
     ),
     disclosure: (
       <Service
-        title={t('contact:disclosureTitle')}
-        content={t('contact:disclosureContent')}
+        title={t('services:disclosureTitle')}
+        content={t('services:disclosureContent')}
       >
         <LinkWithQuery
           data-cy='disclosure-ext-button'
@@ -48,8 +48,8 @@ const Contact = ({ action }: Action) => {
     ),
     incubator: (
       <Service
-        title={t('contact:incubatorTitle')}
-        content={t('contact:incubatorContent')}
+        title={t('services:incubatorTitle')}
+        content={t('services:incubatorContent')}
       >
         <LinkWithQuery
           data-cy='incubator-ext-button'
@@ -60,28 +60,36 @@ const Contact = ({ action }: Action) => {
       </Service>
     ),
     relations: (
-      <Service
-        title={t('contact:relationsTitle')}
-        content={t('contact:relationsContent')}
-      >
-        <LinkWithQuery
-          data-cy='relations-ext-button'
-          to={t('services:relationsExtLink')}
+      <>
+        <SendContactTicket
+          title={t('contact:relationsTitle')}
+          content={t('contact:relationsContent')}
+          ticketEmail='researchlawyers@helsinki.fi'
+        />
+        <Service
+          title={t('services:relationsTitle')}
+          content={t('services:relationsContent')}
+          sx={{ mt: 4 }}
         >
-          {t('services:relations')}
-        </LinkWithQuery>
-      </Service>
+          <LinkWithQuery
+            data-cy='relations-ext-button'
+            to={t('services:relationsExtLink')}
+          >
+            {t('services:relations')}
+          </LinkWithQuery>
+        </Service>
+      </>
     ),
     gnu_gpl: (
       <Service
-        title={t('contact:gnugplTitle')}
-        content={t('contact:gnugplContent')}
+        title={t('services:gnugplTitle')}
+        content={t('services:gnugplContent')}
       />
     ),
     bsd_mit: (
       <Service
-        title={t('contact:bsdmitTitle')}
-        content={t('contact:bsdmitContent')}
+        title={t('services:bsdmitTitle')}
+        content={t('services:bsdmitContent')}
       />
     ),
   }
