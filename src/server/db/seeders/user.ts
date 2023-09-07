@@ -8,6 +8,7 @@ const user = {
   email: 'grp-toska@helsinki.fi',
   language: 'fi',
   isAdmin: true,
+  lastLoggedIn: new Date(),
 }
 
 const seedUsers = async () => {

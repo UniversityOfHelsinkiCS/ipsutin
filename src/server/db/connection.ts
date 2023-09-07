@@ -36,7 +36,7 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 export const connectToDatabase = async (attempt = 0): Promise<void | null> => {
   try {
     await testConnection()
-  } catch (err) {
+  } catch (err: any) {
     if (attempt === DB_CONNECTION_RETRY_LIMIT) {
       logger.error(`Connection to database failed after ${attempt} attempts`, {
         error: err.stack,

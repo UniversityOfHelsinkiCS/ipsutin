@@ -11,7 +11,7 @@ facultyRouter.get('/', async (req, res) => {
   return res.send(faculties)
 })
 
-facultyRouter.get('/user', async (req: RequestWithUser, res) => {
+facultyRouter.get('/user', async (req: RequestWithUser, res: any) => {
   const { id, iamGroups = [] } = req.user
 
   const faculties = await getUserFaculties(id, iamGroups)

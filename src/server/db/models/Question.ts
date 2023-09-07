@@ -31,7 +31,7 @@ class Question extends Model<
 
   declare surveyId: number
 
-  declare parentId: number
+  declare parentId: number | null
 
   declare priority: number
 

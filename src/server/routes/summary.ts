@@ -9,7 +9,7 @@ summaryRouter.post('/', async (req, res) => {
 
   try {
     await sendEmail(targets, text, subject)
-  } catch (error) {
+  } catch (error: any) {
     return res.status(422).json({ error: error.message })
   }
   return res.status(201).end()
