@@ -21,7 +21,6 @@ const App = () => {
     window.location.href = `${FULL_URL}/api/login`
     return null
   }
-  console.log(user)
 
   return (
     <ThemeProvider theme={theme}>
