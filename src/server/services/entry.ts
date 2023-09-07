@@ -1,5 +1,6 @@
-import { NewEntry, NewEntryZod } from '../../validators/entries'
 import { Entry, Survey } from '../db/models'
+import NotFoundError from '../errors/NotFoundError'
+import { EntryValues } from '../types'
 
 export const getEntries = async (): Promise<Entry[]> => {
   const entries = await Entry.findAll({
@@ -13,7 +14,7 @@ export const getEntries = async (): Promise<Entry[]> => {
 export const getEntry = async (entryId: string): Promise<Entry> => {
   const entry = await Entry.findByPk(entryId, { include: Survey })
 
-  if (!entry) throw new Error('Entry not found')
+  if (!entry) throw new NotFoundError('Entry not found')
 
   return entry
 }
@@ -21,12 +22,9 @@ export const getEntry = async (entryId: string): Promise<Entry> => {
 export const createEntry = async (
   userId: string,
   surveyId: string,
-  body: NewEntry
+  body: EntryValues
 ) => {
-  const parsedBody = NewEntryZod.safeParse(body)
-
-  if (!parsedBody.success) throw new Error('Validation failed')
-  const { sessionToken, data } = parsedBody.data
+  const { sessionToken, data } = body
 
   const existingEntry = await Entry.findOne({
     where: {

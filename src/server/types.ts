@@ -6,6 +6,16 @@ export interface Locales {
   en: string
 }
 
+export interface FormValues {
+  [key: number]: Record<string, { [key: string]: boolean }>
+  faculty?: string
+}
+
+export interface EntryValues {
+  data: FormValues
+  sessionToken: string
+}
+
 export interface User {
   id: string
   username: string
