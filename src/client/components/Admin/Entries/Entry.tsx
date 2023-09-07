@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import { useEntry } from '../../../hooks/useEntry'
 import useResults from '../../../hooks/useResults'
@@ -22,7 +22,7 @@ const Entry = () => {
   return (
     <Box sx={cardStyles.outerBox}>
       <Box sx={resultStyles.resultWrapper}>
-        <Container sx={{ mt: 4 }}>
+        <Box sx={{ m: 4 }}>
           <Typography
             data-cy='result-section-title'
             variant='h5'
@@ -31,7 +31,7 @@ const Entry = () => {
           >
             {t('admin:entryInfoTitle')}
           </Typography>
-          <Box>
+          <Box sx={{ mx: 2 }}>
             <Typography variant='body2' sx={cardStyles.question}>
               {t('admin:entryViewSurvey')}:{' '}
               {t(`surveyNames:${entry.Survey.name}`)}
@@ -48,7 +48,7 @@ const Entry = () => {
               {new Date(entry.updatedAt).toLocaleString()}
             </Typography>
           </Box>
-        </Container>
+        </Box>
 
         <RenderResults surveyName={entry.Survey.name} resultData={entry.data} />
       </Box>
