@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales } from '@backend/types'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import useRecommendations from '../../../hooks/useRecommendations'
 import useResults from '../../../hooks/useResults'
@@ -88,40 +88,35 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
   if (!ResultComponent) return null
 
   return (
-    <>
-      <Container sx={{ mt: 4 }}>
-        <Typography
-          data-cy='result-section-title'
-          variant='h5'
-          sx={resultStyles.heading}
-          component='div'
-        >
-          {t('admin:entryViewTitle')}
-        </Typography>
-      </Container>
-      <Box sx={resultStyles.resultSection}>
-        {sortedRecommendations.map((recommendation) => (
-          <RecommendationChip
-            key={recommendation.id}
-            recommendation={recommendation}
-            compact={false}
-          />
-        ))}
-      </Box>
+    <Box sx={resultStyles.resultSection}>
+      <Typography
+        data-cy='result-section-title'
+        variant='h5'
+        sx={resultStyles.heading}
+        component='div'
+      >
+        {t('admin:entryViewTitle')}
+      </Typography>
 
-      <Box sx={resultStyles.resultSection}>
-        {commonResult && (
-          <CommonResult
-            key={commonResult.id}
-            language={language as keyof Locales}
-            resultData={commonResult}
-            recommendation={recommendedAction}
-          />
-        )}
+      {sortedRecommendations.map((recommendation) => (
+        <RecommendationChip
+          key={recommendation.id}
+          recommendation={recommendation}
+          compact={false}
+        />
+      ))}
 
-        {ResultComponent}
-      </Box>
-    </>
+      {commonResult && (
+        <CommonResult
+          key={commonResult.id}
+          language={language as keyof Locales}
+          resultData={commonResult}
+          recommendation={recommendedAction}
+        />
+      )}
+
+      {ResultComponent}
+    </Box>
   )
 }
 
