@@ -5,23 +5,19 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "lib": ["es2022", "dom"],
     "module": "ES2022",
     "moduleResolution": "node",
     "outDir": "dist",
-    "strict": false,
+    "strict": true,
     "target": "es2022",
     "jsx": "react-jsx",
-    "useDefineForClassFields": true,
-    "allowJs": false,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmitOnError": true,
-    "isolatedModules": true,
-    "noEmit": true,
     "baseUrl": ".",
-    "paths": { "@backend/*": ["src/server/*"] }
+    "paths": {
+      "@backend/*": ["src/server/*"],
+      "@frontend/*": ["src/client/*"]
+    }
   },
   "include": ["src/**/*", "types/@unfuck-utf8-headers-middleware.d..ts"],
   "ts-node": {
