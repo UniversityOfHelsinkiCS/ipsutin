@@ -40,7 +40,7 @@ const ShareResult = () => {
     mode: 'all',
     resolver: zodResolver(ShareResultsZod),
     defaultValues: {
-      emails: [user?.email],
+      emails: [''],
     },
   })
 
@@ -107,6 +107,7 @@ const ShareResult = () => {
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
                   <Chip
+                    {...getTagProps({ index })}
                     data-cy={`share-results-chip-${option}`}
                     key={option}
                     variant='outlined'
@@ -116,7 +117,6 @@ const ShareResult = () => {
                         ? 'error'
                         : 'success'
                     }
-                    {...getTagProps({ index })}
                   />
                 ))
               }
