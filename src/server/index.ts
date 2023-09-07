@@ -1,14 +1,30 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import express from 'express'
+import session from 'express-session'
+import passport from 'passport'
 import path from 'path'
 
 import { connectToDatabase } from './db/connection'
 import seed from './db/seeders'
-import { PORT } from './util/config'
+import { PORT, SESSION_SECRET } from './util/config'
 import logger from './util/logger'
 import setupAuthentication from './util/oicd'
+import { redisStore } from './util/redis'
 import router from './routes'
 
 const app = express()
+
+app.use(
+  session({
+    store: redisStore,
+    resave: false,
+    saveUninitialized: false,
+    secret: SESSION_SECRET,
+  })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/api', (req, res, next) => router(req, res, next))
 app.use('/api', (_, res) => res.sendStatus(404))

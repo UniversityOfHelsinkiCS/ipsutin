@@ -14,6 +14,10 @@ if (inProduction || inStaging) connectionString = `${connectionString}&ssl=true`
 
 export const DB_CONNECTION_STRING = connectionString
 
+export const REDIS_HOST = process.env.REDIS_HOST || 'redis'
+
+export const SESSION_SECRET = process.env.SESSION_SECRET || ''
+
 export const JAMI_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/jami/'
   : 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/jami'
