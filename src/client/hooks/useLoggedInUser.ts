@@ -7,7 +7,7 @@ const useLoggedInUser = () => {
   const queryKey = 'user'
 
   const query = async (): Promise<User> => {
-    const { data } = await apiClient.get('/users/login')
+    const { data } = await apiClient.get('/users')
 
     return data
   }

@@ -1,41 +1,9 @@
-import { NextFunction, Response } from 'express'
+import mockUser from '../mocs/user'
 
-import { inDevelopment } from '../../config'
-import mockHeaders from '../mocs/headers'
+const userMiddleware = (req: any, _: any, next: any) => {
+  if (req.path.includes('/login')) return next()
 
-const parseIamGroups = (iamGroups: string) =>
-  iamGroups?.split(';').filter(Boolean) ?? []
-
-const checkAdmin = (iamGroups: string[]) =>
-  iamGroups.some((iamGroup) => ['grp-toska', 'grp-his'].includes(iamGroup))
-
-const userMiddleware = (req: any, _res: Response, next: NextFunction) => {
-  const headers = inDevelopment ? mockHeaders : req.headers
-
-  const {
-    uid: username,
-    givenname: firstName,
-    sn: lastName,
-    mail: email,
-    preferredlanguage: language,
-    hypersonsisuid: id,
-    hygroupcn,
-  } = headers
-
-  const iamGroups = parseIamGroups(hygroupcn)
-
-  const user = {
-    id: id || username, // Username if no account in Sisu
-    username,
-    firstName,
-    lastName,
-    email,
-    language,
-    iamGroups,
-    isAdmin: checkAdmin(iamGroups),
-  }
-
-  req.user = user
+  req.user = mockUser
 
   return next()
 }

@@ -1,23 +1,17 @@
 import express from 'express'
 
-import { User } from '../db/models'
 import adminHandler from '../middleware/admin'
 import { getUserCounts } from '../services/user'
 import { RequestWithUser } from '../types'
 
 const userRouter = express.Router()
 
-userRouter.get('/login', async (req: RequestWithUser, res: any) => {
+userRouter.get('/', async (req: RequestWithUser, res: any) => {
   const { user } = req
 
-  if (!user.id) return res.send({})
+  if (!user) return res.send({})
 
-  const [updatedUser] = await User.upsert({
-    ...user,
-    lastLoggedIn: new Date(),
-  })
-
-  return res.send(updatedUser)
+  return res.send({ ...user, newUser: false })
 })
 
 userRouter.get('/userCounts', adminHandler, async (req, res) => {

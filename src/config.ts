@@ -18,3 +18,10 @@ export const LICENCES_DATA_KEY = 'ipsutin_licenses_local_save'
 export const IDEA_EVALUATION_DATA_KEY = 'ipsutin_idea_evaluation_local_save'
 
 export const IP_ASSESSMENT_DATA_KEY = 'ipsutin_ip_assessment_local_save'
+
+// eslint-disable-next-line no-nested-ternary
+export const FULL_URL = inProduction
+  ? 'https://ipsutin.ext.ocp-prod-0.k8s.it.helsinki.fi'
+  : inStaging
+  ? 'https://toska-staging.cs.helsinki.fi/ipsutin'
+  : 'http://localhost:3000'

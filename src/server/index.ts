@@ -5,6 +5,7 @@ import { connectToDatabase } from './db/connection'
 import seed from './db/seeders'
 import { PORT } from './util/config'
 import logger from './util/logger'
+import setupAuthentication from './util/oicd'
 import router from './routes'
 
 const app = express()
@@ -23,6 +24,8 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
 app.listen(PORT, async () => {
   await connectToDatabase()
   await seed()
+
+  await setupAuthentication()
 
   logger.info(`Server running on port ${PORT}`)
 })

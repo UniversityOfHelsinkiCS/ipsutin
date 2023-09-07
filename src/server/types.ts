@@ -16,6 +16,16 @@ export interface EntryValues {
   sessionToken: string
 }
 
+export interface UserInfo {
+  uid: string
+  hyPersonSisuId: string
+  email: string
+  hyGroupCn: string[]
+  preferredLanguage: string
+  given_name: string
+  family_name: string
+}
+
 export interface User {
   id: string
   username: string
