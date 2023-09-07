@@ -16,6 +16,10 @@ const CommonResult = ({
 }) => {
   if (!resultData || !recommendation) return null
 
+  const recommendationResult = resultData.data.resultData[recommendation]
+
+  if (!recommendationResult) return null
+
   return (
     <Box>
       <Box style={{ margin: '2rem 0 2rem 0' }}>
@@ -38,9 +42,7 @@ const CommonResult = ({
             borderWidth: '6px',
           }}
         >
-          <Markdown>
-            {resultData.data.resultData[recommendation][language]}
-          </Markdown>
+          <Markdown>{recommendationResult[language]}</Markdown>
         </Box>
       </Box>
     </Box>

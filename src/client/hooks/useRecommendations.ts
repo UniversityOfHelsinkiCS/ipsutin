@@ -3,7 +3,7 @@ import { Recommendation } from '@backend/types'
 
 import apiClient from '../util/apiClient'
 
-const useRecommendations = (surveyId: number) => {
+const useRecommendations = (surveyId: number | undefined) => {
   const queryKey = ['recommendations', surveyId]
 
   const query = async (): Promise<Recommendation[]> => {

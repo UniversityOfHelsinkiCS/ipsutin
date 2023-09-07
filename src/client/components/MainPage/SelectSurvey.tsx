@@ -32,6 +32,8 @@ const SelectSurvey = () => {
   const routeParts = location.pathname.split('/').filter(Boolean)
 
   useEffect(() => {
+    if (!faculty || faculty === 'null') return
+
     const params = { faculty }
 
     navigate({

@@ -1,25 +1,17 @@
-import {
-  Control,
-  FieldValues,
-  SubmitHandler,
-  UseFormRegister,
-  UseFormWatch,
-} from 'react-hook-form'
+import { Control, UseFormRegister, UseFormWatch } from 'react-hook-form'
 import { Locales, Question, RecommendationLabel, Result } from '@backend/types'
 
 export interface InputProps {
-  control?: Control<FieldValues>
-  watch?: UseFormWatch<FieldValues>
-  register?: UseFormRegister<FieldValues>
+  control?: Control<any>
+  watch?: UseFormWatch<any>
+  register?: UseFormRegister<any>
   question?: Question
   children?: React.ReactNode
   language?: string
   questions?: Question[]
-  handleSubmit?: SubmitHandler<FieldValues>
   isSubmitted?: boolean
   formResultData?: FormValues
   answers?: object
-  showContact?: SubmitHandler<FieldValues>
   survey?: Survey
   surveyName?: string
   surveyInfo?: string

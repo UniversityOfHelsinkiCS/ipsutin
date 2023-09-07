@@ -15,7 +15,14 @@ const RenderAnalytics = () => {
   const { entries, isLoading: isEntriesLoading } = useEntries()
   const { faculties, isLoading: isFacultiesLoading } = useFaculties()
 
-  if (isUserCountLoading || isEntriesLoading || isFacultiesLoading) {
+  if (
+    !entries ||
+    !faculties ||
+    !userCounts ||
+    isUserCountLoading ||
+    isEntriesLoading ||
+    isFacultiesLoading
+  ) {
     return <LoadingProgress />
   }
 

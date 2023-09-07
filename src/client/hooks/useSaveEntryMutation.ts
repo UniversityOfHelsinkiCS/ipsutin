@@ -3,7 +3,7 @@ import { useMutation } from 'react-query'
 import { FormValues } from '../types'
 import apiClient from '../util/apiClient'
 
-const useSaveEntryMutation = (surveyId: number) => {
+const useSaveEntryMutation = (surveyId: number | undefined) => {
   const mutationFn = async (data: FormValues) => {
     let sessionToken = sessionStorage.getItem('sessionToken')
 

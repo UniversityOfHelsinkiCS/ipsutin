@@ -3,7 +3,7 @@ import { Result } from '@backend/types'
 
 import apiClient from '../util/apiClient'
 
-const useResults = (surveyId: number) => {
+const useResults = (surveyId: number | undefined) => {
   const queryKey = ['results', surveyId]
 
   const query = async (): Promise<Result[]> => {

@@ -10,6 +10,8 @@ import ShowMore from '../Common/ShowMore'
 const MultiChoice = ({ control, question, children, language }: InputProps) => {
   const { formStyles } = styles
 
+  if (!question) return null
+
   return (
     <>
       {question.optionData.options.map((choice) => (

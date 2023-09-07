@@ -21,6 +21,8 @@ const RenderSurvey = ({
 
   const { language } = i18n
 
+  if (!questions) return null
+
   return (
     <Box sx={cardStyles.outerBox}>
       <Typography variant='h4' sx={{ m: 4 }}>

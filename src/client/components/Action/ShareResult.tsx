@@ -40,7 +40,7 @@ const ShareResult = () => {
     mode: 'all',
     resolver: zodResolver(ShareResultsZod),
     defaultValues: {
-      emails: [],
+      emails: [user?.email],
     },
   })
 
@@ -49,7 +49,9 @@ const ShareResult = () => {
   }, [resultHTML])
 
   useEffect(() => {
-    if (user?.email) reset({ emails: [user.email] })
+    if (!user?.email) return
+
+    reset({ emails: [user.email] })
   }, [reset, user])
 
   const onSubmit = ({ emails }: ShareResultEmails) => {

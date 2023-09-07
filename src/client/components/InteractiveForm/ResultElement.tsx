@@ -19,7 +19,7 @@ const ResultElement = ({
   resultData: ResultWithLabels | IPAssessmentResult
   dimensions: RecommendationLabel[]
 }) => {
-  if (!resultData) return null
+  if (!resultData || !dimensions || !resultData) return null
 
   return (
     <Container
@@ -40,7 +40,11 @@ const ResultElement = ({
         }}
       >
         {dimensions.map((dimension) => {
-          const color = colors[dimension] || null
+          const color = colors[dimension] ?? undefined
+          const recommendationResult = resultData?.data?.resultData[dimension]
+
+          if (!recommendationResult) return null
+
           return (
             <Box
               data-cy={`result-wrapper-${resultData.optionLabel}-${dimension}`}
@@ -53,9 +57,7 @@ const ResultElement = ({
                 borderWidth: '6px',
               }}
             >
-              <Markdown>
-                {resultData.data.resultData[dimension][language]}
-              </Markdown>
+              <Markdown>{recommendationResult[language]}</Markdown>
             </Box>
           )
         })}

@@ -46,6 +46,13 @@ const IpAssessment = () => {
     defaultValues: resultData,
   })
 
+  usePersistForm({
+    value: watch(),
+    sessionStorageKey: IP_ASSESSMENT_DATA_KEY,
+  })
+
+  if (!survey || isLoading || !faculty) return null
+
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
 
@@ -57,13 +64,6 @@ const IpAssessment = () => {
       search: location.search,
     })
   }
-
-  usePersistForm({
-    value: watch(),
-    sessionStorageKey: IP_ASSESSMENT_DATA_KEY,
-  })
-
-  if (!survey || isLoading || !faculty) return null
 
   const technical = survey.Questions.filter((question) =>
     [101, 102, 103, 104].includes(question.id)

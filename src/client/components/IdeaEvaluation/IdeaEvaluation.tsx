@@ -42,6 +42,13 @@ const IdeaEvaluation = () => {
     defaultValues: resultData,
   })
 
+  usePersistForm({
+    value: watch(),
+    sessionStorageKey: IDEA_EVALUATION_DATA_KEY,
+  })
+
+  if (!survey || isLoading || !faculty) return null
+
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
 
@@ -53,13 +60,6 @@ const IdeaEvaluation = () => {
       search: location.search,
     })
   }
-
-  usePersistForm({
-    value: watch(),
-    sessionStorageKey: IDEA_EVALUATION_DATA_KEY,
-  })
-
-  if (!survey || isLoading || !faculty) return null
 
   return (
     <Box id='idea-evaluation-main-section' sx={formStyles.formWrapper}>

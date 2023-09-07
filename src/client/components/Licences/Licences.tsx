@@ -42,6 +42,10 @@ const Licences = () => {
     defaultValues: resultData,
   })
 
+  usePersistForm({ value: watch(), sessionStorageKey: LICENCES_DATA_KEY })
+
+  if (!survey || isLoading || !faculty) return null
+
   const onSubmit = (data: FormValues) => {
     const submittedData = { ...data, faculty }
 
@@ -53,10 +57,6 @@ const Licences = () => {
       search: location.search,
     })
   }
-
-  usePersistForm({ value: watch(), sessionStorageKey: LICENCES_DATA_KEY })
-
-  if (!survey || isLoading || !faculty) return null
 
   return (
     <Box id='licences-main-section' sx={formStyles.formWrapper}>
