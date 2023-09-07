@@ -2,7 +2,7 @@ import { Handlers as SentryHandlers } from '@sentry/node'
 import cors from 'cors'
 import express from 'express'
 
-import { inStaging } from '../../config'
+import { inDevelopment, inE2EMode, inStaging } from '../../config'
 import accessLogger from '../middleware/access'
 import errorHandler from '../middleware/error'
 import shibbolethMiddleware from '../middleware/shibboleth'
@@ -29,7 +29,7 @@ router.use(cors())
 router.use(express.json())
 
 router.use(shibbolethMiddleware)
-router.use(userMiddleware)
+if (inDevelopment || inE2EMode) router.use(userMiddleware)
 
 router.use(accessLogger)
 
