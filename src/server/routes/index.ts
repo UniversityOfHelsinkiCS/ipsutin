@@ -9,6 +9,7 @@ import shibbolethMiddleware from '../middleware/shibboleth'
 import userMiddleware from '../middleware/user'
 import initializeSentry from '../util/sentry'
 
+import analyticRouter from './analytic'
 import entryRouter from './entry'
 import facultyRouter from './faculty'
 import loginRouter from './login'
@@ -44,6 +45,7 @@ router.use('/users', userRouter)
 router.use('/summary', summaryRouter)
 router.use('/recommendations', recommendationRouter)
 router.use('/login', loginRouter)
+router.use('/analytics', analyticRouter)
 
 router.use(SentryHandlers.errorHandler())
 router.use(errorHandler)

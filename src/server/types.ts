@@ -6,6 +6,8 @@ export interface Locales {
   en: string
 }
 
+export type SurveyName = 'licences' | 'ideaEvaluation' | 'ipAssessment'
+
 export interface FormValues {
   [key: number]: Record<string, { [key: string]: boolean }>
   faculty?: string
