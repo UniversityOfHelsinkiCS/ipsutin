@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
@@ -16,6 +17,7 @@ const CustomLabel = ({
   value,
   survey,
 }: any) => {
+  const { t } = useTranslation()
   const RADIAN = Math.PI / 180
   const radius = 25 + innerRadius + (outerRadius - innerRadius)
   const x = cx + radius * Math.cos(-midAngle * RADIAN)
@@ -29,7 +31,7 @@ const CustomLabel = ({
       textAnchor={x > cx ? 'start' : 'end'}
       dominantBaseline='central'
     >
-      {survey}: {value}
+      {t(`surveyNames:${survey}`)}: {value}
     </text>
   )
 }

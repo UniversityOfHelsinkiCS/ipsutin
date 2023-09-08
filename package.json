@@ -67,6 +67,7 @@
     "test:e2e": "cypress run",
     "test:cypress": "cypress open",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
     "format": "prettier --write '*.{ts,tsx,json,css,md}'",
     "build": "DISABLE_ESLINT_PLUGIN=true vite build",
     "prepare": "husky install"
