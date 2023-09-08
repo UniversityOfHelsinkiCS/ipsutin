@@ -17,6 +17,20 @@ export const useFaculties = () => {
   return { faculties, ...rest }
 }
 
+export const useUserFaculties = () => {
+  const queryKey = 'userFaculties'
+
+  const query = async (): Promise<Faculty[]> => {
+    const { data } = await apiClient.get('/faculties/user')
+
+    return data
+  }
+
+  const { data: userFaculties, ...rest } = useQuery(queryKey, query)
+
+  return { userFaculties, ...rest }
+}
+
 export const useFacultyCounts = () => {
   const queryKey = 'facultyCounts'
 
