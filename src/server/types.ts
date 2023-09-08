@@ -131,7 +131,12 @@ export interface Question {
   visibility: Visibility
 }
 
-export type SurveyName = 'licences' | 'ideaEvaluation' | 'ipAssessment'
+export const surveyNames = [
+  'licences',
+  'ideaEvaluation',
+  'ipAssessment',
+] as const
+export type SurveyName = (typeof surveyNames)[number]
 
 export interface Survey {
   id: number
