@@ -7,7 +7,7 @@ const useUserCounts = () => {
   const queryKey = ['userCounts']
 
   const query = async (): Promise<UserCount[]> => {
-    const { data } = await apiClient.get('/users/userCounts')
+    const { data } = await apiClient.get('/analytics/usercounts')
 
     return data
   }
