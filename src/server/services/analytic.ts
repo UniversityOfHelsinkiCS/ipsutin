@@ -1,4 +1,4 @@
-import { FacultyCounts, UserCount } from '@backend/types'
+import { FacultyCount, UserCount } from '@backend/types'
 import { Op } from 'sequelize'
 
 import { User } from '../db/models'
@@ -35,7 +35,7 @@ export const getUserCounts = async (): Promise<UserCount[]> => {
   return userCounts
 }
 
-export const getFacultyCounts = async (): Promise<FacultyCounts[]> => {
+export const getFacultyCounts = async (): Promise<FacultyCount[]> => {
   const entries = await getEntries()
 
   const faculties = await getFaculties()

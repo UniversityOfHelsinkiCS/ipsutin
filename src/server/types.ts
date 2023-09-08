@@ -53,7 +53,7 @@ export interface OrganisationData {
 
 export type Faculty = Omit<OrganisationData, 'programmes'>
 
-export interface FacultyCounts {
+export interface FacultyCount {
   faculty: Locales
   count: number
   code: string
