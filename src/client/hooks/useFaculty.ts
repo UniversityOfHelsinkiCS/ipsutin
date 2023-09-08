@@ -3,7 +3,7 @@ import { Faculty } from '@backend/types'
 
 import apiClient from '../util/apiClient'
 
-const useFaculties = () => {
+export const useFaculties = () => {
   const queryKey = 'faculties'
 
   const query = async (): Promise<Faculty[]> => {
@@ -17,4 +17,16 @@ const useFaculties = () => {
   return { faculties, ...rest }
 }
 
-export default useFaculties
+export const useFacultyCounts = () => {
+  const queryKey = 'facultycounts'
+
+  const query = async (): Promise<Faculty[]> => {
+    const { data } = await apiClient.get('/analytics/facultycounts')
+
+    return data
+  }
+
+  const { data: facultyCounts, ...rest } = useQuery(queryKey, query)
+
+  return { facultyCounts, ...rest }
+}
