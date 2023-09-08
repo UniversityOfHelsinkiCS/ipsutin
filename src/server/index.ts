@@ -4,6 +4,8 @@ import session from 'express-session'
 import passport from 'passport'
 import path from 'path'
 
+import 'express-async-errors'
+
 import { connectToDatabase } from './db/connection'
 import seed from './db/seeders'
 import { PORT, SESSION_SECRET } from './util/config'
