@@ -1,5 +1,11 @@
 import { Control, UseFormRegister, UseFormWatch } from 'react-hook-form'
-import { Locales, Question, RecommendationLabel, Result } from '@backend/types'
+import {
+  Locales,
+  Question,
+  RecommendationLabel,
+  Result,
+  Survey,
+} from '@backend/types'
 
 export interface InputProps {
   control?: Control<any>
@@ -42,28 +48,7 @@ export interface ResultWithLabels extends Result {
   labels: RecommendationLabel[]
 }
 
-export type SurveyName = 'licences' | 'ideaEvaluation' | 'ipAssessment'
-
 export type SurveySave =
   | 'ipsutin_licenses_local_save'
   | 'ipsutin_idea_evaluation_local_save'
   | 'ipsutin_ip_assessment_local_save'
-
-export interface Survey {
-  id: number
-  name: SurveyName
-  createdAt: Date
-  updatedAt: Date
-  Questions: Question[]
-}
-
-export interface EntryWithSurvey {
-  id: number
-  surveyId: number
-  data: FormValues
-  sessionToken: string
-  createdAt: Date
-  updatedAt: Date
-  Survey: Survey
-  SurveyId: number
-}
