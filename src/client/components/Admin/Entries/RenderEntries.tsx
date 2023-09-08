@@ -1,12 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { EntryWithSurvey, Survey } from '@backend/types'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import { Box, Button } from '@mui/material'
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid'
 
 import { useEntries } from '../../../hooks/useEntry'
-import { EntryWithSurvey, Survey } from '../../../types'
 
 const RenderEntries = () => {
   const { t } = useTranslation()

@@ -1,13 +1,13 @@
 import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Locales } from '@backend/types'
+import { Locales, SurveyName } from '@backend/types'
 import { Box, Typography } from '@mui/material'
 
 import useRecommendations from '../../../hooks/useRecommendations'
 import useResults from '../../../hooks/useResults'
 import useSurvey from '../../../hooks/useSurvey'
 import styles from '../../../styles'
-import { FormValues, SurveyName } from '../../../types'
+import { FormValues } from '../../../types'
 import {
   getRecommendationLabels,
   getRecommendationScores,

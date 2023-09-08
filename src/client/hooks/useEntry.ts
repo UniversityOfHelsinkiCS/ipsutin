@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
+import { EntryWithSurvey } from '@backend/types'
 
-import { EntryWithSurvey } from '../types'
 import apiClient from '../util/apiClient'
 
 export const useEntries = () => {
