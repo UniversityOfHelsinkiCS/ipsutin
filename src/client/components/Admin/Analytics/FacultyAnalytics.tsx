@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { Faculty } from '@backend/types'
 import { Box, Paper, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
@@ -13,7 +12,8 @@ import {
   YAxis,
 } from 'recharts'
 
-import { EntryWithSurvey } from '../../../types'
+import { useFacultyCounts } from '../../../hooks/useFaculty'
+import LoadingProgress from '../../Common/LoadingProgress'
 
 interface TooltipProps {
   active?: boolean
@@ -44,28 +44,10 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   return null
 }
 
-const FacultyAnalytics = ({
-  entries,
-  faculties,
-}: {
-  entries: EntryWithSurvey[]
-  faculties: Faculty[]
-}) => {
-  const facultyCounts: { [key: string]: number } = {}
+const FacultyAnalytics = () => {
+  const { facultyCounts, isLoading } = useFacultyCounts()
 
-  // Count the number of entries for each faculty
-  entries.forEach((entry) => {
-    const { faculty } = entry.data
-    if (faculty) {
-      facultyCounts[faculty] = (facultyCounts[faculty] || 0) + 1
-    }
-  })
-
-  const data = faculties.map((faculty) => ({
-    faculty: faculty.name,
-    count: facultyCounts[faculty.code] || 0,
-    code: faculty.code,
-  }))
+  if (!facultyCounts || isLoading) return <LoadingProgress />
 
   return (
     <Box sx={{ mx: 2, mt: 4 }}>
@@ -87,7 +69,7 @@ const FacultyAnalytics = ({
         </Typography>
       </Box>
       <ResponsiveContainer width='100%' height={480}>
-        <BarChart data={data}>
+        <BarChart data={facultyCounts}>
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey='code' />
           <YAxis />

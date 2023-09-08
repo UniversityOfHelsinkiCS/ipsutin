@@ -1,9 +1,8 @@
-import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
-import { EntryWithSurvey, SurveyName } from '../../../types'
+import { useSurveyCounts } from '../../../hooks/useSurvey'
+import LoadingProgress from '../../Common/LoadingProgress'
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658']
 
@@ -35,30 +34,10 @@ const CustomLabel = ({
   )
 }
 
-const SurveyAnalytics = ({ entries }: { entries: EntryWithSurvey[] }) => {
-  const { t } = useTranslation()
-  const surveyNames: SurveyName[] = [
-    'licences',
-    'ideaEvaluation',
-    'ipAssessment',
-  ]
-  const surveyCounts: { [key in SurveyName]: number } = {
-    licences: 0,
-    ideaEvaluation: 0,
-    ipAssessment: 0,
-  }
+const SurveyAnalytics = () => {
+  const { surveyCounts, isLoading } = useSurveyCounts()
 
-  entries.forEach((entry) => {
-    const surveyName = entry.Survey.name
-    if (surveyName) {
-      surveyCounts[surveyName] = (surveyCounts[surveyName] || 0) + 1
-    }
-  })
-
-  const data = surveyNames.map((surveyName) => ({
-    survey: t(`surveyNames:${surveyName}`),
-    count: surveyCounts[surveyName],
-  }))
+  if (!surveyCounts || isLoading) return <LoadingProgress />
 
   return (
     <Box sx={{ mx: 2, mt: 4 }}>
@@ -82,7 +61,7 @@ const SurveyAnalytics = ({ entries }: { entries: EntryWithSurvey[] }) => {
       <ResponsiveContainer width='100%' height={480}>
         <PieChart>
           <Pie
-            data={data}
+            data={surveyCounts}
             dataKey='count'
             nameKey='survey'
             cx='50%'
@@ -91,7 +70,7 @@ const SurveyAnalytics = ({ entries }: { entries: EntryWithSurvey[] }) => {
             fill='#8884d8'
             label={<CustomLabel />}
           >
-            {data.map((entry, index) => (
+            {surveyCounts.map((entry, index) => (
               <Cell
                 key={`cell-${entry}`}
                 fill={COLORS[index % COLORS.length]}

@@ -1,4 +1,9 @@
-import { FacultyCount, UserCount } from '@backend/types'
+import {
+  FacultyCount,
+  SurveyCounts,
+  SurveyName,
+  UserCount,
+} from '@backend/types'
 import { Op } from 'sequelize'
 
 import { User } from '../db/models'
@@ -54,6 +59,35 @@ export const getFacultyCounts = async (): Promise<FacultyCount[]> => {
     faculty: faculty.name,
     count: facultyCounts[faculty.code] || 0,
     code: faculty.code,
+  }))
+
+  return data
+}
+
+export const getSurveyCounts = async (): Promise<SurveyCounts[]> => {
+  const entries = await getEntries()
+
+  const surveyNames: SurveyName[] = [
+    'licences',
+    'ideaEvaluation',
+    'ipAssessment',
+  ]
+  const surveyCounts: { [key in SurveyName]: number } = {
+    licences: 0,
+    ideaEvaluation: 0,
+    ipAssessment: 0,
+  }
+
+  entries.forEach((entry) => {
+    const surveyName = entry.Survey.name
+    if (surveyName) {
+      surveyCounts[surveyName] = (surveyCounts[surveyName] || 0) + 1
+    }
+  })
+
+  const data = surveyNames.map((surveyName) => ({
+    survey: surveyName,
+    count: surveyCounts[surveyName],
   }))
 
   return data

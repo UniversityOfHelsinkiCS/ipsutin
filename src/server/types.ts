@@ -141,6 +141,11 @@ export interface Survey {
   Questions: Question[]
 }
 
+export interface SurveyCounts {
+  survey: SurveyName
+  count: number
+}
+
 export interface FormValues {
   [key: number]: Record<string, { [key: string]: boolean }>
   faculty?: string

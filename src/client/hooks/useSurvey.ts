@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query'
+import { SurveyCounts } from '@backend/types'
 
 import { Survey, SurveyName } from '../types'
 import apiClient from '../util/apiClient'
@@ -15,6 +16,20 @@ const useSurvey = (name: SurveyName) => {
   const { data: survey, ...rest } = useQuery(queryKey, query)
 
   return { survey, ...rest }
+}
+
+export const useSurveyCounts = () => {
+  const queryKey = 'surveyCounts'
+
+  const query = async (): Promise<SurveyCounts[]> => {
+    const { data } = await apiClient.get('/analytics/surveycounts')
+
+    return data
+  }
+
+  const { data: surveyCounts, ...rest } = useQuery(queryKey, query)
+
+  return { surveyCounts, ...rest }
 }
 
 export default useSurvey

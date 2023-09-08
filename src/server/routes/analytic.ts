@@ -1,7 +1,11 @@
 import express from 'express'
 
 import adminHandler from '../middleware/admin'
-import { getFacultyCounts, getUserCounts } from '../services/analytic'
+import {
+  getFacultyCounts,
+  getSurveyCounts,
+  getUserCounts,
+} from '../services/analytic'
 
 const analyticRouter = express.Router()
 
@@ -15,6 +19,12 @@ analyticRouter.get('/facultycounts', adminHandler, async (req, res) => {
   const facultyCounts = await getFacultyCounts()
 
   return res.status(200).send(facultyCounts)
+})
+
+analyticRouter.get('/surveycounts', adminHandler, async (req, res) => {
+  const surveyCounts = await getSurveyCounts()
+
+  return res.status(200).send(surveyCounts)
 })
 
 export default analyticRouter
