@@ -11,6 +11,21 @@ export const getEntries = async (): Promise<EntryWithSurvey[]> => {
   return entries
 }
 
+export const getEntriesBySurvey = async (
+  surveyName: string
+): Promise<EntryWithSurvey[]> => {
+  const entries = (await Entry.findAll({
+    include: {
+      model: Survey,
+      where: {
+        name: surveyName,
+      },
+    },
+  })) as unknown as EntryWithSurvey[]
+
+  return entries
+}
+
 export const getEntry = async (entryId: string): Promise<Entry> => {
   const entry = await Entry.findByPk(entryId, { include: Survey })
 
