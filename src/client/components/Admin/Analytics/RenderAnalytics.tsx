@@ -2,34 +2,24 @@ import React from 'react'
 import { Grid } from '@mui/material'
 
 import { useEntries } from '../../../hooks/useEntry'
-import useFaculties from '../../../hooks/useFaculty'
-import useUserCounts from '../../../hooks/useUserCounts'
 import LoadingProgress from '../../Common/LoadingProgress'
 
 import FacultyAnalytics from './FacultyAnalytics'
 import SurveyAnalytics from './SurveyAnalytics'
+import SurveyQuestionAnalytics from './SurveyQuestionAnalytics'
 import UserCountAnalytics from './UserCountAnalytics'
 
 const RenderAnalytics = () => {
-  const { userCounts, isLoading: isUserCountLoading } = useUserCounts()
   const { entries, isLoading: isEntriesLoading } = useEntries()
-  const { faculties, isLoading: isFacultiesLoading } = useFaculties()
 
-  if (
-    !entries ||
-    !faculties ||
-    !userCounts ||
-    isUserCountLoading ||
-    isEntriesLoading ||
-    isFacultiesLoading
-  ) {
+  if (!entries || isEntriesLoading) {
     return <LoadingProgress />
   }
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} xl={8}>
-        <FacultyAnalytics entries={entries} faculties={faculties} />
+        <FacultyAnalytics />
       </Grid>
       <Grid item xs={12} xl={8}>
         <Grid container spacing={2}>
@@ -37,9 +27,12 @@ const RenderAnalytics = () => {
             <SurveyAnalytics entries={entries} />
           </Grid>
           <Grid item xs={6}>
-            <UserCountAnalytics userCounts={userCounts} />
+            <UserCountAnalytics />
           </Grid>
         </Grid>
+      </Grid>
+      <Grid item xs={12} xl={8}>
+        <SurveyQuestionAnalytics entries={entries} />
       </Grid>
     </Grid>
   )
