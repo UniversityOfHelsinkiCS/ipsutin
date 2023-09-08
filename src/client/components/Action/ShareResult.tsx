@@ -14,7 +14,7 @@ import {
 import { enqueueSnackbar } from 'notistack'
 
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
-import useLoggedInUser from '../../hooks/useLoggedInUser'
+import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 import generateShareResultsEmail from '../../templates/generateShareResultsEmail'
 import sendEmail from '../../util/mailing'

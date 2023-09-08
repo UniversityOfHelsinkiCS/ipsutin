@@ -8,7 +8,7 @@ import { FULL_URL } from '../config'
 
 import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
-import useLoggedInUser from './hooks/useLoggedInUser'
+import { useLoggedInUser } from './hooks/useUser'
 import useTheme from './theme'
 
 const App = () => {

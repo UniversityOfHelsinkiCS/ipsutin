@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 import { Box, Tab, Tabs } from '@mui/material'
 
-import useLoggedInUser from '../../hooks/useLoggedInUser'
+import { useLoggedInUser } from '../../hooks/useUser'
 
 const Admin = () => {
   const { t } = useTranslation()

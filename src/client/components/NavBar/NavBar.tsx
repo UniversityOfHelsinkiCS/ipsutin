@@ -18,7 +18,7 @@ import {
 } from '@mui/material'
 
 import hyLogo from '../../assets/hy_logo.svg'
-import useLoggedInUser from '../../hooks/useLoggedInUser'
+import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
 const NavBar = () => {

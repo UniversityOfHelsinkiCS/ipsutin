@@ -3,7 +3,7 @@ import { UserCount } from '@backend/types'
 import { Box, Typography } from '@mui/material'
 import { Cell, Label, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
-import useUserCounts from '../../../hooks/useUserCounts'
+import { useUserCounts } from '../../../hooks/useUser'
 import LoadingProgress from '../../Common/LoadingProgress'
 
 const CustomLabel = ({

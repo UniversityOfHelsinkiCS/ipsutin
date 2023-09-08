@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Box, Button, SxProps, TextField, Theme } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
-import useLoggedInUser from '../../hooks/useLoggedInUser'
+import { useLoggedInUser } from '../../hooks/useUser'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
 
