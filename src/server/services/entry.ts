@@ -1,12 +1,12 @@
 import { Entry, Survey } from '../db/models'
 import NotFoundError from '../errors/NotFoundError'
-import { EntryValues } from '../types'
+import { EntryValues, EntryWithSurvey } from '../types'
 
-export const getEntries = async (): Promise<Entry[]> => {
-  const entries = await Entry.findAll({
+export const getEntries = async (): Promise<EntryWithSurvey[]> => {
+  const entries = (await Entry.findAll({
     include: Survey,
     order: [['updatedAt', 'DESC']],
-  })
+  })) as unknown as EntryWithSurvey[]
 
   return entries
 }

@@ -6,18 +6,6 @@ export interface Locales {
   en: string
 }
 
-export type SurveyName = 'licences' | 'ideaEvaluation' | 'ipAssessment'
-
-export interface FormValues {
-  [key: number]: Record<string, { [key: string]: boolean }>
-  faculty?: string
-}
-
-export interface EntryValues {
-  data: FormValues
-  sessionToken: string
-}
-
 export interface UserInfo {
   uid: string
   hyPersonSisuId: string
@@ -64,6 +52,12 @@ export interface OrganisationData {
 }
 
 export type Faculty = Omit<OrganisationData, 'programmes'>
+
+export interface FacultyCounts {
+  faculty: Locales
+  count: number
+  code: string
+}
 
 export interface Result {
   id: number
@@ -135,4 +129,35 @@ export interface Question {
   text: Locales
   optionData: OptionData
   visibility: Visibility
+}
+
+export type SurveyName = 'licences' | 'ideaEvaluation' | 'ipAssessment'
+
+export interface Survey {
+  id: number
+  name: SurveyName
+  createdAt: Date
+  updatedAt: Date
+  Questions: Question[]
+}
+
+export interface FormValues {
+  [key: number]: Record<string, { [key: string]: boolean }>
+  faculty?: string
+}
+
+export interface EntryValues {
+  data: FormValues
+  sessionToken: string
+}
+
+export interface EntryWithSurvey {
+  id: number
+  surveyId: number
+  data: FormValues
+  sessionToken: string
+  createdAt: Date
+  updatedAt: Date
+  Survey: Survey
+  SurveyId: number
 }
