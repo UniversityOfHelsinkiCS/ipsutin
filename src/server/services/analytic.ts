@@ -1,17 +1,17 @@
+import { Op } from 'sequelize'
+
+import { User } from '../db/models'
 import {
   FacultyCount,
   SurveyCounts,
   SurveyName,
+  surveyNames,
   UserCount,
-} from '@backend/types'
-import { Op } from 'sequelize'
+} from '../types'
 
-import { User } from '../db/models'
-
-import { getEntries } from './entry'
+import { getEntries, getEntriesBySurvey } from './entry'
 import { getFaculties } from './faculty'
 
-// eslint-disable-next-line import/prefer-default-export
 export const getUserCounts = async (): Promise<UserCount[]> => {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
@@ -67,11 +67,6 @@ export const getFacultyCounts = async (): Promise<FacultyCount[]> => {
 export const getSurveyCounts = async (): Promise<SurveyCounts[]> => {
   const entries = await getEntries()
 
-  const surveyNames: SurveyName[] = [
-    'licences',
-    'ideaEvaluation',
-    'ipAssessment',
-  ]
   const surveyCounts: { [key in SurveyName]: number } = {
     licences: 0,
     ideaEvaluation: 0,
@@ -91,4 +86,10 @@ export const getSurveyCounts = async (): Promise<SurveyCounts[]> => {
   }))
 
   return data
+}
+
+export const getSurveyAnswerDistribution = async (surveyName: string) => {
+  const entries = await getEntriesBySurvey(surveyName)
+
+  return entries
 }

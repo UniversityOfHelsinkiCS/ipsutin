@@ -35,7 +35,7 @@ export const useFacultyCounts = () => {
   const queryKey = 'facultyCounts'
 
   const query = async (): Promise<Faculty[]> => {
-    const { data } = await apiClient.get('/analytics/facultycounts')
+    const { data } = await apiClient.get('/analytics/counts/faculty')
 
     return data
   }

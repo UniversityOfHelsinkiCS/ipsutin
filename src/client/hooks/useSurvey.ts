@@ -21,7 +21,7 @@ export const useSurveyCounts = () => {
   const queryKey = 'surveyCounts'
 
   const query = async (): Promise<SurveyCounts[]> => {
-    const { data } = await apiClient.get('/analytics/surveycounts')
+    const { data } = await apiClient.get('/analytics/counts/survey')
 
     return data
   }
