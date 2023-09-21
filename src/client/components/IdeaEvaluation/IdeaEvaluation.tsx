@@ -71,6 +71,7 @@ const IdeaEvaluation = () => {
               watch={watch}
               questions={survey.Questions}
               surveyName={t('surveyNames:ideaEvaluation')}
+              surveyInfo={t('surveyInfos:ideaEvaluation')}
             />
           </form>
         </Grid>
