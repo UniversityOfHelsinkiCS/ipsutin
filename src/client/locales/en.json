@@ -74,8 +74,8 @@
     "inputLabel": "Your Faculty"
   },
   "surveySelect": {
-    "introMessage": "Continue by selecting a survey",
-    "inputLabel": "Selected survey"
+    "introMessage": "How can we help you today?",
+    "inputLabel": "Your selection"
   },
   "helloBanner": {
     "title": "## Welcome to Ipsutin",
@@ -88,6 +88,11 @@
     "ipAssessment": "Patentability Evaluation",
     "licences": "Software Licensing",
     "ideaEvaluation": "Idea Evaluation"
+  },
+  "surveySelectionNames": {
+    "ipAssessment": "Is my idea patentable",
+    "licences": "How to proceed with my idea",
+    "ideaEvaluation": "Considerations for software licensing"
   },
   "surveyInfos": {
     "ipAssessment": "Patentability evaluation consists of three distinct domains, meeting the patentability criteria in one domain is sufficient for patentability. Patentability evaluation or invention disclosure may or may not result in patent application.",
