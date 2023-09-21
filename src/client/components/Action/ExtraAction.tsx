@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RecommendationLabel } from '@backend/types'
+import { RecommendationLabel, SurveyName } from '@backend/types'
 import { Box, Typography } from '@mui/material'
 
 import styles from '../../styles'
-import { SurveyName } from '../../types'
 import LinkWithQuery from '../Common/LinkWithQuery'
 
 import Suggestion from './Suggestion'
