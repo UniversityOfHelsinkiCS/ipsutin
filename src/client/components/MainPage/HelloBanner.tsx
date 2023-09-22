@@ -14,6 +14,7 @@ const HelloBanner = () => {
       <Box sx={cardStyles.expendableBox}>
         <Markdown>{t('helloBanner:title')}</Markdown>
         <ShowMore text={t('helloBanner:description')} expanded />
+        <Markdown>{t('helloBanner:text')}</Markdown>
       </Box>
     </Box>
   )
