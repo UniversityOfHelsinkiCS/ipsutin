@@ -82,13 +82,13 @@ const Contact = ({ action }: Action) => {
         </Service>
       </>
     ),
-    gnu_gpl: (
+    restrictive: (
       <Service
         title={t('services:gnugplTitle')}
         content={t('services:gnugplContent')}
       />
     ),
-    bsd_mit: (
+    permissive: (
       <Service
         title={t('services:bsdmitTitle')}
         content={t('services:bsdmitContent')}

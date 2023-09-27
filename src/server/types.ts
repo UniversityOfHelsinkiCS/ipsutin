@@ -88,8 +88,8 @@ export type RecommendationLabel =
   | 'relations'
   | 'incubator'
   | 'legal'
-  | 'gnu_gpl'
-  | 'bsd_mit'
+  | 'restrictive'
+  | 'permissive'
 
 export interface Recommendation {
   id: number

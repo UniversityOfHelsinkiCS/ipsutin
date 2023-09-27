@@ -6,8 +6,8 @@ const colors: { [key in RecommendationLabel]?: string } = {
   relations: '#23439b',
   incubator: '#199995',
   legal: '#afd255',
-  gnu_gpl: '#eb4034',
-  bsd_mit: '#f18235',
+  restrictive: '#eb4034',
+  permissive: '#f18235',
 }
 
 export default colors
