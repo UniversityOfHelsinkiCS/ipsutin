@@ -102,7 +102,7 @@ const Contact = ({ action }: Action) => {
   if (!ContactComponent) return null
 
   return (
-    <Box sx={{ mt: 8 }}>
+    <Box id='recommended-contact' sx={{ mt: 8 }}>
       <Typography variant='h6' sx={cardStyles.heading} component='div'>
         {t('contact:title')}
       </Typography>
