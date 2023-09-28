@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales } from '@backend/types'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import useRecommendations from '../../hooks/useRecommendations'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
@@ -79,58 +79,50 @@ const IdeaEvaluationResults = () => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box id='idea-evaluation-result-section'>
-      <Box sx={cardStyles.outerBox}>
-        <Box sx={resultStyles.resultWrapper}>
-          <Container sx={{ mt: 4 }}>
-            <Typography
-              data-cy='idea-evaluation-result-section-title'
-              variant='h5'
-              sx={resultStyles.heading}
-              component='div'
-            >
-              {t('results:title')}
-            </Typography>
+    <Box id='idea-evaluation-result-section' sx={cardStyles.outerBox}>
+      <Typography
+        data-cy='idea-evaluation-result-section-title'
+        variant='h5'
+        sx={resultStyles.heading}
+        component='div'
+      >
+        {t('results:title')}
+      </Typography>
 
-            <RenderRecommendationChips
-              recommendations={sortedRecommendations}
-            />
+      <RenderRecommendationChips recommendations={sortedRecommendations} />
 
-            {commonResult && (
-              <Box style={{ margin: '1rem 0 0 0' }}>
-                <Markdown>
-                  {commonResult.isSelected[language as keyof Locales]}
-                </Markdown>
-              </Box>
-            )}
-          </Container>
-
-          <Box ref={refCallback} sx={resultStyles.resultSection}>
-            <Typography variant='h6' sx={cardStyles.heading} component='div'>
-              {t('recommendedAction:title')}
-            </Typography>
-            <CommonResult
-              key={commonResult?.id}
-              language={language as keyof Locales}
-              resultData={commonResult}
-              recommendation={recommendedAction}
-            />
-            <RecommendedAction action={recommendedAction} />
-
-            <Typography variant='h6' sx={cardStyles.heading} component='div'>
-              {t('results:subtitle')}
-            </Typography>
-            <DefaultResultElements
-              sortedResultsWithLabels={sortedResultsWithLabels}
-            />
-          </Box>
-
-          <NavigateBack />
+      {commonResult && (
+        <Box style={{ margin: '1rem 2rem' }}>
+          <Markdown>
+            {commonResult.isSelected[language as keyof Locales]}
+          </Markdown>
         </Box>
-        <Box sx={cardStyles.subHeading}>
-          <ExtraAction action={recommendedAction} surveyName='ideaEvaluation' />
-          <ShareResult />
-        </Box>
+      )}
+
+      <Box ref={refCallback} sx={resultStyles.resultSection}>
+        <Typography variant='h6' sx={cardStyles.heading} component='div'>
+          {t('recommendedAction:title')}
+        </Typography>
+        <CommonResult
+          key={commonResult?.id}
+          language={language as keyof Locales}
+          resultData={commonResult}
+          recommendation={recommendedAction}
+        />
+        <RecommendedAction action={recommendedAction} />
+
+        <Typography variant='h6' sx={cardStyles.heading} component='div'>
+          {t('results:subtitle')}
+        </Typography>
+        <DefaultResultElements
+          sortedResultsWithLabels={sortedResultsWithLabels}
+        />
+      </Box>
+
+      <NavigateBack />
+      <Box sx={cardStyles.subHeading}>
+        <ExtraAction action={recommendedAction} surveyName='ideaEvaluation' />
+        <ShareResult />
       </Box>
     </Box>
   )

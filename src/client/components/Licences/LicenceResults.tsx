@@ -91,7 +91,7 @@ const LicenceResults = () => {
       <RenderRecommendationChips recommendations={sortedRecommendations} />
 
       {commonResult && (
-        <Box style={{ margin: '1rem' }}>
+        <Box style={{ margin: '1rem 2rem' }}>
           <Markdown>
             {commonResult.isSelected[language as keyof Locales]}
           </Markdown>
