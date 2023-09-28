@@ -18,7 +18,7 @@ import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RecommendationChip from '../Chip/RecommendationChip'
 import NavigateBack from '../Common/NavigateBack'
-import Contact from '../Contact/Contact'
+import Contact from '../Contact/RecommendedAction'
 import CommonResult from '../InteractiveForm/CommonResult'
 import IpAssessmentResultElements from '../InteractiveForm/IpAssessmentResultElements'
 
