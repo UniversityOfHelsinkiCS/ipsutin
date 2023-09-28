@@ -31,7 +31,7 @@ export const IMPORTER_URL = inProduction
   : 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/importer/kliksutin'
 
 export const OIDC_ISSUER = inProduction
-  ? 'https://login.helsinki.fi/.well-known/openid-configuration'
+  ? 'https://login-test.it.helsinki.fi/.well-known/openid-configuration'
   : 'https://login-test.it.helsinki.fi/.well-known/openid-configuration'
 
 export const OIDC_CLIENT_ID = process.env.OIDC_CLIENT_ID || ''
