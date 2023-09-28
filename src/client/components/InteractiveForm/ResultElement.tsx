@@ -24,21 +24,15 @@ const ResultElement = ({
   return (
     <Container
       style={{
-        margin: '2rem 0 2rem 0',
+        margin: '3rem 0 2rem 0',
         borderLeft: 'solid',
         borderColor: '#9ca3af',
         borderWidth: '1px',
       }}
     >
-      <Box style={{ margin: '2rem 0 2rem 1rem' }}>
-        <Markdown>{resultData.isSelected[language]}</Markdown>
-      </Box>
+      <Markdown>{resultData.isSelected[language]}</Markdown>
 
-      <Box
-        style={{
-          margin: '2rem 0 2rem 0',
-        }}
-      >
+      <Box style={{ margin: '1rem 0 0 0' }}>
         {dimensions.map((dimension) => {
           const color = colors[dimension] ?? undefined
           const recommendationResult = resultData?.data?.resultData[dimension]
