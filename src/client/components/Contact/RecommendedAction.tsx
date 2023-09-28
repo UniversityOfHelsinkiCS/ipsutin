@@ -20,15 +20,15 @@ const RecommendedAction = ({ action }: Action) => {
   const components: { [key in RecommendationLabel]?: ReactElement } = {
     clinic: (
       <SendContactTicket
-        title={t('contact:clinicTitle')}
-        content={t('contact:clinicContent')}
+        title={t('recommendedAction:clinicTitle')}
+        content={t('recommendedAction:clinicContent')}
         ticketEmail='his@helsinki.fi'
       />
     ),
     legal: (
       <SendContactTicket
-        title={t('contact:legalTitle')}
-        content={t('contact:legalContent')}
+        title={t('recommendedAction:legalTitle')}
+        content={t('recommendedAction:legalContent')}
         ticketEmail='researchlawyers@helsinki.fi'
       />
     ),
@@ -61,8 +61,8 @@ const RecommendedAction = ({ action }: Action) => {
     relations: (
       <>
         <SendContactTicket
-          title={t('contact:relationsTitle')}
-          content={t('contact:relationsContent')}
+          title={t('recommendedAction:relationsTitle')}
+          content={t('recommendedAction:relationsContent')}
           ticketEmail='businessteam@helsinki.fi'
         />
         <Service

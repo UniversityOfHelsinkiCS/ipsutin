@@ -19,7 +19,7 @@
     "openForm": "Proceed to the questions",
     "admin": "Admin"
   },
-  "contact": {
+  "recommendedAction": {
     "title": "Recommended action",
     "submit": "Request appointment",
     "clinicTitle": "Request appointment with the Idea Clinic",
@@ -67,6 +67,7 @@
   },
   "results": {
     "title": "Results",
+    "subtitle": "Your selections and related suggestions",
     "backToMessage": "Go back to survey"
   },
   "facultySelect": {

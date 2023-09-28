@@ -97,7 +97,7 @@ const LicenceResults = () => {
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
             <Typography variant='h6' sx={cardStyles.heading} component='div'>
-              {t('contact:title')}
+              {t('recommendedAction:title')}
             </Typography>
             <CommonResult
               key={commonResult?.id}
@@ -108,7 +108,7 @@ const LicenceResults = () => {
             <RecommendedAction action={recommendedAction} />
 
             <Typography variant='h6' sx={cardStyles.heading} component='div'>
-              {t('contact:title')}
+              {t('results:subtitle')}
             </Typography>
             <DefaultResultElements
               sortedResultsWithLabels={sortedResultsWithLabels}
