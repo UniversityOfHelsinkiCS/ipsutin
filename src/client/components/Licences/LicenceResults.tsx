@@ -101,17 +101,16 @@ const LicenceResults = () => {
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
-            {commonResult && (
-              <>
-                <CommonResult
-                  key={commonResult.id}
-                  language={language as keyof Locales}
-                  resultData={commonResult}
-                  recommendation={recommendedAction}
-                />
-                <RecommendedAction action={recommendedAction} />
-              </>
-            )}
+            <Typography variant='h6' sx={cardStyles.heading} component='div'>
+              {t('contact:title')}
+            </Typography>
+            <CommonResult
+              key={commonResult?.id}
+              language={language as keyof Locales}
+              resultData={commonResult}
+              recommendation={recommendedAction}
+            />
+            <RecommendedAction action={recommendedAction} />
 
             <DefaultResultElements
               sortedResultsWithLabels={sortedResultsWithLabels}

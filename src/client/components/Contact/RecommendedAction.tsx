@@ -99,7 +99,7 @@ const RecommendedAction = ({ action }: Action) => {
   if (!RecommendedActionComponent) return null
 
   return (
-    <Box id='recommended-action-component' sx={{ mt: 4 }}>
+    <Box id='recommended-action-component' sx={{ mt: 4, mb: 8 }}>
       {RecommendedActionComponent}
     </Box>
   )
