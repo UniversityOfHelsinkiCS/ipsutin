@@ -16,7 +16,7 @@ import {
 import { getCommonResult, getResultsWithLabels } from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
-import RecommendationChip from '../Chip/RecommendationChip'
+import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
 import NavigateBack from '../Common/NavigateBack'
 import RecommendedAction from '../Contact/RecommendedAction'
 import CommonResult from '../InteractiveForm/CommonResult'
@@ -89,15 +89,10 @@ const LicenceResults = () => {
             >
               {t('results:title')}
             </Typography>
-            <Box sx={{ mt: 2 }}>
-              {sortedRecommendations.map((recommendation) => (
-                <RecommendationChip
-                  key={recommendation.id}
-                  recommendation={recommendation}
-                  compact={false}
-                />
-              ))}
-            </Box>
+
+            <RenderRecommendationChips
+              recommendations={sortedRecommendations}
+            />
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
@@ -112,6 +107,9 @@ const LicenceResults = () => {
             />
             <RecommendedAction action={recommendedAction} />
 
+            <Typography variant='h6' sx={cardStyles.heading} component='div'>
+              {t('contact:title')}
+            </Typography>
             <DefaultResultElements
               sortedResultsWithLabels={sortedResultsWithLabels}
             />
