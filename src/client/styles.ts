@@ -231,7 +231,7 @@ const resultStyles = {
     m: 2,
   },
   resultSection: {
-    mx: 3,
+    mx: 4,
     mt: 4,
   },
   heading: {
