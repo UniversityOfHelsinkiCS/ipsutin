@@ -17,7 +17,7 @@ const DefaultResultElements = ({
   if (!sortedResultsWithLabels) return null
 
   return (
-    <Box style={{ margin: '1rem 0 0 0' }}>
+    <Box>
       {sortedResultsWithLabels.map((result) => (
         <ResultElement
           key={result.id}

@@ -53,7 +53,7 @@ const cardStyles = {
   },
   heading: {
     fontWeight: '200',
-    pb: 1,
+    pb: 2,
   },
   subHeading: {
     fontWeight: '200',
