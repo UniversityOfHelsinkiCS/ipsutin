@@ -19,7 +19,7 @@
     "openForm": "Proceed to the questions",
     "admin": "Admin"
   },
-  "contact": {
+  "recommendedAction": {
     "title": "Recommended action",
     "submit": "Request appointment",
     "clinicTitle": "Request appointment with the Idea Clinic",
@@ -27,7 +27,9 @@
     "legalTitle": "Request appointment with the University of Helsinki Legal Services",
     "legalContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response",
     "relationsTitle": "Request appointment with the Business Collaboration Team",
-    "relationsContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response",
+    "relationsContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response"
+  },
+  "contact": {
     "contactTicketContentLabel": "Content",
     "contactTicketSend": "Send Request",
     "contactTicketSenderEmail": "User's email:",
@@ -39,14 +41,14 @@
   },
   "services": {
     "disclosure": "Invention Disclosure",
-    "disclosureExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus",
+    "disclosureExtLink": "https://www.helsinki.fi/en/helsinki-innovation-services/university-staff/invention-disclosure",
     "clinic": "Idea Clinic",
     "incubator": "Incubator and Entrepreneurship Services",
     "incubatorExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut",
     "relations": "Business Collaboration Team",
     "relationsExtLink": "https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet",
     "disclosureTitle": "Visit the Invention Disclosure page for more information",
-    "disclosureContent": "[Invention disclosure](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
+    "disclosureContent": "[Invention disclosure](https://www.helsinki.fi/en/helsinki-innovation-services/university-staff/invention-disclosure) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
     "incubatorTitle": "Visit the Incubator and Entrepreneurship Services page for more information",
     "incubatorContent": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
     "relationsTitle": "Visit the Business collaboration page for more information",
@@ -67,6 +69,7 @@
   },
   "results": {
     "title": "Results",
+    "subtitle": "Your selections and related suggestions",
     "backToMessage": "Go back to survey"
   },
   "facultySelect": {
@@ -74,12 +77,13 @@
     "inputLabel": "Your Faculty"
   },
   "surveySelect": {
-    "introMessage": "Continue by selecting a survey",
-    "inputLabel": "Selected survey"
+    "introMessage": "How can we help you today?",
+    "inputLabel": "Your selection"
   },
   "helloBanner": {
     "title": "## Welcome to Ipsutin",
-    "description": "### The aim of science-based innovations is change that has an impact on both people and the surrounding society. Commercialisation of research enables innovations to be developed into business ideas that become successful businesses that truly change the world.\n\n You may want to read more about support for [research and innovations](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/innovaatiot). [Innovation glossary](https://flamma.helsinki.fi/documents/20142/0/HY_Inno_Glossary+of+terms_EN.pdf/98824b40-9cdc-b478-9968-98cd3a999df8?t=1676381193651) may be helpful, as well as university invention guidelines and commercialization policy [document](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf). Further reading on [commercialization services](https://www.helsinki.fi/en/helsinki-innovation-services/university-staff) and [Helsinki Innovation Services](https://www.helsinki.fi/en/helsinki-innovation-services) as a service provider."
+    "text": "Ipsutin is here to help you on finding next steps to proceed with your idea, invention, or software. You will gain insights on concrete next steps to take.",
+    "description": "The aim of science-based innovations is change that has an impact on both people and the surrounding society. Commercialisation of research enables innovations to be developed into business ideas that become successful businesses that truly change the world.\n\n You may want to read more about support for [research and innovations](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/innovaatiot). [Innovation glossary](https://flamma.helsinki.fi/documents/20142/0/HY_Inno_Glossary+of+terms_EN.pdf/98824b40-9cdc-b478-9968-98cd3a999df8?t=1676381193651) may be helpful, as well as university invention guidelines and commercialization policy [document](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf). Further reading on [commercialization services](https://www.helsinki.fi/en/helsinki-innovation-services/university-staff) and [Helsinki Innovation Services](https://www.helsinki.fi/en/helsinki-innovation-services) as a service provider."
   },
   "mainPage": {
     "toolSelectionQuestion": "Which of these surveys would you like to use?"
@@ -89,13 +93,18 @@
     "licences": "Software Licensing",
     "ideaEvaluation": "Idea Evaluation"
   },
+  "surveySelectionNames": {
+    "ipAssessment": "Is my idea patentable",
+    "licences": "How to proceed with my idea",
+    "ideaEvaluation": "Considerations for software licensing"
+  },
   "surveyInfos": {
-    "ipAssessment": "Patentability evaluation consists of three distinct domains, meeting the patentability criteria in one domain is sufficient for patentability. Patentability evaluation or invention disclosure may or may not result in patent application.",
+    "ipAssessment": "Patentability evaluation consideration consists of three distinct domains of patent legislation, meeting the patentability criteria in one domain is sufficient for patentability. Patentability evaluation or invention disclosure may or may not result in patent application.",
     "licences": "Software licensing evaluation will assist on going through some of the elementary license selection questions. An Idea Clinic meeting is highly recommended for all situation involving companies or potential commercial use of the software / intellectual property.",
-    "ideaEvaluation": ""
+    "ideaEvaluation": "Ideas may be early-stage concepts without a solid hypothesis or proof, or sometimes rather mature technical or business innovations. This questionnaire will support you on identification of suitable next steps."
   },
   "sideBarServices": {
-    "services": "Services",
+    "services": "Relevant university services",
     "disclosure": "[Invention disclosure](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
     "clinic": "Idea Clinic is personal 1-to-1 meeting to explore the possibilities of your idea with a commercialization expert. You may request a meeting by filling in the Idea survey or by emailing [his@helsinki.fi](mailto:his@helsinki.fi)",
     "incubator": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
@@ -108,11 +117,11 @@
     "technicalTitle": "Technical Solutions",
     "mathematicalTitle": "Mathematical Models",
     "computerProgramTitle": "Computer Programs",
-    "technicalPatentable": "**Requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
-    "technicalNotPatentable": "**Requirements for patentability not fulfilled**. Please book an idea clinic appointment with HIS.",
-    "mathematicalPatentable": "**Requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
-    "mathematicalNotPatentable": "**Requirements for patentability not fulfilled**. Please book an idea clinic appointment with HIS.",
-    "computerProgramPatentable": "**Requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
-    "computerProgramNotPatentable": "**Requirements for patentability not fulfilled**. Please complete the licensing questionnaire and book and idea clinic appointment with HIS."
+    "technicalPatentable": "**For this section, requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
+    "technicalNotPatentable": "**For this section, requirements for patentability not fulfilled**. Please book an idea clinic appointment with HIS.",
+    "mathematicalPatentable": "**For this section, requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
+    "mathematicalNotPatentable": "**For this section, requirements for patentability not fulfilled**. Please book an idea clinic appointment with HIS.",
+    "computerProgramPatentable": "**For this section, requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
+    "computerProgramNotPatentable": "**For this section, requirements for patentability not fulfilled**. Please complete the licensing questionnaire and book and idea clinic appointment with HIS."
   }
 }
