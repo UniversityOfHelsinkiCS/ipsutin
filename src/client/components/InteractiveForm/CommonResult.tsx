@@ -21,25 +21,17 @@ const CommonResult = ({
   if (!recommendationResult) return null
 
   return (
-    <Box>
-      <Box style={{ margin: '1rem' }}>
-        <Markdown>{resultData.isSelected[language]}</Markdown>
-      </Box>
-
-      <Box>
-        <Box
-          data-cy={`result-wrapper-${resultData.optionLabel}-${recommendation}`}
-          key={`${JSON.stringify(resultData)}.${recommendation}`}
-          style={{
-            padding: '0 2rem 0 2rem ',
-            borderLeft: 'solid',
-            borderColor: colors[recommendation],
-            borderWidth: '6px',
-          }}
-        >
-          <Markdown>{recommendationResult[language]}</Markdown>
-        </Box>
-      </Box>
+    <Box
+      data-cy={`result-wrapper-${resultData.optionLabel}-${recommendation}`}
+      key={`${JSON.stringify(resultData)}.${recommendation}`}
+      style={{
+        padding: '0 2rem 0 2rem ',
+        borderLeft: 'solid',
+        borderColor: colors[recommendation],
+        borderWidth: '6px',
+      }}
+    >
+      <Markdown>{recommendationResult[language]}</Markdown>
     </Box>
   )
 }

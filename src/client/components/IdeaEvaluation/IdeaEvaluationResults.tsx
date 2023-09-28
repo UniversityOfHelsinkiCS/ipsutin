@@ -16,9 +16,10 @@ import {
 import { getCommonResult, getResultsWithLabels } from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
-import RecommendationChip from '../Chip/RecommendationChip'
+import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
+import Markdown from '../Common/Markdown'
 import NavigateBack from '../Common/NavigateBack'
-import Contact from '../Contact/RecommendedAction'
+import RecommendedAction from '../Contact/RecommendedAction'
 import CommonResult from '../InteractiveForm/CommonResult'
 import DefaultResultElements from '../InteractiveForm/DefaultResultElements'
 
@@ -90,35 +91,43 @@ const IdeaEvaluationResults = () => {
             >
               {t('results:title')}
             </Typography>
-            <Box sx={{ mt: 2 }}>
-              {sortedRecommendations.map((recommendation) => (
-                <RecommendationChip
-                  key={recommendation.id}
-                  recommendation={recommendation}
-                  compact={false}
-                />
-              ))}
-            </Box>
+
+            <RenderRecommendationChips
+              recommendations={sortedRecommendations}
+            />
+
+            {commonResult && (
+              <Box style={{ margin: '1rem 0 0 0' }}>
+                <Markdown>
+                  {commonResult.isSelected[language as keyof Locales]}
+                </Markdown>
+              </Box>
+            )}
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
-            {commonResult && (
-              <CommonResult
-                key={commonResult.id}
-                language={language as keyof Locales}
-                resultData={commonResult}
-                recommendation={recommendedAction}
-              />
-            )}
+            <Typography variant='h6' sx={cardStyles.heading} component='div'>
+              {t('recommendedAction:title')}
+            </Typography>
+            <CommonResult
+              key={commonResult?.id}
+              language={language as keyof Locales}
+              resultData={commonResult}
+              recommendation={recommendedAction}
+            />
+            <RecommendedAction action={recommendedAction} />
 
+            <Typography variant='h6' sx={cardStyles.heading} component='div'>
+              {t('results:subtitle')}
+            </Typography>
             <DefaultResultElements
               sortedResultsWithLabels={sortedResultsWithLabels}
             />
           </Box>
+
           <NavigateBack />
         </Box>
         <Box sx={cardStyles.subHeading}>
-          <Contact action={recommendedAction} />
           <ExtraAction action={recommendedAction} surveyName='ideaEvaluation' />
           <ShareResult />
         </Box>

@@ -24,7 +24,7 @@ const ResultElement = ({
   return (
     <Container
       style={{
-        margin: '3rem 0 2rem 0',
+        margin: '0 0 3rem 0',
         borderLeft: 'solid',
         borderColor: '#9ca3af',
         borderWidth: '1px',

@@ -16,9 +16,9 @@ import {
 import { getCommonResult, getResultsWithLabels } from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
-import RecommendationChip from '../Chip/RecommendationChip'
+import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
 import NavigateBack from '../Common/NavigateBack'
-import Contact from '../Contact/RecommendedAction'
+import RecommendedAction from '../Contact/RecommendedAction'
 import CommonResult from '../InteractiveForm/CommonResult'
 import IpAssessmentResultElements from '../InteractiveForm/IpAssessmentResultElements'
 
@@ -89,35 +89,35 @@ const IpAssessmentResults = () => {
             >
               {t('results:title')}
             </Typography>
-            <Box sx={{ mt: 2 }}>
-              {sortedRecommendations.map((recommendation) => (
-                <RecommendationChip
-                  key={recommendation.id}
-                  recommendation={recommendation}
-                  compact={false}
-                />
-              ))}
-            </Box>
+
+            <RenderRecommendationChips
+              recommendations={sortedRecommendations}
+            />
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>
-            {commonResult && (
-              <CommonResult
-                key={commonResult.id}
-                language={language as keyof Locales}
-                resultData={commonResult}
-                recommendation={recommendedAction}
-              />
-            )}
+            <Typography variant='h6' sx={cardStyles.heading} component='div'>
+              {t('recommendedAction:title')}
+            </Typography>
+            <CommonResult
+              key={commonResult?.id}
+              language={language as keyof Locales}
+              resultData={commonResult}
+              recommendation={recommendedAction}
+            />
+            <RecommendedAction action={recommendedAction} />
 
+            <Typography variant='h6' sx={cardStyles.heading} component='div'>
+              {t('results:subtitle')}
+            </Typography>
             <IpAssessmentResultElements
               sortedResultsWithLabels={sortedResultsWithLabels}
             />
           </Box>
+
           <NavigateBack />
         </Box>
         <Box sx={cardStyles.subHeading}>
-          <Contact action={recommendedAction} />
           <ExtraAction action={recommendedAction} surveyName='ipAssessment' />
           <ShareResult />
         </Box>

@@ -17,6 +17,7 @@ import { getCommonResult, getResultsWithLabels } from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
+import Markdown from '../Common/Markdown'
 import NavigateBack from '../Common/NavigateBack'
 import RecommendedAction from '../Contact/RecommendedAction'
 import CommonResult from '../InteractiveForm/CommonResult'
@@ -93,6 +94,14 @@ const LicenceResults = () => {
             <RenderRecommendationChips
               recommendations={sortedRecommendations}
             />
+
+            {commonResult && (
+              <Box style={{ margin: '1rem' }}>
+                <Markdown>
+                  {commonResult.isSelected[language as keyof Locales]}
+                </Markdown>
+              </Box>
+            )}
           </Container>
 
           <Box ref={refCallback} sx={resultStyles.resultSection}>

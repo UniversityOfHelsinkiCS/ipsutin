@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales } from '@backend/types'
+import { Box } from '@mui/material'
 
 import { ResultElementsProps } from '../../types'
 
@@ -16,7 +17,7 @@ const DefaultResultElements = ({
   if (!sortedResultsWithLabels) return null
 
   return (
-    <>
+    <Box style={{ margin: '1rem 0 0 0' }}>
       {sortedResultsWithLabels.map((result) => (
         <ResultElement
           key={result.id}
@@ -25,7 +26,7 @@ const DefaultResultElements = ({
           dimensions={result.labels}
         />
       ))}
-    </>
+    </Box>
   )
 }
 
