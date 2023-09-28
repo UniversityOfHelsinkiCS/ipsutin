@@ -25,7 +25,7 @@ const RenderSurvey = ({
 
   return (
     <Box sx={cardStyles.outerBox}>
-      <Typography variant='h4' sx={{ m: 4 }}>
+      <Typography variant='h5' sx={formStyles.heading}>
         {surveyName}
       </Typography>
       <Typography variant='h6' sx={{ m: 4 }}>

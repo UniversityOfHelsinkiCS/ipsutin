@@ -43,7 +43,7 @@ const MainPage = () => {
           </LicenceResultDataProvider>
         </Grid>
 
-        <Grid item sm={12} md={5} xl={3}>
+        <Grid item sm={12} md={5} xl={4}>
           <Tools />
         </Grid>
       </Grid>

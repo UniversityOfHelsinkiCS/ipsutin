@@ -1,6 +1,11 @@
 import { Theme } from '@mui/material/styles'
 
 const cardStyles = {
+  heading: {
+    fontWeight: '200',
+    textAlign: 'left',
+    mb: 2,
+  },
   card: {
     m: 2,
     mt: 4,
@@ -51,10 +56,6 @@ const cardStyles = {
     my: 2,
     fontWeight: '200',
   },
-  heading: {
-    fontWeight: '200',
-    pb: 2,
-  },
   subHeading: {
     fontWeight: '200',
     mt: 4,
@@ -83,6 +84,12 @@ const cardStyles = {
 }
 
 const formStyles = {
+  heading: {
+    fontWeight: '200',
+    textAlign: 'left',
+    mt: 4,
+    mx: 4,
+  },
   formWrapper: {
     m: 2,
     maxWidth: 1560,
@@ -166,9 +173,9 @@ const recommendationStyles = {
     paddingLeft: '1rem',
     marginLeft: '0.5rem',
     borderColor: 'grey.300',
-    m: 2,
+    mt: 28,
     px: 2,
-    top: '1rem',
+    top: '2rem',
     textAlign: 'left',
     position: 'sticky',
   },
@@ -230,6 +237,8 @@ const resultStyles = {
   heading: {
     fontWeight: '200',
     textAlign: 'left',
+    mt: 4,
+    mx: 4,
   },
   resultBox: {
     minWidth: 350,

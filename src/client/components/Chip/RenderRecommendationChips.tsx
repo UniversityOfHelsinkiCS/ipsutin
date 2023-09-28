@@ -8,7 +8,7 @@ const RenderRecommendationChips = ({
 }: {
   recommendations: Recommendation[]
 }) => (
-  <Box sx={{ mt: 2 }}>
+  <Box sx={{ mt: 2, mx: 4 }}>
     {recommendations.map((recommendation) => (
       <RecommendationChip
         key={recommendation.id}
