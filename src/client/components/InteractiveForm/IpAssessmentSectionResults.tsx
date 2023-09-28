@@ -26,24 +26,26 @@ const IpAssessmentSectionResults = ({
   if (!section || results.length === 0) return null
 
   return (
-    <Box sx={{ mt: 8 }}>
+    <Box style={{ margin: '0 0 2rem 0' }}>
       <Typography
         data-cy={`ip-assessment-${section}-result-section-title`}
-        variant='h5'
+        variant='h6'
         sx={resultStyles.heading}
         component='div'
       >
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
 
-      {results.map((result) => (
-        <ResultElement
-          key={result.id}
-          language={language as keyof Locales}
-          resultData={result}
-          dimensions={[]}
-        />
-      ))}
+      <Box style={{ margin: '1rem 0 0 0' }}>
+        {results.map((result) => (
+          <ResultElement
+            key={result.id}
+            language={language as keyof Locales}
+            resultData={result}
+            dimensions={[]}
+          />
+        ))}
+      </Box>
 
       <Box sx={cardStyles.card}>
         {isPotentiallyPatentable ? (
