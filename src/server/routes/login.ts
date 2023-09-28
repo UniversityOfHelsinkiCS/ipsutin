@@ -12,7 +12,7 @@ loginRouter.get(
   '/callback',
   passport.authenticate('oidc', { failureRedirect: '/error' }),
   (_, res) => {
-    res.redirect(PUBLIC_URL)
+    res.redirect(PUBLIC_URL || '/')
   }
 )
 
