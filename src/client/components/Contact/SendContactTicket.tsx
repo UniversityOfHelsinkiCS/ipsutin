@@ -23,6 +23,7 @@ const SendContactTicket = ({
 }: ContactTicketProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
   const {
@@ -86,43 +87,56 @@ const SendContactTicket = ({
 
   return (
     <Box sx={sx}>
-      <Box sx={{ mb: 1 }}>
-        <Markdown>{title}</Markdown>
-      </Box>
-      <Markdown>{content}</Markdown>
+      {isOpen ? (
+        <>
+          <Box sx={{ mb: 1 }}>
+            <Markdown>{title}</Markdown>
+          </Box>
+          <Markdown>{content}</Markdown>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name='content'
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              data-cy='contact-ticket-textfield'
-              size='small'
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Controller
               name='content'
-              label={t('contact:contactTicketContentLabel')}
-              fullWidth
-              multiline
-              rows={10}
-              margin='dense'
-              disabled={isSent}
-              error={!!errors?.content}
-              helperText={errors?.content && errors.content.message}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  data-cy='contact-ticket-textfield'
+                  size='small'
+                  name='content'
+                  label={t('contact:contactTicketContentLabel')}
+                  fullWidth
+                  multiline
+                  rows={10}
+                  margin='dense'
+                  disabled={isSent}
+                  error={!!errors?.content}
+                  helperText={errors?.content && errors.content.message}
+                />
+              )}
             />
-          )}
-        />
 
+            <Button
+              data-cy='send-contact-ticket-button'
+              variant='contained'
+              sx={{ mt: 2 }}
+              disabled={isSent}
+              onClick={handleSubmit(onSubmit)}
+            >
+              {t('contact:contactTicketSend')}
+            </Button>
+          </form>
+        </>
+      ) : (
         <Button
-          data-cy='send-contact-ticket-button'
+          data-cy='open-contact-ticket'
+          onClick={() => setIsOpen(true)}
           variant='contained'
-          sx={{ mt: 2 }}
-          disabled={isSent}
-          onClick={handleSubmit(onSubmit)}
+          sx={{ mb: 4 }}
         >
-          {t('contact:contactTicketSend')}
+          {title}
         </Button>
-      </form>
+      )}
     </Box>
   )
 }
