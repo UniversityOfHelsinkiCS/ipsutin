@@ -48,6 +48,7 @@ const IpAssessmentResults = () => {
   }, [recommendationsFetched])
 
   if (
+    !survey ||
     !results ||
     !resultsFetched ||
     !resultData ||
@@ -122,7 +123,7 @@ const IpAssessmentResults = () => {
 
       <Box sx={cardStyles.subHeading}>
         <ExtraAction action={recommendedAction} surveyName='ipAssessment' />
-        <ShareResult />
+        <ShareResult surveyName={survey.name} />
       </Box>
     </Box>
   )

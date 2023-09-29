@@ -48,6 +48,7 @@ const LicenceResults = () => {
   }, [recommendationsFetched])
 
   if (
+    !survey ||
     !resultsFetched ||
     !resultData ||
     !recommendationsFetched ||
@@ -122,7 +123,7 @@ const LicenceResults = () => {
 
       <Box sx={cardStyles.subHeading}>
         <ExtraAction action={recommendedAction} surveyName='licences' />
-        <ShareResult />
+        <ShareResult surveyName={survey.name} />
       </Box>
     </Box>
   )

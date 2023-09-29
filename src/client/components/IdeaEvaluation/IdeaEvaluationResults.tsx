@@ -48,6 +48,7 @@ const IdeaEvaluationResults = () => {
   }, [recommendationsFetched])
 
   if (
+    !survey ||
     !resultsFetched ||
     !resultData ||
     !recommendationsFetched ||
@@ -138,7 +139,7 @@ const IdeaEvaluationResults = () => {
       <NavigateBack />
       <Box sx={cardStyles.subHeading}>
         <ExtraAction action={recommendedAction} surveyName='ideaEvaluation' />
-        <ShareResult />
+        <ShareResult surveyName={survey.name} />
       </Box>
     </Box>
   )

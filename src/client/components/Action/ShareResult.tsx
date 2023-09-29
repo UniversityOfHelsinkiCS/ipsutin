@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import ReactDOMServer from 'react-dom/server'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
+import { SurveyName, User } from '@backend/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Autocomplete,
@@ -16,17 +17,19 @@ import { enqueueSnackbar } from 'notistack'
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
 import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
-import generateShareResultsEmail from '../../templates/generateShareResultsEmail'
+import ShareResultsEmailTemplate from '../../templates/ShareResultsEmailTemplate'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
 
-const ShareResult = () => {
+interface ShareResultProps {
+  surveyName: SurveyName
+}
+
+const ShareResult = ({ surveyName }: ShareResultProps) => {
   const { t } = useTranslation()
-  const location = useLocation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
-  const routeParts = location.pathname.split('/').filter(Boolean)
   const { cardStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
@@ -57,7 +60,9 @@ const ShareResult = () => {
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
 
-    const templateHTML = generateShareResultsEmail(routeParts[0], user)
+    const templateHTML = ReactDOMServer.renderToString(
+      <ShareResultsEmailTemplate user={user as User} surveyName={surveyName} />
+    )
 
     const subject = 'Ipsutin shared results'
     const text = `\
@@ -78,7 +83,7 @@ const ShareResult = () => {
       })
   }
 
-  if (isLoading || !user?.email) return null
+  if (isLoading || !user) return null
 
   return (
     <Box sx={{ mt: 8 }}>
