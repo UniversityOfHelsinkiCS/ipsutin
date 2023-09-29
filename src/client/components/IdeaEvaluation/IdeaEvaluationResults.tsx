@@ -99,8 +99,16 @@ const IdeaEvaluationResults = () => {
         </Box>
       )}
 
-      <Box ref={refCallback} sx={resultStyles.resultSection}>
-        <Typography variant='h6' sx={cardStyles.heading} component='div'>
+      <Box ref={refCallback} style={{ marginLeft: '2rem', marginTop: '4rem' }}>
+        <Typography
+          variant='h6'
+          style={{
+            fontWeight: '200',
+            textAlign: 'left',
+            marginBottom: '1rem',
+          }}
+          component='div'
+        >
           {t('recommendedAction:title')}
         </Typography>
         <CommonResult
@@ -111,7 +119,15 @@ const IdeaEvaluationResults = () => {
         />
         <RecommendedAction action={recommendedAction} />
 
-        <Typography variant='h6' sx={cardStyles.heading} component='div'>
+        <Typography
+          variant='h6'
+          style={{
+            fontWeight: '200',
+            textAlign: 'left',
+            marginBottom: '1rem',
+          }}
+          component='div'
+        >
           {t('results:subtitle')}
         </Typography>
         <DefaultResultElements
