@@ -30,7 +30,9 @@ const ResultElement = ({
         borderWidth: '1px',
       }}
     >
-      <Markdown>{resultData.isSelected[language]}</Markdown>
+      <Box style={{ margin: '1rem' }}>
+        <Markdown>{resultData.isSelected[language]}</Markdown>
+      </Box>
 
       <Box style={{ margin: '1rem 0 0 0' }}>
         {dimensions.map((dimension) => {
