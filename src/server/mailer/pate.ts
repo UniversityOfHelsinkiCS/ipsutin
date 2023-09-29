@@ -9,8 +9,8 @@ dotenv.config()
 const settings = {
   hideToska: false,
   disableToska: true,
-  color: '#107eab',
-  header: 'Ipsutin',
+  color: 'black',
+  header: 'Ipsutin robot',
   headerFontColor: 'white',
   dryrun: !inProduction || inStaging,
 }
@@ -27,7 +27,7 @@ const sendEmail = async (targets: string[], text: string, subject: string) => {
 
   const mail = {
     template: {
-      from: 'Ipsutin',
+      from: 'Ipsutin robot',
       text,
     },
     emails,
