@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import ReactDOMServer from 'react-dom/server'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, SxProps, TextField, Theme } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import { useLoggedInUser } from '../../hooks/useUser'
+import ContactTicketTemplate from '../../templates/ContactTicketTemplate'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
 
@@ -41,34 +43,10 @@ const SendContactTicket = ({
 
   const onSubmit = ({ content }: { content: string }) => {
     const subject = 'Ipsutin contact request'
-    const targets = [ticketEmail]
-    const text = ` \
-    <div> \
-    <h3> \
-      <strong> \
-        Ipsutin Contact Ticket
-      </strong> \
-    </h3> \
-    <p> \
-      **********
-      <strong>
-        ${t('contact:contactTicketSenderEmail')} ${user?.email} \
-      </strong> \
-      <strong>
-        ${t(
-          'contact:contactTicketSenderFullname'
-        )} ${user?.firstName} ${user?.lastName} \
-      </strong> \
-    </p> \
-    <p> \
-      **********
-      <strong>
-        ${t('contact:contactTicketUserMessage')} \
-      </strong> \
-      ${content} \
-    </p> \
-    </div> \
-    `
+    const targets = ['henri.remonen@helsinki.fi']
+    const text = ReactDOMServer.renderToString(
+      <ContactTicketTemplate user={user} content={content} />
+    )
 
     sendEmail(targets, text, subject)
       .then(() => {
