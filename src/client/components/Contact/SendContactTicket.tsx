@@ -43,7 +43,7 @@ const SendContactTicket = ({
 
   const onSubmit = ({ content }: { content: string }) => {
     const subject = 'Ipsutin contact request'
-    const targets = ['henri.remonen@helsinki.fi']
+    const targets = [ticketEmail]
     const text = ReactDOMServer.renderToString(
       <ContactTicketTemplate user={user} content={content} />
     )
