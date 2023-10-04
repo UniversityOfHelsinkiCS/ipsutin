@@ -95,8 +95,8 @@
   },
   "surveySelectionNames": {
     "ipAssessment": "Is my idea patentable",
-    "licences": "How to proceed with my idea",
-    "ideaEvaluation": "Considerations for software licensing"
+    "licences": "Considerations for software licensing",
+    "ideaEvaluation": "How to proceed with my idea"
   },
   "surveyInfos": {
     "ipAssessment": "Patentability evaluation consideration consists of three distinct domains of patent legislation, meeting the patentability criteria in one domain is sufficient for patentability. Patentability evaluation or invention disclosure may or may not result in patent application.",
