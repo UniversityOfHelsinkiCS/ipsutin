@@ -31,6 +31,7 @@
   },
   "contact": {
     "contactTicketContentLabel": "Content",
+    "contactTicketPlaceholder": "Please write you message here",
     "contactTicketSend": "Send Request",
     "contactTicketSenderEmail": "User's email:",
     "contactTicketSenderFullname": "User's name:",

@@ -82,7 +82,7 @@ const SendContactTicket = ({
                   data-cy='contact-ticket-textfield'
                   size='small'
                   name='content'
-                  label={t('contact:contactTicketContentLabel')}
+                  placeholder={t('contact:contactTicketPlaceholder')}
                   fullWidth
                   multiline
                   rows={10}
