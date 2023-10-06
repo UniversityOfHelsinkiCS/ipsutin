@@ -66,14 +66,14 @@ const SelectSurvey = () => {
           label={t('surveySelect:inputLabel')}
           onChange={handleSurveyChange}
         >
+          <MenuItem value='ideaevaluation'>
+            {t('surveySelectionNames:ideaEvaluation')}
+          </MenuItem>
           <MenuItem value='ipassessment'>
             {t('surveySelectionNames:ipAssessment')}
           </MenuItem>
           <MenuItem value='licences'>
             {t('surveySelectionNames:licences')}
-          </MenuItem>
-          <MenuItem value='ideaevaluation'>
-            {t('surveySelectionNames:ideaEvaluation')}
           </MenuItem>
         </Select>
       </FormControl>
