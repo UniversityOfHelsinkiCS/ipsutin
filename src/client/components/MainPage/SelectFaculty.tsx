@@ -31,13 +31,13 @@ const SelectFaculty = () => {
   const { cardStyles, formStyles } = styles
 
   useEffect(() => {
-    if (
-      !faculties ||
-      !userFaculties ||
-      facultiesLoading ||
-      userFacultiesLoading
-    )
+    if (!faculties || facultiesLoading) return
+    if (userFacultiesLoading || !userFaculties || userFaculties?.length === 0) {
+      const otherFaculty = extraOrganisations.find((f) => f.code === 'OTHER')
+      setFaculty(otherFaculty)
+
       return
+    }
 
     const facultyCode = searchParams.get('faculty')
     const selectedFaculty = faculties.find((f) => f.code === facultyCode)
