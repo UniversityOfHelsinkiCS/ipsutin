@@ -13,7 +13,7 @@ const HelloBanner = () => {
     <Box id='hello-component' sx={cardStyles.helloBox}>
       <Box sx={cardStyles.expendableBox}>
         <Markdown>{t('helloBanner:title')}</Markdown>
-        <ShowMore text={t('helloBanner:description')} expanded />
+        <ShowMore text={t('helloBanner:description')} expanded={false} />
         <Markdown>{t('helloBanner:text')}</Markdown>
       </Box>
     </Box>
