@@ -84,12 +84,34 @@ const RecommendedAction = ({ action }: Action) => {
         <Service
           title={t('services:gnugplTitle')}
           content={t('services:gnugplContent')}
-        />
-        <SendContactTicket
-          title={t('recommendedAction:legalTitle')}
-          content={t('recommendedAction:legalContent')}
-          ticketEmail='researchlawyers@helsinki.fi'
-        />
+        >
+          <LinkWithQuery
+            data-cy='idea-evaluation-ext-button'
+            to='/ideaevaluation'
+          >
+            {t('surveyNames:ideaEvaluation')}
+          </LinkWithQuery>
+
+          <LinkWithQuery
+            data-cy='idea-evaluation-ext-button'
+            sx={{ ml: 2 }}
+            to='/ipassessment'
+          >
+            {t('surveyNames:ipAssessment')}
+          </LinkWithQuery>
+        </Service>
+
+        <Service
+          sx={{ mt: 4 }}
+          title={t('services:openSourceLegalSuggestionTitle')}
+          content=''
+        >
+          <SendContactTicket
+            title={t('recommendedAction:legalTitle')}
+            content={t('recommendedAction:legalContent')}
+            ticketEmail='researchlawyers@helsinki.fi'
+          />
+        </Service>
       </>
     ),
     permissive: (
@@ -97,12 +119,26 @@ const RecommendedAction = ({ action }: Action) => {
         <Service
           title={t('services:bsdmitTitle')}
           content={t('services:bsdmitContent')}
-        />
-        <SendContactTicket
-          title={t('recommendedAction:legalTitle')}
-          content={t('recommendedAction:legalContent')}
-          ticketEmail='researchlawyers@helsinki.fi'
-        />
+        >
+          <LinkWithQuery
+            data-cy='disclosure-ext-button'
+            to={t('services:disclosureExtLink')}
+          >
+            {t('services:disclosure')}
+          </LinkWithQuery>
+        </Service>
+
+        <Service
+          sx={{ mt: 4 }}
+          title={t('services:openSourceLegalSuggestionTitle')}
+          content=''
+        >
+          <SendContactTicket
+            title={t('recommendedAction:legalTitle')}
+            content={t('recommendedAction:legalContent')}
+            ticketEmail='researchlawyers@helsinki.fi'
+          />
+        </Service>
       </>
     ),
   }
