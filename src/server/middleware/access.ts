@@ -11,8 +11,8 @@ type AccessLogger = (arg0: ReturnVoid) => ReturnType<Morgan>
 
 const access = morgan as unknown as AccessLogger
 
-const accessLogger = access((tokens, req, res) => {
-  const { uid } = req.headers
+const accessLogger = access((tokens, req: any, res) => {
+  const { user } = req
 
   const method = tokens.method(req, res)
   const url = tokens.url(req, res)
@@ -24,7 +24,10 @@ const accessLogger = access((tokens, req, res) => {
 
   const additionalInfo = inProduction
     ? {
-        userId: uid,
+        userId: user.id,
+        username: user.username,
+        userIamGroups: user.iamGroups,
+        userLanguage: user.language,
         method,
         url,
         status,
