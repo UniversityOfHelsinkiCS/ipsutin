@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Button } from '@mui/material'
+import { Button, SxProps, Theme } from '@mui/material'
 
 interface LinkWithQueryProps {
   to: string
+  sx?: SxProps<Theme>
   children: React.ReactNode
 }
 
-const LinkWithQuery = ({ to, children, ...rest }: LinkWithQueryProps) => {
+const LinkWithQuery = ({ to, children, sx, ...rest }: LinkWithQueryProps) => {
   const { search } = useLocation()
 
   return (
@@ -16,6 +17,7 @@ const LinkWithQuery = ({ to, children, ...rest }: LinkWithQueryProps) => {
       target='_blank'
       component={Link}
       to={to + search}
+      sx={sx}
       {...rest}
     >
       {children}

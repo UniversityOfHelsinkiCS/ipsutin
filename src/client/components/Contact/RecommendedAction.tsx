@@ -80,16 +80,30 @@ const RecommendedAction = ({ action }: Action) => {
       </>
     ),
     restrictive: (
-      <Service
-        title={t('services:gnugplTitle')}
-        content={t('services:gnugplContent')}
-      />
+      <>
+        <Service
+          title={t('services:gnugplTitle')}
+          content={t('services:gnugplContent')}
+        />
+        <SendContactTicket
+          title={t('recommendedAction:legalTitle')}
+          content={t('recommendedAction:legalContent')}
+          ticketEmail='researchlawyers@helsinki.fi'
+        />
+      </>
     ),
     permissive: (
-      <Service
-        title={t('services:bsdmitTitle')}
-        content={t('services:bsdmitContent')}
-      />
+      <>
+        <Service
+          title={t('services:bsdmitTitle')}
+          content={t('services:bsdmitContent')}
+        />
+        <SendContactTicket
+          title={t('recommendedAction:legalTitle')}
+          content={t('recommendedAction:legalContent')}
+          ticketEmail='researchlawyers@helsinki.fi'
+        />
+      </>
     ),
   }
 
