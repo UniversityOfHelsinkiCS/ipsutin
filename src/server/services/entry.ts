@@ -1,6 +1,7 @@
 import { Entry, Survey } from '../db/models'
 import NotFoundError from '../errors/NotFoundError'
 import { EntryValues, EntryWithSurvey } from '../types'
+import logger from '../util/logger'
 
 export const getEntries = async (): Promise<EntryWithSurvey[]> => {
   const entries = (await Entry.findAll({
@@ -53,6 +54,11 @@ export const createEntry = async (
     await existingEntry.update({
       data,
     })
+    const entry = existingEntry?.toJSON()
+    logger.info('Existing entry found. Updated entry: ', {
+      ...entry,
+      isExisting: true,
+    })
 
     return existingEntry
   }
@@ -62,6 +68,13 @@ export const createEntry = async (
     userId,
     data,
     sessionToken,
+  })
+
+  const entry = newEntry?.toJSON()
+
+  logger.info('Existing entry not found. Created new entry: ', {
+    ...entry,
+    isExisting: false,
   })
 
   return newEntry
