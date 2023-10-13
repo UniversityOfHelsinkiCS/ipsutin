@@ -14,8 +14,6 @@ const access = morgan as unknown as AccessLogger
 const accessLogger = access((tokens, req: any, res) => {
   const { user } = req
 
-  console.log(user)
-
   const method = tokens.method(req, res)
   const url = tokens.url(req, res)
   const status = tokens.status(req, res)
@@ -27,9 +25,6 @@ const accessLogger = access((tokens, req: any, res) => {
   const additionalInfo = inProduction
     ? {
         userId: user?.id,
-        username: user?.username,
-        userIamGroups: user?.iamGroups,
-        userLanguage: user?.language,
         method,
         url,
         status,
