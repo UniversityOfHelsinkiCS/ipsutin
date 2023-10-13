@@ -47,7 +47,7 @@ if (!inProduction) {
     new WinstonGelfTransporter({
       handleExceptions: true,
       host: 'toska.cs.helsinki.fi',
-      port: 12201,
+      port: 9503,
       protocol: 'udp',
       hostName: os.hostname(),
       additional: {
