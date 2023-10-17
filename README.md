@@ -46,3 +46,7 @@ Typescript? `as unknown as ...` and `: any` are allowed.
 Create a `.env` file inside the project's root directory. In that file, copy the contents of the `.env.template` file and add correct values for the variables based on the documentation.
 
 Get the JAMI api key from Openshift JAMI pod. Use version.helsinki.fi documentation for that.
+
+## Credits
+
+Eagle emojis & gif by https://github.com/googlefonts/noto-emoji/ licenced under SIL
