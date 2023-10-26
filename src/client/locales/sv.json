@@ -9,7 +9,9 @@
     "entryViewFaculty": "Faculty",
     "entryViewCreated": "Created",
     "entryViewUpdated": "Updated",
-    "entryViewSessionToken": "Session Identifier"
+    "entryViewSessionToken": "Session Identifier",
+    "grafana": "More analytics can be found in Grafana.",
+    "grafanaExtLink": "https://toska.cs.helsinki.fi/grafana/goto/IMZ5k8nSk?orgId=1"
   },
   "common": {
     "appName": "Ipsutin",
