@@ -14,7 +14,7 @@ const RenderAnalytics = () => {
       <Box sx={{ mt: 2 }}>
         <Alert severity='info'>
           <Link target='_blank' rel='noopener' href={t('admin:grafanaExtLink')}>
-            Grafana
+            {t('admin:grafana')}
           </Link>
         </Alert>
       </Box>
