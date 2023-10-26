@@ -6,8 +6,16 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 import { useFaculties, useUserFaculties } from '../../hooks/useFaculty'
 import styles from '../../styles'
-import extraOrganisations from '../../util/organisations'
 import Markdown from '../Common/Markdown'
+
+const otherFaculty = {
+  code: 'OTHER',
+  name: {
+    fi: 'Muu',
+    sv: 'Annan',
+    en: 'Other',
+  },
+}
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
   const sortedFaculties = faculties.sort((a, b) => {
@@ -23,7 +31,7 @@ const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
 const SelectFaculty = () => {
   const { t, i18n } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [faculty, setFaculty] = useState<Faculty>()
+  const [faculty, setFaculty] = useState<Faculty>(otherFaculty)
   const { faculties, isLoading: facultiesLoading } = useFaculties()
   const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
 
@@ -31,13 +39,13 @@ const SelectFaculty = () => {
   const { cardStyles, formStyles } = styles
 
   useEffect(() => {
-    if (!faculties || facultiesLoading) return
-    if (userFacultiesLoading || !userFaculties || userFaculties?.length === 0) {
-      const otherFaculty = extraOrganisations.find((f) => f.code === 'OTHER')
-      setFaculty(otherFaculty)
-
+    if (
+      !faculties ||
+      !userFaculties ||
+      facultiesLoading ||
+      userFacultiesLoading
+    )
       return
-    }
 
     const facultyCode = searchParams.get('faculty')
     const selectedFaculty = faculties.find((f) => f.code === facultyCode)
@@ -62,7 +70,7 @@ const SelectFaculty = () => {
   if (!faculties || facultiesLoading) return null
 
   const sortedFaculties = sortFaculties(faculties, language as keyof Locales)
-  const organisations = sortedFaculties.concat(extraOrganisations)
+  const organisations = sortedFaculties.concat(otherFaculty)
 
   return (
     <Box sx={cardStyles.card}>
