@@ -89,12 +89,7 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
 
   return (
     <Box sx={resultStyles.resultSection}>
-      <Typography
-        data-cy='result-section-title'
-        variant='h5'
-        sx={resultStyles.heading}
-        component='div'
-      >
+      <Typography data-cy='result-section-title' variant='h5' component='div'>
         {t('admin:entryViewTitle')}
       </Typography>
 
@@ -107,12 +102,14 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
       ))}
 
       {commonResult && (
-        <CommonResult
-          key={commonResult.id}
-          language={language as keyof Locales}
-          resultData={commonResult}
-          recommendation={recommendedAction}
-        />
+        <Box sx={{ mt: 4 }}>
+          <CommonResult
+            key={commonResult.id}
+            language={language as keyof Locales}
+            resultData={commonResult}
+            recommendation={recommendedAction}
+          />
+        </Box>
       )}
 
       {ResultComponent}

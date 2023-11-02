@@ -26,7 +26,6 @@ const Entry = () => {
           <Typography
             data-cy='result-section-title'
             variant='h5'
-            sx={resultStyles.heading}
             component='div'
           >
             {t('admin:entryInfoTitle')}
