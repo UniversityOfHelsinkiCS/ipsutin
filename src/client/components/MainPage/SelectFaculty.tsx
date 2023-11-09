@@ -31,21 +31,27 @@ const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
 const SelectFaculty = () => {
   const { t, i18n } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [faculty, setFaculty] = useState<Faculty>(otherFaculty)
+  const [faculty, setFaculty] = useState<Faculty>()
   const { faculties, isLoading: facultiesLoading } = useFaculties()
   const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
 
   const { language } = i18n
   const { cardStyles, formStyles } = styles
 
+  useEffect(() => {}, [setSearchParams])
+
   useEffect(() => {
     if (
       !faculties ||
-      !userFaculties ||
       facultiesLoading ||
+      !userFaculties ||
       userFacultiesLoading
-    )
+    ) {
+      setSearchParams({ faculty: otherFaculty.code })
+      setFaculty(otherFaculty)
+
       return
+    }
 
     const facultyCode = searchParams.get('faculty')
     const selectedFaculty = faculties.find((f) => f.code === facultyCode)
@@ -58,14 +64,7 @@ const SelectFaculty = () => {
       setSearchParams({ faculty: userFaculty?.code })
       setFaculty(userFaculty)
     }
-  }, [
-    faculties,
-    facultiesLoading,
-    searchParams,
-    setSearchParams,
-    userFaculties,
-    userFacultiesLoading,
-  ])
+  }, [faculties, facultiesLoading, userFaculties, userFacultiesLoading])
 
   if (!faculties || facultiesLoading) return null
 
