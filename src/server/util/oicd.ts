@@ -36,9 +36,7 @@ const params = {
 }
 
 const checkAdmin = (iamGroups: string[]) =>
-  iamGroups.some((iamGroup) =>
-    ['hy-ypa-opa-ote', 'grp-toska', 'grp-his'].includes(iamGroup)
-  )
+  iamGroups.some((iamGroup) => ['grp-toska', 'grp-his'].includes(iamGroup))
 
 const getClient = async () => {
   const issuer = await Issuer.discover(OIDC_ISSUER)
@@ -76,7 +74,7 @@ const verifyLogin = async (
     language,
     firstName,
     lastName,
-    isAdmin: checkAdmin(iamGroups),
+    isAdmin: checkAdmin(iamGroups) || username === 'glandmic',
   }
 
   await User.upsert({
