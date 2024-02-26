@@ -3,6 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { Locales } from '@backend/types'
 import { Box, Typography } from '@mui/material'
 
+import ExtraAction from '../../components/Action/ExtraAction'
+import ShareResult from '../../components/Action/ShareResult'
+import RenderRecommendationChips from '../../components/Chip/RenderRecommendationChips'
+import Markdown from '../../components/Common/Markdown'
+import NavigateBack from '../../components/Common/NavigateBack'
+import RecommendedAction from '../../components/Contact/RecommendedAction'
+import CommonResult from '../../components/InteractiveForm/CommonResult'
+import IpAssessmentResultElements from '../../components/InteractiveForm/IpAssessmentResultElements'
 import useRecommendations from '../../hooks/useRecommendations'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
@@ -14,46 +22,38 @@ import {
   sortRecommendations,
 } from '../../util/recommendations'
 import { getCommonResult, getResultsWithLabels } from '../../util/results'
-import ExtraAction from '../Action/ExtraAction'
-import ShareResult from '../Action/ShareResult'
-import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
-import Markdown from '../Common/Markdown'
-import NavigateBack from '../Common/NavigateBack'
-import RecommendedAction from '../Contact/RecommendedAction'
-import CommonResult from '../InteractiveForm/CommonResult'
-import DefaultResultElements from '../InteractiveForm/DefaultResultElements'
 
-import { useLicenceResultData } from './LicenceResultDataContext'
+import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
 const { cardStyles, resultStyles } = styles
 
-const LicenceResults = () => {
+const IpAssessmentResults = () => {
   const { t, i18n } = useTranslation()
-  const { survey } = useSurvey('licences')
+  const { survey } = useSurvey('ipAssessment')
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
 
   const refCallback = useResultRefCallback()
-  const { resultData } = useLicenceResultData()
+  const { resultData } = useIpAssessmentResultData()
 
   const { language } = i18n
 
   useEffect(() => {
     if (recommendationsFetched) {
       document
-        ?.getElementById('licences-result-section')
+        ?.getElementById('ip-assessment-result-section')
         ?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [recommendationsFetched])
 
   if (
     !survey ||
+    !results ||
     !resultsFetched ||
     !resultData ||
-    !recommendationsFetched ||
-    !results ||
-    !recommendations
+    !recommendations ||
+    !recommendationsFetched
   )
     return null
 
@@ -79,9 +79,9 @@ const LicenceResults = () => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box id='licences-result-section' sx={cardStyles.outerBox}>
+    <Box id='ip-assessment-result-section' sx={cardStyles.outerBox}>
       <Typography
-        data-cy='licences-result-section-title'
+        data-cy='ip-assessment-result-section-title'
         variant='h5'
         sx={resultStyles.heading}
         component='div'
@@ -130,7 +130,7 @@ const LicenceResults = () => {
         >
           {t('results:subtitle')}
         </Typography>
-        <DefaultResultElements
+        <IpAssessmentResultElements
           sortedResultsWithLabels={sortedResultsWithLabels}
         />
       </Box>
@@ -138,11 +138,11 @@ const LicenceResults = () => {
       <NavigateBack />
 
       <Box sx={cardStyles.subHeading}>
-        <ExtraAction action={recommendedAction} surveyName='licences' />
+        <ExtraAction action={recommendedAction} surveyName='ipAssessment' />
         <ShareResult surveyName={survey.name} />
       </Box>
     </Box>
   )
 }
 
-export default LicenceResults
+export default IpAssessmentResults

@@ -5,12 +5,12 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import { IDEA_EVALUATION_DATA_KEY } from '../../../config'
+import RenderSurvey from '../../components/InteractiveForm/RenderSurvey'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import { FormValues } from '../../types'
-import RenderSurvey from '../InteractiveForm/RenderSurvey'
 
 import { useIdeaEvaluationResultData } from './IdeaEvaluationResultContext'
 

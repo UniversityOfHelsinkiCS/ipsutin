@@ -2,9 +2,9 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 
+import Markdown from '../../components/Common/Markdown'
+import ShowMore from '../../components/Common/ShowMore'
 import styles from '../../styles'
-import Markdown from '../Common/Markdown'
-import ShowMore from '../Common/ShowMore'
 
 const HelloBanner = () => {
   const { t } = useTranslation()

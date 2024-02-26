@@ -4,9 +4,9 @@ import { useSearchParams } from 'react-router-dom'
 import { Faculty, Locales } from '@backend/types'
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
+import Markdown from '../../components/Common/Markdown'
 import { useFaculties, useUserFaculties } from '../../hooks/useFaculty'
 import styles from '../../styles'
-import Markdown from '../Common/Markdown'
 
 const otherFaculty = {
   code: 'OTHER',

@@ -6,13 +6,13 @@ import { Question } from '@backend/types'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 
 import { IP_ASSESSMENT_DATA_KEY } from '../../../config'
+import ResetForm from '../../components/Common/ResetForm'
+import RenderQuestions from '../../components/InteractiveForm/RenderQuestions'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import { FormValues } from '../../types'
-import ResetForm from '../Common/ResetForm'
-import RenderQuestions from '../InteractiveForm/RenderQuestions'
 
 import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 

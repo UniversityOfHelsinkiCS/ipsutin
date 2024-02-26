@@ -15,8 +15,8 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 
+import Markdown from '../../components/Common/Markdown'
 import styles from '../../styles'
-import Markdown from '../Common/Markdown'
 
 const SelectSurvey = () => {
   const { t } = useTranslation()

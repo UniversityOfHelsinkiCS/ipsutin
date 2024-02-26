@@ -2,8 +2,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 
+import Markdown from '../../components/Common/Markdown'
 import styles from '../../styles'
-import Markdown from '../Common/Markdown'
 
 const Tools = () => {
   const { t } = useTranslation()
