@@ -3,9 +3,6 @@ import { Outlet } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import styles from '../../styles'
-import { IdeaEvaluationResultDataProvider } from '../IdeaEvaluation/IdeaEvaluationResultContext'
-import { IpAssessmentResultDataProvider } from '../IpAssessment/IpAssessmentResultDataContext'
-import { LicenceResultDataProvider } from '../Licences/LicenceResultDataContext'
 
 import ProductGrid from './ProductGrid'
 import SelectFaculty from './SelectFaculty'
@@ -25,13 +22,8 @@ const MainPage = () => {
           <Box sx={{ mx: 2, display: 'flex' }}>
             <SelectFaculty />
           </Box>
-          <LicenceResultDataProvider>
-            <IdeaEvaluationResultDataProvider>
-              <IpAssessmentResultDataProvider>
-                <Outlet />
-              </IpAssessmentResultDataProvider>
-            </IdeaEvaluationResultDataProvider>
-          </LicenceResultDataProvider>
+
+          <Outlet />
         </Grid>
 
         <Grid item sm={12} md={5} xl={4}>
