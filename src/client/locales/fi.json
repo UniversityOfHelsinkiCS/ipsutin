@@ -13,6 +13,12 @@
     "grafana": "More analytics can be found in Grafana.",
     "grafanaExtLink": "https://toska.cs.helsinki.fi/grafana/goto/MMtESd4Ik?orgId=1"
   },
+  "navbar": {
+    "home": "Koti",
+    "about": "Tietoa meistä",
+    "contact": "Ota yhteyttä",
+    "admin": "Ylläpito"
+  },
   "common": {
     "appName": "Innotin",
     "submit": "Submit",

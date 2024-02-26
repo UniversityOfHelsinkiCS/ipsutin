@@ -21,6 +21,22 @@ import hyLogo from '../../assets/hy_logo.svg'
 import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
+const languages = ['en']
+const pages = [
+  {
+    name: 'home',
+    path: '/',
+  },
+  {
+    name: 'about',
+    path: '/about',
+  },
+  {
+    name: 'contact',
+    path: '/contact',
+  },
+]
+
 const NavBar = () => {
   const { t, i18n } = useTranslation()
   const { user, isLoading } = useLoggedInUser()
@@ -30,7 +46,6 @@ const NavBar = () => {
 
   const { navStyles } = styles
   const { language } = i18n
-  const languages = ['en']
 
   const handleLanguageChange = (newLanguage: string) => {
     i18n.changeLanguage(newLanguage)
@@ -55,6 +70,22 @@ const NavBar = () => {
                 {t('appName')}
               </Typography>
             </Box>
+          </Box>
+          <Box
+            component='nav'
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+          >
+            {pages.map((page) => (
+              <Link
+                to={page.path}
+                key={page.name}
+                style={{ textDecoration: 'none' }}
+              >
+                <Button sx={{ my: 2, display: 'block' }}>
+                  {t(`navbar:${page.name}`)}
+                </Button>
+              </Link>
+            ))}
           </Box>
           <Box>
             {user?.isAdmin && (
