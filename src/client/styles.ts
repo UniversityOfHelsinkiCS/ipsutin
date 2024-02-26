@@ -18,10 +18,6 @@ const cardStyles = {
     transition: '0.3s',
     textAlign: 'left',
   },
-  helloBox: {
-    m: 2,
-    maxWidth: 1560,
-  },
   expendableBox: {
     my: 2,
     mx: 2,
@@ -124,6 +120,7 @@ const navStyles = {
     borderRadius: 0,
     borderBottom: '1px solid black',
     py: '1rem',
+    height: '100px',
   },
   toolbar: {
     display: 'flex',

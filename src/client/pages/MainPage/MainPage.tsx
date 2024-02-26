@@ -7,7 +7,7 @@ import { IdeaEvaluationResultDataProvider } from '../IdeaEvaluation/IdeaEvaluati
 import { IpAssessmentResultDataProvider } from '../IpAssessment/IpAssessmentResultDataContext'
 import { LicenceResultDataProvider } from '../Licences/LicenceResultDataContext'
 
-import HelloBanner from './HelloBanner'
+import ProductGrid from './ProductGrid'
 import SelectFaculty from './SelectFaculty'
 import SelectSurvey from './SelectSurvey'
 import Tools from './Tools'
@@ -19,7 +19,7 @@ const MainPage = () => {
     <Box sx={formStyles.formWrapper}>
       <Grid container>
         <Grid item sm={12}>
-          <HelloBanner />
+          <ProductGrid />
         </Grid>
 
         <Grid
