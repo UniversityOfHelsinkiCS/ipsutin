@@ -10,12 +10,12 @@ const Tools = () => {
 
   const { recommendationStyles, cardStyles } = styles
   return (
-    <Box sx={recommendationStyles.recommendationContainer}>
+    <Box sx={recommendationStyles.recommendationContainer} component='aside'>
       <Typography
         data-cy='recommendation-section-title'
+        component='h3'
         variant='h5'
         sx={cardStyles.heading}
-        component='span'
       >
         {t('sideBarServices:services')}
       </Typography>

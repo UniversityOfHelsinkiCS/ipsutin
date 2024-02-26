@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -14,11 +15,16 @@ const ShowMore = ({
   // eslint-disable-next-line react/require-default-props
   expanded?: boolean
 }) => {
+  const { t } = useTranslation()
   const [expand, setExpand] = useState(expanded)
 
   return (
     <>
-      <IconButton onClick={() => setExpand(!expand)}>
+      <IconButton
+        onClick={() => setExpand(!expand)}
+        aria-label={t('common:showMore')}
+        aria-expanded={expand}
+      >
         <HelpOutlineIcon />
         {!expand ? <ExpandMore /> : <ExpandLess />}
       </IconButton>

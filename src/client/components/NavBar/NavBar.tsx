@@ -44,9 +44,16 @@ const NavBar = () => {
       <Container maxWidth={false}>
         <Toolbar sx={navStyles.toolbar} disableGutters>
           <Box sx={navStyles.navBox}>
-            <img src={hyLogo} alt='University of Helsinki' width='40' />
+            <img
+              src={hyLogo}
+              alt='University of Helsinki logo'
+              loading='lazy'
+              width='40 px'
+            />
             <Box ml='2rem'>
-              <Typography sx={navStyles.appName}>{t('appName')}</Typography>
+              <Typography component='h1' sx={navStyles.appName}>
+                {t('appName')}
+              </Typography>
             </Box>
           </Box>
           <Box>

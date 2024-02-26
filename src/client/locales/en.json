@@ -19,7 +19,8 @@
     "updateSubmit": "Update choices",
     "reset": "Restart",
     "openForm": "Proceed to the questions",
-    "admin": "Admin"
+    "admin": "Admin",
+    "showMore": "Näytä lisää"
   },
   "recommendedAction": {
     "title": "Recommended action",
