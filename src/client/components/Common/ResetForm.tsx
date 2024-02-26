@@ -16,7 +16,7 @@ const ResetForm = () => {
   return (
     <Button
       sx={formStyles.stackButton}
-      type='button'
+      type='reset'
       data-cy='reset-form-button'
       onClick={resetForm}
     >
