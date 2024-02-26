@@ -109,6 +109,7 @@
       "react/react-in-jsx-scope": 0,
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
+      "react/no-unstable-nested-components": "error",
       "react/self-closing-comp": [
         "error",
         {
