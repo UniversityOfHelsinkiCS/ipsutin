@@ -9,7 +9,6 @@ import { LicenceResultDataProvider } from '../Licences/LicenceResultDataContext'
 
 import ProductGrid from './ProductGrid'
 import SelectFaculty from './SelectFaculty'
-import SelectSurvey from './SelectSurvey'
 import Tools from './Tools'
 
 const MainPage = () => {
@@ -22,17 +21,9 @@ const MainPage = () => {
           <ProductGrid />
         </Grid>
 
-        <Grid
-          container
-          item
-          sm={12}
-          md={7}
-          xl={8}
-          sx={{ display: 'flex', justifyContent: 'center' }}
-        >
+        <Grid container item sm={12} md={7} xl={8} sx={{ display: 'flex' }}>
           <Box sx={{ mx: 2, display: 'flex' }}>
             <SelectFaculty />
-            <SelectSurvey />
           </Box>
           <LicenceResultDataProvider>
             <IdeaEvaluationResultDataProvider>
