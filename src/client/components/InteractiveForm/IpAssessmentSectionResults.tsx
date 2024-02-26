@@ -7,7 +7,7 @@ import Markdown from '../Common/Markdown'
 
 import ResultElement from './ResultElement'
 
-const { cardStyles, resultStyles } = styles
+const { cardStyles } = styles
 
 const IpAssessmentSectionResults = ({
   section,
@@ -26,17 +26,22 @@ const IpAssessmentSectionResults = ({
   if (!section || results.length === 0) return null
 
   return (
-    <Box style={{ margin: '0 0 2rem 0' }}>
+    <Box>
       <Typography
         data-cy={`ip-assessment-${section}-result-section-title`}
         variant='h6'
-        sx={resultStyles.heading}
-        component='div'
+        style={{
+          fontWeight: '200',
+          textAlign: 'left',
+          marginBottom: '1rem',
+          marginLeft: '1rem',
+        }}
+        component='h4'
       >
         {t(`ipAssessmentSurvey:${section}Title`)}
       </Typography>
 
-      <Box style={{ margin: '1rem 0 0 0' }}>
+      <Box>
         {results.map((result) => (
           <ResultElement
             key={result.id}

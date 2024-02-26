@@ -89,7 +89,7 @@ const IpAssessment = () => {
               </Typography>
 
               <Box sx={cardStyles.separatorCard}>
-                <Typography variant='h6' sx={{ ml: 2 }}>
+                <Typography variant='h6' component='h3' sx={{ ml: 2 }}>
                   1. {t('ipAssessmentSurvey:technicalTitle')}
                 </Typography>
                 {technical.map((question: Question) => (
@@ -108,7 +108,7 @@ const IpAssessment = () => {
               </Box>
 
               <Box sx={cardStyles.separatorCard}>
-                <Typography variant='h6' sx={{ ml: 2 }}>
+                <Typography variant='h6' component='h3' sx={{ ml: 2 }}>
                   2. {t('ipAssessmentSurvey:mathematicalTitle')}
                 </Typography>
                 {mathematical.map((question: Question) => (
@@ -127,7 +127,7 @@ const IpAssessment = () => {
               </Box>
 
               <Box sx={cardStyles.separatorCard}>
-                <Typography variant='h6' sx={{ ml: 2 }}>
+                <Typography variant='h6' component='h3' sx={{ ml: 2 }}>
                   3. {t('ipAssessmentSurvey:computerProgramTitle')}
                 </Typography>
                 {computerProgram.map((question: Question) => (

@@ -14,7 +14,6 @@ const cardStyles = {
   },
   separatorCard: {
     mx: 2,
-    mt: 4,
     transition: '0.3s',
     textAlign: 'left',
   },
@@ -38,7 +37,8 @@ const cardStyles = {
     spacing: 1,
   },
   questionsContainer: {
-    my: 8,
+    mt: 2,
+    mb: 8,
   },
   content: {
     mt: 2,
