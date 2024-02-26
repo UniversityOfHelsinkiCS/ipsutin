@@ -84,7 +84,7 @@ const LicenceResults = () => {
         data-cy='licences-result-section-title'
         variant='h5'
         sx={resultStyles.heading}
-        component='div'
+        component='h2'
       >
         {t('results:title')}
       </Typography>
@@ -107,7 +107,7 @@ const LicenceResults = () => {
             textAlign: 'left',
             marginBottom: '1rem',
           }}
-          component='div'
+          component='h3'
         >
           {t('recommendedAction:title')}
         </Typography>
@@ -126,7 +126,7 @@ const LicenceResults = () => {
             textAlign: 'left',
             marginBottom: '1rem',
           }}
-          component='div'
+          component='h3'
         >
           {t('results:subtitle')}
         </Typography>

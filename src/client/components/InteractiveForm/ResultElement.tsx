@@ -25,9 +25,6 @@ const ResultElement = ({
     <Container
       style={{
         margin: '0 0 3rem 0',
-        borderLeft: 'solid',
-        borderColor: '#9ca3af',
-        borderWidth: '1px',
       }}
     >
       <Box style={{ margin: '1rem' }}>

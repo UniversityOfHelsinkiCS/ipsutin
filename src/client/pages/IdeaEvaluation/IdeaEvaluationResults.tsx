@@ -85,7 +85,7 @@ const IdeaEvaluationResults = () => {
         data-cy='idea-evaluation-result-section-title'
         variant='h5'
         sx={resultStyles.heading}
-        component='div'
+        component='h2'
       >
         {t('results:title')}
       </Typography>
@@ -108,7 +108,7 @@ const IdeaEvaluationResults = () => {
             textAlign: 'left',
             marginBottom: '1rem',
           }}
-          component='div'
+          component='h3'
         >
           {t('recommendedAction:title')}
         </Typography>
@@ -127,7 +127,7 @@ const IdeaEvaluationResults = () => {
             textAlign: 'left',
             marginBottom: '1rem',
           }}
-          component='div'
+          component='h3'
         >
           {t('results:subtitle')}
         </Typography>

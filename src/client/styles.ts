@@ -39,8 +39,6 @@ const cardStyles = {
   },
   questionsContainer: {
     my: 8,
-    borderLeft: 1,
-    borderColor: 'grey.300',
   },
   content: {
     mt: 2,
