@@ -81,10 +81,10 @@ const IpAssessment = () => {
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={cardStyles.outerBox}>
-              <Typography variant='h4' sx={{ m: 4 }}>
+              <Typography component='h2' variant='h5' sx={formStyles.heading}>
                 {t('surveyNames:ipAssessment')}
               </Typography>
-              <Typography variant='h6' sx={{ m: 4 }}>
+              <Typography component='p' variant='h6' sx={{ m: 4 }}>
                 {t('surveyInfos:ipAssessment')}
               </Typography>
 
