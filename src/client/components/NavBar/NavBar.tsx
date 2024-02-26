@@ -88,11 +88,7 @@ const NavBar = () => {
           </Box>
           <Box>
             {user?.isAdmin && (
-              <Button
-                component={NavLink}
-                to='/admin'
-                style={{ textDecoration: 'none' }}
-              >
+              <Button component={NavLink} to='/admin' sx={navStyles.link}>
                 <AdminPanelSettingsOutlined sx={navStyles.icon} /> {t('admin')}
               </Button>
             )}
