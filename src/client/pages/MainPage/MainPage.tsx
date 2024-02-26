@@ -19,7 +19,7 @@ const MainPage = () => {
         </Grid>
 
         <Grid container item sm={12} md={7} xl={8} sx={{ display: 'flex' }}>
-          <Box sx={{ mx: 2, display: 'flex' }}>
+          <Box sx={{ display: 'flex' }}>
             <SelectFaculty />
           </Box>
 

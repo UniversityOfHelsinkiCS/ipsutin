@@ -25,7 +25,7 @@ const cardStyles = {
     gap: 0.3,
   },
   outerBox: {
-    m: 2,
+    my: 2,
     border: 1,
     borderColor: 'grey.300',
   },
