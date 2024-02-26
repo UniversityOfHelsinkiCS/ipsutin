@@ -23,6 +23,13 @@ export interface InputProps {
   surveyInfo?: string
 }
 
+export interface ProductCardProps {
+  title: string
+  description: string
+  href: string
+  imgPath?: string
+}
+
 export interface FormValues {
   [key: number]: Record<string, { [key: string]: boolean }>
   faculty?: string

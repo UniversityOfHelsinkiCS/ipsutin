@@ -2,10 +2,12 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   createSearchParams,
+  Link,
   useLocation,
   useNavigate,
   useSearchParams,
 } from 'react-router-dom'
+import { ProductCardProps } from '@frontend/types'
 import {
   Card,
   CardActionArea,
@@ -17,7 +19,12 @@ import {
 
 import IntroCard from './IntroCard'
 
-const ProductCard = ({ title, description, imgPath }: any) => (
+const ProductCard = ({
+  title,
+  description,
+  href,
+  imgPath,
+}: ProductCardProps) => (
   <Card
     elevation={0}
     sx={{
@@ -25,7 +32,7 @@ const ProductCard = ({ title, description, imgPath }: any) => (
       borderColor: 'grey.300',
     }}
   >
-    <CardActionArea>
+    <CardActionArea component={Link} to={href}>
       <CardMedia component='img' height='140' image={imgPath} alt={title} />
       <CardContent sx={{ height: '325px' }}>
         <Typography gutterBottom variant='h5' component='div'>
@@ -70,6 +77,7 @@ const ProductGrid = () => {
           title={t('surveySelectionNames:ipAssessment')}
           description={t('surveyInfos:ipAssessment')}
           imgPath='/'
+          href={`/ipassessment?faculty=${faculty}`}
         />
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
@@ -77,6 +85,7 @@ const ProductGrid = () => {
           title={t('surveySelectionNames:licences')}
           description={t('surveyInfos:licences')}
           imgPath='/'
+          href={`/licences?faculty=${faculty}`}
         />
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
@@ -84,6 +93,7 @@ const ProductGrid = () => {
           title={t('surveySelectionNames:ideaEvaluation')}
           description={t('surveyInfos:ideaEvaluation')}
           imgPath='/'
+          href={`/ideaevaluation?faculty=${faculty}`}
         />
       </Grid>
     </Grid>
