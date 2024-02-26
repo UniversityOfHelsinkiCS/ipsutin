@@ -9,6 +9,9 @@ import { FULL_URL } from '../config'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
 import { useLoggedInUser } from './hooks/useUser'
+import { IdeaEvaluationResultDataProvider } from './pages/IdeaEvaluation/IdeaEvaluationResultContext'
+import { IpAssessmentResultDataProvider } from './pages/IpAssessment/IpAssessmentResultDataContext'
+import { LicenceResultDataProvider } from './pages/Licences/LicenceResultDataContext'
 import useTheme from './theme'
 
 const App = () => {
@@ -37,10 +40,15 @@ const App = () => {
             flexGrow={1}
             display='flex'
             justifyContent='center'
-            alignItems='center'
             minHeight='50vh'
           >
-            <Outlet />
+            <LicenceResultDataProvider>
+              <IdeaEvaluationResultDataProvider>
+                <IpAssessmentResultDataProvider>
+                  <Outlet />
+                </IpAssessmentResultDataProvider>
+              </IdeaEvaluationResultDataProvider>
+            </LicenceResultDataProvider>
           </Box>
           <Footer />
         </Box>
