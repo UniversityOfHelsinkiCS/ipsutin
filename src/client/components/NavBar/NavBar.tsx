@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AdminPanelSettingsOutlined, Language } from '@mui/icons-material'
 import {
   AppBar,
@@ -76,25 +76,25 @@ const NavBar = () => {
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
           >
             {pages.map((page) => (
-              <Link
+              <Button
+                component={NavLink}
                 to={page.path}
                 key={page.name}
-                style={{ textDecoration: 'none' }}
+                sx={navStyles.link}
               >
-                <Button sx={{ my: 2, display: 'block' }}>
-                  {t(`navbar:${page.name}`)}
-                </Button>
-              </Link>
+                {t(`navbar:${page.name}`)}
+              </Button>
             ))}
           </Box>
           <Box>
             {user?.isAdmin && (
-              <Link to='/admin' style={{ textDecoration: 'none' }}>
-                <Button>
-                  <AdminPanelSettingsOutlined sx={navStyles.icon} />{' '}
-                  {t('admin')}
-                </Button>
-              </Link>
+              <Button
+                component={NavLink}
+                to='/admin'
+                style={{ textDecoration: 'none' }}
+              >
+                <AdminPanelSettingsOutlined sx={navStyles.icon} /> {t('admin')}
+              </Button>
             )}
             <Button
               ref={anchorRef}
@@ -139,10 +139,7 @@ const NavBar = () => {
                         {languages.map((l) => (
                           <MenuItem
                             key={l}
-                            sx={[
-                              navStyles.item,
-                              language === l && navStyles.activeItem,
-                            ]}
+                            sx={[navStyles.item]}
                             onClick={() => {
                               handleLanguageChange(l)
                             }}

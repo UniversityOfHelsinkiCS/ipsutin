@@ -162,9 +162,13 @@ const navStyles = {
     flexGrow: 1,
     justifyContent: 'center',
   },
-  activeItem: {
-    color: (theme: Theme) => theme.palette.primary.main,
+  link: {
+    color: 'black',
+    textDecoration: 'none',
     fontWeight: (theme: Theme) => theme.typography.fontWeightMedium,
+    '&.active': {
+      color: 'primary.main',
+    },
   },
 }
 
