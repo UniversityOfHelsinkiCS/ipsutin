@@ -1,12 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import {
-  AdminPanelSettingsOutlined,
-  Logout,
-  PersonAdd,
-  Settings,
-} from '@mui/icons-material'
+import { AdminPanelSettingsOutlined } from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
@@ -21,7 +16,6 @@ import {
   ListItemIcon,
   ListItemText,
   Menu,
-  MenuItem,
   Skeleton,
   Toolbar,
   Tooltip,
@@ -35,41 +29,7 @@ import styles from '../../styles'
 
 import LanguageSelect from './LanguageSelect'
 import MobileMenu from './MobileMenu'
-
-const PAGES = [
-  {
-    name: 'home',
-    path: '/',
-  },
-  {
-    name: 'about',
-    path: '/about',
-  },
-  {
-    name: 'contact',
-    path: '/contact',
-  },
-]
-
-function stringToColor(string: string) {
-  let hash = 0
-  let i
-
-  /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash)
-  }
-
-  let color = '#'
-
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff
-    color += `00${value.toString(16)}`.slice(-2)
-  }
-  /* eslint-enable no-bitwise */
-
-  return color
-}
+import { PAGES, stringToColor } from './util'
 
 const ProfileMenu = () => {
   const { t } = useTranslation()
@@ -150,24 +110,6 @@ const ProfileMenu = () => {
       >
         <LanguageSelect />
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize='small' />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize='small' />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Logout fontSize='small' />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
       </Menu>
     </>
   )
