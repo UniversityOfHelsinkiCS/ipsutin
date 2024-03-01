@@ -1,7 +1,36 @@
+import { useEffect } from 'react'
 import { useQuery } from 'react-query'
+import {
+  createSearchParams,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom'
 import { Faculty } from '@backend/types'
 
 import apiClient from '../util/apiClient'
+
+export const useSelectedFaculty = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const [searchParams] = useSearchParams()
+
+  const faculty = searchParams.get('faculty')
+
+  useEffect(() => {
+    if (!faculty || faculty === 'null') return
+
+    const params = { faculty }
+
+    navigate({
+      pathname: location.pathname,
+      search: `?${createSearchParams(params)}`,
+    })
+  }, [faculty, location.pathname, navigate, searchParams])
+
+  return faculty
+}
 
 export const useFaculties = () => {
   const queryKey = 'faculties'

@@ -1,13 +1,5 @@
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  createSearchParams,
-  Link,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from 'react-router-dom'
-import { ProductCardProps } from '@frontend/types'
+import { Link } from 'react-router-dom'
 import {
   Card,
   CardActionArea,
@@ -15,6 +7,9 @@ import {
   Grid,
   Typography,
 } from '@mui/material'
+
+import { useSelectedFaculty } from '../../hooks/useFaculty'
+import { ProductCardProps } from '../../types'
 
 import IntroCard from './IntroCard'
 
@@ -46,24 +41,7 @@ const ProductCard = ({ title, description, href }: ProductCardProps) => (
 
 const ProductGrid = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const [searchParams] = useSearchParams()
-
-  const faculty = searchParams.get('faculty')
-
-  useEffect(() => {
-    if (!faculty || faculty === 'null') return
-
-    const params = { faculty }
-
-    navigate({
-      pathname: location.pathname,
-      search: `?${createSearchParams(params)}`,
-    })
-  }, [faculty, location.pathname, navigate, searchParams])
-
-  if (faculty === 'null') return null
+  const faculty = useSelectedFaculty()
 
   return (
     <Grid container sx={{ display: 'flex' }}>

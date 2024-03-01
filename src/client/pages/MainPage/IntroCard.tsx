@@ -9,7 +9,7 @@ const IntroCard = () => {
 
   return (
     <Card
-      id='hello-component'
+      id='intro-card'
       elevation={0}
       sx={{
         border: '1px solid',
@@ -25,9 +25,9 @@ const IntroCard = () => {
           variant='h4'
           sx={{ mb: 4, textTransform: 'uppercase', fontWeight: '600' }}
         >
-          {t('helloBanner:title')}
+          {t('introCard:title')}
         </Typography>
-        <Markdown>{t('helloBanner:text')}</Markdown>
+        <Markdown>{t('introCard:text')}</Markdown>
       </CardContent>
     </Card>
   )

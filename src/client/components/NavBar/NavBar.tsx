@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import { AdminPanelSettingsOutlined, Language } from '@mui/icons-material'
@@ -18,6 +18,7 @@ import {
 } from '@mui/material'
 
 import hyLogo from '../../assets/hy_logo.svg'
+import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
@@ -40,6 +41,7 @@ const pages = [
 const NavBar = () => {
   const { t, i18n } = useTranslation()
   const { user, isLoading } = useLoggedInUser()
+  const faculty = useSelectedFaculty()
 
   const anchorRef = useRef<HTMLButtonElement>(null)
   const [openLanguageSelect, setOpenLanguageSelect] = useState(false)
@@ -78,7 +80,7 @@ const NavBar = () => {
             {pages.map((page) => (
               <Button
                 component={NavLink}
-                to={page.path}
+                to={`${page.path}?faculty=${faculty}`}
                 key={page.name}
                 sx={navStyles.link}
               >
