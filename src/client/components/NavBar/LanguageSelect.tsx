@@ -1,31 +1,38 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Button } from '@mui/material'
+import CheckIcon from '@mui/icons-material/Check'
+import { ListItem, ListItemButton } from '@mui/material'
 
-const LANGUAGES = ['en', 'sv', 'fi']
+const LANGUAGES = [
+  { code: 'en', name: 'English' },
+  { code: 'fi', name: 'Suomi' },
+  { code: 'sv', name: 'Svenska' },
+]
 
 const LanguageSelect = () => {
   const { i18n } = useTranslation()
-
   const { language } = i18n
-  const languages = LANGUAGES.filter((lang) => lang !== language)
 
   const handleLanguageChange = (newLanguage: string) => {
     i18n.changeLanguage(newLanguage)
   }
 
   return (
-    <Box data-cy='language-select'>
-      {languages.map((lang) => (
-        <Button
-          onClick={() => handleLanguageChange(lang)}
-          key={lang}
-          data-cy={`select-language-${lang}`}
-        >
-          {lang}
-        </Button>
+    <>
+      {LANGUAGES.map((lang) => (
+        <ListItem key={lang.code} disablePadding>
+          <ListItemButton
+            aria-current={lang.code === language}
+            onClick={() => handleLanguageChange(lang.code)}
+            data-cy={`select-language-${lang.name.toLowerCase()}`}
+            sx={{ justifyContent: 'space-between', mx: 2 }}
+          >
+            {lang.name}{' '}
+            {lang.code === language && <CheckIcon color='primary' />}
+          </ListItemButton>
+        </ListItem>
       ))}
-    </Box>
+    </>
   )
 }
 
