@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   IconButton,
   ListItem,
   ListItemButton,
@@ -22,6 +23,7 @@ import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
+import LanguageSelect from './LanguageSelect'
 import MobileMenu from './MobileMenu'
 import ProfileMenu from './ProfileMenu'
 import { PAGES } from './util'
@@ -96,29 +98,29 @@ const NavBar = () => {
       </AppBar>
 
       <MobileMenu isOpen={mobileOpen} handleClose={handleMobileToggle}>
-        <ListItem disablePadding>
-          <ListItemButton
-            component={NavLink}
-            to='/admin'
-            sx={{ textAlign: 'left', textTransform: 'uppercase' }}
-          >
-            <ListItemIcon>
-              <AdminPanelSettingsOutlined />
-            </ListItemIcon>
-            <ListItemText primary={t('navbar:admin')} />
-          </ListItemButton>
-        </ListItem>
+        {user?.isAdmin && (
+          <ListItem disablePadding>
+            <ListItemButton component={NavLink} to='/admin'>
+              <ListItemIcon>
+                <AdminPanelSettingsOutlined />
+              </ListItemIcon>
+              <ListItemText primary={t('navbar:admin')} />
+            </ListItemButton>
+          </ListItem>
+        )}
         {PAGES.map((page) => (
           <ListItem key={page.name} disablePadding>
             <ListItemButton
               component={NavLink}
               to={`${page.path}?faculty=${faculty}`}
-              sx={{ textAlign: 'left', textTransform: 'uppercase' }}
+              sx={{ justifyContent: 'space-between', px: 4 }}
             >
-              <ListItemText primary={page.name} />
+              <ListItemText primary={t(`navbar:${page.name}`)} />
             </ListItemButton>
           </ListItem>
         ))}
+        <Divider />
+        <LanguageSelect />
       </MobileMenu>
     </>
   )

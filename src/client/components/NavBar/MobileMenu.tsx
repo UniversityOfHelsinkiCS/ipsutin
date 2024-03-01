@@ -38,7 +38,10 @@ const MobileMenu = ({ isOpen, handleClose, children }: MobileMenuProps) => (
         </IconButton>
       </Box>
       <Divider />
-      <List onClick={handleClose} sx={{ textAlign: 'center' }}>
+      <List
+        onClick={handleClose}
+        sx={{ textAlign: 'left', textTransform: 'uppercase' }}
+      >
         {children}
       </List>
     </Drawer>
