@@ -36,12 +36,12 @@ const LanguageSelect = ({ anchorRef, open, setOpen }: LanguageSelectProps) => {
     <>
       <Button
         ref={anchorRef}
-        id='composition-button'
+        id='language-menu-button'
         data-cy='language-select'
-        aria-controls={open ? 'composition-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
+        aria-controls={open ? 'language-menu' : undefined}
+        aria-expanded={open}
         aria-haspopup='true'
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen((prevOpen) => !prevOpen)}
       >
         <Language sx={navStyles.language} /> {language}
       </Button>
@@ -65,8 +65,8 @@ const LanguageSelect = ({ anchorRef, open, setOpen }: LanguageSelectProps) => {
               <ClickAwayListener onClickAway={() => setOpen(!open)}>
                 <MenuList
                   autoFocusItem={open}
-                  id='composition-menu'
-                  aria-labelledby='composition-button'
+                  id='language-menu'
+                  aria-labelledby='language-menu-button'
                 >
                   {LANGUAGES.map((l) => (
                     <MenuItem
