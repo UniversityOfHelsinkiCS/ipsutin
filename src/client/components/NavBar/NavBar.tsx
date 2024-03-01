@@ -5,20 +5,15 @@ import { AdminPanelSettingsOutlined } from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
-  Avatar,
   Box,
   Button,
   Container,
-  Divider,
   IconButton,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Menu,
-  Skeleton,
   Toolbar,
-  Tooltip,
   Typography,
 } from '@mui/material'
 
@@ -27,93 +22,9 @@ import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
-import LanguageSelect from './LanguageSelect'
 import MobileMenu from './MobileMenu'
-import { PAGES, stringToColor } from './util'
-
-const ProfileMenu = () => {
-  const { t } = useTranslation()
-  const { user, isLoading } = useLoggedInUser()
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-
-  const open = Boolean(anchorEl)
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  if (isLoading) return <Skeleton variant='circular' width={40} height={40} />
-
-  return (
-    <>
-      <Tooltip title={t('navbar:settings')}>
-        <IconButton
-          onClick={handleClick}
-          size='small'
-          sx={{ ml: 2 }}
-          aria-controls={open ? 'profile-settings' : undefined}
-          aria-haspopup='true'
-          aria-expanded={open ? 'true' : undefined}
-        >
-          <Avatar
-            sx={{
-              width: 40,
-              height: 40,
-              cursor: 'pointer',
-              bgcolor: stringToColor(user?.username || ''),
-            }}
-          >
-            {user?.firstName[0]}
-            {user?.lastName[0]}
-          </Avatar>
-        </IconButton>
-      </Tooltip>
-      <Menu
-        anchorEl={anchorEl}
-        id='profile-settings'
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        <LanguageSelect />
-        <Divider />
-      </Menu>
-    </>
-  )
-}
+import ProfileMenu from './ProfileMenu'
+import { PAGES } from './util'
 
 const NavBar = () => {
   const { t } = useTranslation()
