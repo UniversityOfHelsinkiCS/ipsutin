@@ -66,7 +66,7 @@ const NavBar = () => {
               width='40 px'
             />
             <Box ml='2rem'>
-              <Typography component='h1' sx={navStyles.appName}>
+              <Typography component='p' sx={navStyles.appName}>
                 {t('appName')}
               </Typography>
             </Box>

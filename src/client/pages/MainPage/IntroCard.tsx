@@ -1,13 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Card, CardContent } from '@mui/material'
+import { Card, CardContent, Typography } from '@mui/material'
 
 import Markdown from '../../components/Common/Markdown'
-import styles from '../../styles'
 
 const IntroCard = () => {
   const { t } = useTranslation()
-  const { cardStyles } = styles
 
   return (
     <Card
@@ -21,8 +19,14 @@ const IntroCard = () => {
         color: 'white',
       }}
     >
-      <CardContent sx={cardStyles.expendableBox}>
-        <Markdown>{t('helloBanner:title')}</Markdown>
+      <CardContent>
+        <Typography
+          component='h1'
+          variant='h4'
+          sx={{ mb: 4, textTransform: 'uppercase', fontWeight: '600' }}
+        >
+          {t('helloBanner:title')}
+        </Typography>
         <Markdown>{t('helloBanner:text')}</Markdown>
       </CardContent>
     </Card>

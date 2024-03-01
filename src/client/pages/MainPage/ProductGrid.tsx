@@ -12,19 +12,13 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
   Grid,
   Typography,
 } from '@mui/material'
 
 import IntroCard from './IntroCard'
 
-const ProductCard = ({
-  title,
-  description,
-  href,
-  imgPath,
-}: ProductCardProps) => (
+const ProductCard = ({ title, description, href }: ProductCardProps) => (
   <Card
     elevation={0}
     sx={{
@@ -33,9 +27,13 @@ const ProductCard = ({
     }}
   >
     <CardActionArea component={Link} to={href}>
-      <CardMedia component='img' height='140' image={imgPath} alt={title} />
       <CardContent sx={{ height: '325px' }}>
-        <Typography gutterBottom variant='h5' component='div'>
+        <Typography
+          gutterBottom
+          variant='h4'
+          component='p'
+          sx={{ mb: 4, textTransform: 'uppercase', fontWeight: '600' }}
+        >
           {title}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
