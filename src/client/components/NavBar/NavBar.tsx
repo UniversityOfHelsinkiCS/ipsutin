@@ -1,19 +1,30 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import { AdminPanelSettingsOutlined } from '@mui/icons-material'
+import {
+  AdminPanelSettingsOutlined,
+  Logout,
+  PersonAdd,
+  Settings,
+} from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Container,
+  Divider,
   IconButton,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Menu,
+  MenuItem,
+  Skeleton,
   Toolbar,
+  Tooltip,
   Typography,
 } from '@mui/material'
 
@@ -25,7 +36,7 @@ import styles from '../../styles'
 import LanguageSelect from './LanguageSelect'
 import MobileMenu from './MobileMenu'
 
-const pages = [
+const PAGES = [
   {
     name: 'home',
     path: '/',
@@ -40,13 +51,133 @@ const pages = [
   },
 ]
 
+function stringToColor(string: string) {
+  let hash = 0
+  let i
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash)
+  }
+
+  let color = '#'
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff
+    color += `00${value.toString(16)}`.slice(-2)
+  }
+  /* eslint-enable no-bitwise */
+
+  return color
+}
+
+const ProfileMenu = () => {
+  const { t } = useTranslation()
+  const { user, isLoading } = useLoggedInUser()
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+
+  const open = Boolean(anchorEl)
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  if (isLoading) return <Skeleton variant='circular' width={40} height={40} />
+
+  return (
+    <>
+      <Tooltip title={t('navbar:settings')}>
+        <IconButton
+          onClick={handleClick}
+          size='small'
+          sx={{ ml: 2 }}
+          aria-controls={open ? 'profile-settings' : undefined}
+          aria-haspopup='true'
+          aria-expanded={open ? 'true' : undefined}
+        >
+          <Avatar
+            sx={{
+              width: 40,
+              height: 40,
+              cursor: 'pointer',
+              bgcolor: stringToColor(user?.username || ''),
+            }}
+          >
+            {user?.firstName[0]}
+            {user?.lastName[0]}
+          </Avatar>
+        </IconButton>
+      </Tooltip>
+      <Menu
+        anchorEl={anchorEl}
+        id='profile-settings'
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&::before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <LanguageSelect />
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PersonAdd fontSize='small' />
+          </ListItemIcon>
+          Add another account
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Settings fontSize='small' />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Logout fontSize='small' />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+      </Menu>
+    </>
+  )
+}
+
 const NavBar = () => {
   const { t } = useTranslation()
   const { user, isLoading } = useLoggedInUser()
   const faculty = useSelectedFaculty()
 
-  const languageSelectRef = useRef<HTMLButtonElement>(null)
-  const [openLanguageSelect, setOpenLanguageSelect] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleMobileToggle = () => {
@@ -79,7 +210,7 @@ const NavBar = () => {
               component='nav'
               sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}
             >
-              {pages.map((page) => (
+              {PAGES.map((page) => (
                 <Button
                   component={NavLink}
                   to={`${page.path}?faculty=${faculty}`}
@@ -90,21 +221,17 @@ const NavBar = () => {
                 </Button>
               ))}
             </Box>
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 2 }}>
               {user?.isAdmin && (
                 <Button component={NavLink} to='/admin' sx={navStyles.link}>
                   <AdminPanelSettingsOutlined sx={navStyles.icon} />{' '}
                   {t('admin')}
                 </Button>
               )}
-              <LanguageSelect
-                anchorRef={languageSelectRef}
-                open={openLanguageSelect}
-                setOpen={setOpenLanguageSelect}
-              />
+              <ProfileMenu />
             </Box>
             <IconButton
-              aria-label='open menu'
+              aria-label={t('navbar:openMobileMenu')}
               edge='start'
               onClick={handleMobileToggle}
               sx={{ display: { xs: 'block', sm: 'none' } }}
@@ -125,10 +252,10 @@ const NavBar = () => {
             <ListItemIcon>
               <AdminPanelSettingsOutlined />
             </ListItemIcon>
-            <ListItemText primary={t('common:admin')} />
+            <ListItemText primary={t('navbar:admin')} />
           </ListItemButton>
         </ListItem>
-        {pages.map((page) => (
+        {PAGES.map((page) => (
           <ListItem key={page.name} disablePadding>
             <ListItemButton
               component={NavLink}

@@ -17,7 +17,9 @@
     "home": "Home",
     "about": "About",
     "contact": "Contact",
-    "admin": "Admin"
+    "admin": "Admin",
+    "settings": "Profile settings",
+    "openMobileMenu": "Open menu"
   },
   "common": {
     "appName": "Innotin",

@@ -1,91 +1,31 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Language } from '@mui/icons-material'
-import {
-  Button,
-  ClickAwayListener,
-  Grow,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
-} from '@mui/material'
+import { Box, Button } from '@mui/material'
 
-import styles from '../../styles'
+const LANGUAGES = ['en', 'sv', 'fi']
 
-interface LanguageSelectProps {
-  anchorRef: React.RefObject<HTMLButtonElement>
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const LANGUAGES = ['en']
-
-const LanguageSelect = ({ anchorRef, open, setOpen }: LanguageSelectProps) => {
+const LanguageSelect = () => {
   const { i18n } = useTranslation()
 
-  const { navStyles } = styles
   const { language } = i18n
+  const languages = LANGUAGES.filter((lang) => lang !== language)
 
   const handleLanguageChange = (newLanguage: string) => {
     i18n.changeLanguage(newLanguage)
-    setOpen(false)
   }
 
   return (
-    <>
-      <Button
-        ref={anchorRef}
-        id='language-menu-button'
-        data-cy='language-select'
-        aria-controls={open ? 'language-menu' : undefined}
-        aria-expanded={open}
-        aria-haspopup='true'
-        onClick={() => setOpen((prevOpen) => !prevOpen)}
-      >
-        <Language sx={navStyles.language} /> {language}
-      </Button>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        placement='bottom-start'
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom-start' ? 'left top' : 'left bottom',
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={() => setOpen(!open)}>
-                <MenuList
-                  autoFocusItem={open}
-                  id='language-menu'
-                  aria-labelledby='language-menu-button'
-                >
-                  {LANGUAGES.map((l) => (
-                    <MenuItem
-                      key={l}
-                      sx={[navStyles.item]}
-                      onClick={() => {
-                        handleLanguageChange(l)
-                      }}
-                    >
-                      {l.toUpperCase()}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </>
+    <Box data-cy='language-select'>
+      {languages.map((lang) => (
+        <Button
+          onClick={() => handleLanguageChange(lang)}
+          key={lang}
+          data-cy={`select-language-${lang}`}
+        >
+          {lang}
+        </Button>
+      ))}
+    </Box>
   )
 }
 
