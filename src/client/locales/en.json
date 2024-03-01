@@ -19,7 +19,8 @@
     "contact": "Contact",
     "admin": "Admin",
     "settings": "Profile settings",
-    "openMobileMenu": "Open menu"
+    "openMobileMenu": "Open menu",
+    "languageSubHeader": "Change language"
   },
   "common": {
     "appName": "Innotin",

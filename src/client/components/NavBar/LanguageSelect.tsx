@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import CheckIcon from '@mui/icons-material/Check'
-import { ListItem, ListItemButton } from '@mui/material'
+import { ListItem, ListItemButton, ListSubheader } from '@mui/material'
 
 const LANGUAGES = [
   { code: 'en', name: 'English' },
@@ -10,7 +10,7 @@ const LANGUAGES = [
 ]
 
 const LanguageSelect = () => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { language } = i18n
 
   const handleLanguageChange = (newLanguage: string) => {
@@ -19,6 +19,9 @@ const LanguageSelect = () => {
 
   return (
     <>
+      <ListSubheader disableSticky>
+        {t('navbar:languageSubHeader')}
+      </ListSubheader>
       {LANGUAGES.map((lang) => (
         <ListItem key={lang.code} disablePadding>
           <ListItemButton
