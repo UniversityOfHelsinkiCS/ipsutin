@@ -2,19 +2,16 @@ import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import { AdminPanelSettingsOutlined } from '@mui/icons-material'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
   Box,
   Button,
   Container,
-  Divider,
-  Drawer,
   IconButton,
-  List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
   Toolbar,
   Typography,
@@ -26,6 +23,7 @@ import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
 import LanguageSelect from './LanguageSelect'
+import MobileMenu from './MobileMenu'
 
 const pages = [
   {
@@ -92,10 +90,11 @@ const NavBar = () => {
                 </Button>
               ))}
             </Box>
-            <Box>
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               {user?.isAdmin && (
                 <Button component={NavLink} to='/admin' sx={navStyles.link}>
-                  <AdminPanelSettingsOutlined sx={navStyles.icon} /> {t('admin')}
+                  <AdminPanelSettingsOutlined sx={navStyles.icon} />{' '}
+                  {t('admin')}
                 </Button>
               )}
               <LanguageSelect
@@ -103,65 +102,45 @@ const NavBar = () => {
                 open={openLanguageSelect}
                 setOpen={setOpenLanguageSelect}
               />
-              <IconButton
-                aria-label="open menu"
-                edge="start"
-                onClick={handleMobileToggle}
-                sx={{display: { xs: 'block', sm: 'none' }}}
-              >
-                <MenuIcon />
-              </IconButton>
             </Box>
+            <IconButton
+              aria-label='open menu'
+              edge='start'
+              onClick={handleMobileToggle}
+              sx={{ display: { xs: 'block', sm: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
           </Toolbar>
         </Container>
       </AppBar>
-      <Box component="nav">
-        <Drawer
-          variant="temporary"
-          anchor='right'
-          open={mobileOpen}
-          onClose={handleMobileToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '60%' },
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              ...(theme => theme.mixins.toolbar),
-              px: 1,
-              height: '100px'
-            }}
-          >
-            <IconButton onClick={handleMobileToggle}>
-              <ChevronRightIcon />
-            </IconButton>
-          </Box>
-          <Divider />
-          <List onClick={handleMobileToggle} sx={{ textAlign: 'center' }}>
-          {pages.map((page) => (
-            <ListItem key={page.name} disablePadding>
-              <ListItemButton 
-                component={NavLink} 
-                to={`${page.path}?faculty=${faculty}`}
-                sx={{ textAlign: 'left', textTransform: 'uppercase' }}
-              >
-                <ListItemText primary={page.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        </Drawer>
-      </Box>
-    </>
 
+      <MobileMenu isOpen={mobileOpen} handleClose={handleMobileToggle}>
+        <ListItem disablePadding>
+          <ListItemButton
+            component={NavLink}
+            to='/admin'
+            sx={{ textAlign: 'left', textTransform: 'uppercase' }}
+          >
+            <ListItemIcon>
+              <AdminPanelSettingsOutlined />
+            </ListItemIcon>
+            <ListItemText primary={t('common:admin')} />
+          </ListItemButton>
+        </ListItem>
+        {pages.map((page) => (
+          <ListItem key={page.name} disablePadding>
+            <ListItemButton
+              component={NavLink}
+              to={`${page.path}?faculty=${faculty}`}
+              sx={{ textAlign: 'left', textTransform: 'uppercase' }}
+            >
+              <ListItemText primary={page.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </MobileMenu>
+    </>
   )
 }
 
