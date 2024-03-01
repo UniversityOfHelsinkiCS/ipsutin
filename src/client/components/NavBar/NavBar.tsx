@@ -1,18 +1,12 @@
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import { AdminPanelSettingsOutlined, Language } from '@mui/icons-material'
+import { AdminPanelSettingsOutlined } from '@mui/icons-material'
 import {
   AppBar,
   Box,
   Button,
-  ClickAwayListener,
   Container,
-  Grow,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
   Toolbar,
   Typography,
 } from '@mui/material'
@@ -22,7 +16,8 @@ import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
-const languages = ['en']
+import LanguageSelect from './LanguageSelect'
+
 const pages = [
   {
     name: 'home',
@@ -39,20 +34,14 @@ const pages = [
 ]
 
 const NavBar = () => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { user, isLoading } = useLoggedInUser()
   const faculty = useSelectedFaculty()
 
-  const anchorRef = useRef<HTMLButtonElement>(null)
+  const languageSelectRef = useRef<HTMLButtonElement>(null)
   const [openLanguageSelect, setOpenLanguageSelect] = useState(false)
 
   const { navStyles } = styles
-  const { language } = i18n
-
-  const handleLanguageChange = (newLanguage: string) => {
-    i18n.changeLanguage(newLanguage)
-    setOpenLanguageSelect(false)
-  }
 
   if (isLoading) return null
 
@@ -94,63 +83,11 @@ const NavBar = () => {
                 <AdminPanelSettingsOutlined sx={navStyles.icon} /> {t('admin')}
               </Button>
             )}
-            <Button
-              ref={anchorRef}
-              id='composition-button'
-              data-cy='language-select'
-              aria-controls={
-                openLanguageSelect ? 'composition-menu' : undefined
-              }
-              aria-expanded={openLanguageSelect ? 'true' : undefined}
-              aria-haspopup='true'
-              onClick={() => setOpenLanguageSelect(!openLanguageSelect)}
-            >
-              <Language sx={navStyles.language} /> {language}
-            </Button>
-            <Popper
+            <LanguageSelect
+              anchorRef={languageSelectRef}
               open={openLanguageSelect}
-              anchorEl={anchorRef.current}
-              role={undefined}
-              placement='bottom-start'
-              transition
-              disablePortal
-            >
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
-                  style={{
-                    transformOrigin:
-                      placement === 'bottom-start' ? 'left top' : 'left bottom',
-                  }}
-                >
-                  <Paper>
-                    <ClickAwayListener
-                      onClickAway={() =>
-                        setOpenLanguageSelect(!openLanguageSelect)
-                      }
-                    >
-                      <MenuList
-                        autoFocusItem={openLanguageSelect}
-                        id='composition-menu'
-                        aria-labelledby='composition-button'
-                      >
-                        {languages.map((l) => (
-                          <MenuItem
-                            key={l}
-                            sx={[navStyles.item]}
-                            onClick={() => {
-                              handleLanguageChange(l)
-                            }}
-                          >
-                            {l.toUpperCase()}
-                          </MenuItem>
-                        ))}
-                      </MenuList>
-                    </ClickAwayListener>
-                  </Paper>
-                </Grow>
-              )}
-            </Popper>
+              setOpen={setOpenLanguageSelect}
+            />
           </Box>
         </Toolbar>
       </Container>
