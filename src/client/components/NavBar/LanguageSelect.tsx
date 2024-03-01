@@ -3,11 +3,7 @@ import { useTranslation } from 'react-i18next'
 import CheckIcon from '@mui/icons-material/Check'
 import { ListItem, ListItemButton, ListSubheader } from '@mui/material'
 
-const LANGUAGES = [
-  { code: 'en', name: 'English' },
-  { code: 'fi', name: 'Suomi' },
-  { code: 'sv', name: 'Svenska' },
-]
+import { LANGUAGES } from './util'
 
 const LanguageSelect = () => {
   const { t, i18n } = useTranslation()
@@ -28,7 +24,7 @@ const LanguageSelect = () => {
             aria-current={lang.code === language}
             onClick={() => handleLanguageChange(lang.code)}
             data-cy={`select-language-${lang.name.toLowerCase()}`}
-            sx={{ justifyContent: 'space-between', mx: 2 }}
+            sx={{ justifyContent: 'space-between', px: 4 }}
           >
             {lang.name}{' '}
             {lang.code === language && <CheckIcon color='primary' />}
