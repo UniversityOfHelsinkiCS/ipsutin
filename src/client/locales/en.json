@@ -20,7 +20,15 @@
     "admin": "Admin",
     "settings": "Profile settings",
     "openMobileMenu": "Open menu",
-    "languageSubHeader": "Change language"
+    "languageSubHeader": "Change language",
+    "userInfoSubHeader": "Your information"
+  },
+  "userInformation": {
+    "username": "Username",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "language": "Preferred language"
   },
   "common": {
     "appName": "Innotin",

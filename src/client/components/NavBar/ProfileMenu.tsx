@@ -1,18 +1,57 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { User } from '@backend/types'
 import {
   Avatar,
+  Box,
   Divider,
   IconButton,
+  ListItem,
+  ListSubheader,
   Menu,
   Skeleton,
   Tooltip,
+  Typography,
 } from '@mui/material'
+import { t } from 'i18next'
 
 import { useLoggedInUser } from '../../hooks/useUser'
 
 import LanguageSelect from './LanguageSelect'
 import { stringToColor } from './util'
+
+const UserInformation = () => {
+  const { user, isLoading } = useLoggedInUser()
+
+  if (!user || isLoading) return <Skeleton variant='text' width={100} />
+
+  const displayedFields: (keyof User)[] = ['username', 'email']
+
+  return (
+    <>
+      <ListSubheader disableSticky>
+        {t('navbar:userInfoSubHeader')}
+      </ListSubheader>
+      <ListItem sx={{ px: 4 }} disablePadding>
+        <dl style={{ margin: 0 }}>
+          {displayedFields.map((field) => (
+            <Box
+              key={field}
+              sx={{ display: 'flex', gap: 2, justifyContent: 'space-between' }}
+            >
+              <dt>{t(`userInformation:${field}`)}:</dt>
+              <dd>
+                <Typography variant='body2' color='text.secondary'>
+                  {user[field]}
+                </Typography>
+              </dd>
+            </Box>
+          ))}
+        </dl>
+      </ListItem>
+    </>
+  )
+}
 
 const ProfileMenu = () => {
   const { t } = useTranslation()
@@ -93,6 +132,7 @@ const ProfileMenu = () => {
       >
         <LanguageSelect />
         <Divider />
+        <UserInformation />
       </Menu>
     </>
   )
