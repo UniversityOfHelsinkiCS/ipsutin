@@ -4,9 +4,9 @@ import { Box, Grid } from '@mui/material'
 
 import styles from '../../styles'
 
+import AsideServices from './AsideServices'
 import ProductGrid from './ProductGrid'
 import SelectFaculty from './SelectFaculty'
-import Tools from './Tools'
 
 const MainPage = () => {
   const { formStyles } = styles
@@ -27,7 +27,7 @@ const MainPage = () => {
         </Grid>
 
         <Grid item sm={12} md={5} xl={4}>
-          <Tools />
+          <AsideServices />
         </Grid>
       </Grid>
     </Box>

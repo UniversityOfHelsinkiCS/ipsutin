@@ -1,11 +1,10 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 
 import Markdown from '../../components/Common/Markdown'
 import styles from '../../styles'
 
-const Tools = () => {
+const AsideServices = () => {
   const { t } = useTranslation()
 
   const { recommendationStyles, cardStyles } = styles
@@ -38,4 +37,4 @@ const Tools = () => {
   )
 }
 
-export default Tools
+export default AsideServices
