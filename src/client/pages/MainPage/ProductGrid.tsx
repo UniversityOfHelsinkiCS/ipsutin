@@ -26,7 +26,7 @@ const ProductCard = ({
     sx={{
       border: '1px solid',
       borderColor: 'grey.300',
-      backgroundColor: selected ? 'grey' : 'white', // Change background color based on selected prop
+      backgroundColor: selected ? '#b1cfe3' : 'white', // Change background color based on selected prop
     }}
     onClick={onClick} // Use onClick prop to handle click event
   >
@@ -51,7 +51,8 @@ const ProductCard = ({
 const ProductGrid = () => {
   const { t } = useTranslation()
   const faculty = useSelectedFaculty()
-
+  const currentUrl = window.location.href
+  console.log('current URl: ', currentUrl)
   const [selectedProduct, setSelectedProduct] = useState('') // Track the selected ProductCard index
 
   // Function to handle ProductCard selection
