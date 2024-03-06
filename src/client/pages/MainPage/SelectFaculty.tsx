@@ -72,7 +72,7 @@ const SelectFaculty = () => {
   const organisations = sortedFaculties.concat(otherFaculty)
 
   return (
-    <Box sx={cardStyles.card}>
+    <Box>
       <Box sx={cardStyles.content}>
         <Markdown>{t('facultySelect:introMessage')}</Markdown>
       </Box>

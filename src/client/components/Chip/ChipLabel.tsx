@@ -39,7 +39,15 @@ const chipsHardcoded: ChipTypes[] = [
 ]
 
 const Chips = () => (
-  <Box sx={{ mt: 2, mx: 4 }}>
+  <Box
+    sx={{
+      mt: 2,
+      mx: 4,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
     {chipsHardcoded.map((chip) => (
       <Chip
         key={chip.label}
