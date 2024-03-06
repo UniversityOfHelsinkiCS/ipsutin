@@ -17,7 +17,7 @@ const MainPage = () => {
         <Grid item sm={12}>
           <ProductGrid />
         </Grid>
-        <Grid container item sm={12} md={7} xl={12} sx={{ display: 'flex' }}>
+        <Grid container item sm={12} md={12} xl={12} sx={{ display: 'flex' }}>
           <Box sx={{ display: 'flex' }}>
             <SelectFaculty />
             <Chips />
