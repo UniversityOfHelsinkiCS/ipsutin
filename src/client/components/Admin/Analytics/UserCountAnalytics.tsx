@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import { UserCount } from '@backend/types'
 import { Box, Typography } from '@mui/material'

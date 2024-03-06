@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'

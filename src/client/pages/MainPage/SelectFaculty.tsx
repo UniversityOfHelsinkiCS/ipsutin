@@ -64,7 +64,14 @@ const SelectFaculty = () => {
       setSearchParams({ faculty: userFaculty?.code })
       setFaculty(userFaculty)
     }
-  }, [faculties, facultiesLoading, userFaculties, userFacultiesLoading])
+  }, [
+    faculties,
+    facultiesLoading,
+    searchParams,
+    setSearchParams,
+    userFaculties,
+    userFacultiesLoading,
+  ])
 
   if (!faculties || facultiesLoading) return null
 
