@@ -1,6 +1,13 @@
-import { Box } from '@mui/material'
+import { Box, Chip } from '@mui/material'
 
-const chipsHardcoded = [
+import colors from '../../util/colors'
+
+interface ChipTypes {
+  title: string
+  label: string
+}
+
+const chipsHardcoded: ChipTypes[] = [
   {
     title: 'Invention Disclosure',
     label: 'disclosure',
@@ -34,7 +41,11 @@ const chipsHardcoded = [
 const Chips = () => (
   <Box sx={{ mt: 2, mx: 4 }}>
     {chipsHardcoded.map((chip) => (
-      <p key={chip.label}>{chip.title}</p>
+      <Chip
+        key={chip.label}
+        label={chip.title}
+        sx={{ backgroundColor: (colors as any)[chip.label] }} // Type assertion
+      />
     ))}
   </Box>
 )
