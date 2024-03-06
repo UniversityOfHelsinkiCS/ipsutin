@@ -79,7 +79,10 @@ const LicenceResults = () => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box id='licences-result-section' sx={cardStyles.outerBox}>
+    <Box
+      id='licences-result-section'
+      sx={{ ...cardStyles.outerBox, width: '2000px' }}
+    >
       <Typography
         data-cy='licences-result-section-title'
         variant='h5'

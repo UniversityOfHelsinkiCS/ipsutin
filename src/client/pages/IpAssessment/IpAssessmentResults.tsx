@@ -79,7 +79,10 @@ const IpAssessmentResults = () => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box id='ip-assessment-result-section' sx={cardStyles.outerBox}>
+    <Box
+      id='ip-assessment-result-section'
+      sx={{ ...cardStyles.outerBox, width: '2000px' }}
+    >
       <Typography
         data-cy='ip-assessment-result-section-title'
         variant='h5'

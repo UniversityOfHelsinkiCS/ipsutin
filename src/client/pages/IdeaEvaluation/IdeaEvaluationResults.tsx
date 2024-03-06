@@ -80,7 +80,10 @@ const IdeaEvaluationResults = () => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box id='idea-evaluation-result-section' sx={cardStyles.outerBox}>
+    <Box
+      id='idea-evaluation-result-section'
+      sx={{ ...cardStyles.outerBox, width: '2000px' }}
+    >
       <Typography
         data-cy='idea-evaluation-result-section-title'
         variant='h5'

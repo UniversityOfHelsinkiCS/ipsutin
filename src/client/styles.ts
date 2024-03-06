@@ -28,7 +28,6 @@ const cardStyles = {
     my: 2,
     border: 1,
     borderColor: 'grey.300',
-    width: 2000,
   },
   gridBox: {
     px: 3,
