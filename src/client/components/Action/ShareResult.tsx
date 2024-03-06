@@ -135,6 +135,9 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
                   placeholder={t('extraAction:shareResultInputPlaceholder')}
                   error={!!errors?.emails}
                   disabled={isSent}
+                  style={{
+                    width: '55%',
+                  }}
                 />
               )}
             />
