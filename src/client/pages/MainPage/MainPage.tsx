@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
+import Chips from '../../components/Chip/ChipLabel'
 import styles from '../../styles'
 
 import AsideServices from './AsideServices'
@@ -17,7 +18,7 @@ const MainPage = () => {
         <Grid item sm={12}>
           <ProductGrid />
         </Grid>
-
+        <Chips />
         <Grid container item sm={12} md={7} xl={8} sx={{ display: 'flex' }}>
           <Box sx={{ display: 'flex' }}>
             <SelectFaculty />
