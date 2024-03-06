@@ -44,7 +44,12 @@ const Chips = () => (
       <Chip
         key={chip.label}
         label={chip.title}
-        sx={{ backgroundColor: (colors as any)[chip.label] }} // Type assertion
+        sx={{
+          backgroundColor: (colors as any)[chip.label],
+          marginX: '0.3rem',
+          fontWeight: 'normal',
+          color: 'black',
+        }}
       />
     ))}
   </Box>
