@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
@@ -13,13 +14,21 @@ import { ProductCardProps } from '../../types'
 
 import IntroCard from './IntroCard'
 
-const ProductCard = ({ title, description, href }: ProductCardProps) => (
+const ProductCard = ({
+  title,
+  description,
+  href,
+  selected,
+  onClick,
+}: ProductCardProps) => (
   <Card
     elevation={0}
     sx={{
       border: '1px solid',
       borderColor: 'grey.300',
+      backgroundColor: selected ? 'grey' : 'white', // Change background color based on selected prop
     }}
+    onClick={onClick} // Use onClick prop to handle click event
   >
     <CardActionArea component={Link} to={href}>
       <CardContent sx={{ height: '325px' }}>
@@ -43,6 +52,13 @@ const ProductGrid = () => {
   const { t } = useTranslation()
   const faculty = useSelectedFaculty()
 
+  const [selectedProduct, setSelectedProduct] = useState('') // Track the selected ProductCard index
+
+  // Function to handle ProductCard selection
+  const handleProductCardClick = (title: string) => {
+    setSelectedProduct(title)
+  }
+
   return (
     <Grid container sx={{ display: 'flex' }}>
       <Grid item xs={12} md={6} lg={3}>
@@ -54,6 +70,10 @@ const ProductGrid = () => {
           description={t('surveyInfos:ipAssessment')}
           imgPath='/'
           href={`/ipassessment?faculty=${faculty}`}
+          selected={t('surveySelectionNames:ipAssessment') === selectedProduct} // Pass whether this ProductCard is selected or not
+          onClick={() =>
+            handleProductCardClick(t('surveySelectionNames:ipAssessment'))
+          } // Pass the function to handle selection
         />
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
@@ -62,6 +82,10 @@ const ProductGrid = () => {
           description={t('surveyInfos:licences')}
           imgPath='/'
           href={`/licences?faculty=${faculty}`}
+          selected={t('surveySelectionNames:licences') === selectedProduct} // Pass whether this ProductCard is selected or not
+          onClick={() =>
+            handleProductCardClick(t('surveySelectionNames:licences'))
+          } // Pass the function to handle selection
         />
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
@@ -70,6 +94,12 @@ const ProductGrid = () => {
           description={t('surveyInfos:ideaEvaluation')}
           imgPath='/'
           href={`/ideaevaluation?faculty=${faculty}`}
+          selected={
+            t('surveySelectionNames:ideaEvaluation') === selectedProduct
+          } // Pass whether this ProductCard is selected or not
+          onClick={() =>
+            handleProductCardClick(t('surveySelectionNames:ideaEvaluation'))
+          } // Pass the function to handle selection
         />
       </Grid>
     </Grid>
