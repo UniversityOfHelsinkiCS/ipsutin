@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useTranslation } from 'react-i18next'
 import { Box, Paper, Typography } from '@mui/material'
 // eslint-disable-next-line import/no-extraneous-dependencies
