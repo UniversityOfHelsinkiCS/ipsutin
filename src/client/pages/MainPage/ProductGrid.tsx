@@ -26,7 +26,7 @@ const ProductCard = ({
     sx={{
       border: '1px solid',
       borderColor: 'grey.300',
-      backgroundColor: selected ? 'grey' : 'white',
+      backgroundColor: selected ? '#b1cfe3' : 'white',
     }}
     onClick={onClick}
   >
