@@ -23,10 +23,10 @@ const InformationChip: React.FC<InformationChipProps> = ({ title, label }) => {
         key={title}
         onClick={toggleChipWindow}
         sx={{
-          backgroundColor: (colors as any)[label],
+          backgroundColor: colors[label as keyof typeof colors]?.background,
           marginX: '0.3rem',
           fontWeight: 'normal',
-          color: 'black',
+          color: colors[label as keyof typeof colors]?.text,
           borderRadius: '0.5rem',
           padding: '10px',
         }}

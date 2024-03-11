@@ -18,7 +18,7 @@ const chipsHardcoded: ChipTypes[] = [
   },
   {
     title: 'Industry Relations',
-    label: 'relation',
+    label: 'relations',
   },
   {
     title: 'Incubator',

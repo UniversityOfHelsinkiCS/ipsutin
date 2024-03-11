@@ -18,10 +18,11 @@ const RecommendationChip = ({
   const { language } = i18n
 
   const style = {
-    backgroundColor: colors[recommendation.label],
+    backgroundColor:
+      colors[recommendation.label as keyof typeof colors]?.background,
     marginX: '0.1rem',
     fontWeight: 'normal',
-    color: 'white',
+    color: colors[recommendation.label as keyof typeof colors]?.text,
   }
 
   return compact ? (
