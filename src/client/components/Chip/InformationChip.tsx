@@ -27,6 +27,8 @@ const InformationChip: React.FC<InformationChipProps> = ({ title, label }) => {
           marginX: '0.3rem',
           fontWeight: 'normal',
           color: 'black',
+          borderRadius: '0.5rem',
+          padding: '10px',
         }}
       >
         {label}
