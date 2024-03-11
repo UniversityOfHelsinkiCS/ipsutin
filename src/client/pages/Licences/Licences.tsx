@@ -42,7 +42,10 @@ const Licences = () => {
     defaultValues: resultData,
   })
 
-  usePersistForm({ value: watch(), sessionStorageKey: LICENCES_DATA_KEY })
+  usePersistForm({
+    value: watch(),
+    sessionStorageKey: LICENCES_DATA_KEY,
+  })
 
   if (!survey || isLoading || !faculty) return null
 
