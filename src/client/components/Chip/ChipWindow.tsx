@@ -1,7 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Popover } from '@mui/material'
 
-const ChipWindow = () => (
+interface ChipWindowProps {
+  open: boolean
+  close: any
+}
+
+const ChipWindow: React.FC<ChipWindowProps> = ({ open, close }) => (
   <Popover
     anchorReference='anchorPosition'
     anchorPosition={{ top: 600, left: 600 }}
@@ -13,7 +18,8 @@ const ChipWindow = () => (
       vertical: 'top',
       horizontal: 'left',
     }}
-    open
+    open={open}
+    onClose={close}
   >
     <p>
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
