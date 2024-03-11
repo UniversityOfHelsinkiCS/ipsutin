@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Popover } from '@mui/material'
+import { Popover, Typography } from '@mui/material'
 
 interface ChipWindowProps {
   open: boolean
-  close: any
+  close: () => void
 }
 
 const ChipWindow: React.FC<ChipWindowProps> = ({ open, close }) => (
@@ -20,8 +20,23 @@ const ChipWindow: React.FC<ChipWindowProps> = ({ open, close }) => (
     }}
     open={open}
     onClose={close}
+    sx={{
+      maxWidth: '1400px',
+    }}
+    slotProps={{
+      paper: {
+        sx: {
+          borderRadius: '10px',
+          border: '1px solid black',
+        },
+      },
+    }}
   >
-    <p>
+    <Typography
+      sx={{
+        padding: '20px',
+      }}
+    >
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       Lorem Ipsum has been the industrys standard dummy text ever since the
       1500s, when an unknown printer took a galley of type and scrambled it to
@@ -31,7 +46,7 @@ const ChipWindow: React.FC<ChipWindowProps> = ({ open, close }) => (
       sheets containing Lorem Ipsum passages, and more recently with desktop
       publishing software like Aldus PageMaker including versions of Lorem
       Ipsum.
-    </p>
+    </Typography>
   </Popover>
 )
 
