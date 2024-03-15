@@ -1,10 +1,11 @@
+import { RecommendationLabel } from '@backend/types'
 import { Box } from '@mui/material'
 
 import InformationChip from './InformationChip'
 
 interface ChipTypes {
   title: string
-  label: string
+  label: RecommendationLabel
 }
 
 const chipsHardcoded: ChipTypes[] = [

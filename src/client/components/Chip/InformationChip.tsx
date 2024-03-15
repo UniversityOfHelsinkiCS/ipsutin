@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { RecommendationLabel } from '@backend/types'
 import { Button } from '@mui/material'
 
 import colors from '../../util/colors'
@@ -7,10 +8,10 @@ import ChipWindow from './ChipWindow'
 
 interface InformationChipProps {
   title: string
-  label: string
+  label: RecommendationLabel
 }
 
-const InformationChip: React.FC<InformationChipProps> = ({ title, label }) => {
+const InformationChip = ({ title, label }: InformationChipProps) => {
   const [isChipWindowOpen, setIsChipWindowOpen] = useState(false)
 
   const toggleChipWindow = () => {

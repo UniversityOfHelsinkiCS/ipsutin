@@ -8,7 +8,7 @@ interface ChipWindowProps {
   close: () => void
 }
 
-const ChipWindow: React.FC<ChipWindowProps> = ({ open, close }) => {
+const ChipWindow = ({ open, close }: ChipWindowProps) => {
   const element = document.getElementById('important-box')
   return (
     <Popover
