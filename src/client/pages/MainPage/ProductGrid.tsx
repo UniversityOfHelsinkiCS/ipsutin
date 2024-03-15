@@ -12,8 +12,6 @@ import {
 import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { ProductCardProps } from '../../types'
 
-import IntroCard from './IntroCard'
-
 const ProductCard = ({
   title,
   description,
@@ -68,10 +66,7 @@ const ProductGrid = () => {
 
   return (
     <Grid container sx={{ display: 'flex' }}>
-      <Grid item xs={12} md={6} lg={3}>
-        <IntroCard />
-      </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={4} lg={4}>
         <ProductCard
           title={t('surveySelectionNames:ipAssessment')}
           description={t('surveyInfos:ipAssessment')}
@@ -81,7 +76,7 @@ const ProductGrid = () => {
           onClick={() => handleProductCardClick('ipassessment')}
         />
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={4} lg={4}>
         <ProductCard
           title={t('surveySelectionNames:licences')}
           description={t('surveyInfos:licences')}
@@ -91,7 +86,7 @@ const ProductGrid = () => {
           onClick={() => handleProductCardClick('licences')}
         />
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={4} lg={4}>
         <ProductCard
           title={t('surveySelectionNames:ideaEvaluation')}
           description={t('surveyInfos:ideaEvaluation')}
