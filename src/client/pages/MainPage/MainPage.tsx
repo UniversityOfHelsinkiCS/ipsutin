@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import Chips from '../../components/Chip/ChipLabel'
+import WelcomeView from '../../components/WelcomeView/WelcomeView'
 import styles from '../../styles'
 
 import ProductGrid from './ProductGrid'
@@ -14,6 +15,7 @@ const MainPage = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid container>
+        <WelcomeView />
         <Grid item sm={12}>
           <ProductGrid />
         </Grid>
