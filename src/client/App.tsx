@@ -8,6 +8,7 @@ import { FULL_URL } from '../config'
 
 import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
+import WelcomeView from './components/WelcomeView/WelcomeView'
 import { useLoggedInUser } from './hooks/useUser'
 import { IdeaEvaluationResultDataProvider } from './pages/IdeaEvaluation/IdeaEvaluationResultContext'
 import { IpAssessmentResultDataProvider } from './pages/IpAssessment/IpAssessmentResultDataContext'
@@ -42,6 +43,7 @@ const App = () => {
             justifyContent='center'
             minHeight='50vh'
           >
+            <WelcomeView />
             <LicenceResultDataProvider>
               <IdeaEvaluationResultDataProvider>
                 <IpAssessmentResultDataProvider>
