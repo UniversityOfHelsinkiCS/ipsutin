@@ -18,16 +18,30 @@ const WelcomeView = () => {
         <Box
           sx={{
             position: 'absolute',
-            bottom: 0,
-            left: 0,
+            top: '15%',
+            left: '45%',
             width: '100%',
-            bgcolor: 'rgba(0, 0, 0, 0.54)',
             color: 'white',
             padding: '10px',
           }}
         >
-          <Typography variant='h5'>{header}</Typography>
-          <Typography variant='body2'>{subText}</Typography>
+          <Typography
+            component='h1'
+            sx={{
+              fontSize: '40pt',
+              fontWeight: 'bold',
+            }}
+          >
+            {header}
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: '20pt',
+              fontWeight: 600,
+            }}
+          >
+            {subText}
+          </Typography>
         </Box>
       </Box>
     </Card>
