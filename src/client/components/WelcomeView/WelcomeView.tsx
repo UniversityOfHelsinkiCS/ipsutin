@@ -14,7 +14,12 @@ const WelcomeView = () => {
       }}
     >
       <Box sx={{ position: 'relative' }}>
-        <CardMedia component='img' height='fill' image={placeholder} />
+        <CardMedia
+          loading='lazy'
+          component='img'
+          height='650px'
+          image={placeholder}
+        />
         <Box
           sx={{
             position: 'absolute',
