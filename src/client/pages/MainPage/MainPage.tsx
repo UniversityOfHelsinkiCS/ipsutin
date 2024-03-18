@@ -12,14 +12,14 @@ const MainPage = () => {
   const { formStyles } = styles
 
   return (
-    <Box sx={formStyles.formWrapper}>
+    <Box id='big-box' sx={formStyles.formWrapper}>
       <Grid container>
         <WelcomeView />
         <Grid item sm={12}>
           <ProductGrid />
         </Grid>
         <Grid container item sm={12} md={12} xl={12} sx={{ display: 'flex' }}>
-          <Box id='important-box' sx={{ display: 'flex' }}>
+          <Box id='important-box' sx={{ width: '100%' }}>
             <Chips />
           </Box>
 
