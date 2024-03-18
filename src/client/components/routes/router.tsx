@@ -4,6 +4,7 @@ import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
 import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
 import IdeaEvaluationResults from '../../pages/IdeaEvaluation/IdeaEvaluationResults'
+import InventionDisclosurePage from '../../pages/InventionDisclosure'
 import IpAssessment from '../../pages/IpAssessment/IpAssessment'
 import IpAssessmentResults from '../../pages/IpAssessment/IpAssessmentResults'
 import LicenceResults from '../../pages/Licences/LicenceResults'
@@ -82,6 +83,10 @@ const router = createBrowserRouter(
               element: <Entry />,
             },
           ],
+        },
+        {
+          path: '/inventiondisclosure',
+          element: <InventionDisclosurePage />,
         },
       ],
     },
