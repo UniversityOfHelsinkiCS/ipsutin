@@ -21,6 +21,7 @@ import {
 import hyLogo from '../../assets/hy_logo.svg'
 import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { useLoggedInUser } from '../../hooks/useUser'
+import SelectFaculty from '../../pages/MainPage/SelectFaculty'
 import styles from '../../styles'
 
 import LanguageSelect from './LanguageSelect'
@@ -76,6 +77,7 @@ const NavBar = () => {
                 </Button>
               ))}
             </Box>
+            <SelectFaculty />
             <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 2 }}>
               {user?.isAdmin && (
                 <Button component={NavLink} to='/admin' sx={navStyles.link}>

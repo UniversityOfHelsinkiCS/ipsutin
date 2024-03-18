@@ -7,7 +7,6 @@ import WelcomeView from '../../components/HeroPage/WelcomeView'
 import styles from '../../styles'
 
 import ProductGrid from './ProductGrid'
-import SelectFaculty from './SelectFaculty'
 
 const MainPage = () => {
   const { formStyles } = styles
@@ -21,7 +20,6 @@ const MainPage = () => {
         </Grid>
         <Grid container item sm={12} md={12} xl={12} sx={{ display: 'flex' }}>
           <Box id='important-box' sx={{ display: 'flex' }}>
-            <SelectFaculty />
             <Chips />
           </Box>
 

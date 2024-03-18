@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom'
 import { Faculty, Locales } from '@backend/types'
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
-import Markdown from '../../components/Common/Markdown'
 import { useFaculties, useUserFaculties } from '../../hooks/useFaculty'
 import styles from '../../styles'
 
@@ -80,9 +79,6 @@ const SelectFaculty = () => {
 
   return (
     <Box>
-      <Box sx={cardStyles.content}>
-        <Markdown>{t('facultySelect:introMessage')}</Markdown>
-      </Box>
       <FormControl sx={formStyles.formControl}>
         <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
         <Select
