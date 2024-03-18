@@ -21,12 +21,12 @@ import {
 import hyLogo from '../../assets/hy_logo.svg'
 import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { useLoggedInUser } from '../../hooks/useUser'
-import SelectFaculty from '../../pages/MainPage/SelectFaculty'
 import styles from '../../styles'
 
 import LanguageSelect from './LanguageSelect'
 import MobileMenu from './MobileMenu'
 import ProfileMenu from './ProfileMenu'
+import SelectFaculty from './SelectFaculty'
 import { PAGES } from './util'
 
 const NavBar = () => {
