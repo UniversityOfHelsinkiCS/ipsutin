@@ -26,6 +26,7 @@ export interface User {
   isAdmin: boolean
   iamGroups: string[]
   newUser?: boolean
+  preferredFaculty: string
 }
 
 export interface RequestWithUser extends Request {

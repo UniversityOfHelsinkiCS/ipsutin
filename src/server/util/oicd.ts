@@ -10,6 +10,7 @@ import passport from 'passport'
 
 import { User } from '../db/models'
 import NotFoundError from '../errors/NotFoundError'
+import { getUserFaculties } from '../services/faculty'
 import { User as UserType, UserInfo } from '../types'
 
 import {
@@ -66,6 +67,8 @@ const verifyLogin = async (
     family_name: lastName,
   } = userinfo as unknown as UserInfo
 
+  const userPreferedFaculty = await getUserFaculties(id, iamGroups)
+
   const user: UserType = {
     username,
     id: id || username,
@@ -75,6 +78,7 @@ const verifyLogin = async (
     firstName,
     lastName,
     isAdmin: checkAdmin(iamGroups) || username === 'glandmic',
+    preferredFaculty: userPreferedFaculty[0].code || 'OTHER',
   }
 
   await User.upsert({

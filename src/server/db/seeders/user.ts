@@ -9,6 +9,7 @@ const user = {
   language: 'fi',
   isAdmin: true,
   lastLoggedIn: new Date(),
+  preferredFaculty: 'H50',
 }
 
 const seedUsers = async () => {

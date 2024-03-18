@@ -23,6 +23,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare lastLoggedIn: Date
 
   declare isAdmin: boolean
+
+  declare preferredFaculty: string
 }
 
 User.init(
@@ -55,6 +57,10 @@ User.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    preferredFaculty: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
