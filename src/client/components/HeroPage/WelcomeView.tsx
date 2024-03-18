@@ -3,8 +3,9 @@ import { Box, Card, CardMedia, Typography } from '@mui/material'
 import placeholder from '../../assets/placeholder.png'
 
 const WelcomeView = () => {
-  const header = 'Ai is the best... when it works'
-  const subText = 'Ai works for almost everything, but almost never'
+  const header = 'MAKE A DIFFERENCE IN THE WORLD'
+  const subText =
+    'With Innotin, you can explore how to proceed with an idea, gaining insights and learning concrete steps to take.'
   return (
     <Card
       sx={{
@@ -33,7 +34,7 @@ const WelcomeView = () => {
           <Typography
             component='h1'
             sx={{
-              fontSize: '40pt',
+              fontSize: '34pt',
               fontWeight: 'bold',
             }}
           >
@@ -43,6 +44,8 @@ const WelcomeView = () => {
             sx={{
               fontSize: '20pt',
               fontWeight: 600,
+              maxWidth: '600pt',
+              color: 'black',
             }}
           >
             {subText}
