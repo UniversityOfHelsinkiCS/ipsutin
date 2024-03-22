@@ -1,32 +1,33 @@
+import { useTranslation } from 'react-i18next'
 import { Box, Card, CardMedia, Typography } from '@mui/material'
 
 import placeholder from '../../assets/placeholder.png'
 
-const WelcomeView = () => {
-  const header = 'MAKE A DIFFERENCE IN THE WORLD'
-  const subText =
-    'With Innotin, you can explore how to proceed with an idea, gaining insights and learning concrete steps to take.'
+const HeroSection = () => {
+  const { t } = useTranslation()
+
   return (
     <Card
       sx={{
         width: '100%',
         height: '100%',
-        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative', flex: 1 }}>
         <CardMedia
           loading='lazy'
           component='img'
-          height='650px'
+          height='auto'
+          alt='' // alt is empty because it is a decorative image
           image={placeholder}
         />
         <Box
           sx={{
             position: 'absolute',
-            top: '15%',
-            left: '45%',
-            width: '100%',
+            top: '5%',
+            left: '40%',
             color: 'white',
             padding: '10px',
           }}
@@ -34,25 +35,28 @@ const WelcomeView = () => {
           <Typography
             component='h1'
             sx={{
-              fontSize: '34pt',
+              fontSize: { sm: '28pt', md: '34pt', lg: '40pt' },
               fontWeight: 'bold',
+              textTransform: 'uppercase',
+              marginBottom: '1rem',
             }}
           >
-            {header}
+            {t('mainPage:mainHeading')}
           </Typography>
           <Typography
             sx={{
-              fontSize: '20pt',
+              fontSize: { sm: '16pt', md: '20pt', lg: '24pt' },
               fontWeight: 600,
-              maxWidth: '600pt',
+              maxWidth: '90%',
               color: 'black',
             }}
           >
-            {subText}
+            {t('mainPage:mainContent')}
           </Typography>
         </Box>
       </Box>
     </Card>
   )
 }
-export default WelcomeView
+
+export default HeroSection

@@ -20,9 +20,14 @@ const MainPage = () => {
         <WelcomeView />
         <Grid item sm={12} sx={{ px: 4, mt: 4, textAlign: 'center' }}>
           <Typography
-            variant='h4'
             component='h2'
-            sx={{ mb: 2, fontWeight: 600, textTransform: 'uppercase' }}
+            sx={{
+              mb: 2,
+              fontSize: '24pt',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '-0.1rem',
+            }}
           >
             {t('mainPage:products')}
           </Typography>
@@ -30,9 +35,14 @@ const MainPage = () => {
         </Grid>
         <Grid item sm={12} md={12} xl={12} sx={{ my: 4, textAlign: 'center' }}>
           <Typography
-            variant='h4'
             component='h2'
-            sx={{ mb: 2, fontWeight: 600, textTransform: 'uppercase' }}
+            sx={{
+              mb: 2,
+              fontSize: '24pt',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '-0.1rem',
+            }}
           >
             {t('mainPage:services')}
           </Typography>

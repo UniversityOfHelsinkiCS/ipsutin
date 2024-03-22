@@ -102,12 +102,9 @@
     "introMessage": "How can we help you today?",
     "inputLabel": "Your selection"
   },
-  "introCard": {
-    "title": "Welcome to Innotin",
-    "text": "Innotin is here to help you on finding next steps to proceed with your idea, invention, or software. You will gain insights on concrete next steps to take.",
-    "description": "The aim of science-based innovations is change that has an impact on both people and the surrounding society. Commercialisation of research enables innovations to be developed into business ideas that become successful businesses that truly change the world.\n\n You may want to read more about support for [research and innovations](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/innovaatiot). [Innovation glossary](https://flamma.helsinki.fi/documents/20142/0/HY_Inno_Glossary+of+terms_EN.pdf/98824b40-9cdc-b478-9968-98cd3a999df8?t=1676381193651) may be helpful, as well as university invention guidelines and commercialization policy [document](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf). Further reading on [commercialization services](https://www.helsinki.fi/en/helsinki-innovation-services/university-staff) and [Helsinki Innovation Services](https://www.helsinki.fi/en/helsinki-innovation-services) as a service provider."
-  },
   "mainPage": {
+    "mainHeading": "Make a difference in the world",
+    "mainContent": "With Innotin, you can explore how to proceed with an idea, gaining insights and learning concrete steps to take.",
     "products": "Products",
     "services": "Services",
     "toolSelectionQuestion": "Which of these surveys would you like to use?"
