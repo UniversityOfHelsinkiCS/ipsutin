@@ -104,7 +104,7 @@
   },
   "mainPage": {
     "mainHeading": "Make a difference in the world",
-    "mainContent": "With Innotin, you can explore how to proceed with an idea, gaining insights and learning concrete steps to take.",
+    "mainContent": "Welcome {{name}} to your personal space of Innotin. Innotin, you will secure your idea, invention or software and help you to proceed with your patenting process",
     "products": "Products",
     "services": "Services",
     "toolSelectionQuestion": "Which of these surveys would you like to use?"

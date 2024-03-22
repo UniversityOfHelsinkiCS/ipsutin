@@ -2,9 +2,12 @@ import { useTranslation } from 'react-i18next'
 import { Box, Card, CardMedia, Typography } from '@mui/material'
 
 import placeholder from '../../assets/placeholder.png'
+import { useLoggedInUser } from '../../hooks/useUser'
 
 const HeroSection = () => {
   const { t } = useTranslation()
+
+  const { user, isLoading } = useLoggedInUser()
 
   return (
     <Card
@@ -43,16 +46,18 @@ const HeroSection = () => {
           >
             {t('mainPage:mainHeading')}
           </Typography>
-          <Typography
-            sx={{
-              fontSize: { sm: '16pt', md: '20pt', lg: '24pt' },
-              fontWeight: 600,
-              maxWidth: '90%',
-              color: 'black',
-            }}
-          >
-            {t('mainPage:mainContent')}
-          </Typography>
+          {!isLoading && user ? (
+            <Typography
+              sx={{
+                fontSize: { sm: '16pt', md: '20pt', lg: '24pt' },
+                fontWeight: 600,
+                maxWidth: '90%',
+                color: 'black',
+              }}
+            >
+              {t('mainPage:mainContent', { name: user?.firstName })}
+            </Typography>
+          ) : null}
         </Box>
       </Box>
     </Card>
