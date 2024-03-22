@@ -35,6 +35,10 @@ export interface Service {
   id: string
   title: Locales
   label: RecommendationLabel
+  colors: {
+    background: string
+    text: string
+  }
 }
 
 export interface FormValues {

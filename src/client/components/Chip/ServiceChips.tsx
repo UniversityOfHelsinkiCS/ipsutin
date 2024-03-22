@@ -13,6 +13,10 @@ const services: Service[] = [
       en: 'Invention disclosure',
       sv: 'Invention disclosure',
     },
+    colors: {
+      background: '#ed1975',
+      text: '#000',
+    },
   },
   {
     id: 'clinic',
@@ -21,6 +25,10 @@ const services: Service[] = [
       fi: 'Idea clinic',
       en: 'Idea clinic',
       sv: 'Idea clinic',
+    },
+    colors: {
+      background: '#8261a1',
+      text: '#fff',
     },
   },
   {
@@ -31,6 +39,10 @@ const services: Service[] = [
       en: 'Industry relations',
       sv: 'Industry relations',
     },
+    colors: {
+      background: '#23439b',
+      text: '#fff',
+    },
   },
   {
     id: 'incubator',
@@ -40,6 +52,10 @@ const services: Service[] = [
       en: 'Incubator',
       sv: 'Incubator',
     },
+    colors: {
+      background: '#199995',
+      text: '#000',
+    },
   },
   {
     id: 'legal',
@@ -48,6 +64,10 @@ const services: Service[] = [
       fi: 'Legal',
       en: 'Legal',
       sv: 'Legal',
+    },
+    colors: {
+      background: '#afd255',
+      text: '#000',
     },
   },
 ]
