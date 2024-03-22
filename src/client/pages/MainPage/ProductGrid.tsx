@@ -51,6 +51,7 @@ const ProductCard = ({
       <Button
         sx={{
           mx: 'auto',
+          px: 4,
           borderRadius: '1rem',
           textTransform: 'capitalize',
           fontWeight: '600',
