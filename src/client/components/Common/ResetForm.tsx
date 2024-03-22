@@ -2,11 +2,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
 
-import styles from '../../styles'
-
 const ResetForm = () => {
   const { t } = useTranslation()
-  const { formStyles } = styles
 
   const resetForm = () => {
     sessionStorage.clear()
@@ -15,10 +12,15 @@ const ResetForm = () => {
 
   return (
     <Button
-      sx={formStyles.stackButton}
+      sx={{
+        textTransform: 'Capitalize',
+        fontWeight: '600',
+        fontSize: '12pt',
+      }}
       type='reset'
       data-cy='reset-form-button'
       onClick={resetForm}
+      color='error'
     >
       {t('reset')}
     </Button>
