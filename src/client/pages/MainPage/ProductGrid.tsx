@@ -56,6 +56,7 @@ const ProductCard = ({
           borderRadius: '1rem',
           textTransform: 'capitalize',
           fontWeight: '600',
+          fontSize: '12pt',
           '&:hover': {
             textDecoration: 'underline',
           },
