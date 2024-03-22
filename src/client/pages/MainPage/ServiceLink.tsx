@@ -11,10 +11,15 @@ const ServiceLink = ({ service }: { service: Service }) => (
     sx={{
       mx: '0.3rem',
       px: '1rem',
-      fontWeight: 'normal',
       borderRadius: '0.5rem',
+      border: `1px solid ${service.colors.background}`,
       color: service.colors.text,
       backgroundColor: service.colors.background,
+      '&:hover': {
+        textDecoration: 'underline',
+        border: `1px solid ${service.colors.background}`,
+        color: 'black',
+      },
     }}
   >
     {service.label}
