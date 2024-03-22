@@ -26,7 +26,6 @@ import styles from '../../styles'
 import LanguageSelect from './LanguageSelect'
 import MobileMenu from './MobileMenu'
 import ProfileMenu from './ProfileMenu'
-import SelectFaculty from './SelectFaculty'
 import { PAGES } from './util'
 
 const NavBar = () => {
@@ -77,7 +76,6 @@ const NavBar = () => {
                 </Button>
               ))}
             </Box>
-            <SelectFaculty />
             <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 2 }}>
               {user?.isAdmin && (
                 <Button component={NavLink} to='/admin' sx={navStyles.link}>

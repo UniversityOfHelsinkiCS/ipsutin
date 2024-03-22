@@ -18,6 +18,7 @@ import { t } from 'i18next'
 import { useLoggedInUser } from '../../hooks/useUser'
 
 import LanguageSelect from './LanguageSelect'
+import SelectFaculty from './SelectFaculty'
 import { stringToColor } from './util'
 
 const UserInformation = () => {
@@ -131,6 +132,8 @@ const ProfileMenu = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <LanguageSelect />
+        <Divider />
+        <SelectFaculty />
         <Divider />
         <UserInformation />
       </Menu>
