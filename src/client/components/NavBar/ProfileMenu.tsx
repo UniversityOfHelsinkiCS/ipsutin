@@ -25,7 +25,11 @@ const UserInformation = () => {
 
   if (!user || isLoading) return <Skeleton variant='text' width={100} />
 
-  const displayedFields: (keyof User)[] = ['username', 'email']
+  const displayedFields: (keyof User)[] = [
+    'username',
+    'email',
+    'preferredFaculty',
+  ]
 
   return (
     <>
