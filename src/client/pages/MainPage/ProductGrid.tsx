@@ -9,6 +9,7 @@ import {
   Grid,
   Typography,
 } from '@mui/material'
+import { grey } from '@mui/material/colors'
 
 import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { ProductCardProps } from '../../types'
@@ -18,24 +19,23 @@ const ProductCard = ({
   description,
   href,
   selected,
-  onClick,
 }: ProductCardProps) => (
   <Card
     elevation={0}
     sx={{
-      border: '1px solid',
-      borderColor: 'grey.300',
-      backgroundColor: selected ? '#b1cfe3' : 'white',
+      border: (theme) =>
+        selected
+          ? `2px solid ${theme.palette.secondary.main}`
+          : `1px solid ${grey[300]}`,
     }}
-    onClick={onClick}
   >
-    <CardContent sx={{ minHeight: '300px', textAlign: 'left' }}>
+    <CardContent sx={{ minHeight: '400px', textAlign: 'left' }}>
       <Typography
         gutterBottom
         component='p'
         sx={{
           mb: 4,
-          fontSize: '20pt',
+          fontSize: '28pt',
           textTransform: 'uppercase',
           fontWeight: '700',
         }}
@@ -51,6 +51,7 @@ const ProductCard = ({
         sx={{
           mx: 'auto',
           borderRadius: '1rem',
+          textTransform: 'capitalize',
           '&:hover': {
             textDecoration: 'underline',
           },
@@ -80,10 +81,6 @@ const ProductGrid = () => {
     setSelectedProduct(selectedCard ? selectedCard[1] : '')
   }, [selectedCard])
 
-  const handleProductCardClick = (title: string) => {
-    setSelectedProduct(title)
-  }
-
   return (
     <Grid container sx={{ display: 'flex' }}>
       <Grid item xs={12} md={4} lg={4}>
@@ -93,7 +90,6 @@ const ProductGrid = () => {
           imgPath='/'
           href={`/ipassessment?faculty=${faculty}`}
           selected={selectedProduct === 'ipassessment'}
-          onClick={() => handleProductCardClick('ipassessment')}
         />
       </Grid>
       <Grid item xs={12} md={4} lg={4}>
@@ -103,7 +99,6 @@ const ProductGrid = () => {
           imgPath='/'
           href={`/licences?faculty=${faculty}`}
           selected={selectedProduct === 'licences'}
-          onClick={() => handleProductCardClick('licences')}
         />
       </Grid>
       <Grid item xs={12} md={4} lg={4}>
@@ -113,7 +108,6 @@ const ProductGrid = () => {
           imgPath='/'
           href={`/ideaevaluation?faculty=${faculty}`}
           selected={selectedProduct === 'ideaevaluation'}
-          onClick={() => handleProductCardClick('ideaevaluation')}
         />
       </Grid>
     </Grid>

@@ -29,7 +29,6 @@ export interface ProductCardProps {
   href: string
   imgPath?: string
   selected: boolean
-  onClick: any
 }
 
 export interface FormValues {
