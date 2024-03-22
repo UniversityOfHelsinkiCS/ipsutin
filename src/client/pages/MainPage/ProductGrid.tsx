@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
+  Button,
   Card,
-  CardActionArea,
+  CardActions,
   CardContent,
   Grid,
   Typography,
@@ -28,21 +29,40 @@ const ProductCard = ({
     }}
     onClick={onClick}
   >
-    <CardActionArea component={Link} to={href}>
-      <CardContent sx={{ height: '325px' }}>
-        <Typography
-          gutterBottom
-          variant='h4'
-          component='p'
-          sx={{ mb: 4, textTransform: 'uppercase', fontWeight: '600' }}
-        >
-          {title}
-        </Typography>
-        <Typography variant='body2' color='text.secondary'>
-          {description}
-        </Typography>
-      </CardContent>
-    </CardActionArea>
+    <CardContent sx={{ minHeight: '300px', textAlign: 'left' }}>
+      <Typography
+        gutterBottom
+        component='p'
+        sx={{
+          mb: 4,
+          fontSize: '20pt',
+          textTransform: 'uppercase',
+          fontWeight: '700',
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography variant='body2' color='text.secondary'>
+        {description}
+      </Typography>
+    </CardContent>
+    <CardActions>
+      <Button
+        sx={{
+          mx: 'auto',
+          borderRadius: '1rem',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        }}
+        component={Link}
+        to={href}
+        variant='contained'
+        color='secondary'
+      >
+        Check
+      </Button>
+    </CardActions>
   </Card>
 )
 
