@@ -31,6 +31,12 @@ export interface ProductCardProps {
   selected: boolean
 }
 
+export interface Service {
+  id: string
+  title: Locales
+  label: RecommendationLabel
+}
+
 export interface FormValues {
   [key: number]: Record<string, { [key: string]: boolean }>
   faculty?: string

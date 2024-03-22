@@ -1,49 +1,54 @@
-import { RecommendationLabel } from '@backend/types'
 import { Box } from '@mui/material'
 
-import InformationChip from './InformationChip'
+import { Service } from '../../types'
 
-interface ChipTypes {
-  title: string
-  label: RecommendationLabel
-  link: string
-}
+import InformationChip from './ServiceLink'
 
-const chipsHardcoded: ChipTypes[] = [
+const services: Service[] = [
   {
-    title: 'Invention Disclosure',
+    id: 'disclosure',
     label: 'disclosure',
-    link: '/inventiondisclosure',
+    title: {
+      fi: 'Invention disclosure',
+      en: 'Invention disclosure',
+      sv: 'Invention disclosure',
+    },
   },
   {
-    title: 'Idea Clinic',
+    id: 'clinic',
     label: 'clinic',
-    link: '/admin',
+    title: {
+      fi: 'Idea clinic',
+      en: 'Idea clinic',
+      sv: 'Idea clinic',
+    },
   },
   {
-    title: 'Industry Relations',
+    id: 'relations',
     label: 'relations',
-    link: '/admin',
+    title: {
+      fi: 'Industry relations',
+      en: 'Industry relations',
+      sv: 'Industry relations',
+    },
   },
   {
-    title: 'Incubator',
+    id: 'incubator',
     label: 'incubator',
-    link: '/admin',
+    title: {
+      fi: 'Incubator',
+      en: 'Incubator',
+      sv: 'Incubator',
+    },
   },
   {
-    title: 'Legal',
+    id: 'legal',
     label: 'legal',
-    link: '/admin',
-  },
-  {
-    title: 'Restrictive',
-    label: 'restrictive',
-    link: '/admin',
-  },
-  {
-    title: 'Permissive',
-    label: 'permissive',
-    link: '/admin',
+    title: {
+      fi: 'Legal',
+      en: 'Legal',
+      sv: 'Legal',
+    },
   },
 ]
 
@@ -57,13 +62,8 @@ const ServiceChips = () => (
       alignItems: 'center',
     }}
   >
-    {chipsHardcoded.map((chip) => (
-      <InformationChip
-        key={chip.title}
-        title={chip.title}
-        label={chip.label}
-        link={chip.link}
-      />
+    {services.map((service) => (
+      <InformationChip key={service.label} service={service} />
     ))}
   </Box>
 )
