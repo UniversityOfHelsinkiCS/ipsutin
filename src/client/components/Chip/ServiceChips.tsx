@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 
 import { Service } from '../../types'
 
-import InformationChip from './ServiceLink'
+import ServiceLink from './ServiceLink'
 
 const services: Service[] = [
   {
@@ -63,7 +63,7 @@ const ServiceChips = () => (
     }}
   >
     {services.map((service) => (
-      <InformationChip key={service.label} service={service} />
+      <ServiceLink key={service.label} service={service} />
     ))}
   </Box>
 )
