@@ -38,6 +38,7 @@ const ProductCard = ({
           fontSize: '28pt',
           textTransform: 'uppercase',
           fontWeight: '700',
+          letterSpacing: '-0.1rem',
         }}
       >
         {title}
@@ -52,6 +53,7 @@ const ProductCard = ({
           mx: 'auto',
           borderRadius: '1rem',
           textTransform: 'capitalize',
+          fontWeight: '600',
           '&:hover': {
             textDecoration: 'underline',
           },
