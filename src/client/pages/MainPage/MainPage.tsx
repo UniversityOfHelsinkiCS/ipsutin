@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom'
 import { Box, Grid, Typography } from '@mui/material'
 
 import ServiceChips from '../../components/Chip/ServiceChips'
-import WelcomeView from '../../components/WelcomeView/WelcomeView'
 import styles from '../../styles'
 
+import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
 
 const MainPage = () => {
@@ -17,7 +17,7 @@ const MainPage = () => {
   return (
     <Box id='big-box' sx={formStyles.formWrapper}>
       <Grid container>
-        <WelcomeView />
+        <HeroSection />
         <Grid item sm={12} sx={{ px: 4, mt: 4, textAlign: 'center' }}>
           <Typography
             component='h2'
