@@ -24,45 +24,43 @@ const router = createBrowserRouter(
         {
           path: '',
           element: <MainPage />,
+        },
+        {
+          path: '/licences',
           children: [
             {
-              path: 'licences',
-              children: [
-                {
-                  index: true,
-                  element: <Licences />,
-                },
-                {
-                  path: 'results',
-                  element: <LicenceResults />,
-                },
-              ],
+              index: true,
+              element: <Licences />,
             },
             {
-              path: 'ipassessment',
-              children: [
-                {
-                  index: true,
-                  element: <IpAssessment />,
-                },
-                {
-                  path: 'results',
-                  element: <IpAssessmentResults />,
-                },
-              ],
+              path: 'results',
+              element: <LicenceResults />,
+            },
+          ],
+        },
+        {
+          path: '/ipassessment',
+          children: [
+            {
+              index: true,
+              element: <IpAssessment />,
             },
             {
-              path: 'ideaevaluation',
-              children: [
-                {
-                  index: true,
-                  element: <IdeaEvaluation />,
-                },
-                {
-                  path: 'results',
-                  element: <IdeaEvaluationResults />,
-                },
-              ],
+              path: 'results',
+              element: <IpAssessmentResults />,
+            },
+          ],
+        },
+        {
+          path: '/ideaevaluation',
+          children: [
+            {
+              index: true,
+              element: <IdeaEvaluation />,
+            },
+            {
+              path: 'results',
+              element: <IdeaEvaluationResults />,
             },
           ],
         },

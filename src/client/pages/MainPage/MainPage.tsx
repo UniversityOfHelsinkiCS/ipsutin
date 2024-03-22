@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router-dom'
 import { Box, Grid, Typography } from '@mui/material'
 
 import styles from '../../styles'
@@ -47,8 +46,6 @@ const MainPage = () => {
             {t('mainPage:services')}
           </Typography>
           <Services />
-
-          <Outlet />
         </Grid>
       </Grid>
     </Box>
