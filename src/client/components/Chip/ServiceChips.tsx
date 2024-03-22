@@ -47,7 +47,7 @@ const chipsHardcoded: ChipTypes[] = [
   },
 ]
 
-const Chips = () => (
+const ServiceChips = () => (
   <Box
     sx={{
       mt: 2,
@@ -68,4 +68,4 @@ const Chips = () => (
   </Box>
 )
 
-export default Chips
+export default ServiceChips

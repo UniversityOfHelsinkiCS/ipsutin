@@ -2,7 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
-import Chips from '../../components/Chip/ChipLabel'
+import ServiceChips from '../../components/Chip/ServiceChips'
 import WelcomeView from '../../components/WelcomeView/WelcomeView'
 import styles from '../../styles'
 
@@ -20,7 +20,7 @@ const MainPage = () => {
         </Grid>
         <Grid container item sm={12} md={12} xl={12} sx={{ display: 'flex' }}>
           <Box id='important-box' sx={{ width: '100%' }}>
-            <Chips />
+            <ServiceChips />
           </Box>
 
           <Outlet />
