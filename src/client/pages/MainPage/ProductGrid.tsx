@@ -52,6 +52,7 @@ const ProductCard = ({
         sx={{
           mx: 'auto',
           px: 4,
+          mb: 2,
           borderRadius: '1rem',
           textTransform: 'capitalize',
           fontWeight: '600',
