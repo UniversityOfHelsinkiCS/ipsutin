@@ -78,7 +78,7 @@ const verifyLogin = async (
     firstName,
     lastName,
     isAdmin: checkAdmin(iamGroups) || username === 'glandmic',
-    preferredFaculty: userPreferedFaculty[0].code || 'OTHER',
+    preferredFaculty: userPreferedFaculty[0]?.code || 'OTHER',
   }
 
   await User.upsert({
