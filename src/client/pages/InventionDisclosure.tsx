@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 
-import InformationChip from '../components/Chip/ServiceLink'
+import InformationChip from './MainPage/ServiceLink'
 
 const InventionDisclosurePage = () => (
   <Box>

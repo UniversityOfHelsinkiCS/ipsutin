@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Outlet } from 'react-router-dom'
 import { Box, Grid, Typography } from '@mui/material'
 
-import ServiceChips from '../../components/Chip/ServiceChips'
 import styles from '../../styles'
 
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
+import Services from './Services'
 
 const MainPage = () => {
   const { t } = useTranslation()
@@ -46,7 +46,7 @@ const MainPage = () => {
           >
             {t('mainPage:services')}
           </Typography>
-          <ServiceChips />
+          <Services />
 
           <Outlet />
         </Grid>

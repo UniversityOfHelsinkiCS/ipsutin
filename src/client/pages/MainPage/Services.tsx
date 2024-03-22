@@ -72,7 +72,7 @@ const services: Service[] = [
   },
 ]
 
-const ServiceChips = () => (
+const Services = () => (
   <Box
     sx={{
       mt: 2,
@@ -88,4 +88,4 @@ const ServiceChips = () => (
   </Box>
 )
 
-export default ServiceChips
+export default Services
