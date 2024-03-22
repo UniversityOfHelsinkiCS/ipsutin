@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   Button,
   Card,
@@ -71,17 +71,17 @@ const ProductCard = ({
 
 const ProductGrid = () => {
   const { t } = useTranslation()
+  const { pathname } = useLocation()
+
+  const [selectedProduct, setSelectedProduct] = useState('')
+
   const faculty = useSelectedFaculty()
 
-  const selectedCard = window.location.href.match(/\/(\w+)\?/)
-
-  const [selectedProduct, setSelectedProduct] = useState(
-    selectedCard ? selectedCard[1] : ''
-  )
-
   useEffect(() => {
-    setSelectedProduct(selectedCard ? selectedCard[1] : '')
-  }, [selectedCard])
+    if (!pathname) return
+
+    setSelectedProduct(pathname)
+  }, [pathname])
 
   return (
     <Grid container sx={{ display: 'flex' }}>
@@ -91,7 +91,7 @@ const ProductGrid = () => {
           description={t('surveyInfos:ipAssessment')}
           imgPath='/'
           href={`/ipassessment?faculty=${faculty}`}
-          selected={selectedProduct === 'ipassessment'}
+          selected={selectedProduct === '/ipassessment'}
         />
       </Grid>
       <Grid item xs={12} md={4} lg={4}>
@@ -100,7 +100,7 @@ const ProductGrid = () => {
           description={t('surveyInfos:licences')}
           imgPath='/'
           href={`/licences?faculty=${faculty}`}
-          selected={selectedProduct === 'licences'}
+          selected={selectedProduct === '/licences'}
         />
       </Grid>
       <Grid item xs={12} md={4} lg={4}>
@@ -109,7 +109,7 @@ const ProductGrid = () => {
           description={t('surveyInfos:ideaEvaluation')}
           imgPath='/'
           href={`/ideaevaluation?faculty=${faculty}`}
-          selected={selectedProduct === 'ideaevaluation'}
+          selected={selectedProduct === '/ideaevaluation'}
         />
       </Grid>
     </Grid>
