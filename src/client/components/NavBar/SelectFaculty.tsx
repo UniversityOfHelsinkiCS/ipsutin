@@ -12,6 +12,7 @@ import {
 } from '@mui/material'
 
 import { useFaculties, useUserFaculties } from '../../hooks/useFaculty'
+import { useUpdatedUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
 const otherFaculty = {
@@ -43,6 +44,7 @@ const SelectFaculty = () => {
 
   const { language } = i18n
   const { cardStyles, formStyles } = styles
+  const mutation = useUpdatedUser()
 
   useEffect(() => {}, [setSearchParams])
 
@@ -79,6 +81,15 @@ const SelectFaculty = () => {
     userFacultiesLoading,
   ])
 
+  const handleUpdateFaculty = async () => {
+    try {
+      await mutation.mutate({ preferredFaculty: 'H50' })
+      console.log('Preferred faculty updated successfully')
+    } catch (error) {
+      console.error('Error updating preferred faculty')
+    }
+  }
+
   if (!faculties || facultiesLoading) return null
 
   const sortedFaculties = sortFaculties(faculties, language as keyof Locales)
@@ -107,6 +118,7 @@ const SelectFaculty = () => {
                 onClick={() => {
                   setSearchParams({ faculty: f.code })
                   setFaculty(f)
+                  handleUpdateFaculty()
                 }}
               >
                 {f.name[language as keyof Locales]}
