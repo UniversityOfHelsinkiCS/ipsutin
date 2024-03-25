@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { User, UserCount } from '@backend/types'
 
+import { UserUpdates } from '../../validators/user'
 import apiClient from '../util/apiClient'
 
 export const useLoggedInUser = () => {
@@ -8,7 +9,6 @@ export const useLoggedInUser = () => {
 
   const query = async (): Promise<User> => {
     const { data } = await apiClient.get('/users')
-    console.log('query data', data)
     return data
   }
 
@@ -30,19 +30,17 @@ export const useUserCounts = () => {
   return { userCounts, ...rest }
 }
 
-export const useUpdatePreferredFaculty = () => {
+export const useUpdatedUser = () => {
   const queryClient = useQueryClient()
   const { user } = useLoggedInUser()
 
   const mutation = useMutation(
-    async (newPreferredFaculty: string) => {
+    async (updates: UserUpdates) => {
       if (!user) {
         throw new Error('User information is not available')
       }
 
-      const { data } = await apiClient.put(`/users/${user.id}`, {
-        preferredFaculty: newPreferredFaculty,
-      })
+      const { data } = await apiClient.put(`/users/${user.id}`, updates)
       return data
     },
     {
