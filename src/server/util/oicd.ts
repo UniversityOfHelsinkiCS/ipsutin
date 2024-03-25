@@ -69,6 +69,11 @@ const verifyLogin = async (
 
   const userPreferedFaculty = await getUserFaculties(id, iamGroups)
 
+  const userFaculty = await User.findByPk(id, {
+    attributes: ['preferredFaculty'],
+  })
+  const userFacultyCode = userFaculty?.preferredFaculty
+
   const user: UserType = {
     username,
     id: id || username,
@@ -78,7 +83,8 @@ const verifyLogin = async (
     firstName,
     lastName,
     isAdmin: checkAdmin(iamGroups) || username === 'glandmic',
-    preferredFaculty: userPreferedFaculty[0]?.code || 'OTHER',
+    preferredFaculty:
+      userFacultyCode || userPreferedFaculty[0]?.code || 'OTHER',
   }
 
   await User.upsert({

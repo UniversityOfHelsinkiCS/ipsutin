@@ -4,7 +4,6 @@ import { PUBLIC_URL } from '../../../config'
 import App from '../../App'
 import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
 import IdeaEvaluationResults from '../../pages/IdeaEvaluation/IdeaEvaluationResults'
-import InventionDisclosurePage from '../../pages/InventionDisclosure'
 import IpAssessment from '../../pages/IpAssessment/IpAssessment'
 import IpAssessmentResults from '../../pages/IpAssessment/IpAssessmentResults'
 import LicenceResults from '../../pages/Licences/LicenceResults'
@@ -24,45 +23,43 @@ const router = createBrowserRouter(
         {
           path: '',
           element: <MainPage />,
+        },
+        {
+          path: '/licences',
           children: [
             {
-              path: 'licences',
-              children: [
-                {
-                  index: true,
-                  element: <Licences />,
-                },
-                {
-                  path: 'results',
-                  element: <LicenceResults />,
-                },
-              ],
+              index: true,
+              element: <Licences />,
             },
             {
-              path: 'ipassessment',
-              children: [
-                {
-                  index: true,
-                  element: <IpAssessment />,
-                },
-                {
-                  path: 'results',
-                  element: <IpAssessmentResults />,
-                },
-              ],
+              path: 'results',
+              element: <LicenceResults />,
+            },
+          ],
+        },
+        {
+          path: '/ipassessment',
+          children: [
+            {
+              index: true,
+              element: <IpAssessment />,
             },
             {
-              path: 'ideaevaluation',
-              children: [
-                {
-                  index: true,
-                  element: <IdeaEvaluation />,
-                },
-                {
-                  path: 'results',
-                  element: <IdeaEvaluationResults />,
-                },
-              ],
+              path: 'results',
+              element: <IpAssessmentResults />,
+            },
+          ],
+        },
+        {
+          path: '/ideaevaluation',
+          children: [
+            {
+              index: true,
+              element: <IdeaEvaluation />,
+            },
+            {
+              path: 'results',
+              element: <IdeaEvaluationResults />,
             },
           ],
         },
@@ -83,10 +80,6 @@ const router = createBrowserRouter(
               element: <Entry />,
             },
           ],
-        },
-        {
-          path: '/inventiondisclosure',
-          element: <InventionDisclosurePage />,
         },
       ],
     },

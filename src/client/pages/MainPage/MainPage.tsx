@@ -1,13 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router-dom'
 import { Box, Grid, Typography } from '@mui/material'
 
-import ServiceChips from '../../components/Chip/ServiceChips'
 import styles from '../../styles'
 
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
+import ServiceLinks from './ServiceLinks'
 
 const MainPage = () => {
   const { t } = useTranslation()
@@ -15,7 +14,7 @@ const MainPage = () => {
   const { formStyles } = styles
 
   return (
-    <Box id='big-box' sx={formStyles.formWrapper}>
+    <Box sx={formStyles.formWrapper}>
       <Grid container>
         <HeroSection />
         <Grid item sm={12} sx={{ px: 4, mt: 4, textAlign: 'center' }}>
@@ -33,7 +32,13 @@ const MainPage = () => {
           </Typography>
           <ProductGrid />
         </Grid>
-        <Grid item sm={12} md={12} xl={12} sx={{ my: 4, textAlign: 'center' }}>
+        <Grid
+          item
+          sm={12}
+          md={12}
+          xl={12}
+          sx={{ mt: 4, mb: 12, textAlign: 'center' }}
+        >
           <Typography
             component='h2'
             sx={{
@@ -46,9 +51,7 @@ const MainPage = () => {
           >
             {t('mainPage:services')}
           </Typography>
-          <ServiceChips />
-
-          <Outlet />
+          <ServiceLinks />
         </Grid>
       </Grid>
     </Box>

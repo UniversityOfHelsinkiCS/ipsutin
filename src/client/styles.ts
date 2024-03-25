@@ -25,7 +25,8 @@ const cardStyles = {
     gap: 0.3,
   },
   outerBox: {
-    my: 2,
+    m: 4,
+    maxWidth: 1560,
     border: 1,
     borderColor: 'grey.300',
   },
@@ -85,7 +86,6 @@ const formStyles = {
     mx: 4,
   },
   formWrapper: {
-    m: 4,
     maxWidth: 1560,
   },
   formControl: {

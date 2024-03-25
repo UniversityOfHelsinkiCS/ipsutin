@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { Faculty, Locales } from '@backend/types'
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import {
+  FormControl,
+  InputLabel,
+  ListItem,
+  ListSubheader,
+  MenuItem,
+  Select,
+} from '@mui/material'
 
 import { useFaculties, useUserFaculties } from '../../hooks/useFaculty'
 import styles from '../../styles'
@@ -78,31 +85,37 @@ const SelectFaculty = () => {
   const organisations = sortedFaculties.concat(otherFaculty)
 
   return (
-    <Box>
-      <FormControl sx={formStyles.formControl}>
-        <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
-        <Select
-          sx={cardStyles.inputField}
-          data-cy='faculty-select'
-          label={t('facultySelect:inputLabel')}
-          value={faculty?.code || ''}
-        >
-          {organisations.map((f: Faculty) => (
-            <MenuItem
-              data-cy={`faculty-option-${f.code}`}
-              key={f.code}
-              value={f.code}
-              onClick={() => {
-                setSearchParams({ faculty: f.code })
-                setFaculty(f)
-              }}
-            >
-              {f.name[language as keyof Locales]}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+    <>
+      <ListSubheader disableSticky>
+        {t('navbar:facultySubHeader')}
+      </ListSubheader>
+      <ListItem sx={{ px: 4, mb: 2 }} disablePadding>
+        <FormControl variant='standard' sx={formStyles.formControl}>
+          <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
+          <Select
+            sx={cardStyles.inputField}
+            data-cy='faculty-select'
+            label={t('facultySelect:inputLabel')}
+            value={faculty?.code || ''}
+            size='small'
+          >
+            {organisations.map((f: Faculty) => (
+              <MenuItem
+                data-cy={`faculty-option-${f.code}`}
+                key={f.code}
+                value={f.code}
+                onClick={() => {
+                  setSearchParams({ faculty: f.code })
+                  setFaculty(f)
+                }}
+              >
+                {f.name[language as keyof Locales]}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </ListItem>
+    </>
   )
 }
 

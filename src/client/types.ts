@@ -28,13 +28,16 @@ export interface ProductCardProps {
   description: string
   href: string
   imgPath?: string
-  selected: boolean
 }
 
 export interface Service {
   id: string
   title: Locales
   label: RecommendationLabel
+  colors: {
+    background: string
+    text: string
+  }
 }
 
 export interface FormValues {

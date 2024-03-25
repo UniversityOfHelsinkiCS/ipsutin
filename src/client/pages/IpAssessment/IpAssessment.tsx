@@ -145,11 +145,18 @@ const IpAssessment = () => {
                 ))}
               </Box>
               <Box sx={formStyles.stackBoxWrapper}>
-                <Stack sx={formStyles.stack} direction='row'>
+                <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
                   <Button
-                    sx={formStyles.stackButton}
+                    sx={{
+                      px: 4,
+                      borderRadius: '1rem',
+                      textTransform: 'capitalize',
+                      fontWeight: '600',
+                      fontSize: '12pt',
+                    }}
                     id='contact-form-button'
                     variant='contained'
+                    color='secondary'
                     type='submit'
                   >
                     {t('common:submit')}
