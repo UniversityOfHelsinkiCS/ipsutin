@@ -6,7 +6,7 @@ import styles from '../../styles'
 
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
-import Services from './Services'
+import ServiceLinks from './ServiceLinks'
 
 const MainPage = () => {
   const { t } = useTranslation()
@@ -51,7 +51,7 @@ const MainPage = () => {
           >
             {t('mainPage:services')}
           </Typography>
-          <Services />
+          <ServiceLinks />
         </Grid>
       </Grid>
     </Box>

@@ -1,8 +1,7 @@
-import { Box } from '@mui/material'
+import { Link } from 'react-router-dom' // Import Link component from react-router-dom
+import { Box, Button } from '@mui/material'
 
 import { Service } from '../../types'
-
-import ServiceLink from './ServiceLink'
 
 const services: Service[] = [
   {
@@ -72,7 +71,30 @@ const services: Service[] = [
   },
 ]
 
-const Services = () => (
+const ServiceLink = ({ service }: { service: Service }) => (
+  <Button
+    size='small'
+    component={Link}
+    to={`/services/${service.id}`}
+    sx={{
+      mx: '0.3rem',
+      px: '1rem',
+      borderRadius: '0.5rem',
+      border: `1px solid ${service.colors.background}`,
+      color: service.colors.text,
+      backgroundColor: service.colors.background,
+      '&:hover': {
+        textDecoration: 'underline',
+        border: `1px solid ${service.colors.background}`,
+        color: 'black',
+      },
+    }}
+  >
+    {service.label}
+  </Button>
+)
+
+const ServiceLinks = () => (
   <Box
     sx={{
       mt: 2,
@@ -88,4 +110,4 @@ const Services = () => (
   </Box>
 )
 
-export default Services
+export default ServiceLinks
