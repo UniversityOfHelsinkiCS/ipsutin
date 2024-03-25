@@ -28,7 +28,6 @@ export interface ProductCardProps {
   description: string
   href: string
   imgPath?: string
-  selected: boolean
 }
 
 export interface Service {
