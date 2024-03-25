@@ -14,7 +14,7 @@ const MainPage = () => {
   const { formStyles } = styles
 
   return (
-    <Box id='big-box' sx={formStyles.formWrapper}>
+    <Box sx={formStyles.formWrapper}>
       <Grid container>
         <HeroSection />
         <Grid item sm={12} sx={{ px: 4, mt: 4, textAlign: 'center' }}>
