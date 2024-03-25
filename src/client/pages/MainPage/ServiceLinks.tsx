@@ -73,16 +73,17 @@ const services: Service[] = [
 
 const ServiceLink = ({ service }: { service: Service }) => (
   <Button
-    size='small'
+    size='large'
     component={Link}
     to={`/services/${service.id}`}
     sx={{
-      mx: '0.3rem',
-      px: '1rem',
+      mx: '0.5rem',
+      px: '2rem',
       borderRadius: '0.5rem',
       border: `1px solid ${service.colors.background}`,
       color: service.colors.text,
       backgroundColor: service.colors.background,
+      fontSize: '16pt',
       '&:hover': {
         textDecoration: 'underline',
         border: `1px solid ${service.colors.background}`,
