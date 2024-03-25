@@ -1,20 +1,22 @@
+import { UserUpdates, UserUpdatesZod } from '../../validators/user'
 import { User } from '../db/models'
-
-type UserUpdatesTypes = {
-  newFaculty: string
-}
+import NotFoundError from '../errors/NotFoundError'
+import ZodValidationError from '../errors/ValidationError'
 
 // eslint-disable-next-line import/prefer-default-export
-export const updateUser = (user: User, updates: UserUpdatesTypes) => {
-  const { newFaculty } = updates
+export const updateUser = async (userID: string, updates: UserUpdates) => {
+  const userToUpdate = await User.findByPk(userID)
 
-  if (newFaculty && typeof newFaculty === 'string') {
-    // eslint-disable-next-line no-param-reassign
-    user.preferredFaculty = newFaculty
-  } else {
-    throw new Error('Invalid or missing newFaculty value')
+  if (!userToUpdate)
+    throw new NotFoundError(`User with id: ${userID} not found`)
+
+  const validatedData = UserUpdatesZod.safeParse(updates)
+
+  if (!validatedData?.success) {
+    throw new ZodValidationError('Validation Error', validatedData.error)
   }
 
-  // Return the updated user object
-  return user
+  const updatedUser = await userToUpdate.update(validatedData.data)
+
+  return updatedUser
 }

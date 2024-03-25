@@ -1,7 +1,7 @@
 import { User } from '@backend/types'
 
 const mockUser: User = {
-  id: 'hy-hlo-1441871',
+  id: 'hy-hlo-123',
   username: 'testuser',
   firstName: 'Testi',
   lastName: 'Kayttaja',
