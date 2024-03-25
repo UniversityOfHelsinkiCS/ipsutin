@@ -32,7 +32,13 @@ const MainPage = () => {
           </Typography>
           <ProductGrid />
         </Grid>
-        <Grid item sm={12} md={12} xl={12} sx={{ my: 4, textAlign: 'center' }}>
+        <Grid
+          item
+          sm={12}
+          md={12}
+          xl={12}
+          sx={{ mt: 4, mb: 12, textAlign: 'center' }}
+        >
           <Typography
             component='h2'
             sx={{
