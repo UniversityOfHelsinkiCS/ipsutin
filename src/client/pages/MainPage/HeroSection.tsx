@@ -44,7 +44,7 @@ const HeroSection = () => {
       }}
     >
       <Box sx={{ position: 'relative', flex: 1 }}>
-        <CardContent>
+        <CardContent sx={{ padding: 0, margin: 0 }}>
           <Typography
             component='h1'
             sx={{
