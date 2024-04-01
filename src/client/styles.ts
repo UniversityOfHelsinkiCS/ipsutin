@@ -85,9 +85,6 @@ const formStyles = {
     mt: 4,
     mx: 4,
   },
-  formWrapper: {
-    maxWidth: 1560,
-  },
   formControl: {
     width: '100%',
   },

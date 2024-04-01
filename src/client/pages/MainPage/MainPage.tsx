@@ -1,8 +1,5 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid, Typography } from '@mui/material'
-
-import styles from '../../styles'
 
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
@@ -11,12 +8,10 @@ import ServiceLinks from './ServiceLinks'
 const MainPage = () => {
   const { t } = useTranslation()
 
-  const { formStyles } = styles
-
   return (
-    <Box sx={formStyles.formWrapper}>
-      <Grid container>
-        <HeroSection />
+    <Box>
+      <HeroSection />
+      <Grid container sx={{ mx: 'auto', maxWidth: '1240px' }}>
         <Grid item sm={12} sx={{ px: 4, mt: 4, textAlign: 'center' }}>
           <Typography
             component='h2'
