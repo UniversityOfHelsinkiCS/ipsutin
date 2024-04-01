@@ -108,7 +108,9 @@
     "mainContent": "Welcome {{name}} to your personal space of Innotin. Innotin, you will secure your idea, invention or software and help you to proceed with your patenting process",
     "products": "Products",
     "services": "Services",
-    "toolSelectionQuestion": "Which of these surveys would you like to use?"
+    "toolSelectionQuestion": "Which of these surveys would you like to use?",
+    "playVideo": "Play video",
+    "pauseVideo": "Pause video"
   },
   "surveyNames": {
     "ipAssessment": "Patentability Evaluation",

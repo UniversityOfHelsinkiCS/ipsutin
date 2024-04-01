@@ -106,11 +106,11 @@ const HeroSection = () => {
           >
             {playing ? (
               <>
-                <PauseIcon fontSize='small' /> {t('mainPage:pause')}
+                <PauseIcon fontSize='small' /> {t('mainPage:pauseVideo')}
               </>
             ) : (
               <>
-                <PlayArrowIcon fontSize='small' /> {t('mainPage:play')}
+                <PlayArrowIcon fontSize='small' /> {t('mainPage:playVideo')}
               </>
             )}
           </Button>
