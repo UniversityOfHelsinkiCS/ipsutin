@@ -73,7 +73,7 @@ const services: Service[] = [
 
 const ServiceLink = ({ service }: { service: Service }) => (
   <Button
-    size='large'
+    size='small'
     component={Link}
     to={`/services/${service.id}`}
     sx={{
