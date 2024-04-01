@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Box, Card, CardMedia, Typography } from '@mui/material'
 
-import placeholder from '../../assets/placeholder.png'
+import video from '../../assets/hero_section_video.mp4'
 import { useLoggedInUser } from '../../hooks/useUser'
 
 const HeroSection = () => {
@@ -13,19 +13,14 @@ const HeroSection = () => {
     <Card
       sx={{
         width: '100%',
-        height: '100%',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
       <Box sx={{ position: 'relative', flex: 1 }}>
-        <CardMedia
-          loading='lazy'
-          component='img'
-          height='auto'
-          alt='' // alt is empty because it is a decorative image
-          image={placeholder}
-        />
+        <CardMedia component='video' autoPlay muted loop>
+          <source src={video} type='video/mp4' />
+        </CardMedia>
         <Box
           sx={{
             position: 'absolute',
