@@ -20,12 +20,17 @@ const ProductCard = ({ title, description, href }: ProductCardProps) => (
       border: `1px solid ${grey[300]}`,
     }}
   >
-    <CardContent sx={{ minHeight: '400px', textAlign: 'left' }}>
+    <CardContent
+      sx={{ minHeight: { xs: '200px', md: '400px' }, textAlign: 'left' }}
+    >
       <Typography
         gutterBottom
         component='p'
         sx={{
-          mb: 4,
+          height: {
+            md: '200px',
+            xl: '150px',
+          },
           fontSize: '28pt',
           textTransform: 'uppercase',
           fontWeight: '700',
@@ -38,12 +43,13 @@ const ProductCard = ({ title, description, href }: ProductCardProps) => (
         {description}
       </Typography>
     </CardContent>
-    <CardActions>
+    <CardActions sx={{ margin: 0, padding: 0 }}>
       <Button
+        size='small'
         sx={{
           mx: 'auto',
           px: 4,
-          mb: 2,
+          mb: 4,
           borderRadius: '1rem',
           textTransform: 'capitalize',
           fontWeight: '600',
