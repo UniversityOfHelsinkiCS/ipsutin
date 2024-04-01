@@ -11,7 +11,7 @@ const MainPage = () => {
   return (
     <Box>
       <HeroSection />
-      <Grid container sx={{ mx: 'auto', maxWidth: '1240px' }}>
+      <Grid container sx={{ mx: 'auto', maxWidth: '1560px' }}>
         <Grid item sm={12} sx={{ px: 4, mt: 4, textAlign: 'center' }}>
           <Typography
             component='h2'
