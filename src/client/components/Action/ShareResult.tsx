@@ -4,7 +4,14 @@ import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { SurveyName, User } from '@backend/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Autocomplete, Box, Button, Chip, TextField } from '@mui/material'
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Chip,
+  FormHelperText,
+  TextField,
+} from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
@@ -123,6 +130,7 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
                   size='small'
                   margin='dense'
                   variant='outlined'
+                  aria-label={t('extraAction:shareResultsTitle')}
                   placeholder={t('extraAction:shareResultInputPlaceholder')}
                   error={!!errors?.emails}
                   disabled={isSent}
@@ -134,6 +142,12 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
             />
           )}
         />
+        {!!errors?.emails && (
+          <FormHelperText error>
+            {t('extraAction:shareResultEmailErrors')}
+          </FormHelperText>
+        )}
+
         <Button
           data-cy='send-share-results-button'
           variant='contained'

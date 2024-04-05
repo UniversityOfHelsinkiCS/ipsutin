@@ -87,6 +87,7 @@
     "shareResultsContent": "New emails are inputted by typing the email address and pressing enter",
     "shareResultInputPlaceholder": "Type in email addresses to share",
     "shareResultSendEmails": "Send summary email",
+    "shareResultEmailErrors": "Please fix the invalid email addresses",
     "pateSuccessMessage": "Shared results with provided email addresses",
     "pateErrorMessage": "Could not share results"
   },
