@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Grid, Typography } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
@@ -25,26 +25,28 @@ const MainPage = () => {
   const { t } = useTranslation()
 
   return (
-    <Grid container sx={{ mx: 'auto', maxWidth: '1560px' }}>
+    <Grid container>
       <HeroSection />
-      <Grid
-        item
-        sm={12}
-        sx={{ px: { xs: 2, md: 4 }, mt: 4, textAlign: 'center' }}
-      >
-        <SectionHeading>{t('mainPage:products')}</SectionHeading>
-        <ProductGrid />
-      </Grid>
-      <Grid
-        item
-        sm={12}
-        md={12}
-        xl={12}
-        sx={{ mt: 4, mb: 12, textAlign: 'center' }}
-      >
-        <SectionHeading>{t('mainPage:services')}</SectionHeading>
-        {/* <ServiceLinks /> */}
-      </Grid>
+      <Box sx={{ mx: 'auto', maxWidth: '1560px' }}>
+        <Grid
+          item
+          sm={12}
+          sx={{ px: { xs: 2, md: 4 }, mt: 4, textAlign: 'center' }}
+        >
+          <SectionHeading>{t('mainPage:products')}</SectionHeading>
+          <ProductGrid />
+        </Grid>
+        <Grid
+          item
+          sm={12}
+          md={12}
+          xl={12}
+          sx={{ mt: 4, mb: 12, textAlign: 'center' }}
+        >
+          <SectionHeading>{t('mainPage:services')}</SectionHeading>
+          {/* <ServiceLinks /> */}
+        </Grid>
+      </Box>
     </Grid>
   )
 }
