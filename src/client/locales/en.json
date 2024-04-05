@@ -83,7 +83,7 @@
   },
   "extraAction": {
     "title": "Based on your selections you may also be interested in these",
-    "shareResultsTitle": "Would you like to have the summary send to your email or share your results with others",
+    "shareResultsTitle": "Share results",
     "shareResultsContent": "New emails are inputted by typing the email address and pressing enter",
     "shareResultInputPlaceholder": "Type in email addresses to share",
     "shareResultSendEmails": "Send summary email",

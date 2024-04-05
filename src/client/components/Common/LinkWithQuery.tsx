@@ -17,7 +17,7 @@ const LinkWithQuery = ({ to, children, sx, ...rest }: LinkWithQueryProps) => {
       target='_blank'
       component={Link}
       to={to + search}
-      sx={sx}
+      sx={{ borderRadius: '0.5rem', ...sx }}
       {...rest}
     >
       {children}

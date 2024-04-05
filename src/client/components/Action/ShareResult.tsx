@@ -4,22 +4,15 @@ import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { SurveyName, User } from '@backend/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  Autocomplete,
-  Box,
-  Button,
-  Chip,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Autocomplete, Box, Button, Chip, TextField } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
 import { useLoggedInUser } from '../../hooks/useUser'
-import styles from '../../styles'
 import ShareResultsEmailTemplate from '../../templates/ShareResultsEmailTemplate'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
+import SectionHeading from '../Common/SectionHeading'
 
 interface ShareResultProps {
   surveyName: SurveyName
@@ -29,8 +22,6 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
-
-  const { cardStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
 
@@ -87,9 +78,9 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
 
   return (
     <Box sx={{ mt: 8 }}>
-      <Typography variant='h6' sx={cardStyles.heading} component='div'>
+      <SectionHeading level='h2'>
         {t('extraAction:shareResultsTitle')}
-      </Typography>
+      </SectionHeading>
       <Markdown>{t('extraAction:shareResultsContent')}</Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -146,7 +137,7 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
         <Button
           data-cy='send-share-results-button'
           variant='contained'
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, borderRadius: '0.5rem' }}
           disabled={isSent}
           onClick={handleSubmit(onSubmit)}
         >
