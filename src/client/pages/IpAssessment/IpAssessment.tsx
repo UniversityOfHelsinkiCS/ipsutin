@@ -8,13 +8,12 @@ import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 import { IP_ASSESSMENT_DATA_KEY } from '../../../config'
 import ResetForm from '../../components/Common/ResetForm'
 import RenderQuestions from '../../components/InteractiveForm/RenderQuestions'
+import { useResultData } from '../../components/InteractiveForm/ResultDataContext'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import { FormValues } from '../../types'
-
-import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
 const IpAssessment = () => {
   const { t, i18n } = useTranslation()
@@ -23,7 +22,7 @@ const IpAssessment = () => {
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ipAssessment')
 
-  const { resultData, setResultData } = useIpAssessmentResultData()
+  const { resultData, setResultData } = useResultData()
 
   const faculty = searchParams.get('faculty')
   const { formStyles, cardStyles } = styles

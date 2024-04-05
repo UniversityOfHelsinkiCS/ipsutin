@@ -12,6 +12,7 @@ import SectionHeading from '../../components/Common/SectionHeading'
 import RecommendedAction from '../../components/Contact/RecommendedAction'
 import CommonResult from '../../components/InteractiveForm/CommonResult'
 import IpAssessmentResultElements from '../../components/InteractiveForm/IpAssessmentResultElements'
+import { useResultData } from '../../components/InteractiveForm/ResultDataContext'
 import useRecommendations from '../../hooks/useRecommendations'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
@@ -24,8 +25,6 @@ import {
 } from '../../util/recommendations'
 import { getCommonResult, getResultsWithLabels } from '../../util/results'
 
-import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
-
 const { cardStyles } = styles
 
 const IpAssessmentResults = () => {
@@ -36,7 +35,7 @@ const IpAssessmentResults = () => {
     useRecommendations(survey?.id)
 
   const refCallback = useResultRefCallback()
-  const { resultData } = useIpAssessmentResultData()
+  const { resultData } = useResultData()
 
   const { language } = i18n
 

@@ -6,13 +6,12 @@ import { Box, Grid } from '@mui/material'
 
 import { LICENCES_DATA_KEY } from '../../../config'
 import RenderSurvey from '../../components/InteractiveForm/RenderSurvey'
+import { useResultData } from '../../components/InteractiveForm/ResultDataContext'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import { FormValues } from '../../types'
-
-import { useLicenceResultData } from './LicenceResultDataContext'
 
 const Licences = () => {
   const { t } = useTranslation()
@@ -21,7 +20,7 @@ const Licences = () => {
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('licences')
 
-  const { resultData, setResultData } = useLicenceResultData()
+  const { resultData, setResultData } = useResultData()
 
   const faculty = searchParams.get('faculty')
   const { formStyles } = styles

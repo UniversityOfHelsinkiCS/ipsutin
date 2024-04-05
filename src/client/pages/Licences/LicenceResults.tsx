@@ -11,6 +11,7 @@ import NavigateBack from '../../components/Common/NavigateBack'
 import RecommendedAction from '../../components/Contact/RecommendedAction'
 import CommonResult from '../../components/InteractiveForm/CommonResult'
 import DefaultResultElements from '../../components/InteractiveForm/DefaultResultElements'
+import { useResultData } from '../../components/InteractiveForm/ResultDataContext'
 import useRecommendations from '../../hooks/useRecommendations'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
@@ -23,8 +24,6 @@ import {
 } from '../../util/recommendations'
 import { getCommonResult, getResultsWithLabels } from '../../util/results'
 
-import { useLicenceResultData } from './LicenceResultDataContext'
-
 const { cardStyles, resultStyles } = styles
 
 const LicenceResults = () => {
@@ -35,7 +34,7 @@ const LicenceResults = () => {
     useRecommendations(survey?.id)
 
   const refCallback = useResultRefCallback()
-  const { resultData } = useLicenceResultData()
+  const { resultData } = useResultData()
 
   const { language } = i18n
 

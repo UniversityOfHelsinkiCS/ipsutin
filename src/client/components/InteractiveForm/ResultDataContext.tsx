@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react'
 
-import { IP_ASSESSMENT_DATA_KEY } from '../../../config'
 import { FormValues } from '../../types'
 
 interface ResultDataContextValue {
@@ -14,21 +13,23 @@ interface ResultDataContextValue {
   setResultData: React.Dispatch<React.SetStateAction<FormValues>>
 }
 
-const LicenseResultDataContext = createContext<
-  ResultDataContextValue | undefined
->(undefined)
+const ResultDataContext = createContext<ResultDataContextValue | undefined>(
+  undefined
+)
 
-const IpAssessmentResultDataProvider = ({
+const ResultDataProvider = ({
+  dataKey,
   children,
 }: {
+  dataKey: string
   children: React.ReactNode
 }) => {
   const getSavedInstance = useCallback(() => {
-    const savedData = sessionStorage.getItem(IP_ASSESSMENT_DATA_KEY)
+    const savedData = sessionStorage.getItem(dataKey)
     if (savedData) return JSON.parse(savedData)
 
     return {}
-  }, [])
+  }, [dataKey])
 
   const savedFormData = getSavedInstance()
 
@@ -40,20 +41,18 @@ const IpAssessmentResultDataProvider = ({
   )
 
   return (
-    <LicenseResultDataContext.Provider value={contextValue}>
+    <ResultDataContext.Provider value={contextValue}>
       {children}
-    </LicenseResultDataContext.Provider>
+    </ResultDataContext.Provider>
   )
 }
 
-const useIpAssessmentResultData = (): ResultDataContextValue => {
-  const context = useContext(LicenseResultDataContext)
+const useResultData = (): ResultDataContextValue => {
+  const context = useContext(ResultDataContext)
   if (!context) {
-    throw new Error(
-      'useIpAssessmentResultData must be used within a IpAssessmentResultDataProvider'
-    )
+    throw new Error('useResultData must be used within a ResultDataProvider')
   }
   return context
 }
 
-export { IpAssessmentResultDataProvider, useIpAssessmentResultData }
+export { ResultDataProvider, useResultData }

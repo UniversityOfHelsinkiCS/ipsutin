@@ -6,13 +6,12 @@ import { Box, Grid } from '@mui/material'
 
 import { IDEA_EVALUATION_DATA_KEY } from '../../../config'
 import RenderSurvey from '../../components/InteractiveForm/RenderSurvey'
+import { useResultData } from '../../components/InteractiveForm/ResultDataContext'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
 import styles from '../../styles'
 import { FormValues } from '../../types'
-
-import { useIdeaEvaluationResultData } from './IdeaEvaluationResultContext'
 
 const IdeaEvaluation = () => {
   const { t } = useTranslation()
@@ -21,7 +20,7 @@ const IdeaEvaluation = () => {
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ideaEvaluation')
 
-  const { resultData, setResultData } = useIdeaEvaluationResultData()
+  const { resultData, setResultData } = useResultData()
 
   const faculty = searchParams.get('faculty')
   const { formStyles } = styles

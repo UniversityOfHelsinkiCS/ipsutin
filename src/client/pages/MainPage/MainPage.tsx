@@ -13,7 +13,7 @@ const MainPage = () => {
   return (
     <Grid container>
       <HeroSection />
-      <Box sx={{ mx: 'auto', maxWidth: '1560px' }}>
+      <Box component='section' sx={{ mx: 'auto', maxWidth: '1560px' }}>
         <Grid
           item
           sm={12}
