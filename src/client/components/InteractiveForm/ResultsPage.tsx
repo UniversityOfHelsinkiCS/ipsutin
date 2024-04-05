@@ -17,7 +17,7 @@ import {
   getResultsWithLabels,
   ResultWithLabels,
 } from '../../util/results'
-import ExtraAction from '../Action/ExtraAction'
+import ProductSuggestion from '../Action/ProductSuggestion'
 import ShareResult from '../Action/ShareResult'
 import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
 import Markdown from '../Common/Markdown'
@@ -123,8 +123,11 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
 
       <NavigateBack />
 
-      <Box component='section' sx={cardStyles.subHeading}>
-        <ExtraAction action={recommendedAction} surveyName={surveyName} />
+      <Box component='section' sx={{ m: 4 }}>
+        <ProductSuggestion
+          suggestedProduct={recommendedAction}
+          surveyName={surveyName}
+        />
         <ShareResult surveyName={surveyName} />
       </Box>
     </Box>

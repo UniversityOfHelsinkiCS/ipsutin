@@ -1,36 +1,38 @@
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RecommendationLabel, SurveyName } from '@backend/types'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
-import styles from '../../styles'
 import LinkWithQuery from '../Common/LinkWithQuery'
+import SectionHeading from '../Common/SectionHeading'
 
 import Suggestion from './Suggestion'
 
-interface ExtraActionProps {
-  action: RecommendationLabel
+interface ProductSuggestionProps {
+  suggestedProduct: RecommendationLabel
   surveyName: SurveyName
 }
 
-const { cardStyles } = styles
-
-const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
+const ProductSuggestion = ({
+  suggestedProduct,
+  surveyName,
+}: ProductSuggestionProps) => {
   const { t } = useTranslation()
 
-  if (!action || !surveyName) return null
+  if (!suggestedProduct || !surveyName) return null
 
   // After Software Licensing and Patentability Evaluation,
   // recommend Idea Evaluation when action is not to book Idea Clinic.
   if (
-    action === 'clinic' &&
+    suggestedProduct === 'clinic' &&
     (surveyName === 'licences' || surveyName === 'ipAssessment')
   )
     return null
 
   // After Idea Evaluation, propose linking to Patentability Evaluation as a possible
   // follow-up action when proposal is not to file invention disclosure
-  if (action === 'disclosure' && surveyName === 'ideaEvaluation') return null
+  if (suggestedProduct === 'disclosure' && surveyName === 'ideaEvaluation')
+    return null
 
   const components: { [key in SurveyName]?: ReactElement } = {
     ideaEvaluation: (
@@ -65,17 +67,15 @@ const ExtraAction = ({ action, surveyName }: ExtraActionProps) => {
     ),
   }
 
-  const ExtraActionComponent = components[surveyName]
+  const SuggestionComponent = components[surveyName]
 
   return (
     <Box sx={{ mt: 8 }}>
-      <Typography variant='h6' sx={cardStyles.heading} component='div'>
-        {t('extraAction:title')}
-      </Typography>
+      <SectionHeading level='h2'>{t('extraAction:title')}</SectionHeading>
 
-      {ExtraActionComponent}
+      {SuggestionComponent}
     </Box>
   )
 }
 
-export default ExtraAction
+export default ProductSuggestion
