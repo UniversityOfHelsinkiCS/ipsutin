@@ -8,17 +8,17 @@ import {
 } from '../../../config'
 import App from '../../App'
 import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
-import IdeaEvaluationResults from '../../pages/IdeaEvaluation/IdeaEvaluationResults'
 import IpAssessment from '../../pages/IpAssessment/IpAssessment'
-import IpAssessmentResults from '../../pages/IpAssessment/IpAssessmentResults'
-import LicenceResults from '../../pages/Licences/LicenceResults'
 import Licences from '../../pages/Licences/Licences'
 import MainPage from '../../pages/MainPage/MainPage'
 import Admin from '../Admin/Admin'
 import RenderAnalytics from '../Admin/Analytics/RenderAnalytics'
 import Entry from '../Admin/Entries/Entry'
 import RenderEntries from '../Admin/Entries/RenderEntries'
+import DefaultResultElements from '../InteractiveForm/DefaultResultElements'
+import IpAssessmentResultElements from '../InteractiveForm/IpAssessmentResultElements'
 import { ResultDataProvider } from '../InteractiveForm/ResultDataContext'
+import ResultsPage from '../InteractiveForm/ResultsPage'
 
 const router = createBrowserRouter(
   [
@@ -44,7 +44,12 @@ const router = createBrowserRouter(
             },
             {
               path: 'results',
-              element: <LicenceResults />,
+              element: (
+                <ResultsPage
+                  surveyName='licences'
+                  ResultElements={DefaultResultElements}
+                />
+              ),
             },
           ],
         },
@@ -62,7 +67,12 @@ const router = createBrowserRouter(
             },
             {
               path: 'results',
-              element: <IpAssessmentResults />,
+              element: (
+                <ResultsPage
+                  surveyName='ipAssessment'
+                  ResultElements={IpAssessmentResultElements}
+                />
+              ),
             },
           ],
         },
@@ -80,7 +90,12 @@ const router = createBrowserRouter(
             },
             {
               path: 'results',
-              element: <IdeaEvaluationResults />,
+              element: (
+                <ResultsPage
+                  surveyName='ideaEvaluation'
+                  ResultElements={DefaultResultElements}
+                />
+              ),
             },
           ],
         },

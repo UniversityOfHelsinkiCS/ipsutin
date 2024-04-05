@@ -26,3 +26,5 @@ export const getResultsWithLabels = (
 
   return sortedResultsWithLabels
 }
+
+export type ResultWithLabels = ReturnType<typeof getResultsWithLabels>

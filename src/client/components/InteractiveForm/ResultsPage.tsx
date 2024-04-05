@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Locales } from '@backend/types'
+import { Locales, SurveyName } from '@backend/types'
 import { Box } from '@mui/material'
 
 import useRecommendations from '../../hooks/useRecommendations'
@@ -13,7 +12,11 @@ import {
   getRecommendationScores,
   sortRecommendations,
 } from '../../util/recommendations'
-import { getCommonResult, getResultsWithLabels } from '../../util/results'
+import {
+  getCommonResult,
+  getResultsWithLabels,
+  ResultWithLabels,
+} from '../../util/results'
 import ExtraAction from '../Action/ExtraAction'
 import ShareResult from '../Action/ShareResult'
 import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
@@ -23,30 +26,29 @@ import SectionHeading from '../Common/SectionHeading'
 import RecommendedAction from '../Contact/RecommendedAction'
 
 import CommonResult from './CommonResult'
-import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
-import IpAssessmentResultElements from './IpAssessmentResultElements'
+import { useResultData } from './ResultDataContext'
 
 const { cardStyles } = styles
 
-const ResultsPage = () => {
+type ResultsPageProps = {
+  surveyName: SurveyName
+  ResultElements: React.JSXElementConstructor<{
+    sortedResultsWithLabels: ResultWithLabels
+  }>
+}
+
+const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
   const { t, i18n } = useTranslation()
-  const { survey } = useSurvey('ipAssessment')
+  const { survey } = useSurvey(surveyName)
+
   const { results, isSuccess: resultsFetched } = useResults(survey?.id)
   const { recommendations, isSuccess: recommendationsFetched } =
     useRecommendations(survey?.id)
 
   const refCallback = useResultRefCallback()
-  const { resultData } = useIpAssessmentResultData()
+  const { resultData } = useResultData()
 
   const { language } = i18n
-
-  useEffect(() => {
-    if (recommendationsFetched) {
-      document
-        ?.getElementById('ip-assessment-result-section')
-        ?.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [recommendationsFetched])
 
   if (
     !survey ||
@@ -80,13 +82,9 @@ const ResultsPage = () => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box
-      id='ip-assessment-result-section'
-      component='section'
-      sx={{ ...cardStyles.outerBox, width: '1560px' }}
-    >
+    <Box component='section' sx={{ ...cardStyles.outerBox, width: '1560px' }}>
       <SectionHeading
-        data-cy='ip-assessment-result-section-title'
+        data-cy={`${surveyName}-result-section-title`}
         level='h2'
         sx={{ mt: 4, ml: 4 }}
       >
@@ -120,16 +118,14 @@ const ResultsPage = () => {
         <RecommendedAction action={recommendedAction} />
 
         <SectionHeading level='h3'>{t('results:subtitle')}</SectionHeading>
-        <IpAssessmentResultElements
-          sortedResultsWithLabels={sortedResultsWithLabels}
-        />
+        <ResultElements sortedResultsWithLabels={sortedResultsWithLabels} />
       </Box>
 
       <NavigateBack />
 
       <Box sx={cardStyles.subHeading}>
-        <ExtraAction action={recommendedAction} surveyName='ipAssessment' />
-        <ShareResult surveyName={survey.name} />
+        <ExtraAction action={recommendedAction} surveyName={surveyName} />
+        <ShareResult surveyName={surveyName} />
       </Box>
     </Box>
   )
