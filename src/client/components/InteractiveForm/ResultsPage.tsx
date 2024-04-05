@@ -123,7 +123,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
 
       <NavigateBack />
 
-      <Box sx={cardStyles.subHeading}>
+      <Box component='section' sx={cardStyles.subHeading}>
         <ExtraAction action={recommendedAction} surveyName={surveyName} />
         <ShareResult surveyName={surveyName} />
       </Box>
