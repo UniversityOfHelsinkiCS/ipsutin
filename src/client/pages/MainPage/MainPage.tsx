@@ -3,7 +3,6 @@ import { Box, Grid, Typography } from '@mui/material'
 
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import ServiceLinks from './ServiceLinks'
 
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
@@ -44,7 +43,7 @@ const MainPage = () => {
           sx={{ mt: 4, mb: 12, textAlign: 'center' }}
         >
           <SectionHeading>{t('mainPage:services')}</SectionHeading>
-          {/* <ServiceLinks /> */}
+          <ServiceLinks />
         </Grid>
       </Box>
     </Grid>

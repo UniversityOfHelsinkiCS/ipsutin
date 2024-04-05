@@ -78,12 +78,12 @@ const ServiceLink = ({ service }: { service: Service }) => (
     to={`/services/${service.id}`}
     sx={{
       mx: '0.5rem',
-      px: '2rem',
+      px: { xs: '0.5rem', md: '2rem' },
       borderRadius: '0.5rem',
       border: `1px solid ${service.colors.background}`,
       color: service.colors.text,
       backgroundColor: service.colors.background,
-      fontSize: '16pt',
+      fontSize: { xs: '12pt', md: '16pt' },
       '&:hover': {
         textDecoration: 'underline',
         border: `1px solid ${service.colors.background}`,
@@ -99,8 +99,10 @@ const ServiceLinks = () => (
   <Box
     sx={{
       mt: 2,
-      mx: 4,
+      mx: { xs: 1, md: 4 },
       display: 'flex',
+      flexWrap: 'wrap',
+      gap: '1rem 0',
       justifyContent: 'center',
       alignItems: 'center',
     }}
