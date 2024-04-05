@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom' // Import Link component from react-router-dom
-import { Box, Button } from '@mui/material'
+import { Box, Button, getContrastRatio } from '@mui/material'
 
 import { Service } from '../../types'
 
@@ -14,7 +14,6 @@ const services: Service[] = [
     },
     colors: {
       background: '#ed1975',
-      text: '#000',
     },
   },
   {
@@ -27,7 +26,6 @@ const services: Service[] = [
     },
     colors: {
       background: '#8261a1',
-      text: '#fff',
     },
   },
   {
@@ -40,7 +38,6 @@ const services: Service[] = [
     },
     colors: {
       background: '#23439b',
-      text: '#fff',
     },
   },
   {
@@ -53,7 +50,6 @@ const services: Service[] = [
     },
     colors: {
       background: '#199995',
-      text: '#000',
     },
   },
   {
@@ -66,7 +62,6 @@ const services: Service[] = [
     },
     colors: {
       background: '#afd255',
-      text: '#000',
     },
   },
 ]
@@ -81,7 +76,10 @@ const ServiceLink = ({ service }: { service: Service }) => (
       px: { xs: '0.5rem', md: '2rem' },
       borderRadius: '0.5rem',
       border: `1px solid ${service.colors.background}`,
-      color: service.colors.text,
+      color:
+        getContrastRatio(service.colors.background, '#fff') > 4.5
+          ? '#fff'
+          : '#000',
       backgroundColor: service.colors.background,
       fontSize: { xs: '12pt', md: '16pt' },
       '&:hover': {
