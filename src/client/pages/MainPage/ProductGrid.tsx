@@ -31,7 +31,7 @@ const ProductCard = ({ title, description, href }: ProductCardProps) => (
             md: '200px',
             xl: '150px',
           },
-          fontSize: '28pt',
+          fontSize: { xs: '18pt', sm: '20pt', md: '24pt', lg: '28pt' },
           textTransform: 'uppercase',
           fontWeight: '700',
           letterSpacing: '-0.1rem',
@@ -75,7 +75,7 @@ const ProductGrid = () => {
   const faculty = useSelectedFaculty()
 
   return (
-    <Grid container sx={{ display: 'flex' }}>
+    <Grid container sx={{ display: 'flex', gap: { xs: '1rem 0' } }}>
       <Grid item xs={12} md={4} lg={4}>
         <ProductCard
           title={t('surveySelectionNames:ipAssessment')}

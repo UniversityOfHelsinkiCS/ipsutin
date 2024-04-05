@@ -27,7 +27,11 @@ const MainPage = () => {
   return (
     <Grid container sx={{ mx: 'auto', maxWidth: '1560px' }}>
       <HeroSection />
-      <Grid item sm={12} sx={{ px: 4, mt: 4, textAlign: 'center' }}>
+      <Grid
+        item
+        sm={12}
+        sx={{ px: { xs: 2, md: 4 }, mt: 4, textAlign: 'center' }}
+      >
         <SectionHeading>{t('mainPage:products')}</SectionHeading>
         <ProductGrid />
       </Grid>
