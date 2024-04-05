@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Locales, Recommendation } from '@backend/types'
 import { Chip, getContrastRatio, Tooltip } from '@mui/material'
 
-import services from '../../util/services'
+import { recommendations } from '../../util/services'
 
 interface RecommendationChipProps {
   recommendation: Recommendation
@@ -17,8 +17,10 @@ const RecommendationChip = ({
   const { i18n } = useTranslation()
   const { language } = i18n
 
-  const service = services.find((s) => s.id === recommendation.label)
-  const serviceColor = service?.colors.background || '#000'
+  const serviceRecommendation = recommendations.find(
+    (s) => s.id === recommendation.label
+  )
+  const serviceColor = serviceRecommendation?.colors.background || '#000'
 
   const style = {
     backgroundColor: serviceColor,

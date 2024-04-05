@@ -7,7 +7,7 @@ import {
 import { Box, Container } from '@mui/material'
 import { ResultWithLabels } from 'src/client/types'
 
-import services from '../../util/services'
+import { recommendations } from '../../util/services'
 import Markdown from '../Common/Markdown'
 
 const ResultElement = ({
@@ -33,8 +33,10 @@ const ResultElement = ({
 
       <Box style={{ margin: '1rem 0 0 0' }}>
         {dimensions.map((dimension) => {
-          const service = services.find((s) => s.id === dimension)
-          const color = service?.colors.background
+          const serviceRecommendation = recommendations.find(
+            (s) => s.id === dimension
+          )
+          const serviceColor = serviceRecommendation?.colors.background
           const recommendationResult = resultData?.data?.resultData[dimension]
 
           if (!recommendationResult) return null
@@ -47,7 +49,7 @@ const ResultElement = ({
                 margin: '1rem',
                 padding: '0 2rem 0 2rem ',
                 borderLeft: 'solid',
-                borderColor: color,
+                borderColor: serviceColor,
                 borderWidth: '6px',
               }}
             >

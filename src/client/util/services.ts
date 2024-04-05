@@ -63,4 +63,32 @@ const services: Service[] = [
   },
 ]
 
+export const recommendations = [
+  ...services,
+  {
+    id: 'restrictive',
+    label: 'restrictive',
+    title: {
+      fi: 'Restrictive',
+      en: 'Restrictive',
+      sv: 'Restrictive',
+    },
+    colors: {
+      background: '#eb4034',
+    },
+  },
+  {
+    id: 'permissive',
+    label: 'permissive',
+    title: {
+      fi: 'Permissive',
+      en: 'Permissive',
+      sv: 'Permissive',
+    },
+    colors: {
+      background: '#f18235',
+    },
+  },
+]
+
 export default services
