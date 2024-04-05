@@ -105,7 +105,7 @@
   },
   "mainPage": {
     "mainHeading": "Make a difference in the world",
-    "mainContent": "Welcome {{name}} to your personal space of Innotin. Innotin, you will secure your idea, invention or software and help you to proceed with your patenting process",
+    "mainContent": "Welcome {{name}}, to your personal space of Innotin. Innotin is where you secure your idea, invention or software and help you to proceed with your patenting process.",
     "products": "Products",
     "services": "Services",
     "toolSelectionQuestion": "Which of these surveys would you like to use?",
