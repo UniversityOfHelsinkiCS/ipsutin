@@ -95,6 +95,7 @@ const HeroSection = () => {
             type='button'
             onClick={playing ? handleVideoPause : handleVideoPlay}
             sx={{
+              lineHeight: '1.5rem',
               borderRadius: '0.2rem',
               color: 'white',
               backgroundColor: 'primary.main',
@@ -106,7 +107,8 @@ const HeroSection = () => {
           >
             {playing ? (
               <>
-                <PauseIcon fontSize='small' /> {t('mainPage:pauseVideo')}
+                <PauseIcon fontSize='small' />{' '}
+                <span>{t('mainPage:pauseVideo')}</span>
               </>
             ) : (
               <>
