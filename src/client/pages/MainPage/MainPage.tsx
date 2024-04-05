@@ -1,24 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid } from '@mui/material'
+
+import SectionHeading from '../../components/Common/SectionHeading'
 
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
 import ServiceLinks from './ServiceLinks'
-
-const SectionHeading = ({ children }: { children: React.ReactNode }) => (
-  <Typography
-    component='h2'
-    sx={{
-      mb: 2,
-      fontSize: '24pt',
-      fontWeight: 700,
-      textTransform: 'uppercase',
-      letterSpacing: '-0.1rem',
-    }}
-  >
-    {children}
-  </Typography>
-)
 
 const MainPage = () => {
   const { t } = useTranslation()
@@ -32,7 +19,7 @@ const MainPage = () => {
           sm={12}
           sx={{ px: { xs: 2, md: 4 }, mt: 4, textAlign: 'center' }}
         >
-          <SectionHeading>{t('mainPage:products')}</SectionHeading>
+          <SectionHeading level='h2'>{t('mainPage:products')}</SectionHeading>
           <ProductGrid />
         </Grid>
         <Grid
@@ -42,7 +29,7 @@ const MainPage = () => {
           xl={12}
           sx={{ mt: 4, mb: 12, textAlign: 'center' }}
         >
-          <SectionHeading>{t('mainPage:services')}</SectionHeading>
+          <SectionHeading level='h2'>{t('mainPage:services')}</SectionHeading>
           <ServiceLinks />
         </Grid>
       </Box>
