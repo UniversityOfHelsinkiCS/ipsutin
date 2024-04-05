@@ -1,9 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales, Recommendation } from '@backend/types'
-import { Chip, Tooltip } from '@mui/material'
+import { Chip, getContrastRatio, Tooltip } from '@mui/material'
 
-import colors from '../../util/colors'
+import services from '../../util/services'
 
 interface RecommendationChipProps {
   recommendation: Recommendation
@@ -17,12 +17,14 @@ const RecommendationChip = ({
   const { i18n } = useTranslation()
   const { language } = i18n
 
+  const service = services.find((s) => s.id === recommendation.label)
+  const serviceColor = service?.colors.background || '#000'
+
   const style = {
-    backgroundColor:
-      colors[recommendation.label as keyof typeof colors]?.background,
+    backgroundColor: serviceColor,
     marginX: '0.1rem',
     fontWeight: 'normal',
-    color: colors[recommendation.label as keyof typeof colors]?.text,
+    color: getContrastRatio(serviceColor, '#fff') > 4.5 ? '#fff' : '#000',
   }
 
   return compact ? (

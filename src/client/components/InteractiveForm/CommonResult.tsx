@@ -2,7 +2,7 @@ import React from 'react'
 import { Locales, RecommendationLabel, Result } from '@backend/types'
 import { Box } from '@mui/material'
 
-import colors from '../../util/colors'
+import services from '../../util/services'
 import Markdown from '../Common/Markdown'
 
 const CommonResult = ({
@@ -20,6 +20,9 @@ const CommonResult = ({
 
   if (!recommendationResult) return null
 
+  const service = services.find((s) => s.id === recommendation)
+  const color = service?.colors.background
+
   return (
     <Box
       data-cy={`result-wrapper-${resultData.optionLabel}-${recommendation}`}
@@ -27,7 +30,7 @@ const CommonResult = ({
       style={{
         padding: '0 2rem 0 2rem ',
         borderLeft: 'solid',
-        borderColor: colors[recommendation],
+        borderColor: color,
         borderWidth: '6px',
       }}
     >
