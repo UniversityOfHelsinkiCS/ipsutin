@@ -49,14 +49,14 @@ const HeroSection = () => {
             component='h1'
             sx={{
               position: 'absolute',
-              top: '30%',
+              top: { xs: '5%', md: '30%' },
               left: '40%',
-              paddingRight: '4rem',
+              paddingRight: { xs: '1rem', sm: '2rem', md: '4rem' },
               color: 'white',
               fontSize: {
-                xs: '28pt',
-                sm: '32pt',
-                md: '36pt',
+                xs: '20pt',
+                sm: '24pt',
+                md: '32pt',
                 lg: '40pt',
                 xl: '56pt',
               },
@@ -71,13 +71,14 @@ const HeroSection = () => {
           {!isLoading && user && (
             <Typography
               sx={{
+                visibility: { xs: 'hidden', sm: 'visible' },
                 position: 'absolute',
-                top: '60%',
-                left: '45%',
-                paddingRight: '4rem',
-                fontSize: { xs: '12pt', sm: '16pt', md: '20pt', lg: '24pt' },
+                top: { sm: '50%', md: '60%' },
+                left: { sm: '40%', md: '45%' },
+                paddingRight: { sm: '2rem', md: '4rem' },
+                fontSize: { sm: '12pt', md: '16pt', lg: '24pt' },
                 fontWeight: 600,
-                maxWidth: '70%',
+                maxWidth: { md: '70%' },
                 color: 'white',
               }}
             >
