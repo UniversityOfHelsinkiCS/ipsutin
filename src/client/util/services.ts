@@ -10,7 +10,7 @@ export const services: Service[] = [
       sv: 'Invention disclosure',
     },
     colors: {
-      background: '#ed1975',
+      background: '#5D576B',
     },
   },
   {
