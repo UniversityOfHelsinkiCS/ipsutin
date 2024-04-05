@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom' // Import Link component from react-rout
 import { Box, Button, getContrastRatio } from '@mui/material'
 
 import { Service } from '../../types'
-import services from '../../util/services'
+import { services } from '../../util/services'
 
 const ServiceLink = ({ service }: { service: Service }) => (
   <Button

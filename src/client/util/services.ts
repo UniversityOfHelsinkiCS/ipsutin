@@ -1,6 +1,6 @@
 import { Service } from '../types'
 
-const services: Service[] = [
+export const services: Service[] = [
   {
     id: 'disclosure',
     label: 'disclosure',
@@ -90,5 +90,3 @@ export const recommendations = [
     },
   },
 ]
-
-export default services
