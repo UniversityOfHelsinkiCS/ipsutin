@@ -4,7 +4,6 @@ import { Faculty, Locales } from '@backend/types'
 import {
   FormControl,
   InputLabel,
-  ListItem,
   ListSubheader,
   MenuItem,
   Select,
@@ -76,7 +75,7 @@ const SelectFaculty = () => {
       <ListSubheader disableSticky>
         {t('navbar:facultySubHeader')}
       </ListSubheader>
-      <ListItem sx={{ px: 4, mb: 2 }} disablePadding>
+      <MenuItem sx={{ px: 4, mb: 2 }}>
         <FormControl variant='standard' sx={formStyles.formControl}>
           <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
           <Select
@@ -98,7 +97,7 @@ const SelectFaculty = () => {
             ))}
           </Select>
         </FormControl>
-      </ListItem>
+      </MenuItem>
     </>
   )
 }

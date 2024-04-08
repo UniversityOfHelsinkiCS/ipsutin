@@ -76,12 +76,13 @@ const ProfileMenu = () => {
     <>
       <Tooltip title={t('navbar:settings')}>
         <IconButton
+          role='button'
           onClick={handleClick}
           size='small'
           sx={{ ml: 2 }}
           aria-controls={open ? 'profile-settings' : undefined}
           aria-haspopup='true'
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? 'true' : false}
         >
           <Avatar
             sx={{
