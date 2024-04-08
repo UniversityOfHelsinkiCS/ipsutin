@@ -1,4 +1,4 @@
-import { Entry, Survey } from '../db/models'
+import { Entry, Survey, User } from '../db/models'
 import NotFoundError from '../errors/NotFoundError'
 import { EntryValues, EntryWithSurvey } from '../types'
 import logger from '../util/logger'
@@ -41,6 +41,10 @@ export const createEntry = async (
   body: EntryValues
 ) => {
   const { sessionToken, data } = body
+
+  const user = await User.findByPk(userId)
+
+  data.faculty = user?.preferredFaculty || 'OTHER'
 
   const existingEntry = await Entry.findOne({
     where: {

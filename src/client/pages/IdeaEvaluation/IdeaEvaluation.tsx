@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
 
 import { IDEA_EVALUATION_DATA_KEY } from '../../../config'
@@ -15,13 +15,10 @@ import { FormValues } from '../../types'
 const IdeaEvaluation = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const location = useLocation()
-  const [searchParams] = useSearchParams()
-  const { survey, isLoading } = useSurvey('ideaEvaluation')
+
+  const { survey, isLoading: surveyIsLoading } = useSurvey('ideaEvaluation')
 
   const { resultData, setResultData } = useResultData()
-
-  const faculty = searchParams.get('faculty')
 
   const mutation = useSaveEntryMutation(survey?.id)
 
@@ -36,17 +33,14 @@ const IdeaEvaluation = () => {
     sessionStorageKey: IDEA_EVALUATION_DATA_KEY,
   })
 
-  if (!survey || isLoading || !faculty) return null
+  if (!survey || surveyIsLoading) return null
 
   const onSubmit = (data: FormValues) => {
-    const submittedData = { ...data, faculty }
-
-    setResultData(submittedData)
-    mutation.mutateAsync(submittedData)
+    setResultData(data)
+    mutation.mutateAsync(data)
 
     navigate({
       pathname: './results',
-      search: location.search,
     })
   }
 
