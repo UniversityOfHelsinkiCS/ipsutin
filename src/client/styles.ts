@@ -6,12 +6,6 @@ const cardStyles = {
     textAlign: 'left',
     mb: 2,
   },
-  card: {
-    m: 2,
-    mt: 4,
-    transition: '0.3s',
-    textAlign: 'left',
-  },
   expendableBox: {
     my: 2,
     mx: 2,
