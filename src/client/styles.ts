@@ -38,6 +38,7 @@ const cardStyles = {
     spacing: 1,
   },
   questionsContainer: {
+    mx: 4,
     mt: 2,
     mb: 8,
   },
@@ -79,12 +80,6 @@ const cardStyles = {
 }
 
 const formStyles = {
-  heading: {
-    fontWeight: '200',
-    textAlign: 'left',
-    mt: 4,
-    mx: 4,
-  },
   formControl: {
     width: '100%',
   },
