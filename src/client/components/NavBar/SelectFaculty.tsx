@@ -8,6 +8,7 @@ import {
   ListSubheader,
   MenuItem,
   Select,
+  SelectChangeEvent,
 } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
@@ -50,7 +51,7 @@ const SelectFaculty = () => {
   const { language } = i18n
   const { cardStyles, formStyles } = styles
 
-  const handleUpdateFaculty = async (event: any) => {
+  const handleUpdateFaculty = async (event: SelectChangeEvent<string>) => {
     setFaculty(event.target.value)
 
     try {
