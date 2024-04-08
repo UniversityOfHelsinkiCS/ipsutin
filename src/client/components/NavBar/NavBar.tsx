@@ -19,7 +19,6 @@ import {
 } from '@mui/material'
 
 import hyLogo from '../../assets/hy_logo.svg'
-import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
@@ -31,7 +30,6 @@ import { PAGES } from './util'
 const NavBar = () => {
   const { t } = useTranslation()
   const { user, isLoading } = useLoggedInUser()
-  const faculty = useSelectedFaculty()
 
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -68,7 +66,7 @@ const NavBar = () => {
               {PAGES.map((page) => (
                 <Button
                   component={NavLink}
-                  to={`${page.path}?faculty=${faculty}`}
+                  to={page.path}
                   key={page.name}
                   sx={navStyles.link}
                 >
@@ -113,7 +111,7 @@ const NavBar = () => {
           <ListItem key={page.name} disablePadding>
             <ListItemButton
               component={NavLink}
-              to={`${page.path}?faculty=${faculty}`}
+              to={page.path}
               sx={{ justifyContent: 'space-between', px: 4 }}
             >
               <ListItemText primary={t(`navbar:${page.name}`)} />
