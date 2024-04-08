@@ -26,18 +26,14 @@ const UserInformation = () => {
 
   if (!user || isLoading) return <Skeleton variant='text' width={100} />
 
-  const displayedFields: (keyof User)[] = [
-    'username',
-    'email',
-    'preferredFaculty',
-  ]
+  const displayedFields: (keyof User)[] = ['username', 'email']
 
   return (
     <>
       <ListSubheader disableSticky>
         {t('navbar:userInfoSubHeader')}
       </ListSubheader>
-      <ListItem sx={{ px: 4 }} disablePadding>
+      <ListItem sx={{ px: 4, mb: 2 }} disablePadding>
         <dl style={{ margin: 0 }}>
           {displayedFields.map((field) => (
             <Box
