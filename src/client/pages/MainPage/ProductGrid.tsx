@@ -10,7 +10,6 @@ import {
 } from '@mui/material'
 import { grey } from '@mui/material/colors'
 
-import { useSelectedFaculty } from '../../hooks/useFaculty'
 import { ProductCardProps } from '../../types'
 
 const ProductCard = ({ title, description, href }: ProductCardProps) => (
@@ -72,8 +71,6 @@ const ProductCard = ({ title, description, href }: ProductCardProps) => (
 const ProductGrid = () => {
   const { t } = useTranslation()
 
-  const faculty = useSelectedFaculty()
-
   return (
     <Grid container sx={{ display: 'flex', gap: { xs: '1rem 0' } }}>
       <Grid item xs={12} md={4} lg={4}>
@@ -81,7 +78,7 @@ const ProductGrid = () => {
           title={t('surveySelectionNames:ipAssessment')}
           description={t('surveyInfos:ipAssessment')}
           imgPath='/'
-          href={`/ipassessment?faculty=${faculty}`}
+          href='/ipassessment'
         />
       </Grid>
       <Grid item xs={12} md={4} lg={4}>
@@ -89,7 +86,7 @@ const ProductGrid = () => {
           title={t('surveySelectionNames:licences')}
           description={t('surveyInfos:licences')}
           imgPath='/'
-          href={`/licences?faculty=${faculty}`}
+          href='/licences'
         />
       </Grid>
       <Grid item xs={12} md={4} lg={4}>
@@ -97,7 +94,7 @@ const ProductGrid = () => {
           title={t('surveySelectionNames:ideaEvaluation')}
           description={t('surveyInfos:ideaEvaluation')}
           imgPath='/'
-          href={`/ideaevaluation?faculty=${faculty}`}
+          href='/ideaevaluation'
         />
       </Grid>
     </Grid>
