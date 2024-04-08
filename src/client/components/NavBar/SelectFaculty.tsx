@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
 import { Faculty, Locales } from '@backend/types'
 import {
   FormControl,
@@ -12,8 +11,8 @@ import {
 } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
-import { useFaculties, useUserFaculties } from '../../hooks/useFaculty'
-import { useUpdatedUser } from '../../hooks/useUser'
+import { useFaculties } from '../../hooks/useFaculty'
+import { useLoggedInUser, useUpdatedUser } from '../../hooks/useUser'
 import styles from '../../styles'
 
 const otherFaculty = {
@@ -38,53 +37,19 @@ const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
 
 const SelectFaculty = () => {
   const { t, i18n } = useTranslation()
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [faculty, setFaculty] = useState<Faculty>()
+  const { user } = useLoggedInUser()
+  const [faculty, setFaculty] = useState<string>(
+    user?.preferredFaculty || 'OTHER'
+  )
   const { faculties, isLoading: facultiesLoading } = useFaculties()
-  const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
 
   const { language } = i18n
   const { cardStyles, formStyles } = styles
   const mutation = useUpdatedUser()
 
-  useEffect(() => {}, [setSearchParams])
-
-  useEffect(() => {
-    if (
-      !faculties ||
-      facultiesLoading ||
-      !userFaculties ||
-      userFacultiesLoading
-    ) {
-      setSearchParams({ faculty: otherFaculty.code })
-      setFaculty(otherFaculty)
-
-      return
-    }
-
-    const facultyCode = searchParams.get('faculty')
-    const selectedFaculty = faculties.find((f) => f.code === facultyCode)
-
-    if (selectedFaculty) {
-      setFaculty(selectedFaculty)
-    } else if (userFaculties.length > 0) {
-      const userFaculty = userFaculties[0]
-
-      setSearchParams({ faculty: userFaculty?.code })
-      setFaculty(userFaculty)
-    }
-  }, [
-    faculties,
-    facultiesLoading,
-    searchParams,
-    setSearchParams,
-    userFaculties,
-    userFacultiesLoading,
-  ])
-
   const handleUpdateFaculty = async () => {
     try {
-      await mutation.mutate({ preferredFaculty: 'H50' })
+      await mutation.mutate({ preferredFaculty: faculty })
       enqueueSnackbar(t('facultySelect:facultyChangeSuccess'), {
         variant: 'success',
       })
@@ -112,7 +77,7 @@ const SelectFaculty = () => {
             sx={cardStyles.inputField}
             data-cy='faculty-select'
             label={t('facultySelect:inputLabel')}
-            value={faculty?.code || ''}
+            value={faculty}
             size='small'
           >
             {organisations.map((f: Faculty) => (
@@ -121,8 +86,7 @@ const SelectFaculty = () => {
                 key={f.code}
                 value={f.code}
                 onClick={() => {
-                  setSearchParams({ faculty: f.code })
-                  setFaculty(f)
+                  setFaculty(f.code)
                   handleUpdateFaculty()
                 }}
               >
