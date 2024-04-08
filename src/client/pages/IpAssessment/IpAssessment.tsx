@@ -11,6 +11,7 @@ import RenderQuestions from '../../components/InteractiveForm/RenderQuestions'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
+import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 import { FormValues } from '../../types'
 
@@ -22,9 +23,9 @@ const IpAssessment = () => {
   const location = useLocation()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ipAssessment')
-
   const { resultData, setResultData } = useIpAssessmentResultData()
-
+  const { user } = useLoggedInUser()
+  const faculty2 = user?.preferredFaculty
   const faculty = searchParams.get('faculty')
   const { formStyles, cardStyles } = styles
 
@@ -51,10 +52,10 @@ const IpAssessment = () => {
     sessionStorageKey: IP_ASSESSMENT_DATA_KEY,
   })
 
-  if (!survey || isLoading || !faculty) return null
+  if (!survey || isLoading || !faculty || !faculty2) return null
 
   const onSubmit = (data: FormValues) => {
-    const submittedData = { ...data, faculty }
+    const submittedData = { ...data, faculty2 }
 
     setResultData(data)
     mutation.mutateAsync(submittedData)
