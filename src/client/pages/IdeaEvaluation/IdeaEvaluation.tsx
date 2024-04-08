@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
-import { Box, Grid } from '@mui/material'
+import { Box } from '@mui/material'
 
 import { IDEA_EVALUATION_DATA_KEY } from '../../../config'
 import RenderSurvey from '../../components/InteractiveForm/RenderSurvey'
@@ -52,19 +52,15 @@ const IdeaEvaluation = () => {
 
   return (
     <Box component='section'>
-      <Grid container>
-        <Grid item xl={12}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <RenderSurvey
-              control={control}
-              watch={watch}
-              questions={survey.Questions}
-              surveyName={t('surveyNames:ideaEvaluation')}
-              surveyInfo={t('surveyInfos:ideaEvaluation')}
-            />
-          </form>
-        </Grid>
-      </Grid>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RenderSurvey
+          control={control}
+          watch={watch}
+          questions={survey.Questions}
+          surveyName={t('surveyNames:ideaEvaluation')}
+          surveyInfo={t('surveyInfos:ideaEvaluation')}
+        />
+      </form>
     </Box>
   )
 }

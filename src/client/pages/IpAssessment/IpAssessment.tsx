@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { Question } from '@backend/types'
-import { Box, Button, Grid, Stack, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 
 import { IP_ASSESSMENT_DATA_KEY } from '../../../config'
 import ResetForm from '../../components/Common/ResetForm'
@@ -69,102 +69,98 @@ const IpAssessment = () => {
 
   return (
     <Box component='section'>
-      <Grid container>
-        <Grid item xl={12}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={cardStyles.outerBox}>
-              <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
-                {t('surveyNames:ipAssessment')}
-              </SectionHeading>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Box sx={cardStyles.outerBox}>
+          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
+            {t('surveyNames:ipAssessment')}
+          </SectionHeading>
 
-              <Typography component='p' variant='h6' sx={{ m: 4 }}>
-                {t('surveyInfos:ipAssessment')}
-              </Typography>
+          <Typography component='p' variant='h6' sx={{ m: 4 }}>
+            {t('surveyInfos:ipAssessment')}
+          </Typography>
 
-              <Box component='section'>
-                <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
-                  1. {t('ipAssessmentSurvey:technicalTitle')}
-                </SectionHeading>
+          <Box component='section'>
+            <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+              1. {t('ipAssessmentSurvey:technicalTitle')}
+            </SectionHeading>
 
-                {technical.map((question: Question) => (
-                  <React.Fragment key={question.id}>
-                    {question.parentId === null && (
-                      <RenderQuestions
-                        control={control}
-                        watch={watch}
-                        question={question}
-                        questions={technical}
-                        language={language}
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-              </Box>
+            {technical.map((question: Question) => (
+              <React.Fragment key={question.id}>
+                {question.parentId === null && (
+                  <RenderQuestions
+                    control={control}
+                    watch={watch}
+                    question={question}
+                    questions={technical}
+                    language={language}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </Box>
 
-              <Box component='section'>
-                <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
-                  2. {t('ipAssessmentSurvey:mathematicalTitle')}
-                </SectionHeading>
+          <Box component='section'>
+            <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+              2. {t('ipAssessmentSurvey:mathematicalTitle')}
+            </SectionHeading>
 
-                {mathematical.map((question: Question) => (
-                  <React.Fragment key={question.id}>
-                    {question.parentId === null && (
-                      <RenderQuestions
-                        control={control}
-                        watch={watch}
-                        question={question}
-                        questions={mathematical}
-                        language={language}
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-              </Box>
+            {mathematical.map((question: Question) => (
+              <React.Fragment key={question.id}>
+                {question.parentId === null && (
+                  <RenderQuestions
+                    control={control}
+                    watch={watch}
+                    question={question}
+                    questions={mathematical}
+                    language={language}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </Box>
 
-              <Box component='section'>
-                <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
-                  3. {t('ipAssessmentSurvey:computerProgramTitle')}
-                </SectionHeading>
+          <Box component='section'>
+            <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+              3. {t('ipAssessmentSurvey:computerProgramTitle')}
+            </SectionHeading>
 
-                {computerProgram.map((question: Question) => (
-                  <React.Fragment key={question.id}>
-                    {question.parentId === null && (
-                      <RenderQuestions
-                        control={control}
-                        watch={watch}
-                        question={question}
-                        questions={computerProgram}
-                        language={language}
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-              </Box>
+            {computerProgram.map((question: Question) => (
+              <React.Fragment key={question.id}>
+                {question.parentId === null && (
+                  <RenderQuestions
+                    control={control}
+                    watch={watch}
+                    question={question}
+                    questions={computerProgram}
+                    language={language}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </Box>
 
-              <Box sx={formStyles.stackBoxWrapper}>
-                <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
-                  <Button
-                    sx={{
-                      px: 4,
-                      borderRadius: '1rem',
-                      textTransform: 'capitalize',
-                      fontWeight: '600',
-                      fontSize: '12pt',
-                    }}
-                    id='contact-form-button'
-                    variant='contained'
-                    color='secondary'
-                    type='submit'
-                  >
-                    {t('common:submit')}
-                  </Button>
-                  <ResetForm />
-                </Stack>
-              </Box>
-            </Box>
-          </form>
-        </Grid>
-      </Grid>
+          <Box sx={formStyles.stackBoxWrapper}>
+            <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
+              <Button
+                sx={{
+                  px: 4,
+                  borderRadius: '1rem',
+                  textTransform: 'capitalize',
+                  fontWeight: '600',
+                  fontSize: '12pt',
+                }}
+                id='contact-form-button'
+                variant='contained'
+                color='secondary'
+                type='submit'
+              >
+                {t('common:submit')}
+              </Button>
+              <ResetForm />
+            </Stack>
+          </Box>
+        </Box>
+      </form>
     </Box>
   )
 }
