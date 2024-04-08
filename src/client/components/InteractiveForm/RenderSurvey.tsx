@@ -18,14 +18,14 @@ const RenderSurvey = ({
 }: InputProps) => {
   const { t, i18n } = useTranslation()
 
-  const { cardStyles, formStyles } = styles
+  const { formStyles } = styles
 
   const { language } = i18n
 
   if (!questions) return null
 
   return (
-    <Box sx={cardStyles.outerBox}>
+    <>
       <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
         {surveyName}
       </SectionHeading>
@@ -68,7 +68,7 @@ const RenderSurvey = ({
           <ResetForm />
         </Stack>
       </Box>
-    </Box>
+    </>
   )
 }
 
