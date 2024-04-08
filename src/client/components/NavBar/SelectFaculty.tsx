@@ -37,19 +37,24 @@ const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
 
 const SelectFaculty = () => {
   const { t, i18n } = useTranslation()
+
   const { user } = useLoggedInUser()
+  const { faculties, isLoading: facultiesLoading } = useFaculties()
+
   const [faculty, setFaculty] = useState<string>(
     user?.preferredFaculty || 'OTHER'
   )
-  const { faculties, isLoading: facultiesLoading } = useFaculties()
+
+  const mutation = useUpdatedUser()
 
   const { language } = i18n
   const { cardStyles, formStyles } = styles
-  const mutation = useUpdatedUser()
 
-  const handleUpdateFaculty = async () => {
+  const handleUpdateFaculty = async (event: any) => {
+    setFaculty(event.target.value)
+
     try {
-      await mutation.mutate({ preferredFaculty: faculty })
+      mutation.mutate({ preferredFaculty: event.target.value })
       enqueueSnackbar(t('facultySelect:facultyChangeSuccess'), {
         variant: 'success',
       })
@@ -79,16 +84,13 @@ const SelectFaculty = () => {
             label={t('facultySelect:inputLabel')}
             value={faculty}
             size='small'
+            onChange={handleUpdateFaculty}
           >
             {organisations.map((f: Faculty) => (
               <MenuItem
                 data-cy={`faculty-option-${f.code}`}
                 key={f.code}
                 value={f.code}
-                onClick={() => {
-                  setFaculty(f.code)
-                  handleUpdateFaculty()
-                }}
               >
                 {f.name[language as keyof Locales]}
               </MenuItem>
