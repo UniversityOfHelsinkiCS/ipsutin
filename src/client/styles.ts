@@ -19,12 +19,6 @@ const cardStyles = {
     flexWrap: 'wrap',
     gap: 0.3,
   },
-  outerBox: {
-    m: 4,
-    maxWidth: 1560,
-    border: 1,
-    borderColor: 'grey.300',
-  },
   gridBox: {
     px: 3,
     py: 2,

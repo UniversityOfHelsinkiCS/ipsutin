@@ -26,7 +26,7 @@ const IpAssessment = () => {
   const { resultData, setResultData } = useResultData()
 
   const faculty = searchParams.get('faculty')
-  const { formStyles, cardStyles } = styles
+  const { formStyles } = styles
 
   const { language } = i18n
 
@@ -70,95 +70,93 @@ const IpAssessment = () => {
   return (
     <Box component='section'>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Box sx={cardStyles.outerBox}>
-          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
-            {t('surveyNames:ipAssessment')}
+        <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
+          {t('surveyNames:ipAssessment')}
+        </SectionHeading>
+
+        <Typography component='p' variant='h6' sx={{ m: 4 }}>
+          {t('surveyInfos:ipAssessment')}
+        </Typography>
+
+        <Box component='section'>
+          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+            1. {t('ipAssessmentSurvey:technicalTitle')}
           </SectionHeading>
 
-          <Typography component='p' variant='h6' sx={{ m: 4 }}>
-            {t('surveyInfos:ipAssessment')}
-          </Typography>
+          {technical.map((question: Question) => (
+            <React.Fragment key={question.id}>
+              {question.parentId === null && (
+                <RenderQuestions
+                  control={control}
+                  watch={watch}
+                  question={question}
+                  questions={technical}
+                  language={language}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </Box>
 
-          <Box component='section'>
-            <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
-              1. {t('ipAssessmentSurvey:technicalTitle')}
-            </SectionHeading>
+        <Box component='section'>
+          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+            2. {t('ipAssessmentSurvey:mathematicalTitle')}
+          </SectionHeading>
 
-            {technical.map((question: Question) => (
-              <React.Fragment key={question.id}>
-                {question.parentId === null && (
-                  <RenderQuestions
-                    control={control}
-                    watch={watch}
-                    question={question}
-                    questions={technical}
-                    language={language}
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </Box>
+          {mathematical.map((question: Question) => (
+            <React.Fragment key={question.id}>
+              {question.parentId === null && (
+                <RenderQuestions
+                  control={control}
+                  watch={watch}
+                  question={question}
+                  questions={mathematical}
+                  language={language}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </Box>
 
-          <Box component='section'>
-            <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
-              2. {t('ipAssessmentSurvey:mathematicalTitle')}
-            </SectionHeading>
+        <Box component='section'>
+          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+            3. {t('ipAssessmentSurvey:computerProgramTitle')}
+          </SectionHeading>
 
-            {mathematical.map((question: Question) => (
-              <React.Fragment key={question.id}>
-                {question.parentId === null && (
-                  <RenderQuestions
-                    control={control}
-                    watch={watch}
-                    question={question}
-                    questions={mathematical}
-                    language={language}
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </Box>
+          {computerProgram.map((question: Question) => (
+            <React.Fragment key={question.id}>
+              {question.parentId === null && (
+                <RenderQuestions
+                  control={control}
+                  watch={watch}
+                  question={question}
+                  questions={computerProgram}
+                  language={language}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </Box>
 
-          <Box component='section'>
-            <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
-              3. {t('ipAssessmentSurvey:computerProgramTitle')}
-            </SectionHeading>
-
-            {computerProgram.map((question: Question) => (
-              <React.Fragment key={question.id}>
-                {question.parentId === null && (
-                  <RenderQuestions
-                    control={control}
-                    watch={watch}
-                    question={question}
-                    questions={computerProgram}
-                    language={language}
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </Box>
-
-          <Box sx={formStyles.stackBoxWrapper}>
-            <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
-              <Button
-                sx={{
-                  px: 4,
-                  borderRadius: '1rem',
-                  textTransform: 'capitalize',
-                  fontWeight: '600',
-                  fontSize: '12pt',
-                }}
-                id='contact-form-button'
-                variant='contained'
-                color='secondary'
-                type='submit'
-              >
-                {t('common:submit')}
-              </Button>
-              <ResetForm />
-            </Stack>
-          </Box>
+        <Box sx={formStyles.stackBoxWrapper}>
+          <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
+            <Button
+              sx={{
+                px: 4,
+                borderRadius: '1rem',
+                textTransform: 'capitalize',
+                fontWeight: '600',
+                fontSize: '12pt',
+              }}
+              id='contact-form-button'
+              variant='contained'
+              color='secondary'
+              type='submit'
+            >
+              {t('common:submit')}
+            </Button>
+            <ResetForm />
+          </Stack>
         </Box>
       </form>
     </Box>
