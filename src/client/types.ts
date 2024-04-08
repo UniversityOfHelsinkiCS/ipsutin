@@ -36,7 +36,6 @@ export interface Service {
   label: RecommendationLabel
   colors: {
     background: string
-    text: string
   }
 }
 

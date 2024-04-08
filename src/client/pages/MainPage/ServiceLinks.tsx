@@ -1,75 +1,8 @@
 import { Link } from 'react-router-dom' // Import Link component from react-router-dom
-import { Box, Button } from '@mui/material'
+import { Box, Button, getContrastRatio } from '@mui/material'
 
 import { Service } from '../../types'
-
-const services: Service[] = [
-  {
-    id: 'disclosure',
-    label: 'disclosure',
-    title: {
-      fi: 'Invention disclosure',
-      en: 'Invention disclosure',
-      sv: 'Invention disclosure',
-    },
-    colors: {
-      background: '#ed1975',
-      text: '#000',
-    },
-  },
-  {
-    id: 'clinic',
-    label: 'clinic',
-    title: {
-      fi: 'Idea clinic',
-      en: 'Idea clinic',
-      sv: 'Idea clinic',
-    },
-    colors: {
-      background: '#8261a1',
-      text: '#fff',
-    },
-  },
-  {
-    id: 'relations',
-    label: 'relations',
-    title: {
-      fi: 'Industry relations',
-      en: 'Industry relations',
-      sv: 'Industry relations',
-    },
-    colors: {
-      background: '#23439b',
-      text: '#fff',
-    },
-  },
-  {
-    id: 'incubator',
-    label: 'incubator',
-    title: {
-      fi: 'Incubator',
-      en: 'Incubator',
-      sv: 'Incubator',
-    },
-    colors: {
-      background: '#199995',
-      text: '#000',
-    },
-  },
-  {
-    id: 'legal',
-    label: 'legal',
-    title: {
-      fi: 'Legal',
-      en: 'Legal',
-      sv: 'Legal',
-    },
-    colors: {
-      background: '#afd255',
-      text: '#000',
-    },
-  },
-]
+import { services } from '../../util/services'
 
 const ServiceLink = ({ service }: { service: Service }) => (
   <Button
@@ -77,12 +10,16 @@ const ServiceLink = ({ service }: { service: Service }) => (
     component={Link}
     to={`/services/${service.id}`}
     sx={{
-      mx: '0.3rem',
-      px: '1rem',
+      mx: '0.5rem',
+      px: { xs: '0.5rem', md: '2rem' },
       borderRadius: '0.5rem',
       border: `1px solid ${service.colors.background}`,
-      color: service.colors.text,
+      color:
+        getContrastRatio(service.colors.background, '#fff') > 4.5
+          ? '#fff'
+          : '#000',
       backgroundColor: service.colors.background,
+      fontSize: { xs: '12pt', md: '16pt' },
       '&:hover': {
         textDecoration: 'underline',
         border: `1px solid ${service.colors.background}`,
@@ -98,8 +35,10 @@ const ServiceLinks = () => (
   <Box
     sx={{
       mt: 2,
-      mx: 4,
+      mx: { xs: 1, md: 4 },
       display: 'flex',
+      flexWrap: 'wrap',
+      gap: '1rem 0',
       justifyContent: 'center',
       alignItems: 'center',
     }}

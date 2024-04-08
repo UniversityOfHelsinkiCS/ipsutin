@@ -9,9 +9,6 @@ import { FULL_URL } from '../config'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
 import { useLoggedInUser } from './hooks/useUser'
-import { IdeaEvaluationResultDataProvider } from './pages/IdeaEvaluation/IdeaEvaluationResultContext'
-import { IpAssessmentResultDataProvider } from './pages/IpAssessment/IpAssessmentResultDataContext'
-import { LicenceResultDataProvider } from './pages/Licences/LicenceResultDataContext'
 import useTheme from './theme'
 
 const App = () => {
@@ -43,13 +40,7 @@ const App = () => {
             justifyContent='center'
             minHeight='50vh'
           >
-            <LicenceResultDataProvider>
-              <IdeaEvaluationResultDataProvider>
-                <IpAssessmentResultDataProvider>
-                  <Outlet />
-                </IpAssessmentResultDataProvider>
-              </IdeaEvaluationResultDataProvider>
-            </LicenceResultDataProvider>
+            <Outlet />
           </Box>
           <Footer />
         </Box>

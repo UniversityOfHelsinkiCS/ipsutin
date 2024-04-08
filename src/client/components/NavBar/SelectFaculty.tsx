@@ -10,6 +10,7 @@ import {
   MenuItem,
   Select,
 } from '@mui/material'
+import { enqueueSnackbar } from 'notistack'
 
 import { useFaculties, useUserFaculties } from '../../hooks/useFaculty'
 import { useUpdatedUser } from '../../hooks/useUser'
@@ -84,9 +85,13 @@ const SelectFaculty = () => {
   const handleUpdateFaculty = async () => {
     try {
       await mutation.mutate({ preferredFaculty: 'H50' })
-      console.log('Preferred faculty updated successfully')
+      enqueueSnackbar(t('facultySelect:facultyChangeSuccess'), {
+        variant: 'success',
+      })
     } catch (error) {
-      console.error('Error updating preferred faculty')
+      enqueueSnackbar(t('facultySelect:facultyChangeError'), {
+        variant: 'error',
+      })
     }
   }
 

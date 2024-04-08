@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Button, SxProps, Theme } from '@mui/material'
 
 interface LinkWithQueryProps {
@@ -17,7 +18,14 @@ const LinkWithQuery = ({ to, children, sx, ...rest }: LinkWithQueryProps) => {
       target='_blank'
       component={Link}
       to={to + search}
-      sx={sx}
+      sx={{
+        borderRadius: '0.5rem',
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+        ...sx,
+      }}
+      endIcon={<OpenInNewIcon />}
       {...rest}
     >
       {children}

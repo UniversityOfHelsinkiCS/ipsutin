@@ -20,13 +20,18 @@ const ProductCard = ({ title, description, href }: ProductCardProps) => (
       border: `1px solid ${grey[300]}`,
     }}
   >
-    <CardContent sx={{ minHeight: '400px', textAlign: 'left' }}>
+    <CardContent
+      sx={{ minHeight: { xs: '200px', md: '400px' }, textAlign: 'left' }}
+    >
       <Typography
         gutterBottom
         component='p'
         sx={{
-          mb: 4,
-          fontSize: '28pt',
+          height: {
+            md: '200px',
+            xl: '150px',
+          },
+          fontSize: { xs: '18pt', sm: '20pt', md: '24pt', lg: '28pt' },
           textTransform: 'uppercase',
           fontWeight: '700',
           letterSpacing: '-0.1rem',
@@ -38,12 +43,13 @@ const ProductCard = ({ title, description, href }: ProductCardProps) => (
         {description}
       </Typography>
     </CardContent>
-    <CardActions>
+    <CardActions sx={{ margin: 0, padding: 0 }}>
       <Button
+        size='small'
         sx={{
           mx: 'auto',
           px: 4,
-          mb: 2,
+          mb: 4,
           borderRadius: '1rem',
           textTransform: 'capitalize',
           fontWeight: '600',
@@ -69,7 +75,7 @@ const ProductGrid = () => {
   const faculty = useSelectedFaculty()
 
   return (
-    <Grid container sx={{ display: 'flex' }}>
+    <Grid container sx={{ display: 'flex', gap: { xs: '1rem 0' } }}>
       <Grid item xs={12} md={4} lg={4}>
         <ProductCard
           title={t('surveySelectionNames:ipAssessment')}

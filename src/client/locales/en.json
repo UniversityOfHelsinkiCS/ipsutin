@@ -83,10 +83,11 @@
   },
   "extraAction": {
     "title": "Based on your selections you may also be interested in these",
-    "shareResultsTitle": "Would you like to have the summary send to your email or share your results with others",
+    "shareResultsTitle": "Share results",
     "shareResultsContent": "New emails are inputted by typing the email address and pressing enter",
     "shareResultInputPlaceholder": "Type in email addresses to share",
     "shareResultSendEmails": "Send summary email",
+    "shareResultEmailErrors": "Please fix the invalid email addresses",
     "pateSuccessMessage": "Shared results with provided email addresses",
     "pateErrorMessage": "Could not share results"
   },
@@ -97,7 +98,9 @@
   },
   "facultySelect": {
     "introMessage": "Start by selecting your faculty",
-    "inputLabel": "Your Faculty"
+    "inputLabel": "Your Faculty",
+    "facultyChangeSuccess": "Success updating your faculty",
+    "facultyChangeError": "Error updating your faculty"
   },
   "surveySelect": {
     "introMessage": "How can we help you today?",
@@ -105,10 +108,12 @@
   },
   "mainPage": {
     "mainHeading": "Make a difference in the world",
-    "mainContent": "Welcome {{name}} to your personal space of Innotin. Innotin, you will secure your idea, invention or software and help you to proceed with your patenting process",
+    "mainContent": "Welcome {{name}}, to your personal space of Innotin. Innotin is where you secure your idea, invention or software and help you to proceed with your patenting process.",
     "products": "Products",
     "services": "Services",
-    "toolSelectionQuestion": "Which of these surveys would you like to use?"
+    "toolSelectionQuestion": "Which of these surveys would you like to use?",
+    "playVideo": "Play video",
+    "pauseVideo": "Pause video"
   },
   "surveyNames": {
     "ipAssessment": "Patentability Evaluation",

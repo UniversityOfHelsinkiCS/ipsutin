@@ -9,17 +9,17 @@ import {
   Box,
   Button,
   Chip,
+  FormHelperText,
   TextField,
-  Typography,
 } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
 import { useLoggedInUser } from '../../hooks/useUser'
-import styles from '../../styles'
 import ShareResultsEmailTemplate from '../../templates/ShareResultsEmailTemplate'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
+import SectionHeading from '../Common/SectionHeading'
 
 interface ShareResultProps {
   surveyName: SurveyName
@@ -29,8 +29,6 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
-
-  const { cardStyles } = styles
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
 
@@ -87,9 +85,9 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
 
   return (
     <Box sx={{ mt: 8 }}>
-      <Typography variant='h6' sx={cardStyles.heading} component='div'>
+      <SectionHeading level='h2'>
         {t('extraAction:shareResultsTitle')}
-      </Typography>
+      </SectionHeading>
       <Markdown>{t('extraAction:shareResultsContent')}</Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -132,6 +130,7 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
                   size='small'
                   margin='dense'
                   variant='outlined'
+                  aria-label={t('extraAction:shareResultsTitle')}
                   placeholder={t('extraAction:shareResultInputPlaceholder')}
                   error={!!errors?.emails}
                   disabled={isSent}
@@ -143,10 +142,16 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
             />
           )}
         />
+        {!!errors?.emails && (
+          <FormHelperText error>
+            {t('extraAction:shareResultEmailErrors')}
+          </FormHelperText>
+        )}
+
         <Button
           data-cy='send-share-results-button'
           variant='contained'
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, borderRadius: '0.5rem' }}
           disabled={isSent}
           onClick={handleSubmit(onSubmit)}
         >

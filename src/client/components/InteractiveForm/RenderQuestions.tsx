@@ -1,6 +1,6 @@
 import React from 'react'
 import { Locales, PossibleChoiceTypes, Question } from '@backend/types'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import styles from '../../styles'
 import { InputProps } from '../../types'
@@ -73,7 +73,7 @@ const RenderQuestions = ({
   )
 
   return (
-    <Container sx={cardStyles.questionsContainer}>
+    <Box sx={cardStyles.questionsContainer}>
       <QuestionText question={question} language={language as keyof Locales} />
       <Choice
         key={question.id}
@@ -94,7 +94,7 @@ const RenderQuestions = ({
             />
           ))}
       </Choice>
-    </Container>
+    </Box>
   )
 }
 

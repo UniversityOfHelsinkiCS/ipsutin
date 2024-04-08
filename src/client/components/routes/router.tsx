@@ -1,18 +1,24 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Outlet } from 'react-router-dom'
 
-import { PUBLIC_URL } from '../../../config'
+import {
+  IDEA_EVALUATION_DATA_KEY,
+  IP_ASSESSMENT_DATA_KEY,
+  LICENCES_DATA_KEY,
+  PUBLIC_URL,
+} from '../../../config'
 import App from '../../App'
 import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
-import IdeaEvaluationResults from '../../pages/IdeaEvaluation/IdeaEvaluationResults'
 import IpAssessment from '../../pages/IpAssessment/IpAssessment'
-import IpAssessmentResults from '../../pages/IpAssessment/IpAssessmentResults'
-import LicenceResults from '../../pages/Licences/LicenceResults'
 import Licences from '../../pages/Licences/Licences'
 import MainPage from '../../pages/MainPage/MainPage'
 import Admin from '../Admin/Admin'
 import RenderAnalytics from '../Admin/Analytics/RenderAnalytics'
 import Entry from '../Admin/Entries/Entry'
 import RenderEntries from '../Admin/Entries/RenderEntries'
+import DefaultResultElements from '../InteractiveForm/DefaultResultElements'
+import IpAssessmentResultElements from '../InteractiveForm/IpAssessmentResultElements'
+import { ResultDataProvider } from '../InteractiveForm/ResultDataContext'
+import ResultsPage from '../InteractiveForm/ResultsPage'
 
 const router = createBrowserRouter(
   [
@@ -26,6 +32,11 @@ const router = createBrowserRouter(
         },
         {
           path: '/licences',
+          element: (
+            <ResultDataProvider dataKey={LICENCES_DATA_KEY}>
+              <Outlet />
+            </ResultDataProvider>
+          ),
           children: [
             {
               index: true,
@@ -33,12 +44,22 @@ const router = createBrowserRouter(
             },
             {
               path: 'results',
-              element: <LicenceResults />,
+              element: (
+                <ResultsPage
+                  surveyName='licences'
+                  ResultElements={DefaultResultElements}
+                />
+              ),
             },
           ],
         },
         {
           path: '/ipassessment',
+          element: (
+            <ResultDataProvider dataKey={IP_ASSESSMENT_DATA_KEY}>
+              <Outlet />
+            </ResultDataProvider>
+          ),
           children: [
             {
               index: true,
@@ -46,12 +67,22 @@ const router = createBrowserRouter(
             },
             {
               path: 'results',
-              element: <IpAssessmentResults />,
+              element: (
+                <ResultsPage
+                  surveyName='ipAssessment'
+                  ResultElements={IpAssessmentResultElements}
+                />
+              ),
             },
           ],
         },
         {
           path: '/ideaevaluation',
+          element: (
+            <ResultDataProvider dataKey={IDEA_EVALUATION_DATA_KEY}>
+              <Outlet />
+            </ResultDataProvider>
+          ),
           children: [
             {
               index: true,
@@ -59,7 +90,12 @@ const router = createBrowserRouter(
             },
             {
               path: 'results',
-              element: <IdeaEvaluationResults />,
+              element: (
+                <ResultsPage
+                  surveyName='ideaEvaluation'
+                  ResultElements={DefaultResultElements}
+                />
+              ),
             },
           ],
         },

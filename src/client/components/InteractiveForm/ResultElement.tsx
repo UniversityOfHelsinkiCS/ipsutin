@@ -4,10 +4,10 @@ import {
   Locales,
   RecommendationLabel,
 } from '@backend/types'
-import { Box, Container } from '@mui/material'
+import { Box, List, ListItem } from '@mui/material'
 import { ResultWithLabels } from 'src/client/types'
 
-import colors from '../../util/colors'
+import { recommendations } from '../../util/services'
 import Markdown from '../Common/Markdown'
 
 const ResultElement = ({
@@ -19,43 +19,47 @@ const ResultElement = ({
   resultData: ResultWithLabels | IPAssessmentResult
   dimensions: RecommendationLabel[]
 }) => {
-  if (!resultData || !dimensions || !resultData) return null
+  if (!resultData || !resultData) return null
 
   return (
-    <Container
+    <Box
+      component='section'
       style={{
         margin: '0 0 3rem 0',
       }}
     >
-      <Box style={{ margin: '1rem' }}>
-        <Markdown>{resultData.isSelected[language]}</Markdown>
-      </Box>
+      <Markdown>{resultData.isSelected[language]}</Markdown>
 
-      <Box style={{ margin: '1rem 0 0 0' }}>
+      <List style={{ margin: '1rem 0 0 0' }}>
         {dimensions.map((dimension) => {
-          const color = colors[dimension] ?? undefined
+          const serviceRecommendation = recommendations.find(
+            (s) => s.id === dimension
+          )
+          const serviceColor = serviceRecommendation?.colors.background
           const recommendationResult = resultData?.data?.resultData[dimension]
 
-          if (!recommendationResult) return null
+          if (!recommendationResult || !recommendationResult[language])
+            return null
 
           return (
-            <Box
+            <ListItem
               data-cy={`result-wrapper-${resultData.optionLabel}-${dimension}`}
+              aria-label={`Suggestion for ${dimension}: ${recommendationResult[language]}`}
               key={`${JSON.stringify(resultData)}.${dimension}`}
               style={{
-                margin: '1rem',
+                margin: '1rem 0 0 0',
                 padding: '0 2rem 0 2rem ',
                 borderLeft: 'solid',
-                borderColor: color,
+                borderColor: serviceColor,
                 borderWidth: '6px',
               }}
             >
               <Markdown>{recommendationResult[language]}</Markdown>
-            </Box>
+            </ListItem>
           )
         })}
-      </Box>
-    </Container>
+      </List>
+    </Box>
   )
 }
 

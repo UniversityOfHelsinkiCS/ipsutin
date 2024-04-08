@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
@@ -7,15 +7,14 @@ import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 
 import { IP_ASSESSMENT_DATA_KEY } from '../../../config'
 import ResetForm from '../../components/Common/ResetForm'
+import SectionHeading from '../../components/Common/SectionHeading'
 import RenderQuestions from '../../components/InteractiveForm/RenderQuestions'
+import { useResultData } from '../../components/InteractiveForm/ResultDataContext'
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
-import { useLoggedInUser } from '../../hooks/useUser'
 import styles from '../../styles'
 import { FormValues } from '../../types'
-
-import { useIpAssessmentResultData } from './IpAssessmentResultDataContext'
 
 const IpAssessment = () => {
   const { t, i18n } = useTranslation()
@@ -23,23 +22,15 @@ const IpAssessment = () => {
   const location = useLocation()
   const [searchParams] = useSearchParams()
   const { survey, isLoading } = useSurvey('ipAssessment')
-  const { resultData, setResultData } = useIpAssessmentResultData()
-  const { user } = useLoggedInUser()
-  const faculty2 = user?.preferredFaculty
+
+  const { resultData, setResultData } = useResultData()
+
   const faculty = searchParams.get('faculty')
   const { formStyles, cardStyles } = styles
 
   const { language } = i18n
 
   const mutation = useSaveEntryMutation(survey?.id)
-
-  useEffect(() => {
-    if (!isLoading) {
-      document
-        ?.getElementById('ip-assessment-main-section')
-        ?.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [isLoading])
 
   const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
@@ -52,10 +43,10 @@ const IpAssessment = () => {
     sessionStorageKey: IP_ASSESSMENT_DATA_KEY,
   })
 
-  if (!survey || isLoading || !faculty || !faculty2) return null
+  if (!survey || isLoading || !faculty) return null
 
   const onSubmit = (data: FormValues) => {
-    const submittedData = { ...data, faculty2 }
+    const submittedData = { ...data, faculty }
 
     setResultData(data)
     mutation.mutateAsync(submittedData)
@@ -77,24 +68,26 @@ const IpAssessment = () => {
   )
 
   return (
-    <Box id='ip-assessment-main-section' sx={formStyles.formWrapper}>
+    <Box component='section'>
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={cardStyles.outerBox}>
-              <Typography component='h2' variant='h5' sx={formStyles.heading}>
+              <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
                 {t('surveyNames:ipAssessment')}
-              </Typography>
+              </SectionHeading>
+
               <Typography component='p' variant='h6' sx={{ m: 4 }}>
                 {t('surveyInfos:ipAssessment')}
               </Typography>
 
-              <Box sx={cardStyles.separatorCard}>
-                <Typography variant='h6' component='h3' sx={{ ml: 2 }}>
+              <Box component='section'>
+                <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
                   1. {t('ipAssessmentSurvey:technicalTitle')}
-                </Typography>
+                </SectionHeading>
+
                 {technical.map((question: Question) => (
-                  <div key={question.id}>
+                  <React.Fragment key={question.id}>
                     {question.parentId === null && (
                       <RenderQuestions
                         control={control}
@@ -104,16 +97,17 @@ const IpAssessment = () => {
                         language={language}
                       />
                     )}
-                  </div>
+                  </React.Fragment>
                 ))}
               </Box>
 
-              <Box sx={cardStyles.separatorCard}>
-                <Typography variant='h6' component='h3' sx={{ ml: 2 }}>
+              <Box component='section'>
+                <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
                   2. {t('ipAssessmentSurvey:mathematicalTitle')}
-                </Typography>
+                </SectionHeading>
+
                 {mathematical.map((question: Question) => (
-                  <div key={question.id}>
+                  <React.Fragment key={question.id}>
                     {question.parentId === null && (
                       <RenderQuestions
                         control={control}
@@ -123,16 +117,17 @@ const IpAssessment = () => {
                         language={language}
                       />
                     )}
-                  </div>
+                  </React.Fragment>
                 ))}
               </Box>
 
-              <Box sx={cardStyles.separatorCard}>
-                <Typography variant='h6' component='h3' sx={{ ml: 2 }}>
+              <Box component='section'>
+                <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
                   3. {t('ipAssessmentSurvey:computerProgramTitle')}
-                </Typography>
+                </SectionHeading>
+
                 {computerProgram.map((question: Question) => (
-                  <div key={question.id}>
+                  <React.Fragment key={question.id}>
                     {question.parentId === null && (
                       <RenderQuestions
                         control={control}
@@ -142,9 +137,10 @@ const IpAssessment = () => {
                         language={language}
                       />
                     )}
-                  </div>
+                  </React.Fragment>
                 ))}
               </Box>
+
               <Box sx={formStyles.stackBoxWrapper}>
                 <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
                   <Button

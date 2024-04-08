@@ -12,11 +12,6 @@ const cardStyles = {
     transition: '0.3s',
     textAlign: 'left',
   },
-  separatorCard: {
-    mx: 2,
-    transition: '0.3s',
-    textAlign: 'left',
-  },
   expendableBox: {
     my: 2,
     mx: 2,
@@ -38,6 +33,7 @@ const cardStyles = {
     spacing: 1,
   },
   questionsContainer: {
+    mx: 4,
     mt: 2,
     mb: 8,
   },
@@ -79,15 +75,6 @@ const cardStyles = {
 }
 
 const formStyles = {
-  heading: {
-    fontWeight: '200',
-    textAlign: 'left',
-    mt: 4,
-    mx: 4,
-  },
-  formWrapper: {
-    maxWidth: 1560,
-  },
   formControl: {
     width: '100%',
   },

@@ -18,7 +18,16 @@ const NavigateBack = () => {
   return (
     <Button
       data-cy='back-to-survey-button'
-      sx={{ ml: 3 }}
+      sx={{
+        ml: 4,
+        borderRadius: '1rem',
+        textTransform: 'capitalize',
+        fontWeight: '600',
+        fontSize: '12pt',
+      }}
+      id='contact-form-button'
+      variant='contained'
+      color='secondary'
       onClick={onNavigateBack}
     >
       {'<'} {t('results:backToMessage')}
