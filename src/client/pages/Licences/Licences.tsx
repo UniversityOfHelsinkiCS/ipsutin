@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
@@ -10,7 +9,6 @@ import { useResultData } from '../../components/InteractiveForm/ResultDataContex
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
-import styles from '../../styles'
 import { FormValues } from '../../types'
 
 const Licences = () => {
@@ -23,17 +21,8 @@ const Licences = () => {
   const { resultData, setResultData } = useResultData()
 
   const faculty = searchParams.get('faculty')
-  const { formStyles } = styles
 
   const mutation = useSaveEntryMutation(survey?.id)
-
-  useEffect(() => {
-    if (!isLoading) {
-      document
-        ?.getElementById('licences-main-section')
-        ?.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [isLoading])
 
   const { handleSubmit, control, watch } = useForm({
     mode: 'onBlur',
@@ -61,7 +50,7 @@ const Licences = () => {
   }
 
   return (
-    <Box id='licences-main-section' sx={formStyles.formWrapper}>
+    <Box component='section'>
       <Grid container>
         <Grid item xl={12}>
           <form onSubmit={handleSubmit(onSubmit)}>

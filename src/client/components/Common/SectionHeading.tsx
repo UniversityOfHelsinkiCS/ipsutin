@@ -5,6 +5,7 @@ type SectionHeadingProps = {
   level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   children: React.ReactNode
   sx?: SxProps
+  [key: string]: any
 }
 
 const SectionHeading = ({

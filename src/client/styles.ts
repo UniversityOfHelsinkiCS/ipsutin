@@ -12,11 +12,6 @@ const cardStyles = {
     transition: '0.3s',
     textAlign: 'left',
   },
-  separatorCard: {
-    mx: 2,
-    transition: '0.3s',
-    textAlign: 'left',
-  },
   expendableBox: {
     my: 2,
     mx: 2,
