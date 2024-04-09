@@ -7,6 +7,8 @@ import {
   Survey,
 } from '@backend/types'
 
+export type Set<T> = React.Dispatch<React.SetStateAction<T>>
+
 export interface InputProps {
   control?: Control<any>
   watch?: UseFormWatch<any>
@@ -28,6 +30,12 @@ export interface ProductCardProps {
   description: string
   href: string
   imgPath?: string
+}
+
+export type Role = 'system' | 'assistant' | 'user'
+export interface Message {
+  role: Role
+  content: string
 }
 
 export interface Service {

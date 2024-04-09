@@ -95,7 +95,6 @@ const NavBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-
       <MobileMenu isOpen={mobileOpen} handleClose={handleMobileToggle}>
         {user?.isAdmin && (
           <ListItem disablePadding>

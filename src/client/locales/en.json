@@ -150,5 +150,10 @@
     "mathematicalNotPatentable": "**For this section, requirements for patentability not fulfilled**. Please book an idea clinic appointment with HIS.",
     "computerProgramPatentable": "**For this section, requirements for patentability potentially fulfilled**. Please file an invention disclosure to HIS.",
     "computerProgramNotPatentable": "**For this section, requirements for patentability not fulfilled**. Please complete the licensing questionnaire and book and idea clinic appointment with HIS."
+  },
+  "inventorsAssistant": {
+    "header": "Inventor's Assistant",
+    "chatBoxPlaceholder": "Enter your idea...",
+    "chatBoxHeader": "Start chatting"
   }
 }

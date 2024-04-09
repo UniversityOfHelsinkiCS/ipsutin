@@ -8,6 +8,7 @@ import {
 } from '../../../config'
 import App from '../../App'
 import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
+import InventorsAssistant from '../../pages/InventorsAssistant/InventorsAssistant'
 import IpAssessment from '../../pages/IpAssessment/IpAssessment'
 import Licences from '../../pages/Licences/Licences'
 import MainPage from '../../pages/MainPage/MainPage'
@@ -116,6 +117,10 @@ const router = createBrowserRouter(
               element: <Entry />,
             },
           ],
+        },
+        {
+          path: '/inventorsassistant',
+          element: <InventorsAssistant />,
         },
       ],
     },
