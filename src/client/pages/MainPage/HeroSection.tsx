@@ -41,6 +41,7 @@ const HeroSection = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        maxHeight: '800px',
       }}
     >
       <Box sx={{ position: 'relative', flex: 1 }}>

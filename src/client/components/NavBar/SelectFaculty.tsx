@@ -4,10 +4,10 @@ import { Faculty, Locales } from '@backend/types'
 import {
   FormControl,
   InputLabel,
-  ListItem,
   ListSubheader,
   MenuItem,
   Select,
+  SelectChangeEvent,
 } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
@@ -50,7 +50,7 @@ const SelectFaculty = () => {
   const { language } = i18n
   const { cardStyles, formStyles } = styles
 
-  const handleUpdateFaculty = async (event: any) => {
+  const handleUpdateFaculty = async (event: SelectChangeEvent<string>) => {
     setFaculty(event.target.value)
 
     try {
@@ -75,7 +75,7 @@ const SelectFaculty = () => {
       <ListSubheader disableSticky>
         {t('navbar:facultySubHeader')}
       </ListSubheader>
-      <ListItem sx={{ px: 4, mb: 2 }} disablePadding>
+      <MenuItem sx={{ px: 4, mb: 2 }}>
         <FormControl variant='standard' sx={formStyles.formControl}>
           <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
           <Select
@@ -97,7 +97,7 @@ const SelectFaculty = () => {
             ))}
           </Select>
         </FormControl>
-      </ListItem>
+      </MenuItem>
     </>
   )
 }

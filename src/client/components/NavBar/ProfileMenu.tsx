@@ -26,18 +26,14 @@ const UserInformation = () => {
 
   if (!user || isLoading) return <Skeleton variant='text' width={100} />
 
-  const displayedFields: (keyof User)[] = [
-    'username',
-    'email',
-    'preferredFaculty',
-  ]
+  const displayedFields: (keyof User)[] = ['username', 'email']
 
   return (
     <>
       <ListSubheader disableSticky>
         {t('navbar:userInfoSubHeader')}
       </ListSubheader>
-      <ListItem sx={{ px: 4 }} disablePadding>
+      <ListItem sx={{ px: 4, mb: 2 }} disablePadding>
         <dl style={{ margin: 0 }}>
           {displayedFields.map((field) => (
             <Box
@@ -80,12 +76,13 @@ const ProfileMenu = () => {
     <>
       <Tooltip title={t('navbar:settings')}>
         <IconButton
+          role='button'
           onClick={handleClick}
           size='small'
           sx={{ ml: 2 }}
           aria-controls={open ? 'profile-settings' : undefined}
           aria-haspopup='true'
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? 'true' : false}
         >
           <Avatar
             sx={{

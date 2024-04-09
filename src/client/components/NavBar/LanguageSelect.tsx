@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import CheckIcon from '@mui/icons-material/Check'
-import { ListItem, ListItemButton, ListSubheader } from '@mui/material'
+import { ListItemButton, ListSubheader, MenuItem } from '@mui/material'
 
 import { LANGUAGES } from './util'
 
@@ -19,17 +19,19 @@ const LanguageSelect = () => {
         {t('navbar:languageSubHeader')}
       </ListSubheader>
       {LANGUAGES.map((lang) => (
-        <ListItem key={lang.code} disablePadding>
+        <MenuItem
+          key={lang.code}
+          onClick={() => handleLanguageChange(lang.code)}
+        >
           <ListItemButton
             aria-current={lang.code === language}
-            onClick={() => handleLanguageChange(lang.code)}
             data-cy={`select-language-${lang.name.toLowerCase()}`}
             sx={{ justifyContent: 'space-between', px: 4 }}
           >
             {lang.name}{' '}
             {lang.code === language && <CheckIcon color='primary' />}
           </ListItemButton>
-        </ListItem>
+        </MenuItem>
       ))}
     </>
   )

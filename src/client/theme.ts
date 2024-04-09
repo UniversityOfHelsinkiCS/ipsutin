@@ -43,10 +43,10 @@ const themeOptions: ThemeOptions = {
       main: '#107eab',
     },
     secondary: {
-      main: '#ff5722',
+      main: '#f57600',
       dark: '#b23c17',
       light: '##ff784e',
-      contrastText: '#fff',
+      contrastText: '#000',
     },
     toskaDark: {
       main: '#1a202c',
