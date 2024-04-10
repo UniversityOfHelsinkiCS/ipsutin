@@ -152,8 +152,52 @@
     "computerProgramNotPatentable": "**For this section, requirements for patentability not fulfilled**. Please complete the licensing questionnaire and book and idea clinic appointment with HIS."
   },
   "inventorsAssistant": {
-    "header": "Inventor's Assistant",
+    "header1": "Welcome to the Inventor's Assistant",
+    "h1text1": "### Your helpful mentor in preparing your ideas for impact. You will receive help in steps refining the idea. We start in step 1 by outlining the key idea and continue to refine the idea, examine industrial relevance, and then potential claims.",
+    "h1text2": "### Please take into account that this is an AI tool for helping and sparring; it is expected to be useful, but there are limitations and human oversight is needed in interpreting the results. Enjoy the tool and good luck with your high impact idea!",
+    "header2": "Guidance for Idea Description",
+    "h2text1": "### To effectively analyze your idea for its inventive step, publicity, and industrial applicability, please provide a clear and detailed description. Follow these pointers:",
+    "inventiveStepHeader": "1. Inventive step",
+    "inventiveStepDescription": "### Explain what makes your idea unique. Focus on the elements that differentiate it from existing solutions. Describe any novel features or innovative approaches that your idea brings to the field.",
+    "describeGeneralIdea": "### **Describe your general idea:**",
+    "problem": "### 1) the problem solved",
+    "invention": "### 2) the invention",
+    "applications": "### 3) the applications",
+
+    "publicityStepHeader": "2. Publicity",
+    "publicityStepDescription": "### Indicate whether any part of your idea has been publicly disclosed. This includes any publications, presentations, or previous patents. Detail the extent and nature of such disclosures.",
+    "industrialStepHeader": "3. Industrial Applicability",
+    "industrialDescription": "### Describe the practical application of your idea. Highlight how it can be implemented in an industrial setting. Discuss its potential benefits, feasibility, and any industries or sectors where it could be particularly useful.",
+    "industrialTextArea": "Describe the industrial applications of the invention.",
+    "detailReminder": "### Remember, the more detailed and specific your description, the more accurate our analysis can be.",
+    "recordReminder": "Remember also to record your ideas, this tool does not store the results.",
+
+    "step2Header1": "Inventor's Assistant: Idea refinement",
+    "step2text1": "### The Inventor's Assistant has prepared feedback to your idea. Remember that exhaustive patent search has not been carried out and must be done to evaluate the novelty of the idea. Here is the feedback to the idea:",
+    "step2Header2": "Idea Refinement",
+    "step2text2": "### The analysis above has been prepared so that you can edit and add points. We will then compile everything together in the next steps. Remember, the more detailed and specific your description, the more accurate our analysis can be.",
+    "step2text3": "Refine your idea based on the topic",
+
+    "step3Header1": "Industrial Applicability",
+    "step3text1": "### You can now edit the industrial relevance text relating to your invention. This section is crucial as it explains how your invention can be used in practical, real-world scenarios. Begin by providing a clear and concise overview of the potential industries or sectors where your invention could be applied. Elaborate on the practical benefits, efficiency improvements, or problem-solving capabilities your invention offers. Consider any production or implementation processes and describe how they align with current industry practices. If applicable, include any pilot studies, prototypes, or testing results that demonstrate the feasibility of your invention in an industrial setting. Remember, the goal is to convincingly illustrate the practicality and usefulness of your invention in a commercial or industrial context. Once you've finished editing, review the content for clarity and completeness, and then submit for the next step. We will then compile everything together in the next steps.",
+    "step3Header2": "### **Elaborate on industrial applicability:**",
+
+    "step4Header1": "Inventor's Assistant: Claims",
+    "step4text1": "### The Claims section of your invention report is pivotal as it defines the legal boundaries of your invention's protection. When editing this section, focus on clarity and specificity. Each claim should be a single sentence that precisely delineates a feature or aspect of your invention. Begin with the broadest claim that captures the essence of your invention and then add dependent claims that describe specific details or embodiments.",
+    "step4text2": "## **Here are some helpful tips for editing your claims:**",
+    "step4Bullet1": "### **Be Precise**: Use clear and concise language. Avoid broad, generic terms unless they are necessary for the broadest claims.",
+    "step4Bullet2": "### **Specificity is Crucial**: Provide detailed claims for enhanced protection. The greater the specificity, the stronger the shield they offer against infringement.",
+    "step4Bullet3": "### **Single Focus per Claim**: Dedicate each claim to a solitary aspect or feature of your invention, maximizing clarity and precision.",
+    "step4Bullet4": "### **Maintain Terminological Consistency**: Employ uniform terminology across all claims to prevent ambiguity and confusion.",
+    "step4Bullet5": "### **Incorporate Variation Considerations**: Anticipate potential variations of your invention and incorporate them into dependent claims for comprehensive coverage.",
+    "step4Bullet6": "### **Ensure Understandable Language**: Balance legal precision with clarity to ensure comprehension by professionals in the relevant field.",
+    "step4Bullet7": "### **Study Comparable Patents**: Analyze patents in similar domains to grasp their approach to structuring and wording claims effectively.",
+    "step4text3": "### Remember, well-crafted claims are crucial for protecting your invention. They define the scope of your patent rights and serve as a legal barrier against infringement. If possible, consult with a patent attorney to ensure your claims are effectively structured and adequately protect your invention.",
+    "step4text4": "### **Make your claims:**",
+
     "chatBoxPlaceholder": "Enter your idea...",
-    "chatBoxHeader": "Start chatting"
+    "chatBoxHeader": "Start chatting",
+
+    "note": "(C) 2023-2024 Sasu Tarkoma. This tool is based on LLM technology. Use the LLM with ethical considerations. Human oversight and understanding is necessary for interpreting the results."
   }
 }
