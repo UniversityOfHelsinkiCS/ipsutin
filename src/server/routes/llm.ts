@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { getCompletionStream } from '../services/llm'
+import { FirstStepMessageSend, getCompletionStream } from '../services/llm'
 
 const llmRouter = express.Router()
 
@@ -30,6 +30,41 @@ llmRouter.post('/chat', async (req, res) => {
     }
 
     res.json({ role: 'assistant', content })
+  } catch (error) {
+    console.error('Error:', error)
+    res.status(500).json({ error: 'An error occurred' })
+  }
+})
+
+llmRouter.post('/step1', async (req, res) => {
+  console.log('at /step1')
+  try {
+    const model = 'gpt-3.5-turbo'
+    const { inventiveMessage, industrialMessage, publicMessage } = req.body
+
+    const { stream } = await FirstStepMessageSend(
+      inventiveMessage,
+      industrialMessage,
+      publicMessage,
+      model
+    )
+
+    const reader = stream.getReader()
+
+    let content = ''
+
+    while (true) {
+      // eslint-disable-next-line no-await-in-loop
+      const { value, done } = await reader.read()
+
+      if (done) break
+
+      const text = new TextDecoder().decode(value)
+
+      content += text
+    }
+
+    res.json({ content })
   } catch (error) {
     console.error('Error:', error)
     res.status(500).json({ error: 'An error occurred' })
