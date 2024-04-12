@@ -23,6 +23,30 @@
     "futureHeading": "The Future: Incorporating AI",
     "futureContent": "We plan to incorporate AI technologies to offer advanced insights into IP potential, inspired by innovations in IP assessment tools. This evolution will further streamline the decision-making process for inventors."
   },
+  "contact": {
+    "mainHeading": "Contact Us",
+    "mainContent": "Kumpula Innovation Campus, Helsinki Innovation Services, and AI Core is here to support your innovation journey. This is authenticated, 100% private and 100% secure enviroment, to assess your ideas, connect with subject matter expert in need guidance, or want to discuss your project, our team is ready to assist.",
+    "informationHeading": "Contact Information",
+    "informationContent": {
+      "name": "Helsinki Innovation Services Ltd",
+      "address": "Think Corner, Yliopistonkatu 4",
+      "postalCode": "00100",
+      "city": "Helsinki"
+    },
+    "email": "Email:",
+    "emailAddress": "his@helsinki.fi",
+    "office": "Office hours:",
+    "officeHours": "We're available for consultations Monday to Friday, 9:00 AM to 5:00 PM.",
+    "website": "Website:",
+    "officeExtLink": "https://www.helsinki.fi/en/helsinki-innovation-services",
+    "newsletterHeading": "Stay Informed",
+    "newsletterContent": "Subscribe to our newsletter for updates on new features, training sessions, and ways to enhance your research impact.",
+    "newsletterButton": "Subscribe",
+    "newsletterSuccess": "Subscribed to newsletter",
+    "newsletterError": "Could not subscribe to newsletter",
+    "endingHeading": "Let's Get Started",
+    "endingContent": "Your ideas deserve the best chance for success. Contact us today to begin transforming your research into impactful innovations."
+  },
   "navbar": {
     "home": "Home",
     "about": "About",
