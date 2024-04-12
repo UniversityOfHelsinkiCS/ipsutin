@@ -8,7 +8,10 @@ const About = () => {
 
   const styles = {
     section: {
-      my: { xs: 8, md: 24 },
+      p: { xs: 1, sm: 2, md: 8, lg: 12 },
+      py: { xs: 8, md: 12 },
+      width: '100%',
+      maxWidth: '1024px',
     },
     sectionHeading: {
       fontFamily: 'Georgia, serif',
@@ -21,25 +24,43 @@ const About = () => {
 
   return (
     <Box
-      component='section'
-      sx={{ maxWidth: '1024px', m: { xs: 1, sm: 2, md: 8, lg: 12 } }}
+      component='article'
+      sx={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
     >
       <Box
         component='section'
         sx={{
-          my: 8,
-          display: { md: 'flex' },
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
-          gap: { md: 8, lg: 24 },
+          mb: 4,
+          backgroundColor: 'secondary.light',
         }}
       >
-        <SectionHeading
-          level='h1'
-          sx={{ fontSize: { xs: '28pt', sm: '32pt', md: '38pt', lg: '48pt' } }}
+        <Box
+          sx={{
+            ...styles.section,
+            display: { md: 'flex' },
+            alignItems: 'center',
+            gap: { md: 8, lg: 24 },
+          }}
         >
-          {t('about:mainHeading')}
-        </SectionHeading>
-        <Typography variant='body1'>{t('about:mainContent')}</Typography>
+          <SectionHeading
+            level='h1'
+            sx={{
+              fontSize: { xs: '28pt', sm: '32pt', md: '38pt', lg: '48pt' },
+            }}
+          >
+            {t('about:mainHeading')}
+          </SectionHeading>
+          <Typography variant='body1'>{t('about:mainContent')}</Typography>
+        </Box>
       </Box>
 
       <Box
@@ -54,7 +75,10 @@ const About = () => {
         </Typography>
       </Box>
 
-      <Box component='section' sx={styles.section}>
+      <Box
+        component='section'
+        sx={{ ...styles.section, justifyContent: 'center' }}
+      >
         <SectionHeading level='h2' sx={styles.sectionHeading}>
           {t('about:visionHeading')}
         </SectionHeading>
@@ -63,7 +87,10 @@ const About = () => {
         </Typography>
       </Box>
 
-      <Box component='section' sx={styles.section}>
+      <Box
+        component='section'
+        sx={{ ...styles.section, justifyContent: 'center' }}
+      >
         <SectionHeading level='h2' sx={styles.sectionHeading}>
           {t('about:futureHeading')}
         </SectionHeading>
