@@ -82,7 +82,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
     <Box component='section' sx={{ width: '1560px' }}>
       <SectionHeading
         data-cy={`${surveyName}-result-section-title`}
-        level='h2'
+        level='h1'
         sx={{ mt: 4, ml: 4 }}
       >
         {t('results:title')}
@@ -103,7 +103,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
         ref={refCallback}
         style={{ marginLeft: '2rem', marginTop: '4rem' }}
       >
-        <SectionHeading level='h3'>
+        <SectionHeading level='h2'>
           {t('recommendedAction:title')}
         </SectionHeading>
         <CommonResult
@@ -114,7 +114,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
         />
         <RecommendedAction action={recommendedAction} />
 
-        <SectionHeading level='h3'>{t('results:subtitle')}</SectionHeading>
+        <SectionHeading level='h2'>{t('results:subtitle')}</SectionHeading>
         <ResultElements sortedResultsWithLabels={sortedResultsWithLabels} />
       </Box>
 
