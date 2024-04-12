@@ -110,6 +110,7 @@ const navStyles = {
     fontWeight: 700,
     fontSize: 24,
     userSelect: 'none',
+    textDecoration: 'none',
   },
   navBox: {
     display: 'inline-flex',
