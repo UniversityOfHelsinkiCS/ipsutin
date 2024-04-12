@@ -13,6 +13,16 @@
     "grafana": "More analytics can be found in Grafana.",
     "grafanaExtLink": "https://toska.cs.helsinki.fi/grafana/goto/MMtESd4Ik?orgId=1"
   },
+  "about": {
+    "mainHeading": "About Us",
+    "mainContent": "The Innotin is a product of joint collabiration with Kumpula Innovation Campus, Helsinki Innovation Services and AI Core for Innovations. The aim is supporting research innovation by making the process of intellectual property and software licensing process more accessible for researchers and lowering the friction with the servics throughout the process.",
+    "journeyHeading": "Our Journey",
+    "journeyContent": "Our initiative is a response to the identified need for better service flow in idea assessment and decision-making for researchers. By collaborating with experts and utilizing feedback from the research community, we've developed tools and resources to meet these needs.",
+    "visionHeading": "Our Vision",
+    "visionContent": "We aim to make IP knowledge accessible, turning complex decisions into simpler, more manageable steps. This includes everything from initial idea assessment to detailed IP analysis and expert consultations.",
+    "futureHeading": "The Future: Incorporating AI",
+    "futureContent": "We plan to incorporate AI technologies to offer advanced insights into IP potential, inspired by innovations in IP assessment tools. This evolution will further streamline the decision-making process for inventors."
+  },
   "navbar": {
     "home": "Home",
     "about": "About",
