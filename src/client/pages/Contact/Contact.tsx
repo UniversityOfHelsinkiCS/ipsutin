@@ -2,7 +2,21 @@ import { useTranslation } from 'react-i18next'
 import { Box, Grid, Typography } from '@mui/material'
 
 import illustration from '../../assets/contact_us_section.png'
+import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
+
+const CurrentTime = () => {
+  const { t } = useTranslation()
+
+  const date = new Date()
+  const time = date.toLocaleString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  })
+
+  return <Markdown>{t('contact:currentTime', { time })}</Markdown>
+}
 
 const Contact = () => {
   const { t } = useTranslation()
@@ -115,6 +129,9 @@ const Contact = () => {
               </Box>
               <Box component='dd' sx={styles.descriptionDetail}>
                 {t('contact:officeHours')}
+              </Box>
+              <Box component='dd' sx={styles.descriptionDetail}>
+                <CurrentTime />
               </Box>
             </Box>
           </Grid>

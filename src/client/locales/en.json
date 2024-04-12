@@ -37,6 +37,7 @@
     "emailAddress": "his@helsinki.fi",
     "office": "Office hours:",
     "officeHours": "We're available for consultations Monday to Friday, 9:00 AM to 5:00 PM.",
+    "currentTime": "It is currently **{{time}}** in Helsinki.",
     "website": "Website:",
     "officeExtLink": "https://www.helsinki.fi/en/helsinki-innovation-services",
     "newsletterHeading": "Stay Informed",
