@@ -8,6 +8,7 @@ import {
 } from '../../../config'
 import App from '../../App'
 import About from '../../pages/About/About'
+import Contact from '../../pages/Contact/Contact'
 import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
 import InventorsAssistant from '../../pages/InventorsAssistant/InventorsAssistant'
 import IpAssessment from '../../pages/IpAssessment/IpAssessment'
@@ -122,6 +123,10 @@ const router = createBrowserRouter(
         {
           path: 'about',
           element: <About />,
+        },
+        {
+          path: 'contact',
+          element: <Contact />,
         },
         {
           path: '/inventorsassistant',
