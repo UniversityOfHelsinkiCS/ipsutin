@@ -13,7 +13,7 @@ import { useResultData } from '../../components/InteractiveForm/ResultDataContex
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
-import styles from '../../styles'
+import styles, { productStyles } from '../../styles'
 import { FormValues } from '../../types'
 
 const IpAssessment = () => {
@@ -64,7 +64,7 @@ const IpAssessment = () => {
   )
 
   return (
-    <Box component='section'>
+    <Box component='section' sx={productStyles.productContainer}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <SectionHeading level='h1' sx={{ mt: 4, mx: 4 }}>
           {t('surveyNames:ipAssessment')}

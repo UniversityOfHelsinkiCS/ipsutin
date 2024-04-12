@@ -6,6 +6,7 @@ import useRecommendations from '../../hooks/useRecommendations'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
+import { productStyles } from '../../styles'
 import {
   getRecommendationLabels,
   getRecommendationScores,
@@ -79,7 +80,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box component='section' sx={{ width: '1560px' }}>
+    <Box component='section' sx={productStyles.productContainer}>
       <SectionHeading
         data-cy={`${surveyName}-result-section-title`}
         level='h1'

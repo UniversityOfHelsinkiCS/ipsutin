@@ -9,6 +9,7 @@ import { useResultData } from '../../components/InteractiveForm/ResultDataContex
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
+import { productStyles } from '../../styles'
 import { FormValues } from '../../types'
 
 const Licences = () => {
@@ -45,7 +46,7 @@ const Licences = () => {
   }
 
   return (
-    <Box component='section'>
+    <Box component='section' sx={productStyles.productContainer}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <RenderSurvey
           control={control}

@@ -1,5 +1,11 @@
 import { Theme } from '@mui/material/styles'
 
+export const productStyles = {
+  productContainer: {
+    maxWidth: '1240px',
+  },
+}
+
 const cardStyles = {
   heading: {
     fontWeight: '200',
@@ -246,6 +252,7 @@ const common = {
 }
 
 export default {
+  productStyles,
   cardStyles,
   formStyles,
   common,
