@@ -86,7 +86,8 @@
       "prettier",
       "plugin:cypress/recommended",
       "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended"
+      "plugin:@typescript-eslint/recommended",
+      "plugin:jsx-a11y/recommended"
     ],
     "plugins": [
       "react",
@@ -94,7 +95,8 @@
       "react-hooks",
       "prettier",
       "cypress",
-      "simple-import-sort"
+      "simple-import-sort",
+      "jsx-a11y"
     ],
     "parserOptions": {
       "parser": "@babel/eslint-parser",
@@ -219,11 +221,12 @@
     "@typescript-eslint/parser": "^6.1.0",
     "concurrently": "^8.2.0",
     "cypress": "^12.17.1",
-    "eslint": "^8.45.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-cypress": "^2.13.3",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
