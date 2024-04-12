@@ -7,6 +7,7 @@ import {
   PUBLIC_URL,
 } from '../../../config'
 import App from '../../App'
+import About from '../../pages/About/About'
 import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
 import InventorsAssistant from '../../pages/InventorsAssistant/InventorsAssistant'
 import IpAssessment from '../../pages/IpAssessment/IpAssessment'
@@ -117,6 +118,10 @@ const router = createBrowserRouter(
               element: <Entry />,
             },
           ],
+        },
+        {
+          path: 'about',
+          element: <About />,
         },
         {
           path: '/inventorsassistant',
