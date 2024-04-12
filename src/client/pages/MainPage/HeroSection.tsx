@@ -41,7 +41,6 @@ const HeroSection = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        maxHeight: '800px',
       }}
     >
       <Box sx={{ position: 'relative', flex: 1 }}>
@@ -50,7 +49,7 @@ const HeroSection = () => {
             component='h1'
             sx={{
               position: 'absolute',
-              top: { xs: '5%', md: '30%' },
+              top: { xs: '5%', md: '30%', xl: '35%' },
               left: '40%',
               paddingRight: { xs: '1rem', sm: '2rem', md: '4rem' },
               color: 'white',
@@ -59,7 +58,7 @@ const HeroSection = () => {
                 sm: '24pt',
                 md: '32pt',
                 lg: '40pt',
-                xl: '56pt',
+                xl: '52pt',
               },
               fontWeight: 'bold',
               textTransform: 'uppercase',
