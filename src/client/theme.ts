@@ -28,10 +28,12 @@ declare module '@mui/material/styles' {
 const themeOptions: ThemeOptions = {
   typography: {
     fontFamily: [
-      '"Open Sans"',
-      '"Helvetica"',
+      '"Inter"',
+      '"Helvetica Neue"',
+      '"Roboto"',
       '"Arial"',
       '"sans-serif"',
+      '"Georgia"',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
