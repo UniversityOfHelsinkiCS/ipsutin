@@ -118,7 +118,6 @@ const formStyles = {
     flexWrap: 'wrap',
     gap: 0.3,
   },
-  stackBox: { textAlign: 'center' },
   stackBoxWrapper: {
     my: 2,
     display: 'flex',
@@ -126,10 +125,16 @@ const formStyles = {
     alignItems: 'center',
   },
   stack: {
-    textAlign: 'center',
+    display: 'flex',
+    gap: 4,
+    mb: 4,
   },
   stackButton: {
-    mx: 2,
+    px: 4,
+    borderRadius: '1rem',
+    textTransform: 'capitalize',
+    fontWeight: '600',
+    fontSize: '12pt',
   },
 }
 
