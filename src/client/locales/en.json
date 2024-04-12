@@ -125,7 +125,7 @@
     "pateErrorMessage": "Could not share results"
   },
   "results": {
-    "title": "Results",
+    "title": "Results for {{name}}",
     "subtitle": "Your selections and related suggestions",
     "backToMessage": "Go back to survey"
   },

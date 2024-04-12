@@ -85,7 +85,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
         level='h1'
         sx={{ mt: 4, ml: 4 }}
       >
-        {t('results:title')}
+        {t('results:title', { name: t(`surveyNames:${surveyName}`) })}
       </SectionHeading>
 
       <RenderRecommendationChips recommendations={sortedRecommendations} />
