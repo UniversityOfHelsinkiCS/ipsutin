@@ -6,6 +6,47 @@ export const productStyles = {
   },
 }
 
+export const articleStyles = {
+  articleContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  fullWidthSection: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    mb: 4,
+    backgroundColor: 'secondary.light',
+  },
+  mainHeading: {
+    fontSize: { xs: '28pt', sm: '32pt', md: '38pt', lg: '48pt' },
+  },
+  section: {
+    p: { xs: 1, sm: 2, md: 8, lg: 12 },
+    width: '100%',
+    maxWidth: '1024px',
+    justifyContent: 'center',
+  },
+  twoColumnSection: {
+    p: { xs: 1, sm: 2, md: 8, lg: 12 },
+    width: '100%',
+    maxWidth: '1024px',
+    display: { md: 'flex' },
+    alignItems: 'center',
+    gap: { md: 8, lg: 24 },
+  },
+  sectionHeading: {
+    fontFamily: 'Georgia, serif',
+    fontSize: { xs: '1.5rem', md: '2rem', lg: '2.5rem' },
+    letterSpacing: '-0.02rem',
+    fontWeight: 400,
+    mt: 2,
+  },
+}
+
 const cardStyles = {
   heading: {
     fontWeight: '200',

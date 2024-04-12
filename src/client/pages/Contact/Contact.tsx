@@ -4,6 +4,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import illustration from '../../assets/contact_us_section.png'
 import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
+import { articleStyles } from '../../styles'
 
 const CurrentTime = () => {
   const { t } = useTranslation()
@@ -22,16 +23,6 @@ const Contact = () => {
   const { t } = useTranslation()
 
   const styles = {
-    section: {
-      my: { xs: 8, md: 24 },
-    },
-    sectionHeading: {
-      fontFamily: 'Georgia, serif',
-      fontSize: { xs: '1.5rem', md: '2rem', lg: '2.5rem' },
-      letterSpacing: '-0.02rem',
-      fontWeight: 400,
-      mt: 2,
-    },
     contactDetails: {
       display: 'flex',
       gap: 2,
@@ -49,21 +40,13 @@ const Contact = () => {
   }
 
   return (
-    <Box
-      component='section'
-      sx={{ maxWidth: '1024px', m: { xs: 1, sm: 2, md: 8, lg: 12 } }}
-    >
-      <Grid container component='section' sx={{ my: 8 }}>
+    <Box component='article' sx={articleStyles.articleContainer}>
+      <Grid container component='section' sx={articleStyles.section}>
         <Grid item md={6}>
-          <SectionHeading
-            level='h1'
-            sx={{
-              fontSize: { xs: '28pt', sm: '32pt', md: '38pt', lg: '48pt' },
-            }}
-          >
+          <SectionHeading level='h1' sx={articleStyles.mainHeading}>
             {t('contact:mainHeading')}
           </SectionHeading>
-          <Typography variant='body1' sx={{ mt: 8 }}>
+          <Typography variant='body1' sx={{ mt: 12 }}>
             {t('contact:mainContent')}
           </Typography>
         </Grid>
@@ -78,9 +61,9 @@ const Contact = () => {
 
       <Box
         component='section'
-        sx={{ borderTop: '1px solid', ...styles.section }}
+        sx={{ borderTop: '1px solid', ...articleStyles.section }}
       >
-        <SectionHeading level='h2' sx={styles.sectionHeading}>
+        <SectionHeading level='h2' sx={articleStyles.sectionHeading}>
           {t('contact:informationHeading')}
         </SectionHeading>
         <Grid container sx={{ mt: 8, gap: { xs: 2, md: 8 } }}>
@@ -138,8 +121,8 @@ const Contact = () => {
         </Grid>
       </Box>
 
-      <Box component='section' sx={styles.section}>
-        <SectionHeading level='h2' sx={styles.sectionHeading}>
+      <Box component='section' sx={articleStyles.section}>
+        <SectionHeading level='h2' sx={articleStyles.sectionHeading}>
           {t('contact:endingHeading')}
         </SectionHeading>
         <Typography variant='body1' color='text.secondary'>
