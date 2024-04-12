@@ -52,14 +52,16 @@ const SendContactTicket = ({
       .then(() => {
         setIsSent(true)
         enqueueSnackbar(
-          t('contact:pateSuccessMessage', { email: ticketEmail }),
+          t('contactTicket:pateSuccessMessage', { email: ticketEmail }),
           {
             variant: 'success',
           }
         )
       })
       .catch(() => {
-        enqueueSnackbar(t('contact:pateErrorMessage'), { variant: 'error' })
+        enqueueSnackbar(t('contactTicket:pateErrorMessage'), {
+          variant: 'error',
+        })
       })
   }
 
@@ -82,7 +84,7 @@ const SendContactTicket = ({
                   data-cy='contact-ticket-textfield'
                   size='small'
                   name='content'
-                  placeholder={t('contact:contactTicketPlaceholder')}
+                  placeholder={t('contactTicket:placeholder')}
                   fullWidth
                   multiline
                   rows={10}
@@ -101,7 +103,7 @@ const SendContactTicket = ({
               disabled={isSent}
               onClick={handleSubmit(onSubmit)}
             >
-              {t('contact:contactTicketSend')}
+              {t('contactTicket:send')}
             </Button>
           </form>
         </>

@@ -60,14 +60,12 @@
     "relationsTitle": "Request appointment with the Business Collaboration Team",
     "relationsContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response"
   },
-  "contact": {
-    "contactTicketContentLabel": "Content",
-    "contactTicketPlaceholder": "Please write you message here",
-    "contactTicketSend": "Send Request",
-    "contactTicketSenderEmail": "User's email:",
-    "contactTicketSenderFullname": "User's name:",
-    "contactTicketUserMessage": "User's message:",
-    "contactTicketUserSummary": "User's summary:",
+  "contactTicket": {
+    "placeholder": "Please write you message here",
+    "send": "Send Request",
+    "senderEmail": "User's email:",
+    "senderFullname": "User's name:",
+    "userMessage": "User's message:",
     "pateSuccessMessage": "Contact request sent to {{ email }}",
     "pateErrorMessage": "Could not send contact request"
   },
