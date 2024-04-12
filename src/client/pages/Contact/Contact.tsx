@@ -22,6 +22,16 @@ const Contact = () => {
       display: 'flex',
       gap: 2,
     },
+    sameRow: {
+      display: 'flex',
+      gap: 1,
+    },
+    descriptionTerm: {
+      fontWeight: 'bold',
+    },
+    descriptionDetail: {
+      marginInlineStart: 0,
+    },
   }
 
   return (
@@ -60,64 +70,63 @@ const Contact = () => {
           {t('contact:informationHeading')}
         </SectionHeading>
         <Grid container sx={{ mt: 8, gap: { xs: 2, md: 8 } }}>
-          <Grid item component='dl' sx={{ margin: 0, padding: 0 }}>
-            <Box component='dt' sx={{ fontWeight: 'bold' }}>
+          <Grid item component='dl'>
+            <Box component='dt' sx={styles.descriptionTerm}>
               {t('contact:informationContent:name')}
             </Box>
-            <Box component='dd' sx={{ marginInlineStart: 0 }}>
+            <Box component='dd' sx={styles.descriptionDetail}>
               {t('contact:informationContent:address')}
             </Box>
-            <Box component='dd' sx={{ marginInlineStart: 0 }}>
+            <Box component='dd' sx={styles.descriptionDetail}>
               {t('contact:informationContent:postalCode')}
             </Box>
-            <Box component='dd' sx={{ marginInlineStart: 0 }}>
+            <Box component='dd' sx={styles.descriptionDetail}>
               {t('contact:informationContent:city')}
             </Box>
           </Grid>
-          <Grid item component='dl' sx={{ margin: 0 }}>
-            <Box component='dt' sx={{ fontWeight: 'bold' }}>
-              {t('contact:website')}
+          <Grid item component='dl'>
+            <Box sx={styles.sameRow}>
+              <Box component='dt' sx={styles.descriptionTerm}>
+                {t('contact:website')}{' '}
+              </Box>
+              <Box component='dd' sx={styles.descriptionDetail}>
+                <a
+                  href={t('contact:officeExtLink')}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  {t('contact:officeExtLink')}
+                </a>
+              </Box>
             </Box>
-            <Box component='dd'>
-              <a
-                href={t('contact:officeExtLink')}
-                target='_blank'
-                rel='noreferrer'
-              >
-                {t('contact:officeExtLink')}
-              </a>
+            <Box sx={styles.sameRow}>
+              <Box component='dt' sx={styles.descriptionTerm}>
+                {t('contact:email')}
+              </Box>
+              <Box component='dd' sx={styles.descriptionDetail}>
+                <a href={`mailto:${t('contact:emailAddress')}`}>
+                  {t('contact:emailAddress')}
+                </a>
+              </Box>
             </Box>
-            <Box component='dt' sx={{ fontWeight: 'bold' }}>
-              {t('contact:email')}
+            <Box sx={{ mt: 4 }}>
+              <Box component='dt' sx={styles.descriptionTerm}>
+                {t('contact:office')}
+              </Box>
+              <Box component='dd' sx={styles.descriptionDetail}>
+                {t('contact:officeHours')}
+              </Box>
             </Box>
-            <Box component='dd'>
-              <a href={`mailto:${t('contact:emailAddress')}`}>
-                {t('contact:emailAddress')}
-              </a>
-            </Box>
-            <Box component='dt' sx={{ fontWeight: 'bold' }}>
-              {t('contact:office')}
-            </Box>
-            <Box component='dd'>{t('contact:officeHours')}</Box>
           </Grid>
         </Grid>
       </Box>
 
       <Box component='section' sx={styles.section}>
         <SectionHeading level='h2' sx={styles.sectionHeading}>
-          {t('about:visionHeading')}
+          {t('contact:endingHeading')}
         </SectionHeading>
         <Typography variant='body1' color='text.secondary'>
-          {t('about:visionContent')}
-        </Typography>
-      </Box>
-
-      <Box component='section' sx={styles.section}>
-        <SectionHeading level='h2' sx={styles.sectionHeading}>
-          {t('about:futureHeading')}
-        </SectionHeading>
-        <Typography variant='body1' color='text.secondary'>
-          {t('about:futureContent')}
+          {t('contact:endingContent')}
         </Typography>
       </Box>
     </Box>
