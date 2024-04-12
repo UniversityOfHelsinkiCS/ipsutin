@@ -11,7 +11,7 @@ const About = () => {
       my: { xs: 8, md: 24 },
     },
     sectionHeading: {
-      fontFamily: 'Georgia',
+      fontFamily: 'Georgia, serif',
       fontSize: { xs: '1.5rem', md: '2rem', lg: '2.5rem' },
       letterSpacing: '-0.02rem',
       fontWeight: 400,

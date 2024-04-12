@@ -5,11 +5,6 @@ import {
   ThemeOptions,
 } from '@mui/material/styles'
 
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
-
 /**
  * Module augmentation to extend default theme with new colours: https://mui.com/material-ui/customization/palette/#customization
  */
@@ -28,12 +23,10 @@ declare module '@mui/material/styles' {
 const themeOptions: ThemeOptions = {
   typography: {
     fontFamily: [
-      '"Inter"',
-      '"Helvetica Neue"',
-      '"Roboto"',
+      '"Open Sans"',
+      '"Helvetica"',
       '"Arial"',
       '"sans-serif"',
-      '"Georgia"',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
