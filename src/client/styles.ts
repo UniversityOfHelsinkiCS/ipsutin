@@ -180,11 +180,6 @@ const navStyles = {
     },
   },
   icon: { mr: 1 },
-  language: { mr: 1 },
-  item: {
-    flexGrow: 1,
-    justifyContent: 'center',
-  },
   link: {
     color: 'black',
     textDecoration: 'none',
@@ -195,115 +190,9 @@ const navStyles = {
   },
 }
 
-const recommendationStyles = {
-  recommendationContainer: {
-    paddingLeft: '1rem',
-    marginLeft: '0.5rem',
-    borderColor: 'grey.300',
-    mt: 28,
-    px: 2,
-    top: '2rem',
-    textAlign: 'left',
-    position: 'sticky',
-  },
-  recommendationBox: {
-    mt: '1.8rem',
-  },
-  recommendationChipWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  subtoolWrapper: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    maxWidth: 300,
-  },
-  subtoolItem: {
-    ml: 1,
-  },
-  recommendationChipsContainer: {
-    mx: '0.6rem',
-  },
-  notSelected: {
-    fontWeight: 'light',
-    color: '#9e9e9e',
-  },
-  subtoolText: {
-    textTransform: 'capitalize',
-    paddingLeft: '1rem',
-    fontWeight: 'light',
-    color: '#757575',
-  },
-}
-
-const resultStyles = {
-  card: {
-    m: 2,
-    transition: '0.3s',
-    textAlign: 'left',
-  },
-  resultElementWrapper: {
-    my: 4,
-    borderLeft: 1,
-    borderColor: 'grey.400',
-  },
-  resultElementContent: {
-    mt: 2,
-    mb: 1,
-    pl: 2,
-    textAlign: 'left',
-  },
-  resultWrapper: {
-    m: 2,
-  },
-  resultSection: {
-    mx: 4,
-    mt: 4,
-  },
-  heading: {
-    fontWeight: '200',
-    textAlign: 'left',
-    mt: 4,
-    mx: 4,
-  },
-  resultBox: {
-    minWidth: 350,
-    m: 2,
-    border: 1,
-    borderColor: 'grey',
-  },
-}
-
-const footerStyles = {
-  supportBox: {
-    py: '2rem',
-    px: '3rem',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  imageBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    rowGap: '1rem',
-  },
-}
-
-const common = {
-  alertStyle: {
-    width: 'auto',
-  },
-}
-
 export default {
   productStyles,
   cardStyles,
   formStyles,
-  common,
   navStyles,
-  recommendationStyles,
-  footerStyles,
-  resultStyles,
 }

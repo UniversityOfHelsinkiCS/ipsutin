@@ -9,7 +9,7 @@ import styles from '../../../styles'
 
 import RenderResults from './RenderResults'
 
-const { cardStyles, resultStyles } = styles
+const { cardStyles } = styles
 
 const Entry = () => {
   const { t } = useTranslation()
@@ -20,7 +20,7 @@ const Entry = () => {
   if (!entry || isLoading || !results || !resultsFetched) return null
 
   return (
-    <Box sx={resultStyles.resultWrapper}>
+    <Box sx={{ m: 2 }}>
       <Box sx={{ m: 4 }}>
         <Typography data-cy='result-section-title' variant='h5' component='div'>
           {t('admin:entryInfoTitle')}
