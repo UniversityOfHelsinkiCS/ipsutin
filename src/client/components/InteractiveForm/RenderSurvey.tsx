@@ -26,7 +26,7 @@ const RenderSurvey = ({
 
   return (
     <>
-      <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
+      <SectionHeading level='h1' sx={{ mt: 4, mx: 4 }}>
         {surveyName}
       </SectionHeading>
 

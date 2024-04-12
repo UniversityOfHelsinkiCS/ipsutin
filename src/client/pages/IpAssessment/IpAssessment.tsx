@@ -66,7 +66,7 @@ const IpAssessment = () => {
   return (
     <Box component='section'>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
+        <SectionHeading level='h1' sx={{ mt: 4, mx: 4 }}>
           {t('surveyNames:ipAssessment')}
         </SectionHeading>
 
@@ -75,7 +75,7 @@ const IpAssessment = () => {
         </Typography>
 
         <Box component='section'>
-          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
             1. {t('ipAssessmentSurvey:technicalTitle')}
           </SectionHeading>
 
@@ -95,7 +95,7 @@ const IpAssessment = () => {
         </Box>
 
         <Box component='section'>
-          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
             2. {t('ipAssessmentSurvey:mathematicalTitle')}
           </SectionHeading>
 
@@ -115,7 +115,7 @@ const IpAssessment = () => {
         </Box>
 
         <Box component='section'>
-          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
             3. {t('ipAssessmentSurvey:computerProgramTitle')}
           </SectionHeading>
 
