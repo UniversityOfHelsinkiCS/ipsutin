@@ -18,7 +18,7 @@ const otherFaculty = {
 }
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
-  const sortedFaculties = faculties.sort((a, b) => {
+  const sortedFaculties = [...faculties].sort((a, b) => {
     if (a.name[language] > b.name[language]) return 1
     if (a.name[language] < b.name[language]) return -1
 
