@@ -11,6 +11,7 @@ import Admin from './components/Admin/Admin'
 import RenderAnalytics from './components/Admin/Analytics/RenderAnalytics'
 import Entry from './components/Admin/Entries/Entry'
 import RenderEntries from './components/Admin/Entries/RenderEntries'
+import RootBoundary from './components/Errors/RootBoundary'
 import DefaultResultElements from './components/InteractiveForm/DefaultResultElements'
 import IpAssessmentResultElements from './components/InteractiveForm/IpAssessmentResultElements'
 import { ResultDataProvider } from './components/InteractiveForm/ResultDataContext'
@@ -29,10 +30,12 @@ const router = createBrowserRouter(
     {
       path: '/',
       element: <App />,
+      errorElement: <RootBoundary />,
       children: [
         {
           path: '',
           element: <MainPage />,
+          errorElement: <RootBoundary />,
         },
         {
           path: '/licences',
@@ -41,6 +44,7 @@ const router = createBrowserRouter(
               <Outlet />
             </ResultDataProvider>
           ),
+          errorElement: <RootBoundary />,
           children: [
             {
               index: true,
@@ -64,6 +68,7 @@ const router = createBrowserRouter(
               <Outlet />
             </ResultDataProvider>
           ),
+          errorElement: <RootBoundary />,
           children: [
             {
               index: true,
@@ -87,6 +92,7 @@ const router = createBrowserRouter(
               <Outlet />
             </ResultDataProvider>
           ),
+          errorElement: <RootBoundary />,
           children: [
             {
               index: true,
@@ -104,8 +110,14 @@ const router = createBrowserRouter(
           ],
         },
         {
+          path: '/inventorsassistant',
+          element: <InventorsAssistant />,
+          errorElement: <RootBoundary />,
+        },
+        {
           path: '/admin',
           element: <Admin />,
+          errorElement: <RootBoundary />,
           children: [
             {
               index: true,
@@ -124,14 +136,12 @@ const router = createBrowserRouter(
         {
           path: 'about',
           element: <About />,
+          errorElement: <RootBoundary />,
         },
         {
           path: 'contact',
           element: <Contact />,
-        },
-        {
-          path: '/inventorsassistant',
-          element: <InventorsAssistant />,
+          errorElement: <RootBoundary />,
         },
       ],
     },

@@ -73,7 +73,8 @@
     "reset": "Restart",
     "openForm": "Proceed to the questions",
     "admin": "Admin",
-    "showMore": "Show more"
+    "showMore": "Show more",
+    "navigateHome": "Back to home"
   },
   "recommendedAction": {
     "title": "Recommended action",
