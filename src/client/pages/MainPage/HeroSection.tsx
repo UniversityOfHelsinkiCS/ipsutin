@@ -94,6 +94,7 @@ const HeroSection = () => {
           autoPlay
           muted
           loop
+          sx={{ objectFit: 'cover', height: '100%', width: '100%' }}
         >
           <source src={video} type='video/mp4' />
         </CardMedia>
