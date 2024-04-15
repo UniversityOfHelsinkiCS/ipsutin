@@ -31,7 +31,6 @@ const InventorsAssistant = () => {
 
   const handleFirstStepMessage = async () => {
     setaiResponse1('')
-    console.log('MESSAGES:', messages)
     const response = await apiClient.post('/llm/step1', {
       inventiveMessage,
       industrialMessage,
@@ -107,6 +106,7 @@ const InventorsAssistant = () => {
       }
 
       setMessages((prev) => [...prev, { role: 'assistant', content }])
+      setCompletion('')
     } catch (error) {
       console.error('Error:', error)
     }
@@ -120,7 +120,7 @@ const InventorsAssistant = () => {
     }
 
     setMessages((prev) => [...prev, { role: 'user', content: message }])
-
+    setMessage('')
     try {
       // Make POST request using axios
       const response = await apiClient.post('/llm/chat', {
@@ -130,11 +130,11 @@ const InventorsAssistant = () => {
       // Process response
       const content = response.data
 
-      setMessages((prev) => [...prev, { role: 'assistant', content }])
+      setMessages((prev) => [...prev, content])
+      setCompletion('')
     } catch (error) {
       console.error('Error:', error)
     }
-    setCompletion('')
   }
 
   const handleTest = async () => {
@@ -217,11 +217,17 @@ const InventorsAssistant = () => {
               />
               <Button
                 onClick={() => {
-                  handleChat1()
                   handleChat2()
                 }}
               >
-                Send
+                Send (current)
+              </Button>
+              <Button
+                onClick={() => {
+                  handleChat1()
+                }}
+              >
+                Send (legacy)
               </Button>
               <Button
                 onClick={() => {

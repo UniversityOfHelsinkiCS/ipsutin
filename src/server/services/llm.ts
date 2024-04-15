@@ -1,3 +1,4 @@
+import { CURRE_URL } from '../../config'
 import { Message } from '../types'
 
 export const getCompletionStream = async (
@@ -11,13 +12,12 @@ export const getCompletionStream = async (
     },
   }
 
-  const response = await fetch('httplocalhost:3001/api/ai/stream/innotin', {
+  const response = await fetch(`${CURRE_URL}/api/ai/stream/innotin`, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
   })
 
-  console.log('here2')
   const stream = response.body as unknown as ReadableStream
 
   return { stream }

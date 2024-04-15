@@ -48,7 +48,8 @@ const Conversation = ({
   const { t } = useTranslation()
 
   if (messages.length === 0 && !completion) return null
-
+  console.log('MESSAGES:', messages)
+  console.log('COMPLETION:', completion)
   return (
     <Box>
       <Box mb={1}>
