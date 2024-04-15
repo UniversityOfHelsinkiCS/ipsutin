@@ -102,7 +102,6 @@ const ProfileMenu = () => {
         id='profile-settings'
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         slotProps={{
           paper: {
             elevation: 0,
@@ -133,6 +132,7 @@ const ProfileMenu = () => {
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        disableAutoFocusItem
       >
         <LanguageSelect />
         <Divider />
