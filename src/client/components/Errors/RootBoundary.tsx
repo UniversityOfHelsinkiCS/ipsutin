@@ -5,6 +5,37 @@ import axios from 'axios'
 
 import BaseError from './BaseError'
 
+const getErrorMessages = (error: unknown) => {
+  let errorStatus = null
+
+  if (isRouteErrorResponse(error)) {
+    errorStatus = error.status
+  } else if (axios.isAxiosError(error) && error.response) {
+    errorStatus = error.response.status
+  }
+
+  switch (errorStatus) {
+    case 404:
+      return {
+        errorHeading: 'Not Found',
+        errorDetails:
+          'Sorry, but the page cannot be found. The page may have been moved or deleted.',
+      }
+    case 401:
+      return {
+        errorHeading: 'Unauthorized',
+        errorDetails:
+          'Sorry, but you do not have the needed access to this page.',
+      }
+    default:
+      return {
+        errorHeading: 'Error',
+        errorDetails:
+          'Sorry, but something unexpected went wrong loading your page. We are looking into the issue.',
+      }
+  }
+}
+
 const RootBoundary = () => {
   const error = useRouteError() as unknown
 
@@ -16,57 +47,9 @@ const RootBoundary = () => {
     }
   }, [error])
 
-  // Handle router errors
-  if (isRouteErrorResponse(error)) {
-    if (error.status === 404) {
-      return (
-        <BaseError
-          errorHeading='Not Found'
-          errorDetails='Sorry, but the page cannot be found. The page may have been moved or deleted.'
-        />
-      )
-    }
-    if (error?.status === 401) {
-      return (
-        <BaseError
-          errorHeading='Unauthorized'
-          errorDetails='Sorry, but you do not have the needed access to this page.'
-        />
-      )
-    }
-    return (
-      <BaseError
-        errorHeading={error.error?.name || 'Unknown Error'}
-        errorDetails={error.error?.message || error.statusText}
-      />
-    )
-  }
+  const { errorHeading, errorDetails } = getErrorMessages(error)
 
-  if (axios.isAxiosError(error) && error.response) {
-    if (error.response.status === 404) {
-      return (
-        <BaseError
-          errorHeading='Not Found'
-          errorDetails='Sorry, but the page cannot be found. The page may have been moved or deleted.'
-        />
-      )
-    }
-
-    if (error.response.status === 401) {
-      return (
-        <BaseError
-          errorHeading='Unauthorized'
-          errorDetails='Sorry, but you do not have the needed access to this page.'
-        />
-      )
-    }
-  }
-  return (
-    <BaseError
-      errorHeading='Error'
-      errorDetails='Sorry, but something unexpected went wrong loading your page. We are looking into the issue.'
-    />
-  )
+  return <BaseError errorHeading={errorHeading} errorDetails={errorDetails} />
 }
 
 export default RootBoundary
