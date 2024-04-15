@@ -1,6 +1,7 @@
 import axios from 'axios'
 import express from 'express'
 
+import { CURRE_URL } from '../../config'
 import { getCompletionStream } from '../services/llm'
 import { Message } from '../types'
 
@@ -41,10 +42,10 @@ llmRouter.get('/test', async (req, res) => {
 
   try {
     const response = await axios.get(
-      'http://gptwrapper_dev:8000/api/ai/stream/inventor/ping2'
+      `${CURRE_URL}/api/ai/stream/inventor/ping2`
     )
 
-    console.log('response:', response)
+    console.log('Response:', response.data)
 
     res.status(200).json({ message: 'Ping successful' })
   } catch (error) {

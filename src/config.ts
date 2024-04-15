@@ -25,3 +25,10 @@ export const FULL_URL = inProduction
   : inStaging
   ? 'https://toska-staging.cs.helsinki.fi/ipsutin'
   : 'http://localhost:3000'
+
+// eslint-disable-next-line no-nested-ternary
+export const CURRE_URL = inProduction
+  ? 'https://curre.helsinki.fi/chat'
+  : inStaging
+  ? 'https://toska-staging.cs.helsinki.fi/gptwrapper'
+  : 'http://gptwrapper_dev:8000'
