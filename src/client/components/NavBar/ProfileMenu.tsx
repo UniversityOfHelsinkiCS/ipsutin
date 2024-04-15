@@ -76,7 +76,6 @@ const ProfileMenu = () => {
     <>
       <Tooltip title={t('navbar:settings')}>
         <IconButton
-          role='button'
           onClick={handleClick}
           size='small'
           sx={{ ml: 2 }}
