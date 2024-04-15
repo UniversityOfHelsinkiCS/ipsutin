@@ -1,33 +1,26 @@
-import { Message } from 'react-hook-form'
+import { Message } from '../types'
 
 export const getCompletionStream = async (
-  messages: Message[],
+  allMessages: Message[],
   model: string
 ) => {
   const body = {
     options: {
-      messages: [...messages],
+      messages: [...allMessages],
       model,
     },
   }
 
-  try {
-    const response = await fetch(
-      'http://localhost:3001/api/ai/stream/innotin',
-      {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
+  const response = await fetch('httplocalhost:3001/api/ai/stream/innotin', {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' },
+  })
 
-    const stream = response.body as unknown as ReadableStream
+  console.log('here2')
+  const stream = response.body as unknown as ReadableStream
 
-    return { stream }
-  } catch (error) {
-    const message = error.response?.data || 'Something went wrong'
-    throw new Error(message)
-  }
+  return { stream }
 }
 
 export const FirstStepMessageSend = async (
@@ -44,21 +37,15 @@ export const FirstStepMessageSend = async (
       model,
     },
   }
+  const response = await fetch(
+    'http://localhost:3001/api/ai/stream/inventorstep1',
+    {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+    }
+  )
 
-  try {
-    const response = await fetch(
-      'http://localhost:3001/api/ai/stream/inventorstep1',
-      {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
-
-    const stream = response.body as unknown as ReadableStream
-    return { stream }
-  } catch (error) {
-    const message = error.response?.data || 'Something went wrong'
-    throw new Error(message)
-  }
+  const stream = response.body as unknown as ReadableStream
+  return { stream }
 }

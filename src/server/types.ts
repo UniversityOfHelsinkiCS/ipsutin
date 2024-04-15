@@ -172,3 +172,9 @@ export interface EntryWithSurvey {
   Survey: Survey
   SurveyId: number
 }
+
+export type Role = 'system' | 'assistant' | 'user'
+export interface Message {
+  role: Role
+  content: string
+}

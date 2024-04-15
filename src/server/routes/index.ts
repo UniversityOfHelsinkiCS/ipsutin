@@ -12,6 +12,7 @@ import initializeSentry from '../util/sentry'
 import analyticRouter from './analytic'
 import entryRouter from './entry'
 import facultyRouter from './faculty'
+import llmRouter from './llm'
 import loginRouter from './login'
 import recommendationRouter from './recommendation'
 import resultRouter from './result'
@@ -46,6 +47,7 @@ router.use('/summary', summaryRouter)
 router.use('/recommendations', recommendationRouter)
 router.use('/login', loginRouter)
 router.use('/analytics', analyticRouter)
+router.use('/llm', llmRouter)
 
 router.use(SentryHandlers.errorHandler())
 router.use(errorHandler)

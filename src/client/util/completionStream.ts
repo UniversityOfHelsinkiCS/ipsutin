@@ -1,4 +1,4 @@
-import { Message } from 'react-hook-form'
+import { Message } from '../types'
 
 const getCompletionStream = async (messages: Message[], model: string) => {
   const body = {
@@ -7,7 +7,7 @@ const getCompletionStream = async (messages: Message[], model: string) => {
       model,
     },
   }
-
+  console.log('Messages:', body.options.messages)
   try {
     const response = await fetch(
       'http://localhost:3001/api/ai/stream/innotin',

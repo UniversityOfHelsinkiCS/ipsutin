@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, Grid, Paper, TextField } from '@mui/material'
+import axios from 'axios'
 
 import SectionHeading from '../../components/Common/SectionHeading'
 import { Message } from '../../types'
-import getCompletionStream, {
-  FirstStepMessageSend,
-} from '../../util/completionStream'
+import apiClient from '../../util/apiClient'
+import getCompletionStream from '../../util/completionStream'
 
 import Conversation from './Conversation'
 import FirstStep from './FirstStep'
@@ -20,72 +20,61 @@ const InventorsAssistant = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [completion, setCompletion] = useState('')
 
-  const [inventiveMessage, setInventiveMessage] = useState('')
-  const [publicMessage, setPublicMessage] = useState('')
-  const [industrialMessage, setIndustrialMessage] = useState('')
-  const [aiResponse, setAiResponse] = useState('')
-  const [secondRefinementMessage, setSecondRefinementMessage] = useState('')
+  const [inventiveMessage, setInventiveMessage] = useState('Cat dog hybrid')
+  const [publicMessage, setPublicMessage] = useState('No one knows')
+  const [industrialMessage, setIndustrialMessage] = useState(
+    'Everyone would love it!'
+  )
+  const [aiResponse1, setaiResponse1] = useState('')
+  const [refinementMessage, setRefinementMessage] = useState('')
   const [thirdRefinementMessage, setThirdRefinementMessage] = useState('')
 
   const handleFirstStepMessage = async () => {
-    const model = 'gpt-3.5-turbo'
-    setAiResponse('')
-    try {
-      const { stream } = await FirstStepMessageSend(
+    setaiResponse1('')
+    console.log('MESSAGES:', messages)
+    const response = await apiClient.post('/llm/step1', {
+      inventiveMessage,
+      industrialMessage,
+      publicMessage,
+      messages,
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch')
+    }
+
+    const { content } = response.data
+
+    console.log(content)
+
+    setaiResponse1((prev) => prev + content)
+  }
+
+  const handleLastStepMessage = async () => {
+    setaiResponse1('')
+    const response = await fetch('/step1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         inventiveMessage,
         industrialMessage,
         publicMessage,
-        model
-      )
+        messages,
+      }),
+    })
 
-      const reader = stream.getReader()
-
-      while (true) {
-        // eslint-disable-next-line no-await-in-loop
-        const { value, done } = await reader.read()
-
-        if (done) break
-
-        const text = new TextDecoder().decode(value)
-
-        setAiResponse((prev) => prev + text)
-        console.log(aiResponse)
-      }
-    } catch (error) {
-      console.error('Error:', error)
+    if (!response.ok) {
+      throw new Error('Failed to fetch')
     }
+
+    const { content } = await response.json()
+
+    setaiResponse1((prev) => prev + content)
   }
 
-  const handleSecondStepMessage = async () => {
-    const model = 'gpt-3.5-turbo'
-    setAiResponse('')
-    try {
-      const { stream } = await FirstStepMessageSend(
-        inventiveMessage,
-        industrialMessage,
-        publicMessage,
-        model
-      )
-
-      const reader = stream.getReader()
-
-      while (true) {
-        // eslint-disable-next-line no-await-in-loop
-        const { value, done } = await reader.read()
-
-        if (done) break
-
-        const text = new TextDecoder().decode(value)
-
-        setAiResponse((prev) => prev + text)
-        console.log(aiResponse)
-      }
-    } catch (error) {
-      console.error('Error:', error)
-    }
-  }
-
-  const handleChat = async () => {
+  const handleChat1 = async () => {
     const model = 'gpt-3.5-turbo'
 
     const newMessage: Message = {
@@ -124,6 +113,41 @@ const InventorsAssistant = () => {
     setCompletion('')
   }
 
+  const handleChat2 = async () => {
+    const newMessage = {
+      role: 'user',
+      content: message,
+    }
+
+    setMessages((prev) => [...prev, { role: 'user', content: message }])
+
+    try {
+      // Make POST request using axios
+      const response = await apiClient.post('/llm/chat', {
+        messages: messages.concat(newMessage),
+      })
+
+      // Process response
+      const content = response.data
+
+      setMessages((prev) => [...prev, { role: 'assistant', content }])
+    } catch (error) {
+      console.error('Error:', error)
+    }
+    setCompletion('')
+  }
+
+  const handleTest = async () => {
+    console.log('PRESSING TEST BUTTON')
+    const response1 = await axios.get(
+      'http://localhost:8001/api/ai/stream/inventor/ping1'
+    )
+    console.log('Response 1:', response1)
+    const response2 = await apiClient.get('/llm/test')
+
+    console.log('Response 2:', response2.data)
+  }
+
   return (
     <Grid container>
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1260px' }}>
@@ -149,31 +173,15 @@ const InventorsAssistant = () => {
           </Button>
 
           <SecondStep
-            refinementMessage={secondRefinementMessage}
-            setRefinementMessage={setSecondRefinementMessage}
-            aiResponse={aiResponse}
+            refinementMessage={refinementMessage}
+            setRefinementMessage={setRefinementMessage}
+            aiResponse={aiResponse1}
           />
-
-          <Button
-            onClick={() => {
-              handleSecondStepMessage()
-            }}
-          >
-            Next Step: 3
-          </Button>
 
           <ThirdStep
             refinementMessage={thirdRefinementMessage}
             setRefinementMessage={setThirdRefinementMessage}
           />
-
-          <Button
-            onClick={() => {
-              handleFirstStepMessage()
-            }}
-          >
-            Next Step: 4
-          </Button>
 
           <FourthStep
             refinementMessage={thirdRefinementMessage}
@@ -181,7 +189,7 @@ const InventorsAssistant = () => {
           />
           <Button
             onClick={() => {
-              handleFirstStepMessage()
+              handleLastStepMessage()
             }}
           >
             Next Step: Last step
@@ -209,10 +217,18 @@ const InventorsAssistant = () => {
               />
               <Button
                 onClick={() => {
-                  handleChat()
+                  handleChat1()
+                  handleChat2()
                 }}
               >
                 Send
+              </Button>
+              <Button
+                onClick={() => {
+                  handleTest()
+                }}
+              >
+                Test
               </Button>
             </Box>
           </Paper>
