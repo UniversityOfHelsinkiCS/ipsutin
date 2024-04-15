@@ -13,6 +13,41 @@
     "grafana": "More analytics can be found in Grafana.",
     "grafanaExtLink": "https://toska.cs.helsinki.fi/grafana/goto/MMtESd4Ik?orgId=1"
   },
+  "about": {
+    "mainHeading": "About Us",
+    "mainContent": "The Innotin is a product of joint collabiration with Kumpula Innovation Campus, Helsinki Innovation Services and AI Core for Innovations. The aim is supporting research innovation by making the process of intellectual property and software licensing process more accessible for researchers and lowering the friction with the servics throughout the process.",
+    "journeyHeading": "Our Journey",
+    "journeyContent": "Our initiative is a response to the identified need for better service flow in idea assessment and decision-making for researchers. By collaborating with experts and utilizing feedback from the research community, we've developed tools and resources to meet these needs.",
+    "visionHeading": "Our Vision",
+    "visionContent": "We aim to make IP knowledge accessible, turning complex decisions into simpler, more manageable steps. This includes everything from initial idea assessment to detailed IP analysis and expert consultations.",
+    "futureHeading": "The Future: Incorporating AI",
+    "futureContent": "We plan to incorporate AI technologies to offer advanced insights into IP potential, inspired by innovations in IP assessment tools. This evolution will further streamline the decision-making process for inventors."
+  },
+  "contact": {
+    "mainHeading": "Contact Us",
+    "mainContent": "Kumpula Innovation Campus, Helsinki Innovation Services, and AI Core is here to support your innovation journey. This is authenticated, 100% private and 100% secure enviroment, to assess your ideas, connect with subject matter expert in need guidance, or want to discuss your project, our team is ready to assist.",
+    "informationHeading": "Contact Information",
+    "informationContent": {
+      "name": "Helsinki Innovation Services Ltd",
+      "address": "Think Corner, Yliopistonkatu 4",
+      "postalCode": "00100",
+      "city": "Helsinki"
+    },
+    "email": "Email:",
+    "emailAddress": "his@helsinki.fi",
+    "office": "Office hours:",
+    "officeHours": "We're available for consultations Monday to Friday, 9:00 AM to 5:00 PM.",
+    "currentTime": "It is currently **{{time}}** in Helsinki.",
+    "website": "Website:",
+    "officeExtLink": "https://www.helsinki.fi/en/helsinki-innovation-services",
+    "newsletterHeading": "Stay Informed",
+    "newsletterContent": "Subscribe to our newsletter for updates on new features, training sessions, and ways to enhance your research impact.",
+    "newsletterButton": "Subscribe",
+    "newsletterSuccess": "Subscribed to newsletter",
+    "newsletterError": "Could not subscribe to newsletter",
+    "endingHeading": "Let's Get Started",
+    "endingContent": "Your ideas deserve the best chance for success. Contact us today to begin transforming your research into impactful innovations."
+  },
   "navbar": {
     "home": "Home",
     "about": "About",
@@ -50,14 +85,12 @@
     "relationsTitle": "Request appointment with the Business Collaboration Team",
     "relationsContent": "Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response"
   },
-  "contact": {
-    "contactTicketContentLabel": "Content",
-    "contactTicketPlaceholder": "Please write you message here",
-    "contactTicketSend": "Send Request",
-    "contactTicketSenderEmail": "User's email:",
-    "contactTicketSenderFullname": "User's name:",
-    "contactTicketUserMessage": "User's message:",
-    "contactTicketUserSummary": "User's summary:",
+  "contactTicket": {
+    "placeholder": "Please write you message here",
+    "send": "Send Request",
+    "senderEmail": "User's email:",
+    "senderFullname": "User's name:",
+    "userMessage": "User's message:",
     "pateSuccessMessage": "Contact request sent to {{ email }}",
     "pateErrorMessage": "Could not send contact request"
   },
@@ -92,26 +125,20 @@
     "pateErrorMessage": "Could not share results"
   },
   "results": {
-    "title": "Results",
+    "title": "Results for {{name}}",
     "subtitle": "Your selections and related suggestions",
     "backToMessage": "Go back to survey"
   },
   "facultySelect": {
-    "introMessage": "Start by selecting your faculty",
     "inputLabel": "Your Faculty",
     "facultyChangeSuccess": "Success updating your faculty",
     "facultyChangeError": "Error updating your faculty"
-  },
-  "surveySelect": {
-    "introMessage": "How can we help you today?",
-    "inputLabel": "Your selection"
   },
   "mainPage": {
     "mainHeading": "Make a difference in the world",
     "mainContent": "Welcome {{name}}, to your personal space of Innotin. Innotin is where you secure your idea, invention or software and help you to proceed with your patenting process.",
     "products": "Products",
     "services": "Services",
-    "toolSelectionQuestion": "Which of these surveys would you like to use?",
     "playVideo": "Play video",
     "pauseVideo": "Pause video"
   },
@@ -129,14 +156,6 @@
     "ipAssessment": "Patentability evaluation consideration consists of three distinct domains of patent legislation, meeting the patentability criteria in one domain is sufficient for patentability. Patentability evaluation or invention disclosure may or may not result in patent application.",
     "licences": "Software licensing evaluation will assist on going through some of the elementary license selection questions. An Idea Clinic meeting is highly recommended for all situation involving companies or potential commercial use of the software / intellectual property.",
     "ideaEvaluation": "Ideas may be early-stage concepts without a solid hypothesis or proof, or sometimes rather mature technical or business innovations. This questionnaire will support you on identification of suitable next steps."
-  },
-  "sideBarServices": {
-    "services": "Relevant university services",
-    "disclosure": "[Invention disclosure](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/keksinnon-oikeudet-ja-suojaus) is a part of the [commercialization process](https://www.helsinki.fi/assets/drupal/2021-10/invention-guidelines-of-the-university-of-helsinki.pdf) at the University of Helsinki to evaluate patentability and commercial potential of all ideas.",
-    "clinic": "Idea Clinic is personal 1-to-1 meeting to explore the possibilities of your idea with a commercialization expert. You may request a meeting by filling in the Idea survey or by emailing [his@helsinki.fi](mailto:his@helsinki.fi)",
-    "incubator": "The University's [Incubator and Entrepreneurship Services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/hautomo-ja-yrittajyyspalvelut) offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas.",
-    "relations": "The [business collaboration team](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/yritysyhteistyo-ja-kumppanuudet) helps researchers when they wish to collaborate with businesses or apply for funding related to business collaboration from, for example, Business Finland or the Finnish Research Impact Foundation.",
-    "legal": "The [lawyers of the research services](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/tutkimussopimus-ja-lakiasiat) assist the employees of the university with legal matters related to research, for example, with agreement preparation and interpreting regulations as well as data protection matters."
   },
   "ipAssessmentSurvey": {
     "patentable": "### Overall recommendation is to file an invention disclosure to HIS.",

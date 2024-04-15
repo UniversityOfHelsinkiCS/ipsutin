@@ -6,7 +6,7 @@ import useRecommendations from '../../hooks/useRecommendations'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
-import styles from '../../styles'
+import { productStyles } from '../../styles'
 import {
   getRecommendationLabels,
   getRecommendationScores,
@@ -27,8 +27,6 @@ import RecommendedAction from '../Contact/RecommendedAction'
 
 import CommonResult from './CommonResult'
 import { useResultData } from './ResultDataContext'
-
-const { cardStyles } = styles
 
 type ResultsPageProps = {
   surveyName: SurveyName
@@ -82,13 +80,13 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
   const recommendedAction = recommendationLabels[0]
 
   return (
-    <Box component='section' sx={{ ...cardStyles.outerBox, width: '1560px' }}>
+    <Box component='section' sx={productStyles.productContainer}>
       <SectionHeading
         data-cy={`${surveyName}-result-section-title`}
-        level='h2'
+        level='h1'
         sx={{ mt: 4, ml: 4 }}
       >
-        {t('results:title')}
+        {t('results:title', { name: t(`surveyNames:${surveyName}`) })}
       </SectionHeading>
 
       <RenderRecommendationChips recommendations={sortedRecommendations} />
@@ -106,7 +104,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
         ref={refCallback}
         style={{ marginLeft: '2rem', marginTop: '4rem' }}
       >
-        <SectionHeading level='h3'>
+        <SectionHeading level='h2'>
           {t('recommendedAction:title')}
         </SectionHeading>
         <CommonResult
@@ -117,7 +115,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
         />
         <RecommendedAction action={recommendedAction} />
 
-        <SectionHeading level='h3'>{t('results:subtitle')}</SectionHeading>
+        <SectionHeading level='h2'>{t('results:subtitle')}</SectionHeading>
         <ResultElements sortedResultsWithLabels={sortedResultsWithLabels} />
       </Box>
 

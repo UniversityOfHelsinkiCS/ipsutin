@@ -5,11 +5,6 @@ import {
   ThemeOptions,
 } from '@mui/material/styles'
 
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
-
 /**
  * Module augmentation to extend default theme with new colours: https://mui.com/material-ui/customization/palette/#customization
  */
@@ -43,9 +38,9 @@ const themeOptions: ThemeOptions = {
       main: '#107eab',
     },
     secondary: {
-      main: '#f57600',
-      dark: '#b23c17',
-      light: '##ff784e',
+      main: '#FB923C',
+      dark: '#ea580c',
+      light: '#fed7aa',
       contrastText: '#000',
     },
     toskaDark: {

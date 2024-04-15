@@ -54,7 +54,7 @@ const NavBar = () => {
                 width='40 px'
               />
               <Box ml='2rem'>
-                <Typography component='p' sx={navStyles.appName}>
+                <Typography component='a' href='/' sx={navStyles.appName}>
                   {t('appName')}
                 </Typography>
               </Box>

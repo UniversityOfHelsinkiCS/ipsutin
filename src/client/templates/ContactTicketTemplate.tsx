@@ -21,11 +21,11 @@ const ContactTicketTemplate = ({
       <br />
 
       <p>
-        <strong>{t('contact:contactTicketSenderEmail')} </strong>
+        <strong>{t('contactTicket:senderEmail')} </strong>
         {user?.email}
       </p>
       <p>
-        <strong>{t('contact:contactTicketSenderFullname')} </strong>
+        <strong>{t('contactTicket:senderFullname')} </strong>
         {user?.firstName} {user?.lastName}
       </p>
 
@@ -33,7 +33,7 @@ const ContactTicketTemplate = ({
 
       <p>**********</p>
       <p>
-        <strong>{t('contact:contactTicketUserMessage')}</strong>
+        <strong>{t('contactTicket:userMessage')}</strong>
       </p>
       <p>{content}</p>
       <p>**********</p>

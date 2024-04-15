@@ -26,7 +26,7 @@ const RenderSurvey = ({
 
   return (
     <>
-      <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
+      <SectionHeading level='h1' sx={{ mt: 4, mx: 4 }}>
         {surveyName}
       </SectionHeading>
 
@@ -49,15 +49,9 @@ const RenderSurvey = ({
       ))}
 
       <Box sx={formStyles.stackBoxWrapper}>
-        <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
+        <Stack sx={formStyles.stack} direction='row'>
           <Button
-            sx={{
-              px: 4,
-              borderRadius: '1rem',
-              textTransform: 'capitalize',
-              fontWeight: '600',
-              fontSize: '12pt',
-            }}
+            sx={formStyles.stackButton}
             id='contact-form-button'
             variant='contained'
             color='secondary'

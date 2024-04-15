@@ -6,7 +6,6 @@ import { Box, Typography } from '@mui/material'
 import useRecommendations from '../../../hooks/useRecommendations'
 import useResults from '../../../hooks/useResults'
 import useSurvey from '../../../hooks/useSurvey'
-import styles from '../../../styles'
 import { FormValues } from '../../../types'
 import {
   getRecommendationLabels,
@@ -18,8 +17,6 @@ import RecommendationChip from '../../Chip/RecommendationChip'
 import CommonResult from '../../InteractiveForm/CommonResult'
 import DefaultResultElements from '../../InteractiveForm/DefaultResultElements'
 import IpAssessmentResultElements from '../../InteractiveForm/IpAssessmentResultElements'
-
-const { resultStyles } = styles
 
 interface RenderResultsType {
   surveyName: SurveyName
@@ -88,7 +85,7 @@ const RenderResults = ({ surveyName, resultData }: RenderResultsType) => {
   if (!ResultComponent) return null
 
   return (
-    <Box sx={resultStyles.resultSection}>
+    <Box sx={{ mx: 4, mt: 4 }}>
       <Typography data-cy='result-section-title' variant='h5' component='div'>
         {t('admin:entryViewTitle')}
       </Typography>

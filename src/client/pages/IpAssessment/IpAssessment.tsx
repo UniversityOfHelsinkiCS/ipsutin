@@ -13,7 +13,7 @@ import { useResultData } from '../../components/InteractiveForm/ResultDataContex
 import usePersistForm from '../../hooks/usePersistForm'
 import useSaveEntryMutation from '../../hooks/useSaveEntryMutation'
 import useSurvey from '../../hooks/useSurvey'
-import styles from '../../styles'
+import styles, { productStyles } from '../../styles'
 import { FormValues } from '../../types'
 
 const IpAssessment = () => {
@@ -64,9 +64,9 @@ const IpAssessment = () => {
   )
 
   return (
-    <Box component='section'>
+    <Box component='section' sx={productStyles.productContainer}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
+        <SectionHeading level='h1' sx={{ mt: 4, mx: 4 }}>
           {t('surveyNames:ipAssessment')}
         </SectionHeading>
 
@@ -75,7 +75,7 @@ const IpAssessment = () => {
         </Typography>
 
         <Box component='section'>
-          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
             1. {t('ipAssessmentSurvey:technicalTitle')}
           </SectionHeading>
 
@@ -95,7 +95,7 @@ const IpAssessment = () => {
         </Box>
 
         <Box component='section'>
-          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
             2. {t('ipAssessmentSurvey:mathematicalTitle')}
           </SectionHeading>
 
@@ -115,7 +115,7 @@ const IpAssessment = () => {
         </Box>
 
         <Box component='section'>
-          <SectionHeading level='h3' sx={{ mt: 4, mx: 4 }}>
+          <SectionHeading level='h2' sx={{ mt: 4, mx: 4 }}>
             3. {t('ipAssessmentSurvey:computerProgramTitle')}
           </SectionHeading>
 
@@ -135,15 +135,9 @@ const IpAssessment = () => {
         </Box>
 
         <Box sx={formStyles.stackBoxWrapper}>
-          <Stack sx={{ display: 'flex', gap: 4, mb: 4 }} direction='row'>
+          <Stack sx={formStyles.stack} direction='row'>
             <Button
-              sx={{
-                px: 4,
-                borderRadius: '1rem',
-                textTransform: 'capitalize',
-                fontWeight: '600',
-                fontSize: '12pt',
-              }}
+              sx={formStyles.stackButton}
               id='contact-form-button'
               variant='contained'
               color='secondary'
