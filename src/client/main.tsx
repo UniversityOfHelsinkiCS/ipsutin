@@ -5,10 +5,10 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { RouterProvider } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 
-import router from './components/routes/router'
 import initializeI18n from './util/il18n'
 import queryClient from './util/queryClient'
 import initializeSentry from './util/sentry'
+import router from './Router'
 
 initializeI18n()
 initializeSentry()

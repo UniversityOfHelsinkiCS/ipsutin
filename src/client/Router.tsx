@@ -5,23 +5,24 @@ import {
   IP_ASSESSMENT_DATA_KEY,
   LICENCES_DATA_KEY,
   PUBLIC_URL,
-} from '../../../config'
-import App from '../../App'
-import About from '../../pages/About/About'
-import Contact from '../../pages/Contact/Contact'
-import IdeaEvaluation from '../../pages/IdeaEvaluation/IdeaEvaluation'
-import InventorsAssistant from '../../pages/InventorsAssistant/InventorsAssistant'
-import IpAssessment from '../../pages/IpAssessment/IpAssessment'
-import Licences from '../../pages/Licences/Licences'
-import MainPage from '../../pages/MainPage/MainPage'
-import Admin from '../Admin/Admin'
-import RenderAnalytics from '../Admin/Analytics/RenderAnalytics'
-import Entry from '../Admin/Entries/Entry'
-import RenderEntries from '../Admin/Entries/RenderEntries'
-import DefaultResultElements from '../InteractiveForm/DefaultResultElements'
-import IpAssessmentResultElements from '../InteractiveForm/IpAssessmentResultElements'
-import { ResultDataProvider } from '../InteractiveForm/ResultDataContext'
-import ResultsPage from '../InteractiveForm/ResultsPage'
+} from '../config'
+
+import Admin from './components/Admin/Admin'
+import RenderAnalytics from './components/Admin/Analytics/RenderAnalytics'
+import Entry from './components/Admin/Entries/Entry'
+import RenderEntries from './components/Admin/Entries/RenderEntries'
+import DefaultResultElements from './components/InteractiveForm/DefaultResultElements'
+import IpAssessmentResultElements from './components/InteractiveForm/IpAssessmentResultElements'
+import { ResultDataProvider } from './components/InteractiveForm/ResultDataContext'
+import ResultsPage from './components/InteractiveForm/ResultsPage'
+import About from './pages/About/About'
+import Contact from './pages/Contact/Contact'
+import IdeaEvaluation from './pages/IdeaEvaluation/IdeaEvaluation'
+import InventorsAssistant from './pages/InventorsAssistant/InventorsAssistant'
+import IpAssessment from './pages/IpAssessment/IpAssessment'
+import Licences from './pages/Licences/Licences'
+import MainPage from './pages/MainPage/MainPage'
+import App from './App'
 
 const router = createBrowserRouter(
   [
