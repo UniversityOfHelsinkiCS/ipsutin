@@ -19,7 +19,7 @@ const ResultElement = ({
   resultData: ResultWithLabels | IPAssessmentResult
   dimensions: RecommendationLabel[]
 }) => {
-  if (!resultData || !resultData) return null
+  if (!resultData) return null
 
   return (
     <Box

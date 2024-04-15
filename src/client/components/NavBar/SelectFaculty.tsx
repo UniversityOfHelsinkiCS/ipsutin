@@ -1,19 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Faculty, Locales } from '@backend/types'
-import {
-  FormControl,
-  InputLabel,
-  ListSubheader,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material'
+import CheckIcon from '@mui/icons-material/Check'
+import { ListSubheader, MenuItem } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
 import { useFaculties } from '../../hooks/useFaculty'
 import { useLoggedInUser, useUpdatedUser } from '../../hooks/useUser'
-import styles from '../../styles'
 
 const otherFaculty = {
   code: 'OTHER',
@@ -25,7 +18,7 @@ const otherFaculty = {
 }
 
 const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
-  const sortedFaculties = faculties.sort((a, b) => {
+  const sortedFaculties = [...faculties].sort((a, b) => {
     if (a.name[language] > b.name[language]) return 1
     if (a.name[language] < b.name[language]) return -1
 
@@ -48,13 +41,12 @@ const SelectFaculty = () => {
   const mutation = useUpdatedUser()
 
   const { language } = i18n
-  const { cardStyles, formStyles } = styles
 
-  const handleUpdateFaculty = async (event: SelectChangeEvent<string>) => {
-    setFaculty(event.target.value)
+  const handleUpdateFaculty = async (newFacultyCode: string) => {
+    setFaculty(newFacultyCode)
 
     try {
-      mutation.mutate({ preferredFaculty: event.target.value })
+      mutation.mutate({ preferredFaculty: newFacultyCode })
       enqueueSnackbar(t('facultySelect:facultyChangeSuccess'), {
         variant: 'success',
       })
@@ -75,29 +67,18 @@ const SelectFaculty = () => {
       <ListSubheader disableSticky>
         {t('navbar:facultySubHeader')}
       </ListSubheader>
-      <MenuItem sx={{ px: 4, mb: 2 }}>
-        <FormControl variant='standard' sx={formStyles.formControl}>
-          <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
-          <Select
-            sx={cardStyles.inputField}
-            data-cy='faculty-select'
-            label={t('facultySelect:inputLabel')}
-            value={faculty}
-            size='small'
-            onChange={handleUpdateFaculty}
-          >
-            {organisations.map((f: Faculty) => (
-              <MenuItem
-                data-cy={`faculty-option-${f.code}`}
-                key={f.code}
-                value={f.code}
-              >
-                {f.name[language as keyof Locales]}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </MenuItem>
+      {organisations.map((f: Faculty) => (
+        <MenuItem
+          data-cy={`faculty-option-${f.code}`}
+          onClick={() => handleUpdateFaculty(f.code)}
+          key={f.code}
+          value={f.code}
+          sx={{ justifyContent: 'space-between', px: 4 }}
+        >
+          {f.name[language as keyof Locales]}{' '}
+          {f.code === faculty && <CheckIcon color='primary' />}
+        </MenuItem>
+      ))}
     </>
   )
 }
