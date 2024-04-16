@@ -68,11 +68,11 @@ const InventorsAssistant = () => {
               },
             }}
             component={Link}
-            to='./step-1'
+            to='./step/1'
             variant='contained'
             color='secondary'
           >
-            Check
+            Start
           </Button>
         </Box>
       </Box>
