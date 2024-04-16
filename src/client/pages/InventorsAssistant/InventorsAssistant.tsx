@@ -254,13 +254,15 @@ const InventorsAssistant = () => {
         )}
 
         {currentStep > 1 && (
-          <>
-            <SecondStep
-              refinementMessage={refinementMessage}
-              setRefinementMessage={setRefinementMessage}
-              aiResponse={aiResponse1}
-            />
+          <SecondStep
+            refinementMessage={refinementMessage}
+            setRefinementMessage={setRefinementMessage}
+            aiResponse={aiResponse1}
+          />
+        )}
 
+        {currentStep > 1 && aiResponse1.length > 0 && (
+          <>
             <ThirdStep
               refinementMessage={thirdRefinementMessage}
               setRefinementMessage={setThirdRefinementMessage}
@@ -270,13 +272,33 @@ const InventorsAssistant = () => {
               refinementMessage={thirdRefinementMessage}
               setRefinementMessage={setThirdRefinementMessage}
             />
-            <Button
-              onClick={() => {
-                handleLastStepMessage()
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
-              Go to final step
-            </Button>
+              <Button
+                sx={{
+                  mx: 'auto',
+                  px: 12,
+                  my: 4,
+                  borderRadius: '1rem',
+                  textTransform: 'capitalize',
+                  fontWeight: '600',
+                  fontSize: '12pt',
+                }}
+                variant='contained'
+                color='secondary'
+                onClick={() => {
+                  handleLastStepMessage()
+                  setCurrentStep(4)
+                }}
+              >
+                Go to the final step
+              </Button>
+            </Box>
           </>
         )}
       </Box>
