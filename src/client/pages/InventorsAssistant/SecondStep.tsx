@@ -5,11 +5,17 @@ import { t } from 'i18next'
 import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
 
-const SecondStep: React.FC<{
+type SecondStepProps = {
   refinementMessage: string
   setRefinementMessage: Dispatch<SetStateAction<string>>
   aiResponse: string
-}> = ({ refinementMessage, setRefinementMessage, aiResponse }) => (
+}
+
+const SecondStep = ({
+  refinementMessage,
+  setRefinementMessage,
+  aiResponse,
+}: SecondStepProps) => (
   <>
     <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:step2Header1')}
