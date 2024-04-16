@@ -91,7 +91,7 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
 
       <RenderRecommendationChips recommendations={sortedRecommendations} />
 
-      {commonResult && commonResult?.isSelected[language as keyof Locales] && (
+      {commonResult?.isSelected[language as keyof Locales] && (
         <Box component='section' style={{ margin: '1rem 2rem' }}>
           <Markdown>
             {commonResult.isSelected[language as keyof Locales]}

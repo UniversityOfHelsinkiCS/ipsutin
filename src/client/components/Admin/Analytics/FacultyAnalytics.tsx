@@ -26,7 +26,7 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   const { i18n } = useTranslation()
   const { language } = i18n
 
-  if (active && payload && payload.length) {
+  if (active && payload?.length) {
     const [{ payload: data }] = payload
 
     return (

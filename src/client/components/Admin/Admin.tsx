@@ -12,7 +12,7 @@ const Admin = () => {
 
   if (isLoading) return null
 
-  if (!user || !user.isAdmin) return <Navigate to='/' />
+  if (!user?.isAdmin) return <Navigate to='/' />
 
   const pathParts = location.pathname.split('/').filter(Boolean)
 

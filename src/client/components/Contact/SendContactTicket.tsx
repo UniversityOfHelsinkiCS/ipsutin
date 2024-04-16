@@ -91,7 +91,7 @@ const SendContactTicket = ({
                   margin='dense'
                   disabled={isSent}
                   error={!!errors?.content}
-                  helperText={errors?.content && errors.content.message}
+                  helperText={errors?.content?.message}
                 />
               )}
             />

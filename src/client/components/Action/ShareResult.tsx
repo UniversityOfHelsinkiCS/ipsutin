@@ -115,11 +115,7 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
                     key={option}
                     variant='outlined'
                     label={option}
-                    color={
-                      errors.emails && errors?.emails[index]
-                        ? 'error'
-                        : 'success'
-                    }
+                    color={errors?.emails?.[index] ? 'error' : 'success'}
                   />
                 ))
               }

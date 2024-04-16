@@ -82,17 +82,16 @@ const RenderQuestions = ({
         question={question}
         language={language}
       >
-        {childQuestions &&
-          childQuestions.map((children) => (
-            <RenderQuestions
-              key={children.id}
-              control={control}
-              watch={watch}
-              question={children}
-              questions={questions}
-              language={language}
-            />
-          ))}
+        {childQuestions?.map((children) => (
+          <RenderQuestions
+            key={children.id}
+            control={control}
+            watch={watch}
+            question={children}
+            questions={questions}
+            language={language}
+          />
+        ))}
       </Choice>
     </Box>
   )

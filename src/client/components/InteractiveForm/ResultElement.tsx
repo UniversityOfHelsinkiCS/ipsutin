@@ -38,8 +38,7 @@ const ResultElement = ({
           const serviceColor = serviceRecommendation?.colors.background
           const recommendationResult = resultData?.data?.resultData[dimension]
 
-          if (!recommendationResult || !recommendationResult[language])
-            return null
+          if (!recommendationResult?.[language]) return null
 
           return (
             <ListItem
