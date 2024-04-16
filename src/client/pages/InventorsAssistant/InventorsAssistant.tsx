@@ -181,34 +181,33 @@ const InventorsAssistant = () => {
           {t('inventorsAssistant:mainContent')}
         </Typography>
 
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Button
+        {currentStep === 0 && (
+          <Box
             sx={{
-              mx: 'auto',
-              px: 12,
-              my: 4,
-              borderRadius: '1rem',
-              textTransform: 'capitalize',
-              fontWeight: '600',
-              fontSize: '12pt',
-              '&:hover': {
-                textDecoration: 'underline',
-              },
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
-            type='button'
-            variant='contained'
-            color='secondary'
-            onClick={() => setCurrentStep(1)}
           >
-            Start
-          </Button>
-        </Box>
+            <Button
+              sx={{
+                mx: 'auto',
+                px: 12,
+                my: 4,
+                borderRadius: '1rem',
+                textTransform: 'capitalize',
+                fontWeight: '600',
+                fontSize: '12pt',
+              }}
+              type='button'
+              variant='contained'
+              color='secondary'
+              onClick={() => setCurrentStep(1)}
+            >
+              Start
+            </Button>
+          </Box>
+        )}
       </Box>
 
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
@@ -222,14 +221,35 @@ const InventorsAssistant = () => {
               industrialMessage={industrialMessage}
               setIndustrialMessage={setIndustrialMessage}
             />
-            <Button
-              onClick={() => {
-                handleFirstStepMessage()
-                setCurrentStep(2)
-              }}
-            >
-              Go to next step
-            </Button>
+            {currentStep === 1 && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Button
+                  sx={{
+                    mx: 'auto',
+                    px: 12,
+                    my: 4,
+                    borderRadius: '1rem',
+                    textTransform: 'capitalize',
+                    fontWeight: '600',
+                    fontSize: '12pt',
+                  }}
+                  variant='contained'
+                  color='secondary'
+                  onClick={() => {
+                    handleFirstStepMessage()
+                    setCurrentStep(2)
+                  }}
+                >
+                  Go to next step
+                </Button>
+              </Box>
+            )}
           </>
         )}
 
