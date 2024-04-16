@@ -50,6 +50,15 @@ export interface Service {
   colors: {
     background: string
   }
+  description?: Locales
+  contact?: {
+    method: 'manual' | 'email' | 'form'
+    data: {
+      title?: Locales
+      content: Locales
+    }
+  }
+  extRedirect?: Locales
 }
 
 export interface FormValues {
