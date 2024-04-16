@@ -225,30 +225,27 @@ const InventorsAssistant = () => {
             <Button
               onClick={() => {
                 handleFirstStepMessage()
+                setCurrentStep(2)
               }}
             >
-              Next step: 2
+              Go to next step
             </Button>
           </>
         )}
 
         {currentStep > 1 && (
-          <SecondStep
-            refinementMessage={refinementMessage}
-            setRefinementMessage={setRefinementMessage}
-            aiResponse={aiResponse1}
-          />
-        )}
-
-        {currentStep > 2 && (
-          <ThirdStep
-            refinementMessage={thirdRefinementMessage}
-            setRefinementMessage={setThirdRefinementMessage}
-          />
-        )}
-
-        {currentStep > 3 && (
           <>
+            <SecondStep
+              refinementMessage={refinementMessage}
+              setRefinementMessage={setRefinementMessage}
+              aiResponse={aiResponse1}
+            />
+
+            <ThirdStep
+              refinementMessage={thirdRefinementMessage}
+              setRefinementMessage={setThirdRefinementMessage}
+            />
+
             <FourthStep
               refinementMessage={thirdRefinementMessage}
               setRefinementMessage={setThirdRefinementMessage}
@@ -258,55 +255,55 @@ const InventorsAssistant = () => {
                 handleLastStepMessage()
               }}
             >
-              Next Step: Last step
+              Go to final step
             </Button>
           </>
         )}
-
-        <Paper
-          variant='outlined'
-          sx={{
-            padding: '5% 10%',
-            mt: 5,
-          }}
-        >
-          <Box mb={2}>
-            <SectionHeading level='h3'>
-              {t('inventorsAssistant:chatBoxHeader')}
-            </SectionHeading>
-            <Conversation messages={messages} completion={completion} />
-            <TextField
-              fullWidth
-              multiline
-              minRows={5}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
-            />
-            <Button
-              onClick={() => {
-                handleChat2()
-              }}
-            >
-              Send (current)
-            </Button>
-            <Button
-              onClick={() => {
-                handleChat1()
-              }}
-            >
-              Send (legacy)
-            </Button>
-            <Button
-              onClick={() => {
-                handleTest()
-              }}
-            >
-              Test
-            </Button>
-          </Box>
-        </Paper>
       </Box>
+
+      <Paper
+        variant='outlined'
+        sx={{
+          padding: '5% 10%',
+          mt: 5,
+        }}
+      >
+        <Box mb={2}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:chatBoxHeader')}
+          </SectionHeading>
+          <Conversation messages={messages} completion={completion} />
+          <TextField
+            fullWidth
+            multiline
+            minRows={5}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
+          />
+          <Button
+            onClick={() => {
+              handleChat2()
+            }}
+          >
+            Send (current)
+          </Button>
+          <Button
+            onClick={() => {
+              handleChat1()
+            }}
+          >
+            Send (legacy)
+          </Button>
+          <Button
+            onClick={() => {
+              handleTest()
+            }}
+          >
+            Test
+          </Button>
+        </Box>
+      </Paper>
     </Box>
   )
 }
