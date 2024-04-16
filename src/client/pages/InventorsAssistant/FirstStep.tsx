@@ -23,10 +23,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
   setIndustrialMessage,
 }) => (
   <>
-    <SectionHeading level='h2'>
-      {t('inventorsAssistant:header1')}
-    </SectionHeading>
-
     <Markdown>{t('inventorsAssistant:h1text1')}</Markdown>
     <Markdown>{t('inventorsAssistant:h1text2')}</Markdown>
 

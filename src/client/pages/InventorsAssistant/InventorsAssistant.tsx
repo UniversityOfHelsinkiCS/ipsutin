@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Button, Grid, Paper, TextField } from '@mui/material'
+import { Box, Button, Paper, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 
+import illustration from '../../assets/inventors_assistant_illustration.png'
 import SectionHeading from '../../components/Common/SectionHeading'
 import { Message } from '../../types'
 import apiClient from '../../util/apiClient'
@@ -16,6 +17,9 @@ import ThirdStep from './ThirdStep'
 
 const InventorsAssistant = () => {
   const { t } = useTranslation()
+
+  const [currentStep, setCurrentStep] = useState<number>(0)
+
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<Message[]>([])
   const [completion, setCompletion] = useState('')
@@ -38,13 +42,7 @@ const InventorsAssistant = () => {
       messages,
     })
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch')
-    }
-
     const { content } = response.data
-
-    console.log(content)
 
     setaiResponse1((prev) => prev + content)
   }
@@ -63,10 +61,6 @@ const InventorsAssistant = () => {
         messages,
       }),
     })
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch')
-    }
 
     const { content } = await response.json()
 
@@ -114,7 +108,7 @@ const InventorsAssistant = () => {
   }
 
   const handleChat2 = async () => {
-    const newMessage = {
+    const newMessage: Message = {
       role: 'user',
       content: message,
     }
@@ -149,98 +143,171 @@ const InventorsAssistant = () => {
   }
 
   return (
-    <Grid container>
-      <Box component='section' sx={{ mx: 'auto', maxWidth: '1260px' }}>
-        <Grid
-          item
-          sm={12}
-          sx={{ px: { xs: 2, md: 4 }, mt: 4, textAlign: 'left' }}
+    <Box component='article'>
+      <Box component='section' sx={{ position: 'relative', width: '100vw' }}>
+        <img aria-hidden alt='' src={illustration} height='100%' width='100%' />
+        <Typography
+          component='h1'
+          sx={{
+            position: 'absolute',
+            top: { xs: '40%', sm: '50%', lg: '60%' },
+            left: '40%',
+            paddingRight: { xs: '1rem', sm: '2rem', md: '4rem' },
+            color: 'black',
+            fontSize: {
+              xs: '20pt',
+              sm: '24pt',
+              md: '32pt',
+              lg: '40pt',
+              xl: '52pt',
+            },
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            marginBottom: '1rem',
+          }}
         >
-          <FirstStep
-            inventiveMessage={inventiveMessage}
-            setInventiveMessage={setInventiveMessage}
-            publicityMessage={publicMessage}
-            setPublicityMessage={setPublicMessage}
-            industrialMessage={industrialMessage}
-            setIndustrialMessage={setIndustrialMessage}
-          />
-          <Button
-            onClick={() => {
-              handleFirstStepMessage()
-            }}
-          >
-            Next step: 2
-          </Button>
+          {t('inventorsAssistant:mainHeading')}
+        </Typography>
+      </Box>
 
+      <Box
+        component='section'
+        sx={{ maxWidth: '1024px', mx: 'auto', my: 8, p: { xs: 2, md: 0 } }}
+      >
+        <SectionHeading level='h2'>
+          {t('inventorsAssistant:mainSubHeading')}
+        </SectionHeading>
+        <Typography component='p' variant='body1'>
+          {t('inventorsAssistant:mainContent')}
+        </Typography>
+
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Button
+            sx={{
+              mx: 'auto',
+              px: 12,
+              my: 4,
+              borderRadius: '1rem',
+              textTransform: 'capitalize',
+              fontWeight: '600',
+              fontSize: '12pt',
+              '&:hover': {
+                textDecoration: 'underline',
+              },
+            }}
+            type='button'
+            variant='contained'
+            color='secondary'
+            onClick={() => setCurrentStep(1)}
+          >
+            Start
+          </Button>
+        </Box>
+      </Box>
+
+      <Box component='section' sx={{ mx: 'auto', maxWidth: '1260px' }}>
+        {currentStep > 0 && (
+          <>
+            <FirstStep
+              inventiveMessage={inventiveMessage}
+              setInventiveMessage={setInventiveMessage}
+              publicityMessage={publicMessage}
+              setPublicityMessage={setPublicMessage}
+              industrialMessage={industrialMessage}
+              setIndustrialMessage={setIndustrialMessage}
+            />
+            <Button
+              onClick={() => {
+                handleFirstStepMessage()
+              }}
+            >
+              Next step: 2
+            </Button>
+          </>
+        )}
+
+        {currentStep > 1 && (
           <SecondStep
             refinementMessage={refinementMessage}
             setRefinementMessage={setRefinementMessage}
             aiResponse={aiResponse1}
           />
+        )}
 
+        {currentStep > 2 && (
           <ThirdStep
             refinementMessage={thirdRefinementMessage}
             setRefinementMessage={setThirdRefinementMessage}
           />
+        )}
 
-          <FourthStep
-            refinementMessage={thirdRefinementMessage}
-            setRefinementMessage={setThirdRefinementMessage}
-          />
-          <Button
-            onClick={() => {
-              handleLastStepMessage()
-            }}
-          >
-            Next Step: Last step
-          </Button>
+        {currentStep > 3 && (
+          <>
+            <FourthStep
+              refinementMessage={thirdRefinementMessage}
+              setRefinementMessage={setThirdRefinementMessage}
+            />
+            <Button
+              onClick={() => {
+                handleLastStepMessage()
+              }}
+            >
+              Next Step: Last step
+            </Button>
+          </>
+        )}
 
-          <Paper
-            variant='outlined'
-            sx={{
-              padding: '5% 10%',
-              mt: 5,
-            }}
-          >
-            <Box mb={2}>
-              <SectionHeading level='h3'>
-                {t('inventorsAssistant:chatBoxHeader')}
-              </SectionHeading>
-              <Conversation messages={messages} completion={completion} />
-              <TextField
-                fullWidth
-                multiline
-                minRows={5}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
-              />
-              <Button
-                onClick={() => {
-                  handleChat2()
-                }}
-              >
-                Send (current)
-              </Button>
-              <Button
-                onClick={() => {
-                  handleChat1()
-                }}
-              >
-                Send (legacy)
-              </Button>
-              <Button
-                onClick={() => {
-                  handleTest()
-                }}
-              >
-                Test
-              </Button>
-            </Box>
-          </Paper>
-        </Grid>
+        <Paper
+          variant='outlined'
+          sx={{
+            padding: '5% 10%',
+            mt: 5,
+          }}
+        >
+          <Box mb={2}>
+            <SectionHeading level='h3'>
+              {t('inventorsAssistant:chatBoxHeader')}
+            </SectionHeading>
+            <Conversation messages={messages} completion={completion} />
+            <TextField
+              fullWidth
+              multiline
+              minRows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
+            />
+            <Button
+              onClick={() => {
+                handleChat2()
+              }}
+            >
+              Send (current)
+            </Button>
+            <Button
+              onClick={() => {
+                handleChat1()
+              }}
+            >
+              Send (legacy)
+            </Button>
+            <Button
+              onClick={() => {
+                handleTest()
+              }}
+            >
+              Test
+            </Button>
+          </Box>
+        </Paper>
       </Box>
-    </Grid>
+    </Box>
   )
 }
 
