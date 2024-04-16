@@ -36,7 +36,10 @@ const InventorsAssistant = () => {
         </Typography>
       </Box>
 
-      <Box component='section' sx={{ maxWidth: '1024px', mx: 'auto', my: 8 }}>
+      <Box
+        component='section'
+        sx={{ maxWidth: '1024px', mx: 'auto', my: 8, p: { xs: 2, md: 0 } }}
+      >
         <SectionHeading level='h2'>
           {t('inventorsAssistant:mainSubHeading')}
         </SectionHeading>
