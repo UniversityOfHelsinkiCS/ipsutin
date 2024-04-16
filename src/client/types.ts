@@ -1,4 +1,9 @@
-import { Control, UseFormRegister, UseFormWatch } from 'react-hook-form'
+import {
+  Control,
+  FieldValues,
+  UseFormRegister,
+  UseFormWatch,
+} from 'react-hook-form'
 import {
   Locales,
   Question,
@@ -10,9 +15,9 @@ import {
 export type Set<T> = React.Dispatch<React.SetStateAction<T>>
 
 export interface InputProps {
-  control?: Control<any>
-  watch?: UseFormWatch<any>
-  register?: UseFormRegister<any>
+  control?: Control<FormValues, unknown>
+  watch?: UseFormWatch<FieldValues>
+  register?: UseFormRegister<FieldValues>
   question?: Question
   children?: React.ReactNode
   language?: string

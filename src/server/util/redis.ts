@@ -9,6 +9,6 @@ export const redis = new Redis({
   port: 6379,
 })
 
-export const redisStore = new (RedisStore as any)({
+export const redisStore = new RedisStore({
   client: redis,
 })

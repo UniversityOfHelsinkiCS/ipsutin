@@ -1,3 +1,4 @@
+import { RequestWithUser } from '@backend/types'
 import morgan from 'morgan'
 
 import { inProduction } from '../../config'
@@ -11,8 +12,8 @@ type AccessLogger = (arg0: ReturnVoid) => ReturnType<Morgan>
 
 const access = morgan as unknown as AccessLogger
 
-const accessLogger = access((tokens, req: any, res) => {
-  const { user } = req
+const accessLogger = access((tokens, req, res) => {
+  const { user } = req as RequestWithUser
 
   const method = tokens.method(req, res)
   const url = tokens.url(req, res)

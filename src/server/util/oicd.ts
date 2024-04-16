@@ -55,7 +55,7 @@ const getClient = async () => {
 const verifyLogin = async (
   _tokenSet: TokenSet,
   userinfo: UserinfoResponse<UnknownObject, UnknownObject>,
-  done: (err: any, user?: unknown) => void
+  done: (err: unknown, user?: unknown) => void
 ) => {
   const {
     uid: username,
