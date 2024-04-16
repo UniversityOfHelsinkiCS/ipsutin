@@ -1,8 +1,7 @@
 import React from 'react'
-import { Box, TextField } from '@mui/material'
+import { Box, TextField, Typography } from '@mui/material'
 import { t } from 'i18next'
 
-import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
 
 type ThirdStepProps = {
@@ -15,12 +14,17 @@ const ThirdStep: React.FC<ThirdStepProps> = ({
   setRefinementMessage,
 }) => (
   <>
-    <SectionHeading level='h2'>
+    <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:step3Header1')}
     </SectionHeading>
-    <Markdown>{t('inventorsAssistant:step3text1')}</Markdown>
-    <Box sx={{ pl: 4, margin: 4 }}>
-      <Markdown>{t('inventorsAssistant:step3Header2')}</Markdown>
+    <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:step3text1')}
+    </Typography>
+
+    <Box component='section' sx={{ mt: 4 }}>
+      <Typography variant='body1' sx={{ my: 2 }}>
+        {t('inventorsAssistant:step3Header2')}
+      </Typography>
 
       <TextField
         fullWidth
