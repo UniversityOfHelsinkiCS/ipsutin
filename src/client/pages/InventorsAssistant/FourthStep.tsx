@@ -1,8 +1,7 @@
 import React from 'react'
-import { Box, TextField } from '@mui/material'
+import { List, ListItemText, TextField, Typography } from '@mui/material'
 import { t } from 'i18next'
 
-import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
 
 type FourthStepProps = {
@@ -10,37 +9,48 @@ type FourthStepProps = {
   setRefinementMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
-const FourthStep: React.FC<FourthStepProps> = ({
+const FourthStep = ({
   refinementMessage,
   setRefinementMessage,
-}) => (
+}: FourthStepProps) => (
   <>
-    <SectionHeading level='h2'>
+    <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:step4Header1')}
     </SectionHeading>
-    <Markdown>{t('inventorsAssistant:step4text1')}</Markdown>
-    <Markdown>{t('inventorsAssistant:step4text2')}</Markdown>
-    <Box sx={{ pl: 4, margin: 4 }}>
-      <Markdown>{t('inventorsAssistant:step4Bullet1')}</Markdown>
-      <Markdown>{t('inventorsAssistant:step4Bullet2')}</Markdown>
-      <Markdown>{t('inventorsAssistant:step4Bullet3')}</Markdown>
-      <Markdown>{t('inventorsAssistant:step4Bullet4')}</Markdown>
-      <Markdown>{t('inventorsAssistant:step4Bullet5')}</Markdown>
-      <Markdown>{t('inventorsAssistant:step4Bullet6')}</Markdown>
-      <Markdown>{t('inventorsAssistant:step4Bullet7')}</Markdown>
-    </Box>
-    <Markdown>{t('inventorsAssistant:step4text3')}</Markdown>
-    <Box sx={{ pl: 4, margin: 4 }}>
-      <Markdown>{t('inventorsAssistant:step4text4')}</Markdown>
-      <TextField
-        fullWidth
-        multiline
-        minRows={5}
-        value={refinementMessage}
-        onChange={(e) => setRefinementMessage(e.target.value)}
-        placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
-      />
-    </Box>
+
+    <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:step4text1')}
+    </Typography>
+    <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:step4text2')}
+    </Typography>
+
+    <List sx={{ pl: 2 }}>
+      <ListItemText>{t('inventorsAssistant:step4Bullet1')}</ListItemText>
+      <ListItemText>{t('inventorsAssistant:step4Bullet2')}</ListItemText>
+      <ListItemText>{t('inventorsAssistant:step4Bullet3')}</ListItemText>
+      <ListItemText>{t('inventorsAssistant:step4Bullet4')}</ListItemText>
+      <ListItemText>{t('inventorsAssistant:step4Bullet5')}</ListItemText>
+      <ListItemText>{t('inventorsAssistant:step4Bullet6')}</ListItemText>
+      <ListItemText>{t('inventorsAssistant:step4Bullet7')}</ListItemText>
+    </List>
+
+    <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:step4text3')}
+    </Typography>
+
+    <Typography variant='body1' sx={{ my: 2 }}>
+      {t('inventorsAssistant:step4text4')}
+    </Typography>
+
+    <TextField
+      fullWidth
+      multiline
+      minRows={5}
+      value={refinementMessage}
+      onChange={(e) => setRefinementMessage(e.target.value)}
+      placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
+    />
   </>
 )
 
