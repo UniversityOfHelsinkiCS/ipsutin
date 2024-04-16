@@ -24,6 +24,7 @@ import IA from './pages/InventorsAssistant/New/InventorsAssistant'
 import IpAssessment from './pages/IpAssessment/IpAssessment'
 import Licences from './pages/Licences/Licences'
 import MainPage from './pages/MainPage/MainPage'
+import Service from './pages/Service/Service'
 import App from './App'
 
 const router = createBrowserRouter(
@@ -37,6 +38,16 @@ const router = createBrowserRouter(
           path: '',
           element: <MainPage />,
           errorElement: <RootBoundary />,
+        },
+        {
+          path: '/services',
+          errorElement: <RootBoundary />,
+          children: [
+            {
+              path: ':serviceId',
+              element: <Service />,
+            },
+          ],
         },
         {
           path: '/licences',
