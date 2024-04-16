@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Box, TextField } from '@mui/material'
+import { Alert, Box, TextField, Typography } from '@mui/material'
 import { t } from 'i18next'
 
 import Markdown from '../../components/Common/Markdown'
@@ -11,25 +11,31 @@ const SecondStep: React.FC<{
   aiResponse: string
 }> = ({ refinementMessage, setRefinementMessage, aiResponse }) => (
   <>
-    <SectionHeading level='h2'>
+    <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:step2Header1')}
     </SectionHeading>
 
-    <Markdown>{t('inventorsAssistant:step2text1')}</Markdown>
+    <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:step2text1')}
+    </Typography>
 
-    <Box sx={{ pl: 4, margin: 4 }}>
-      <Markdown>{`### *${aiResponse || 'Ai response...'}*`}</Markdown>
-    </Box>
+    <Alert severity={aiResponse ? 'success' : 'info'} sx={{ my: 4, p: 4 }}>
+      <Markdown>
+        {aiResponse || 'Grunching response for you, please wait...'}
+      </Markdown>
+    </Alert>
 
-    <SectionHeading level='h3'>
-      {t('inventorsAssistant:step2Header2')}
-    </SectionHeading>
-    <Markdown>{t('inventorsAssistant:step2text2')}</Markdown>
-
-    <Box sx={{ pl: 4, margin: 4 }}>
-      <SectionHeading level='h5'>
-        {t('inventorsAssistant:step2text3')}
+    <Box component='section' sx={{ mt: 4 }}>
+      <SectionHeading level='h3'>
+        {t('inventorsAssistant:step2Header2')}
       </SectionHeading>
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:step2text2')}
+      </Typography>
+
+      <Typography variant='body1' sx={{ my: 2 }}>
+        {t('inventorsAssistant:step2text3')}
+      </Typography>
 
       <TextField
         fullWidth
@@ -40,7 +46,6 @@ const SecondStep: React.FC<{
         placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
       />
     </Box>
-    <Markdown>{t('inventorsAssistant:detailReminder')}</Markdown>
   </>
 )
 
