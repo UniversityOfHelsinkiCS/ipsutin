@@ -211,7 +211,7 @@ const InventorsAssistant = () => {
         </Box>
       </Box>
 
-      <Box component='section' sx={{ mx: 'auto', maxWidth: '1260px' }}>
+      <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
         {currentStep > 0 && (
           <>
             <FirstStep

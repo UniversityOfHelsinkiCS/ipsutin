@@ -1,8 +1,14 @@
 import React from 'react'
-import { Box, TextField } from '@mui/material'
+import {
+  Alert,
+  Box,
+  List,
+  ListItemText,
+  TextField,
+  Typography,
+} from '@mui/material'
 import { t } from 'i18next'
 
-import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
 
 type FirstStepProps = {
@@ -23,28 +29,38 @@ const FirstStep: React.FC<FirstStepProps> = ({
   setIndustrialMessage,
 }) => (
   <>
-    <Markdown>{t('inventorsAssistant:h1text1')}</Markdown>
-    <Markdown>{t('inventorsAssistant:h1text2')}</Markdown>
+    <Typography variant='body1'>
+      {t('inventorsAssistant:step1MainContent')}
+    </Typography>
+    <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:step1Disclaimer')}
+    </Typography>
 
-    <SectionHeading level='h3'>
+    <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:header2')}
     </SectionHeading>
 
-    <Markdown>{t('inventorsAssistant:h2text1')}</Markdown>
+    <Alert severity='info' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:h2text1')}
+    </Alert>
 
-    <Box sx={{ pl: 4, margin: 4 }}>
-      <SectionHeading level='h5'>
+    <Box component='section' sx={{ mt: 4 }}>
+      <SectionHeading level='h3' sx={{ mt: 2 }}>
         {t('inventorsAssistant:inventiveStepHeader')}
       </SectionHeading>
 
-      <Markdown>{t('inventorsAssistant:inventiveStepDescription')}</Markdown>
-      <Markdown>{t('inventorsAssistant:describeGeneralIdea')}</Markdown>
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:inventiveStepDescription')}
+      </Typography>
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:describeGeneralIdea')}
+      </Typography>
 
-      <Box sx={{ pl: 2 }}>
-        <Markdown>{t('inventorsAssistant:problem')}</Markdown>
-        <Markdown>{t('inventorsAssistant:invention')}</Markdown>
-        <Markdown>{t('inventorsAssistant:applications')}</Markdown>
-      </Box>
+      <List sx={{ pl: 2 }}>
+        <ListItemText>{t('inventorsAssistant:problem')}</ListItemText>
+        <ListItemText>{t('inventorsAssistant:invention')}</ListItemText>
+        <ListItemText>{t('inventorsAssistant:applications')}</ListItemText>
+      </List>
 
       <TextField
         fullWidth
@@ -54,10 +70,15 @@ const FirstStep: React.FC<FirstStepProps> = ({
         onChange={(e) => setInventiveMessage(e.target.value)}
         placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
       />
-      <SectionHeading level='h5'>
+    </Box>
+
+    <Box component='section' sx={{ mt: 4 }}>
+      <SectionHeading level='h3'>
         {t('inventorsAssistant:publicityStepHeader')}
       </SectionHeading>
-      <Markdown>{t('inventorsAssistant:publicityStepDescription')}</Markdown>
+      <Typography variant='body1' sx={{ my: 2 }}>
+        {t('inventorsAssistant:publicityStepDescription')}
+      </Typography>
       <TextField
         fullWidth
         multiline
@@ -66,10 +87,15 @@ const FirstStep: React.FC<FirstStepProps> = ({
         onChange={(e) => setPublicityMessage(e.target.value)}
         placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
       />
-      <SectionHeading level='h5'>
+    </Box>
+
+    <Box component='section' sx={{ mt: 4 }}>
+      <SectionHeading level='h3'>
         {t('inventorsAssistant:industrialStepHeader')}
       </SectionHeading>
-      <Markdown>{t('inventorsAssistant:industrialDescription')}</Markdown>
+      <Typography variant='body1' sx={{ my: 2 }}>
+        {t('inventorsAssistant:industrialDescription')}
+      </Typography>
       <TextField
         fullWidth
         multiline
@@ -79,7 +105,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
         placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
       />
     </Box>
-    <Markdown>{t('inventorsAssistant:detailReminder')}</Markdown>
   </>
 )
 
