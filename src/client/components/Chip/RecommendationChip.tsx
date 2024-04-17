@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Locales, Recommendation } from '@backend/types'
 import { Chip, getContrastRatio, Tooltip } from '@mui/material'
@@ -20,7 +19,7 @@ const RecommendationChip = ({
   const serviceRecommendation = recommendations.find(
     (s) => s.id === recommendation.label
   )
-  const serviceColor = serviceRecommendation?.colors.background || '#000'
+  const serviceColor = serviceRecommendation?.colors.background ?? '#000'
 
   const style = {
     backgroundColor: serviceColor,
