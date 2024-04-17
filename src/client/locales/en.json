@@ -219,6 +219,14 @@
     "step4text3": "Remember, well-crafted claims are crucial for protecting your invention. They define the scope of your patent rights and serve as a legal barrier against infringement. If possible, consult with a patent attorney to ensure your claims are effectively structured and adequately protect your invention.",
     "step4text4": "Make your claims:",
 
+    "finalStepHeader1": "Inventor's Assistant: Summary",
+    "finalStepText1": "Your journey started with a simple idea topic. This idea was then refined into a more concrete concept. The next step involved exploring its practical use, leading to the identification of its industrial applicability. This phase was crucial in understanding how your idea fits into real-world scenarios. Finally, we defined specific claims for your idea. These claims are essential as they outline the unique aspects of your idea and lay the groundwork for its protection. Each of these steps has been vital in evolving your initial idea into a well-developed concept. You will find the key ingredients for your invention below. Congratulations, you have now succesfully completed one iteration of your idea with the Inventor's Assistant.",
+    "finalStepOrignalIdea": "Original idea: ",
+    "finalStepRefinedIdea": "Refined idea: ",
+    "finalStepIndustrialApplicability": "Industrial Applicability: ",
+    "finalStepClaims": "Claims: ",
+    "finalStepSummary": "Summary of the idea: ",
+
     "chatBoxPlaceholder": "Enter your idea...",
     "chatBoxHeader": "Start chatting",
 
