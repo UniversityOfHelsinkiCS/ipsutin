@@ -33,7 +33,7 @@ export const getPromptById = (id: number): string => {
       id: 2,
       text: `You are an expert inventor using chain of thought analysis. Focus on the industrial applicability of the idea. 
         Prepare the industry applicability text for the invention report. Let’s work on this step by step way to be sure we have the right answer. 
-        The revised idea is:`,
+        The revised idea is: `,
     },
 
     {
@@ -41,12 +41,12 @@ export const getPromptById = (id: number): string => {
       text: `
         You are an expert inventor using chain of thought analysis. Focus on creating patent claims for the invention report. Just report the numbered claims.
         Let’s work on this step by step way to be sure we have the right answer. 
-        The revised idea is:`,
+        The revised idea is: `,
     },
 
     {
       id: 4,
-      text: `You are an expert inventor using chain of thought analysis. Edit the following text to become an clear and precise invention report expanding on the points. Here is the input:`,
+      text: `You are an expert inventor using chain of thought analysis. Edit the following text to become an clear and precise invention report expanding on the points. Here is the input: `,
     },
   ]
 
