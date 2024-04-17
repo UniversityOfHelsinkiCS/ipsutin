@@ -3,7 +3,13 @@ import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { Locales } from '@backend/types'
-import { Box, getContrastRatio, Typography } from '@mui/material'
+import {
+  Box,
+  getContrastRatio,
+  List,
+  ListItem,
+  Typography,
+} from '@mui/material'
 
 import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
@@ -93,13 +99,19 @@ const ServicePage = () => {
         </Box>
       )}
 
-      {service?.extRedirect && (
+      {service?.links && (
         <Box component='section' sx={articleStyles.section}>
           <SectionHeading level='h2' sx={articleStyles.sectionHeading}>
             {t('services:extRedirectHeading')}
           </SectionHeading>
 
-          <Markdown>{service.extRedirect[language as keyof Locales]}</Markdown>
+          <List>
+            {service.links.map((link) => (
+              <ListItem key={link.en}>
+                <Markdown>{link[language as keyof Locales]}</Markdown>
+              </ListItem>
+            ))}
+          </List>
         </Box>
       )}
     </Box>

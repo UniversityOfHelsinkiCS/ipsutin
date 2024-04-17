@@ -27,11 +27,13 @@ export const services: Service[] = [
         },
       },
     },
-    extRedirect: {
-      fi: '[Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/ilmoita-ideasta)',
-      en: '[Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/ilmoita-ideasta)',
-      sv: '[Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/ilmoita-ideasta)',
-    },
+    links: [
+      {
+        fi: '[Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/ilmoita-ideasta)',
+        en: '[Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/ilmoita-ideasta)',
+        sv: '[Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/ilmoita-ideasta)',
+      },
+    ],
   },
   {
     id: 'clinic',
@@ -67,6 +69,27 @@ export const services: Service[] = [
     },
   },
   {
+    id: 'legal',
+    label: 'legal',
+    title: {
+      fi: 'Legal',
+      en: 'Legal',
+      sv: 'Legal',
+    },
+    colors: {
+      background: '#afd255',
+    },
+    description: {
+      fi: "The University's Incubator and Entrepreneurship Services offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas. The services are open to all members of the university community who are interested in entrepreneurship. Incubator programmes, aimed at teams who have already crystallised their idea and are ready to take the next step in their entrepreneurial journey, offer tailored, personalised support to selected teams to ensure that their idea can reach its full potential and be unleashed on the world.\n\nWhich Incubator Program is suitable for your project:\n\nNEXUS — Deep Tech, AI & Sustainability\nSPARK & HIH — Health & Pharma\nBiosphere — Bio & Circular Economy\nTREMOR — Impact in Society, Education, Wellbeing, Communities & Law\nVFDF Germinator — Food Systems\n\nFor more information visit Incubator own website: [https://www.helsinki.fi/en/networks/helsinki-incubators](https://www.helsinki.fi/en/networks/helsinki-incubators)",
+      en: "The University's Incubator and Entrepreneurship Services offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas. The services are open to all members of the university community who are interested in entrepreneurship. Incubator programmes, aimed at teams who have already crystallised their idea and are ready to take the next step in their entrepreneurial journey, offer tailored, personalised support to selected teams to ensure that their idea can reach its full potential and be unleashed on the world.\n\nWhich Incubator Program is suitable for your project:\n\nNEXUS — Deep Tech, AI & Sustainability\nSPARK & HIH — Health & Pharma\nBiosphere — Bio & Circular Economy\nTREMOR — Impact in Society, Education, Wellbeing, Communities & Law\nVFDF Germinator — Food Systems\n\nFor more information visit Incubator own website: [https://www.helsinki.fi/en/networks/helsinki-incubators](https://www.helsinki.fi/en/networks/helsinki-incubators)",
+      sv: "The University's Incubator and Entrepreneurship Services offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas. The services are open to all members of the university community who are interested in entrepreneurship. Incubator programmes, aimed at teams who have already crystallised their idea and are ready to take the next step in their entrepreneurial journey, offer tailored, personalised support to selected teams to ensure that their idea can reach its full potential and be unleashed on the world.\n\nWhich Incubator Program is suitable for your project:\n\nNEXUS — Deep Tech, AI & Sustainability\nSPARK & HIH — Health & Pharma\nBiosphere — Bio & Circular Economy\nTREMOR — Impact in Society, Education, Wellbeing, Communities & Law\nVFDF Germinator — Food Systems\n\nFor more information visit Incubator own website: [https://www.helsinki.fi/en/networks/helsinki-incubators](https://www.helsinki.fi/en/networks/helsinki-incubators)",
+    },
+  },
+]
+
+export const recommendations = [
+  ...services,
+  {
     id: 'relations',
     label: 'relations',
     title: {
@@ -90,27 +113,6 @@ export const services: Service[] = [
       background: '#199995',
     },
   },
-  {
-    id: 'legal',
-    label: 'legal',
-    title: {
-      fi: 'Legal',
-      en: 'Legal',
-      sv: 'Legal',
-    },
-    colors: {
-      background: '#afd255',
-    },
-    description: {
-      fi: "The University's Incubator and Entrepreneurship Services offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas. The services are open to all members of the university community who are interested in entrepreneurship. Incubator programmes, aimed at teams who have already crystallised their idea and are ready to take the next step in their entrepreneurial journey, offer tailored, personalised support to selected teams to ensure that their idea can reach its full potential and be unleashed on the world.\n\nWhich Incubator Program is suitable for your project:\n\nNEXUS — Deep Tech, AI & Sustainability\nSPARK & HIH — Health & Pharma\nBiosphere — Bio & Circular Economy\nTREMOR — Impact in Society, Education, Wellbeing, Communities & Law\nVFDF Germinator — Food Systems\n\nFor more information visit Incubator own website: [https://www.helsinki.fi/en/networks/helsinki-incubators](https://www.helsinki.fi/en/networks/helsinki-incubators)",
-      en: "The University's Incubator and Entrepreneurship Services offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas. The services are open to all members of the university community who are interested in entrepreneurship. Incubator programmes, aimed at teams who have already crystallised their idea and are ready to take the next step in their entrepreneurial journey, offer tailored, personalised support to selected teams to ensure that their idea can reach its full potential and be unleashed on the world.\n\nWhich Incubator Program is suitable for your project:\n\nNEXUS — Deep Tech, AI & Sustainability\nSPARK & HIH — Health & Pharma\nBiosphere — Bio & Circular Economy\nTREMOR — Impact in Society, Education, Wellbeing, Communities & Law\nVFDF Germinator — Food Systems\n\nFor more information visit Incubator own website: [https://www.helsinki.fi/en/networks/helsinki-incubators](https://www.helsinki.fi/en/networks/helsinki-incubators)",
-      sv: "The University's Incubator and Entrepreneurship Services offer easily accessible programmes, courses, and services to support the development, launch, and growth of business ideas. The services are open to all members of the university community who are interested in entrepreneurship. Incubator programmes, aimed at teams who have already crystallised their idea and are ready to take the next step in their entrepreneurial journey, offer tailored, personalised support to selected teams to ensure that their idea can reach its full potential and be unleashed on the world.\n\nWhich Incubator Program is suitable for your project:\n\nNEXUS — Deep Tech, AI & Sustainability\nSPARK & HIH — Health & Pharma\nBiosphere — Bio & Circular Economy\nTREMOR — Impact in Society, Education, Wellbeing, Communities & Law\nVFDF Germinator — Food Systems\n\nFor more information visit Incubator own website: [https://www.helsinki.fi/en/networks/helsinki-incubators](https://www.helsinki.fi/en/networks/helsinki-incubators)",
-    },
-  },
-]
-
-export const recommendations = [
-  ...services,
   {
     id: 'restrictive',
     label: 'restrictive',

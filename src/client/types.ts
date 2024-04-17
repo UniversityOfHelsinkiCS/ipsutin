@@ -60,7 +60,7 @@ export interface Service {
       formEmail?: string
     }
   }
-  extRedirect?: Locales
+  links?: Locales[]
 }
 
 export interface FormValues {
