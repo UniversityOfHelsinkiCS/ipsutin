@@ -20,7 +20,6 @@ import About from './pages/About/About'
 import Contact from './pages/Contact/Contact'
 import IdeaEvaluation from './pages/IdeaEvaluation/IdeaEvaluation'
 import InventorsAssistant from './pages/InventorsAssistant/InventorsAssistant'
-import IA from './pages/InventorsAssistant/New/InventorsAssistant'
 import IpAssessment from './pages/IpAssessment/IpAssessment'
 import Licences from './pages/Licences/Licences'
 import MainPage from './pages/MainPage/MainPage'
@@ -125,10 +124,6 @@ const router = createBrowserRouter(
           path: '/inventorsassistant',
           element: <InventorsAssistant />,
           errorElement: <RootBoundary />,
-        },
-        {
-          path: '/ia',
-          element: <IA />,
         },
         {
           path: '/admin',
