@@ -21,7 +21,7 @@ import RenderRecommendationChips from '../Chip/RenderRecommendationChips'
 import Markdown from '../Common/Markdown'
 import NavigateBack from '../Common/NavigateBack'
 import SectionHeading from '../Common/SectionHeading'
-import RecommendedAction from '../Contact/RecommendedAction'
+import RecommendedAction from '../Recommendation/Recommendation'
 import ProductSuggestion from '../Suggestion/ProductSuggestion'
 import ShareResult from '../Suggestion/ShareResult'
 

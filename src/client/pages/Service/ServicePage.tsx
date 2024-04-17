@@ -7,7 +7,7 @@ import { Box, getContrastRatio, Typography } from '@mui/material'
 
 import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
-import SendContactTicket from '../../components/Contact/SendContactTicket'
+import SendContactTicket from '../../components/Recommendation/SendContactTicket'
 import { articleStyles } from '../../styles'
 import { Service } from '../../types'
 import { services } from '../../util/services'
