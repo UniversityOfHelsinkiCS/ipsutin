@@ -9,11 +9,11 @@ import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
 import SendContactTicket from '../../components/Contact/SendContactTicket'
 import { articleStyles } from '../../styles'
-import { Service, ServiceContactMethod } from '../../types'
+import { Service } from '../../types'
 import { services } from '../../util/services'
 
 const ServiceContact = (service: Service) => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   const { language } = i18n
 
