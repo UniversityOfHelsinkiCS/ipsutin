@@ -5,8 +5,8 @@ import { Box } from '@mui/material'
 
 import LinkWithQuery from '../Common/LinkWithQuery'
 
+import RecommendationDetails from './RecommendationDetails'
 import SendContactTicket from './SendContactTicket'
-import Service from './Service'
 
 interface Action {
   action: RecommendationLabel
@@ -16,8 +16,8 @@ const RecommendedAction = ({ action }: Action) => {
   const { t } = useTranslation()
 
   // Action prop is the most recommended 'service' that is used to determine which of the
-  // following components are rendered.
-  const components: { [key in RecommendationLabel]?: ReactElement } = {
+  // following elements are rendered.
+  const elements: { [key in RecommendationLabel]?: ReactElement } = {
     clinic: (
       <SendContactTicket
         title={t('recommendedAction:clinicTitle')}
@@ -33,7 +33,7 @@ const RecommendedAction = ({ action }: Action) => {
       />
     ),
     disclosure: (
-      <Service
+      <RecommendationDetails
         title={t('services:disclosureTitle')}
         content={t('services:disclosureContent')}
       >
@@ -43,10 +43,10 @@ const RecommendedAction = ({ action }: Action) => {
         >
           {t('services:disclosure')}
         </LinkWithQuery>
-      </Service>
+      </RecommendationDetails>
     ),
     incubator: (
-      <Service
+      <RecommendationDetails
         title={t('services:incubatorTitle')}
         content={t('services:incubatorContent')}
       >
@@ -56,7 +56,7 @@ const RecommendedAction = ({ action }: Action) => {
         >
           {t('services:incubator')}
         </LinkWithQuery>
-      </Service>
+      </RecommendationDetails>
     ),
     relations: (
       <>
@@ -65,7 +65,7 @@ const RecommendedAction = ({ action }: Action) => {
           content={t('recommendedAction:relationsContent')}
           ticketEmail='businessteam@helsinki.fi'
         />
-        <Service
+        <RecommendationDetails
           title={t('services:relationsTitle')}
           content={t('services:relationsContent')}
           sx={{ mt: 4 }}
@@ -76,12 +76,12 @@ const RecommendedAction = ({ action }: Action) => {
           >
             {t('services:relations')}
           </LinkWithQuery>
-        </Service>
+        </RecommendationDetails>
       </>
     ),
     restrictive: (
       <>
-        <Service
+        <RecommendationDetails
           title={t('services:gnugplTitle')}
           content={t('services:gnugplContent')}
         >
@@ -99,9 +99,9 @@ const RecommendedAction = ({ action }: Action) => {
           >
             {t('surveyNames:ipAssessment')}
           </LinkWithQuery>
-        </Service>
+        </RecommendationDetails>
 
-        <Service
+        <RecommendationDetails
           sx={{ mt: 4 }}
           title={t('services:openSourceLegalSuggestionTitle')}
           content=''
@@ -111,12 +111,12 @@ const RecommendedAction = ({ action }: Action) => {
             content={t('recommendedAction:legalContent')}
             ticketEmail='researchlawyers@helsinki.fi'
           />
-        </Service>
+        </RecommendationDetails>
       </>
     ),
     permissive: (
       <>
-        <Service
+        <RecommendationDetails
           title={t('services:bsdmitTitle')}
           content={t('services:bsdmitContent')}
         >
@@ -126,9 +126,9 @@ const RecommendedAction = ({ action }: Action) => {
           >
             {t('services:disclosure')}
           </LinkWithQuery>
-        </Service>
+        </RecommendationDetails>
 
-        <Service
+        <RecommendationDetails
           sx={{ mt: 4 }}
           title={t('services:openSourceLegalSuggestionTitle')}
           content=''
@@ -138,22 +138,22 @@ const RecommendedAction = ({ action }: Action) => {
             content={t('recommendedAction:legalContent')}
             ticketEmail='researchlawyers@helsinki.fi'
           />
-        </Service>
+        </RecommendationDetails>
       </>
     ),
   }
 
   // Get the corresponding components for the most recommended action from the components tree.
-  const RecommendedActionComponent = components[action]
+  const RecommendedActionElement = elements[action]
 
-  if (!RecommendedActionComponent) return null
+  if (!RecommendedActionElement) return null
 
   return (
     <Box
       id='recommended-action-component'
       style={{ marginTop: '2rem', marginBottom: '4rem' }}
     >
-      {RecommendedActionComponent}
+      {RecommendedActionElement}
     </Box>
   )
 }

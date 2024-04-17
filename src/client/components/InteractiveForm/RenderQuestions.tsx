@@ -21,7 +21,7 @@ const QuestionText = ({
     return (
       <Typography component='span'>
         {question.title[language]}
-        <ShowMore text={question.text[language as keyof Locales]} />
+        <ShowMore text={question.text[language]} />
       </Typography>
     )
 
@@ -29,9 +29,7 @@ const QuestionText = ({
     <Box sx={{ display: 'flex' }}>
       <Typography component='span'>
         <span className='questions'>{question.title[language]}</span>
-        {question.text[language] && (
-          <ShowMore text={question.text[language as keyof Locales]} />
-        )}
+        {question.text[language] && <ShowMore text={question.text[language]} />}
       </Typography>
     </Box>
   )
@@ -64,7 +62,7 @@ const RenderQuestions = ({
     info: SingleChoice,
   }
 
-  const Choice = components[question.optionData.type as PossibleChoiceTypes]
+  const Choice = components[question.optionData.type]
 
   if (!Choice) return null
 

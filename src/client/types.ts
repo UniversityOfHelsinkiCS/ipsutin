@@ -15,7 +15,8 @@ import {
 export type Set<T> = React.Dispatch<React.SetStateAction<T>>
 
 export interface InputProps {
-  control?: Control<FormValues, unknown>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control?: Control<any>
   watch?: UseFormWatch<FieldValues>
   register?: UseFormRegister<FieldValues>
   question?: Question
@@ -43,6 +44,7 @@ export interface Message {
   content: string
 }
 
+export type ServiceContactMethod = 'manual' | 'email' | 'form'
 export interface Service {
   id: string
   title: Locales
@@ -52,13 +54,14 @@ export interface Service {
   }
   description?: Locales
   contact?: {
-    method: 'manual' | 'email' | 'form'
+    method: ServiceContactMethod
     data: {
       title?: Locales
       content: Locales
+      formEmail?: string
     }
   }
-  extRedirect?: Locales
+  links?: Locales[]
 }
 
 export interface FormValues {
