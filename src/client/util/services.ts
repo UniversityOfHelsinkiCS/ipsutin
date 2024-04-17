@@ -21,9 +21,9 @@ export const services: Service[] = [
       method: 'manual',
       data: {
         content: {
-          fi: 'Please contact us if you have any questions about invention disclosure and fiiling the form. We are here to support the commercialisation of University of Helsinki inventions.',
-          en: 'Please contact us if you have any questions about invention disclosure and fiiling the form. We are here to support the commercialisation of University of Helsinki inventions.',
-          sv: 'Please contact us if you have any questions about invention disclosure and fiiling the form. We are here to support the commercialisation of University of Helsinki inventions.',
+          fi: 'Please contact us if you have any questions about invention disclosure and filling the form. We are here to support the commercialisation of University of Helsinki inventions.',
+          en: 'Please contact us if you have any questions about invention disclosure and filling the form. We are here to support the commercialisation of University of Helsinki inventions.',
+          sv: 'Please contact us if you have any questions about invention disclosure and filling the form. We are here to support the commercialisation of University of Helsinki inventions.',
         },
       },
     },
