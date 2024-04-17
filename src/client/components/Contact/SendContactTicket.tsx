@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -15,6 +15,7 @@ interface ContactTicketProps {
   content: string
   ticketEmail: string
   sx?: SxProps<Theme>
+  open?: boolean
 }
 
 const SendContactTicket = ({
@@ -22,10 +23,11 @@ const SendContactTicket = ({
   content,
   ticketEmail,
   sx,
+  open = false,
 }: ContactTicketProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(open)
   const { user, isLoading } = useLoggedInUser()
 
   const {
@@ -99,7 +101,7 @@ const SendContactTicket = ({
             <Button
               data-cy='send-contact-ticket-button'
               variant='contained'
-              sx={{ mt: 2 }}
+              sx={{ mt: 2, borderRadius: '0.5rem' }}
               disabled={isSent}
               onClick={handleSubmit(onSubmit)}
             >
@@ -112,7 +114,7 @@ const SendContactTicket = ({
           data-cy='open-contact-ticket'
           onClick={() => setIsOpen(true)}
           variant='contained'
-          sx={{ mb: 4 }}
+          sx={{ mb: 4, borderRadius: '0.5rem' }}
         >
           {title}
         </Button>

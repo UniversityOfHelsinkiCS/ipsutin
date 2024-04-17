@@ -43,6 +43,7 @@ export interface Message {
   content: string
 }
 
+export type ServiceContactMethod = 'manual' | 'email' | 'form'
 export interface Service {
   id: string
   title: Locales
@@ -52,10 +53,11 @@ export interface Service {
   }
   description?: Locales
   contact?: {
-    method: 'manual' | 'email' | 'form'
+    method: ServiceContactMethod
     data: {
       title?: Locales
       content: Locales
+      formEmail?: string
     }
   }
   extRedirect?: Locales

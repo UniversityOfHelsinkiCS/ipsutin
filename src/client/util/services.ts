@@ -62,6 +62,7 @@ export const services: Service[] = [
           en: 'Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response',
           sv: 'Please add a background description for your question \n \n 1. Possible project name \n \n 2. The main funding sources (Academy, EU, BF, Foundations, etc..) related to this question \n \n 3. Name possible collaborators (industry, universities, etc) \n \n 4. Possible prior commitments you have already made \n \n 5. Finally, please specify your question. All this will help you to receive a more specific first response',
         },
+        formEmail: 'his@helsinki.fi',
       },
     },
   },

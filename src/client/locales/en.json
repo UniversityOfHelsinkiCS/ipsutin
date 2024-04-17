@@ -96,6 +96,8 @@
     "pateErrorMessage": "Could not send contact request"
   },
   "services": {
+    "contactHeading": "Contact",
+    "extRedirectHeading": "Redirect & Useful Links",
     "disclosure": "Invention Disclosure",
     "disclosureExtLink": "https://www.helsinki.fi/en/helsinki-innovation-services/university-staff/invention-disclosure",
     "clinic": "Idea Clinic",

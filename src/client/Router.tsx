@@ -24,7 +24,7 @@ import IA from './pages/InventorsAssistant/New/InventorsAssistant'
 import IpAssessment from './pages/IpAssessment/IpAssessment'
 import Licences from './pages/Licences/Licences'
 import MainPage from './pages/MainPage/MainPage'
-import Service from './pages/Service/Service'
+import ServicePage from './pages/Service/ServicePage'
 import App from './App'
 
 const router = createBrowserRouter(
@@ -45,7 +45,7 @@ const router = createBrowserRouter(
           children: [
             {
               path: ':serviceId',
-              element: <Service />,
+              element: <ServicePage />,
             },
           ],
         },
