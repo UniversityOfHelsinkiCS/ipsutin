@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useTranslation } from 'react-i18next'
 import {
   Bar,
   BarChart,
