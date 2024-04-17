@@ -48,7 +48,6 @@ const InventorsAssistant = () => {
   }
 
   const handleLastStepMessage = async () => {
-    setaiResponse1('')
     const response = await fetch('/step1', {
       method: 'POST',
       headers: {
