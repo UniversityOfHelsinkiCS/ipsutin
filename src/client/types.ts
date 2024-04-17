@@ -15,7 +15,8 @@ import {
 export type Set<T> = React.Dispatch<React.SetStateAction<T>>
 
 export interface InputProps {
-  control?: Control<FormValues, unknown>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control?: Control<any>
   watch?: UseFormWatch<FieldValues>
   register?: UseFormRegister<FieldValues>
   question?: Question
