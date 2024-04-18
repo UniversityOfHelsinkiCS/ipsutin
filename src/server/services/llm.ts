@@ -38,7 +38,7 @@ export const FirstStepMessageSend = async (
     },
   }
   const response = await fetch(
-    'http://localhost:3001/api/ai/stream/inventorstep1',
+    `http://${CURRE_URL}/api/ai/stream/inventorstep1`,
     {
       method: 'POST',
       body: JSON.stringify(body),

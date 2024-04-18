@@ -30,5 +30,5 @@ export const FULL_URL = inProduction
 export const CURRE_URL = inProduction
   ? 'https://curre.helsinki.fi/chat'
   : inStaging
-  ? 'https://toska-staging.cs.helsinki.fi/gptwrapper'
+  ? 'http://gptwrapper:8000'
   : 'http://gptwrapper_dev:8000'
