@@ -73,7 +73,7 @@ llmRouter.post('/step1', async (req, res) => {
 
   const { content } = curreResponse
 
-  res.json({ content })
+  return res.json({ content })
 })
 
 llmRouter.post('/step4', async (req, res) => {
@@ -104,7 +104,7 @@ llmRouter.post('/step4', async (req, res) => {
 
   const finalResponseMessage: string = finalResponse.content
 
-  res.json({ finalResponseMessage })
+  return res.json({ finalResponseMessage })
 })
 
 export default llmRouter
