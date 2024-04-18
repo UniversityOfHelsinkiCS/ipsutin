@@ -3,6 +3,7 @@ import { Box, Grid } from '@mui/material'
 
 import SectionHeading from '../../components/Common/SectionHeading'
 
+import AIAssistants from './AIAssistants'
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
 import ServiceLinks from './ServiceLinks'
@@ -14,6 +15,12 @@ const MainPage = () => {
     <Grid container>
       <HeroSection />
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1560px' }}>
+        <Grid item sm={12} sx={{ mt: 4, textAlign: 'center' }}>
+          <SectionHeading level='h2'>
+            {t('mainPage:aiAssistantHeading')}
+          </SectionHeading>
+          <AIAssistants />
+        </Grid>
         <Grid item sm={12} sx={{ mt: 4, textAlign: 'center' }}>
           <SectionHeading
             level='h2'

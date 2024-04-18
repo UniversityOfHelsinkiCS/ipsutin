@@ -140,6 +140,7 @@
   "mainPage": {
     "mainHeading": "Make a difference in the world",
     "mainContent": "Welcome {{name}}, to your personal space of Innotin. Innotin is where you secure your idea, invention or software and help you to proceed with your patenting process.",
+    "aiAssistantHeading": "AI Assistants for Innovation",
     "products": "Other products",
     "services": "Valuable services",
     "playVideo": "Play video",
@@ -175,6 +176,7 @@
   },
   "inventorsAssistant": {
     "mainHeading": "Inventor's Assistant",
+    "description": "Your helpful mentor in preparing your ideas for impact.",
     "mainContent": "You will receive  help in steps refining the idea. We start in step 1 by outlining the key  idea and continue to refine the idea, examine industrial relevance, and  then potential claims",
     "mainSubHeading": "Welcome to the Inventor's Assistant",
 
