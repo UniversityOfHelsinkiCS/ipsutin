@@ -140,8 +140,8 @@
   "mainPage": {
     "mainHeading": "Make a difference in the world",
     "mainContent": "Welcome {{name}}, to your personal space of Innotin. Innotin is where you secure your idea, invention or software and help you to proceed with your patenting process.",
-    "products": "Products",
-    "services": "Services",
+    "products": "Other products",
+    "services": "Valuable services",
     "playVideo": "Play video",
     "pauseVideo": "Pause video"
   },
