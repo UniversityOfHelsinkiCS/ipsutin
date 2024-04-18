@@ -52,8 +52,8 @@ const InventorsAssistant = () => {
       claims,
     })
 
-    const { finalResponse } = response.data
-    setAiResponse2(finalResponse)
+    const { finalResponseMessage } = response.data
+    setAiResponse2(finalResponseMessage)
   }
 
   return (

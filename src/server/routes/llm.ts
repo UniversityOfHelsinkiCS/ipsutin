@@ -23,42 +23,56 @@ async function readStream(stream: ReadableStream<Uint8Array>): Promise<string> {
   return content
 }
 
-async function askCurre(allMessages: Message[]): Promise<string> {
+async function askCurre(allMessages: Message[]): Promise<Message> {
   const model = 'gpt-3.5-turbo'
   const { stream } = await getCompletionStream(allMessages, model)
   const content = await readStream(stream)
 
-  return content
+  const assistantMessage: Message = {
+    role: 'assistant',
+    content,
+  }
+
+  return assistantMessage
 }
 
-async function askForRefinement(
-  messages: Message[],
-  refinementContent: string,
-  promptId: number
-): Promise<string> {
-  const refinementPrompt: string = getPromptById(promptId)
-  const fullPrompt: string = `${refinementPrompt} ${refinementContent}`
-  const userMessage: Message = {
+function createUserMessage(input: string, promptId: number): Message {
+  const enhancementPrompt: string = getPromptById(promptId)
+  const fullPrompt: string = `${enhancementPrompt} ${input}`
+
+  const message: Message = {
     role: 'user',
     content: fullPrompt,
   }
 
-  const allMessages: Message[] = messages.concat(userMessage)
-  const response: string = await askCurre(allMessages)
+  return message
+}
 
-  return response
+async function askCurreAndAddToMessages(
+  message: Message,
+  messages: Message[]
+): Promise<Message> {
+  messages.push(message)
+  const curreResponse = await askCurre(messages)
+  messages.push(curreResponse)
+
+  return curreResponse
 }
 
 llmRouter.post('/step1', async (req, res) => {
   const { inventiveMessage, industrialMessage, publicMessage } = req.body
 
-  const emptyMessages: Message[] = []
+  const messages: Message[] = []
 
-  const content: string = await askForRefinement(
-    emptyMessages,
+  const userMessage = createUserMessage(
     `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicMessage} *** Industry relevance: ${industrialMessage}`,
     1
   )
+
+  const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
+
+  const { content } = curreResponse
+
   res.json({ content })
 })
 
@@ -66,35 +80,31 @@ llmRouter.post('/step4', async (req, res) => {
   const { ideaRefinement, industrialRefinement, claims } = req.body
 
   const messages: Message[] = []
-
-  // Step 2: Ask for idea refinement
-  const ideaRefinementResponse = await askForRefinement(
-    messages,
-    ideaRefinement,
-    2
+  // Step 1: Ask for idea refinement
+  const ideaRefinementMessage = createUserMessage(ideaRefinement, 2)
+  const ideaRefinementResponse = await askCurreAndAddToMessages(
+    ideaRefinementMessage,
+    messages
   )
 
-  // Step 3: Ask for claims refinement
-  const claimsRefinementResponse = await askForRefinement(
-    messages.concat({
-      role: 'assistant',
-      content: ideaRefinementResponse,
-    }),
+  // Step 2: Ask for claims refinement
+  const industrialClaimsMessage = createUserMessage(
     `${industrialRefinement} Claims: ${claims}`,
     3
   )
-
-  // Step 4: Final prompt
-  const finalResponse = await askForRefinement(
-    messages.concat({
-      role: 'assistant',
-      content: claimsRefinementResponse,
-    }),
-    `${ideaRefinement} Industry applicability: ${industrialRefinement} Claims: ${claimsRefinementResponse}`,
-    4
+  const claimsRefinementResponse = await askCurreAndAddToMessages(
+    industrialClaimsMessage,
+    messages
   )
 
-  res.json({ ideaRefinementResponse, claimsRefinementResponse, finalResponse })
+  // Step 3: Final prompt
+  const finalPrompt = `${ideaRefinementResponse} Industry applicability: ${industrialRefinement} Claims: ${claimsRefinementResponse}`
+  const finalMessage = createUserMessage(finalPrompt, 4)
+  const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
+
+  const finalResponseMessage: string = finalResponse.content
+
+  res.json({ finalResponseMessage })
 })
 
 export default llmRouter
