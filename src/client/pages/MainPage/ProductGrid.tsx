@@ -72,7 +72,10 @@ const ProductGrid = () => {
   const { t } = useTranslation()
 
   return (
-    <Grid container sx={{ display: 'flex', gap: { xs: '1rem 0' } }}>
+    <Grid
+      container
+      sx={{ px: { xs: 2, md: 4 }, display: 'flex', gap: { xs: '1rem 0' } }}
+    >
       <Grid item xs={12} md={4} lg={4}>
         <ProductCard
           title={t('surveySelectionNames:ipAssessment')}

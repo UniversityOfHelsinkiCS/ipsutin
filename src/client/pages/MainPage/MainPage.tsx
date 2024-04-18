@@ -14,12 +14,13 @@ const MainPage = () => {
     <Grid container>
       <HeroSection />
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1560px' }}>
-        <Grid
-          item
-          sm={12}
-          sx={{ px: { xs: 2, md: 4 }, mt: 4, textAlign: 'center' }}
-        >
-          <SectionHeading level='h2'>{t('mainPage:products')}</SectionHeading>
+        <Grid item sm={12} sx={{ mt: 4, textAlign: 'center' }}>
+          <SectionHeading
+            level='h2'
+            sx={{ py: 1, backgroundColor: '#000', color: '#fff' }}
+          >
+            {t('mainPage:products')}
+          </SectionHeading>
           <ProductGrid />
         </Grid>
         <Grid
