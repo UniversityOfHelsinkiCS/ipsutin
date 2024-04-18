@@ -17,19 +17,13 @@ const InventorsAssistant = () => {
 
   const [currentStep, setCurrentStep] = useState<number>(0)
 
-  const [inventiveMessage, setInventiveMessage] = useState('Cat dog hybrid')
-  const [publicMessage, setPublicMessage] = useState('No one knows')
-  const [industrialMessage, setIndustrialMessage] = useState(
-    'Everyone would love it!'
-  )
+  const [inventiveMessage, setInventiveMessage] = useState('')
+  const [publicMessage, setPublicMessage] = useState('')
+  const [industrialMessage, setIndustrialMessage] = useState('')
   const [aiResponse1, setAiResponse1] = useState('')
-  const [ideaRefinement, setIdeaRefinement] = useState(
-    'The dog-cat hybrid would have the loyalty of a dog and the nimbleness of a cat.'
-  )
-  const [industrialRefinement, setIndustrialRefinement] = useState(
-    'Well as I said everyone would love it apart from maybe those that hate both cats and dogs.'
-  )
-  const [claims, setClaims] = useState('Cat-dog hybrid as a new species')
+  const [ideaRefinement, setIdeaRefinement] = useState('')
+  const [industrialRefinement, setIndustrialRefinement] = useState('')
+  const [claims, setClaims] = useState('')
   const [aiResponse2, setAiResponse2] = useState('')
 
   const handleFirstStepMessage = async () => {
