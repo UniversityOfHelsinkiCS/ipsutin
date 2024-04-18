@@ -55,7 +55,6 @@ async function askCurreAndAddToMessages(
   messages.push(message)
   const curreResponse = await askCurre(messages)
   messages.push(curreResponse)
-
   return curreResponse
 }
 
@@ -80,6 +79,7 @@ llmRouter.post('/step4', async (req, res) => {
   const { ideaRefinement, industrialRefinement, claims } = req.body
 
   const messages: Message[] = []
+
   // Step 1: Ask for idea refinement
   const ideaRefinementMessage = createUserMessage(ideaRefinement, 2)
   const ideaRefinementResponse = await askCurreAndAddToMessages(
@@ -96,9 +96,8 @@ llmRouter.post('/step4', async (req, res) => {
     industrialClaimsMessage,
     messages
   )
-
   // Step 3: Final prompt
-  const finalPrompt = `${ideaRefinementResponse} Industry applicability: ${industrialRefinement} Claims: ${claimsRefinementResponse}`
+  const finalPrompt = `${ideaRefinementResponse.content} Industry applicability: ${industrialRefinement.content} Claims: ${claimsRefinementResponse.content}`
   const finalMessage = createUserMessage(finalPrompt, 4)
   const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
 
