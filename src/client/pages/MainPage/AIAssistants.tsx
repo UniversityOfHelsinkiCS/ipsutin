@@ -15,11 +15,11 @@ const AIAssistants = () => {
         maxWidth: '1024px',
         mx: 'auto',
         px: { xs: 1, md: 8 },
-        height: '400px',
+        minHeight: '400px',
         alignItems: 'center',
       }}
     >
-      <Grid item sm={12} md={4}>
+      <Grid item xs={12} md={4}>
         <img
           src={assistantIcon}
           alt=''
@@ -33,8 +33,8 @@ const AIAssistants = () => {
           {t('inventorsAssistant:mainHeading')}
         </SectionHeading>
       </Grid>
-      <Grid item sm={12} md={8}>
-        <Typography sx={{ fontSize: '18pt' }}>
+      <Grid item xs={12} md={8}>
+        <Typography sx={{ fontSize: '18pt', pt: 8 }}>
           &quot;{t('inventorsAssistant:description')}&quot;
         </Typography>
         <Button
@@ -48,7 +48,7 @@ const AIAssistants = () => {
             borderRadius: '1rem',
             textTransform: 'capitalize',
             fontWeight: '600',
-            fontSize: '16pt',
+            fontSize: { xs: '14pt', md: '16pt' },
             '&:hover': {
               textDecoration: 'underline',
             },
