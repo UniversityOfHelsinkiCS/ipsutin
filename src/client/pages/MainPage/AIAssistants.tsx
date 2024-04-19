@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Button, Grid, Typography } from '@mui/material'
 
-import assistantIcon from '../../assets/inventors_assistant_icon.jpg'
+import assistantIcon from '../../assets/inventors_assistant_icon.png'
 import SectionHeading from '../../components/Common/SectionHeading'
 
 const AIAssistants = () => {
@@ -23,9 +23,8 @@ const AIAssistants = () => {
         <img
           src={assistantIcon}
           alt=''
-          width='200'
-          height='200'
-          style={{ borderRadius: '50%' }}
+          width='100'
+          style={{ borderRadius: '50%', marginBottom: '1rem' }}
         />
         <SectionHeading
           level='h3'
