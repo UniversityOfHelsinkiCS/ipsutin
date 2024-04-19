@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, Typography } from '@mui/material'
 
-import illustration from '../../assets/inventors_assistant_illustration.png'
+import illustration from '../../assets/inventors_assistant_illustration.jpg'
 import SectionHeading from '../../components/Common/SectionHeading'
 import apiClient from '../../util/apiClient'
 
@@ -53,7 +53,14 @@ const InventorsAssistant = () => {
   return (
     <Box component='article'>
       <Box component='section' sx={{ position: 'relative', width: '100vw' }}>
-        <img aria-hidden alt='' src={illustration} height='100%' width='100%' />
+        <img
+          aria-hidden
+          alt=''
+          loading='lazy'
+          src={illustration}
+          height='100%'
+          width='100%'
+        />
         <Typography
           component='h1'
           sx={{
