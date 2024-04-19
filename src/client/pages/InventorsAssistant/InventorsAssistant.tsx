@@ -65,7 +65,7 @@ const InventorsAssistant = () => {
           component='h1'
           sx={{
             position: 'absolute',
-            top: { xs: '40%', sm: '50%', lg: '60%' },
+            top: { xs: '40%', sm: '60%' },
             left: '40%',
             paddingRight: { xs: '1rem', sm: '2rem', md: '4rem' },
             color: '#fff',
@@ -73,10 +73,10 @@ const InventorsAssistant = () => {
             textShadow:
               '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
             fontSize: {
-              xs: '20pt',
-              sm: '24pt',
-              md: '32pt',
-              lg: '40pt',
+              xs: '26pt',
+              sm: '32pt',
+              md: '38pt',
+              lg: '46pt',
               xl: '52pt',
             },
             fontWeight: 'bold',
