@@ -68,7 +68,10 @@ const InventorsAssistant = () => {
             top: { xs: '40%', sm: '50%', lg: '60%' },
             left: '40%',
             paddingRight: { xs: '1rem', sm: '2rem', md: '4rem' },
-            color: 'black',
+            color: '#fff',
+            backgroundColor: 'fff',
+            textShadow:
+              '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
             fontSize: {
               xs: '20pt',
               sm: '24pt',
