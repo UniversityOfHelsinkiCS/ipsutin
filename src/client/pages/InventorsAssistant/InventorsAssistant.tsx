@@ -59,7 +59,7 @@ const InventorsAssistant = () => {
           loading='lazy'
           src={illustration}
           width='100%'
-          style={{ aspectRatio: '16/9', maxHeight: '768px' }}
+          style={{ aspectRatio: '16/9', maxHeight: '1480px' }}
         />
         <Typography
           component='h1'
