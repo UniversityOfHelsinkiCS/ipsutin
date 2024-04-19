@@ -17,10 +17,6 @@ export const PAGES = [
     name: 'contact',
     path: '/contact',
   },
-  {
-    name: 'inventorsassistant',
-    path: '/inventorsassistant',
-  },
 ]
 
 export const stringToColor = (string: string) => {
