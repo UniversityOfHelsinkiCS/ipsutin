@@ -17,16 +17,24 @@ const InventorsAssistant = () => {
 
   const [currentStep, setCurrentStep] = useState<number>(0)
 
-  const [inventiveMessage, setInventiveMessage] = useState('')
-  const [publicMessage, setPublicMessage] = useState('')
-  const [industrialMessage, setIndustrialMessage] = useState('')
+  const [inventiveMessage, setInventiveMessage] = useState('Cat-dog hybrid')
+  const [publicMessage, setPublicMessage] = useState('No one knows')
+  const [industrialMessage, setIndustrialMessage] = useState(
+    'Everyone would love it!'
+  )
   const [aiResponse1, setAiResponse1] = useState('')
-  const [ideaRefinement, setIdeaRefinement] = useState('')
-  const [industrialRefinement, setIndustrialRefinement] = useState('')
-  const [claims, setClaims] = useState('')
   const [aiResponse2, setAiResponse2] = useState('')
+  const [aiResponse3, setAiResponse3] = useState('')
+  const [aiResponse4, setAiResponse4] = useState('')
+  const [ideaRefinement, setIdeaRefinement] = useState(
+    'A cat-dog hybrid would have the nimbleness of a cat and the loyalty of a dog'
+  )
+  const [industrialRefinement, setIndustrialRefinement] = useState(
+    'Personal pets, show-animal, therapy and more'
+  )
+  const [claims, setClaims] = useState('')
 
-  const handleFirstStepMessage = async () => {
+  const handleFirstStep = async () => {
     setAiResponse1('')
     const response = await apiClient.post('/llm/step1', {
       inventiveMessage,
@@ -38,16 +46,39 @@ const InventorsAssistant = () => {
     setAiResponse1((prev) => prev + content)
   }
 
-  const handleLastStepMessage = async () => {
+  const handleSecondStep = async () => {
     setAiResponse2('')
+    const response = await apiClient.post('/llm/step2', {
+      ideaRefinement,
+    })
+
+    const { content } = response.data
+
+    setAiResponse2((prev) => prev + content)
+  }
+
+  const handleThirdStep = async () => {
+    setAiResponse3('')
+    const response = await apiClient.post('/llm/step3', {
+      ideaRefinement,
+      industrialRefinement,
+    })
+
+    const { content } = response.data
+
+    setAiResponse3((prev) => prev + content)
+  }
+
+  const handleLastStep = async () => {
+    setAiResponse4('')
     const response = await apiClient.post('/llm/step4', {
       ideaRefinement,
       industrialRefinement,
-      claims,
+      aiResponse3,
     })
 
     const { finalResponseMessage } = response.data
-    setAiResponse2(finalResponseMessage)
+    setAiResponse4(finalResponseMessage)
   }
 
   return (
@@ -160,7 +191,7 @@ const InventorsAssistant = () => {
                   variant='contained'
                   color='secondary'
                   onClick={() => {
-                    handleFirstStepMessage()
+                    handleFirstStep()
                     setCurrentStep(2)
                   }}
                 >
@@ -172,56 +203,109 @@ const InventorsAssistant = () => {
         )}
 
         {currentStep > 1 && (
-          <SecondStep
-            refinementMessage={ideaRefinement}
-            setRefinementMessage={setIdeaRefinement}
-            aiResponse={aiResponse1}
-          />
+          <>
+            <SecondStep
+              refinementMessage={ideaRefinement}
+              setRefinementMessage={setIdeaRefinement}
+              aiResponse={aiResponse1}
+            />
+            <Button
+              sx={{
+                mx: 'auto',
+                px: 12,
+                my: 4,
+                borderRadius: '1rem',
+                textTransform: 'capitalize',
+                fontWeight: '600',
+                fontSize: '12pt',
+              }}
+              variant='contained'
+              color='secondary'
+              onClick={() => {
+                handleSecondStep()
+                setCurrentStep(3)
+              }}
+            >
+              Next step
+            </Button>
+          </>
         )}
 
-        {currentStep > 1 && aiResponse1.length > 0 && (
+        {currentStep > 2 && aiResponse1.length > 0 && (
           <>
             <ThirdStep
               refinementMessage={industrialRefinement}
               setRefinementMessage={setIndustrialRefinement}
+              aiResponse={aiResponse2}
             />
+            <Button
+              sx={{
+                mx: 'auto',
+                px: 12,
+                my: 4,
+                borderRadius: '1rem',
+                textTransform: 'capitalize',
+                fontWeight: '600',
+                fontSize: '12pt',
+              }}
+              variant='contained'
+              color='secondary'
+              onClick={() => {
+                handleThirdStep()
+                setCurrentStep(4)
+              }}
+            >
+              Next step
+            </Button>
 
-            <FourthStep
-              refinementMessage={claims}
-              setRefinementMessage={setClaims}
-            />
-            {currentStep === 2 && (
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Button
+            {currentStep === 4 && (
+              <>
+                <FourthStep
+                  refinementMessage={claims}
+                  setRefinementMessage={setClaims}
+                  aiResponse={aiResponse3}
+                />
+
+                <Box
                   sx={{
-                    mx: 'auto',
-                    px: 12,
-                    my: 4,
-                    borderRadius: '1rem',
-                    textTransform: 'capitalize',
-                    fontWeight: '600',
-                    fontSize: '12pt',
-                  }}
-                  variant='contained'
-                  color='secondary'
-                  onClick={() => {
-                    handleLastStepMessage()
-                    setCurrentStep(3)
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
                 >
-                  Go to the final step
-                </Button>
-              </Box>
+                  <Button
+                    sx={{
+                      mx: 'auto',
+                      px: 12,
+                      my: 4,
+                      borderRadius: '1rem',
+                      textTransform: 'capitalize',
+                      fontWeight: '600',
+                      fontSize: '12pt',
+                    }}
+                    variant='contained'
+                    color='secondary'
+                    onClick={() => {
+                      handleLastStep()
+                      setCurrentStep(5)
+                    }}
+                  >
+                    Go to the final step
+                  </Button>
+                </Box>
+              </>
             )}
           </>
         )}
-        {currentStep > 2 && <FinalStep aiResponse2={aiResponse2} />}
+        {currentStep > 4 && (
+          <FinalStep
+            aiResponse={aiResponse4}
+            originalIdea={inventiveMessage}
+            ideaRefinement={aiResponse1}
+            industrialApplicability={aiResponse2}
+            claims={aiResponse3}
+          />
+        )}
       </Box>
     </Box>
   )
