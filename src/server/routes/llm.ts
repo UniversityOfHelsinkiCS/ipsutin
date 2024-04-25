@@ -14,7 +14,6 @@ llmRouter.post('/step1', async (req, res) => {
     `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicMessage} *** Industry relevance: ${industrialMessage}`,
     1
   )
-
   const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
 
   const { content } = curreResponse
@@ -22,8 +21,58 @@ llmRouter.post('/step1', async (req, res) => {
   return res.json({ content })
 })
 
+llmRouter.post('/step2', async (req, res) => {
+  const { ideaRefinement } = req.body
+
+  const messages: Message[] = []
+
+  const ideaRefinementMessage = createUserMessage(ideaRefinement, 2)
+
+  const ideaRefinementResponse = await askCurreAndAddToMessages(
+    ideaRefinementMessage,
+    messages
+  )
+
+  const { content } = ideaRefinementResponse
+
+  return res.json({ content })
+})
+
+llmRouter.post('/step3', async (req, res) => {
+  const { ideaRefinement, industrialRefinement } = req.body
+
+  const messages: Message[] = []
+
+  // Step 3: Ask for claims refinement
+  const claimsMessage = createUserMessage(
+    `${ideaRefinement} Industrial applicability: ${industrialRefinement}`,
+    3
+  )
+  const claimsResponse = await askCurreAndAddToMessages(claimsMessage, messages)
+
+  const { content } = claimsResponse
+
+  return res.json({ content })
+})
+
 llmRouter.post('/step4', async (req, res) => {
   const { ideaRefinement, industrialRefinement, claims } = req.body
+
+  const messages: Message[] = []
+
+  // Step 4: Final prompt
+  const finalPrompt = `${ideaRefinement} \nINDUSTRY APPLICABILITY: ${industrialRefinement}\nCLAIMS: ${claims}`
+  const finalMessage = createUserMessage(finalPrompt, 4)
+
+  const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
+
+  const finalResponseMessage: string = finalResponse.content
+
+  return res.json({ finalResponseMessage })
+})
+
+llmRouter.post('/step5', async (req, res) => {
+  const { ideaRefinement, industrialRefinement } = req.body
 
   const messages: Message[] = []
 
@@ -35,17 +84,15 @@ llmRouter.post('/step4', async (req, res) => {
   )
 
   // Step 3: Ask for claims refinement
-  const industrialClaimsMessage = createUserMessage(
+  const claimsMessage = createUserMessage(
     `${ideaRefinementResponse.content} Industrial applicability: ${industrialRefinement}`,
     3
   )
 
-  const industrialRefinementResponse = await askCurreAndAddToMessages(
-    industrialClaimsMessage,
-    messages
-  )
+  const claims = await askCurreAndAddToMessages(claimsMessage, messages)
+
   // Step 4: Final prompt
-  const finalPrompt = `${ideaRefinementResponse.content} \nINDUSTRY APPLICABILITY: ${industrialRefinementResponse.content}\nCLAIMS: ${claims}`
+  const finalPrompt = `${ideaRefinementResponse.content} \nINDUSTRY APPLICABILITY: ${industrialRefinement}\nCLAIMS: ${claims.content}`
   const finalMessage = createUserMessage(finalPrompt, 4)
 
   const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
