@@ -71,35 +71,4 @@ llmRouter.post('/step4', async (req, res) => {
   return res.json({ finalResponseMessage })
 })
 
-llmRouter.post('/step5', async (req, res) => {
-  const { ideaRefinement, industrialRefinement } = req.body
-
-  const messages: Message[] = []
-
-  // Step 2: Ask for idea refinement
-  const ideaRefinementMessage = createUserMessage(ideaRefinement, 2)
-  const ideaRefinementResponse = await askCurreAndAddToMessages(
-    ideaRefinementMessage,
-    messages
-  )
-
-  // Step 3: Ask for claims refinement
-  const claimsMessage = createUserMessage(
-    `${ideaRefinementResponse.content} Industrial applicability: ${industrialRefinement}`,
-    3
-  )
-
-  const claims = await askCurreAndAddToMessages(claimsMessage, messages)
-
-  // Step 4: Final prompt
-  const finalPrompt = `${ideaRefinementResponse.content} \nINDUSTRY APPLICABILITY: ${industrialRefinement}\nCLAIMS: ${claims.content}`
-  const finalMessage = createUserMessage(finalPrompt, 4)
-
-  const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
-
-  const finalResponseMessage: string = finalResponse.content
-
-  return res.json({ finalResponseMessage })
-})
-
 export default llmRouter
