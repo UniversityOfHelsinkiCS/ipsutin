@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Alert, Box, TextField, Typography } from '@mui/material'
+import { Box, TextField, Typography } from '@mui/material'
 import { t } from 'i18next'
 
-import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
+
+import InventorResponse from './InventorResponse'
 
 type SecondStepProps = {
   refinementMessage: string
@@ -25,11 +26,7 @@ const SecondStep = ({
       {t('inventorsAssistant:step2text1')}
     </Typography>
 
-    <Alert severity={aiResponse ? 'success' : 'info'} sx={{ my: 4, p: 4 }}>
-      <Markdown>
-        {aiResponse || 'Grunching response for you, please wait...'}
-      </Markdown>
-    </Alert>
+    <InventorResponse aiResponse={aiResponse} />
 
     {aiResponse.length > 0 && (
       <Box component='section' sx={{ mt: 4 }}>
