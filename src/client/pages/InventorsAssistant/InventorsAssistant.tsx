@@ -17,14 +17,18 @@ const InventorsAssistant = () => {
 
   const [currentStep, setCurrentStep] = useState<number>(0)
 
-  const [inventiveMessage, setInventiveMessage] = useState('')
-  const [publicMessage, setPublicMessage] = useState('')
-  const [industrialMessage, setIndustrialMessage] = useState('')
+  const [inventiveMessage, setInventiveMessage] = useState('Cat-dog hybrid')
+  const [publicMessage, setPublicMessage] = useState('No one knows')
+  const [industrialMessage, setIndustrialMessage] = useState(
+    'Everybody would love it'
+  )
   const [aiResponse1, setAiResponse1] = useState('')
   const [aiResponse2, setAiResponse2] = useState('')
   const [aiResponse3, setAiResponse3] = useState('')
   const [aiResponse4, setAiResponse4] = useState('')
-  const [ideaRefinement, setIdeaRefinement] = useState('')
+  const [ideaRefinement, setIdeaRefinement] = useState(
+    'The cat-dog hybrid would have the nimbleness of a cat and the loyalty of a dog.'
+  )
   const [industrialRefinement, setIndustrialRefinement] = useState('')
   const [claims, setClaims] = useState('')
 
@@ -252,7 +256,7 @@ const InventorsAssistant = () => {
               Next step
             </Button>
 
-            {currentStep === 4 && (
+            {currentStep > 3 && (
               <>
                 <FourthStep
                   refinementMessage={claims}
