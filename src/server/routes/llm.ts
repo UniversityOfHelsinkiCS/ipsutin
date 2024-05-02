@@ -22,11 +22,11 @@ llmRouter.post('/step1', async (req, res) => {
 })
 
 llmRouter.post('/step2', async (req, res) => {
-  const { ideaRefinement } = req.body
+  const { aiResponse1 } = req.body
 
   const messages: Message[] = []
 
-  const ideaRefinementMessage = createUserMessage(ideaRefinement, 2)
+  const ideaRefinementMessage = createUserMessage(aiResponse1, 2)
 
   const ideaRefinementResponse = await askCurreAndAddToMessages(
     ideaRefinementMessage,
@@ -39,13 +39,13 @@ llmRouter.post('/step2', async (req, res) => {
 })
 
 llmRouter.post('/step3', async (req, res) => {
-  const { ideaRefinement, industrialRefinement } = req.body
+  const { aiResponse1, aiResponse2 } = req.body
 
   const messages: Message[] = []
 
   // Step 3: Ask for claims refinement
   const claimsMessage = createUserMessage(
-    `${ideaRefinement} Industrial applicability: ${industrialRefinement}`,
+    `${aiResponse1} Industrial applicability: ${aiResponse2}`,
     3
   )
   const claimsResponse = await askCurreAndAddToMessages(claimsMessage, messages)
@@ -56,12 +56,12 @@ llmRouter.post('/step3', async (req, res) => {
 })
 
 llmRouter.post('/step4', async (req, res) => {
-  const { ideaRefinement, industrialRefinement, claims } = req.body
+  const { aiResponse1, aiResponse2, aiResponse3 } = req.body
 
   const messages: Message[] = []
 
   // Step 4: Final prompt
-  const finalPrompt = `${ideaRefinement} \nINDUSTRY APPLICABILITY: ${industrialRefinement}\nCLAIMS: ${claims}`
+  const finalPrompt = `${aiResponse1} \nINDUSTRY APPLICABILITY: ${aiResponse2} \nCLAIMS: ${aiResponse3}`
   const finalMessage = createUserMessage(finalPrompt, 4)
 
   const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
