@@ -1,42 +1,42 @@
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Alert, Box, Button, TextField } from '@mui/material'
 
 import Markdown from '../../components/Common/Markdown'
 
 type LlmResponseProps = {
   aiResponse: string
+  setEditedResponse: Dispatch<SetStateAction<string>>
 }
 
-const LlmResponse = ({ aiResponse }: LlmResponseProps) => {
+const LlmResponse = ({ aiResponse, setEditedResponse }: LlmResponseProps) => {
   const [editMode, setEditMode] = useState(false)
-  const [editedResponse, setEditedResponse] = useState(aiResponse)
+  const [editedResponse, setEditedResponseLocally] = useState('')
 
   useEffect(() => {
-    setEditedResponse(aiResponse)
-  }, [aiResponse])
+    if (!editMode) {
+      setEditedResponseLocally(aiResponse)
+    }
+  }, [aiResponse, editMode])
 
   const toggleEditMode = () => {
     setEditMode(!editMode)
   }
 
-  const handleResponseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedResponse(event.target.value)
-  }
-
   const handleSave = () => {
     toggleEditMode()
+    setEditedResponse(editedResponse)
   }
 
-  if (editMode)
-    return (
-      <Box component='section' sx={{ mt: 4 }}>
+  return (
+    <Box component='section' sx={{ mt: 4 }}>
+      {editMode ? (
         <>
           <TextField
             fullWidth
             multiline
             minRows={5}
             value={editedResponse}
-            onChange={handleResponseChange}
+            onChange={(event) => setEditedResponseLocally(event.target.value)}
             sx={{ border: '4px solid green' }}
           />
           <Button
@@ -48,30 +48,30 @@ const LlmResponse = ({ aiResponse }: LlmResponseProps) => {
             Save
           </Button>
         </>
-      </Box>
-    )
-  return (
-    <Alert
-      severity={aiResponse ? 'success' : 'info'}
-      sx={{ my: 4, p: 4, width: '100%' }}
-    >
-      <>
-        <Markdown>
-          {aiResponse || 'Grunching response for you, please wait...'}
-        </Markdown>
+      ) : (
+        <Alert
+          severity={aiResponse ? 'success' : 'info'}
+          sx={{ my: 4, p: 4, width: '100%' }}
+        >
+          <>
+            <Markdown>
+              {aiResponse || 'Grunching response for you, please wait...'}
+            </Markdown>
 
-        {aiResponse && aiResponse.length > 0 && (
-          <Button
-            onClick={toggleEditMode}
-            variant='outlined'
-            color='primary'
-            sx={{ mt: 2 }}
-          >
-            Edit
-          </Button>
-        )}
-      </>
-    </Alert>
+            {aiResponse && aiResponse.length > 0 && (
+              <Button
+                onClick={toggleEditMode}
+                variant='outlined'
+                color='primary'
+                sx={{ mt: 2 }}
+              >
+                Edit
+              </Button>
+            )}
+          </>
+        </Alert>
+      )}
+    </Box>
   )
 }
 
