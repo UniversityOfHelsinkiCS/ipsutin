@@ -27,6 +27,7 @@ const InventorsAssistant = () => {
   const [industrialMessage, setIndustrialMessage] = useState(
     industrialMessageDynamic
   )
+
   const [aiResponse1, setAiResponse1] = useState('')
   const [aiResponse2, setAiResponse2] = useState('')
   const [aiResponse3, setAiResponse3] = useState('')
