@@ -28,9 +28,9 @@ const LlmResponse = ({ aiResponse, setEditedResponse }: LlmResponseProps) => {
   }
 
   return (
-    <Box component='section' sx={{ mt: 4 }}>
+    <Box sx={{ mt: 4 }}>
       {editMode ? (
-        <>
+        <div>
           <TextField
             fullWidth
             multiline
@@ -47,28 +47,25 @@ const LlmResponse = ({ aiResponse, setEditedResponse }: LlmResponseProps) => {
           >
             Save
           </Button>
-        </>
+        </div>
       ) : (
         <Alert
           severity={aiResponse ? 'success' : 'info'}
           sx={{ my: 4, p: 4, width: '100%' }}
         >
-          <>
-            <Markdown>
-              {aiResponse || 'Grunching response for you, please wait...'}
-            </Markdown>
-
-            {aiResponse && aiResponse.length > 0 && (
-              <Button
-                onClick={toggleEditMode}
-                variant='outlined'
-                color='primary'
-                sx={{ mt: 2 }}
-              >
-                Edit
-              </Button>
-            )}
-          </>
+          <Markdown>
+            {aiResponse || 'Grunching response for you, please wait...'}
+          </Markdown>
+          {aiResponse && aiResponse.length > 0 && (
+            <Button
+              onClick={toggleEditMode}
+              variant='outlined'
+              color='primary'
+              sx={{ mt: 2 }}
+            >
+              Edit
+            </Button>
+          )}
         </Alert>
       )}
     </Box>
