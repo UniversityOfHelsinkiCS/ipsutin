@@ -1,8 +1,9 @@
 import { Alert, Typography } from '@mui/material'
 import { t } from 'i18next'
 
-import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
+
+import LlmResponse from './LlmResponse'
 
 type FinalStepProps = {
   aiResponse: string
@@ -68,11 +69,7 @@ const FinalStep = ({
     <Typography variant='body1' sx={{ mt: 2 }}>
       {t('inventorsAssistant:finalStepSummary')}
     </Typography>
-    <Alert severity={aiResponse ? 'success' : 'info'} sx={{ my: 4, p: 4 }}>
-      <Markdown>
-        {aiResponse || 'Grunching response for you, please wait...'}
-      </Markdown>
-    </Alert>
+    <LlmResponse aiResponse={aiResponse} />
   </>
 )
 
