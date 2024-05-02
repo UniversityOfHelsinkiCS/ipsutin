@@ -5,6 +5,7 @@ import { Box, Button, Typography } from '@mui/material'
 import illustration from '../../assets/inventors_assistant_illustration.jpg'
 import SectionHeading from '../../components/Common/SectionHeading'
 import apiClient from '../../util/apiClient'
+import getInitialMessage from '../../util/inventorInput'
 
 import FinalStep from './FinalStep'
 import FirstStep from './FirstStep'
@@ -17,9 +18,19 @@ const InventorsAssistant = () => {
 
   const [currentStep, setCurrentStep] = useState<number>(0)
 
-  const [inventiveMessage, setInventiveMessage] = useState('')
-  const [publicMessage, setPublicMessage] = useState('')
-  const [industrialMessage, setIndustrialMessage] = useState('')
+  const {
+    inventiveMessageDynamic,
+    publicMessageDynamic,
+    industrialMessageDynamic,
+  } = getInitialMessage()
+
+  const [inventiveMessage, setInventiveMessage] = useState(
+    inventiveMessageDynamic
+  )
+  const [publicMessage, setPublicMessage] = useState(publicMessageDynamic)
+  const [industrialMessage, setIndustrialMessage] = useState(
+    industrialMessageDynamic
+  )
   const [aiResponse1, setAiResponse1] = useState('')
   const [aiResponse2, setAiResponse2] = useState('')
   const [aiResponse3, setAiResponse3] = useState('')
