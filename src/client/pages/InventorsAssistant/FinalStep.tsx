@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import { Alert, Typography } from '@mui/material'
 import { t } from 'i18next'
 
@@ -11,6 +12,7 @@ type FinalStepProps = {
   ideaRefinement: string
   industrialApplicability: string
   claims: string
+  setAiResponse4: Dispatch<SetStateAction<string>>
 }
 
 const FinalStep = ({
@@ -19,6 +21,7 @@ const FinalStep = ({
   ideaRefinement,
   industrialApplicability,
   claims,
+  setAiResponse4,
 }: FinalStepProps) => (
   <>
     <SectionHeading level='h2' sx={{ mt: 8 }}>
@@ -69,7 +72,7 @@ const FinalStep = ({
     <Typography variant='body1' sx={{ mt: 2 }}>
       {t('inventorsAssistant:finalStepSummary')}
     </Typography>
-    <LlmResponse aiResponse={aiResponse} />
+    <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse4} />
   </>
 )
 

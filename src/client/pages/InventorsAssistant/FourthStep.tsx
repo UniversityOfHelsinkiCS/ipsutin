@@ -1,5 +1,5 @@
-import React from 'react'
-import { List, ListItemText, TextField, Typography } from '@mui/material'
+import { Dispatch, SetStateAction } from 'react'
+import { List, ListItemText, Typography } from '@mui/material'
 import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
@@ -7,16 +7,11 @@ import SectionHeading from '../../components/Common/SectionHeading'
 import LlmResponse from './LlmResponse'
 
 type FourthStepProps = {
-  refinementMessage: string
-  setRefinementMessage: React.Dispatch<React.SetStateAction<string>>
+  setAiResponse3: Dispatch<SetStateAction<string>>
   aiResponse: string
 }
 
-const FourthStep = ({
-  refinementMessage,
-  setRefinementMessage,
-  aiResponse,
-}: FourthStepProps) => (
+const FourthStep = ({ setAiResponse3, aiResponse }: FourthStepProps) => (
   <>
     <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:step4Header1')}
@@ -43,20 +38,7 @@ const FourthStep = ({
       {t('inventorsAssistant:step4text3')}
     </Typography>
 
-    <LlmResponse aiResponse={aiResponse} />
-
-    <Typography variant='body1' sx={{ my: 2 }}>
-      {t('inventorsAssistant:step4text4')}
-    </Typography>
-
-    <TextField
-      fullWidth
-      multiline
-      minRows={5}
-      value={refinementMessage}
-      onChange={(e) => setRefinementMessage(e.target.value)}
-      placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
-    />
+    <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse3} />
   </>
 )
 

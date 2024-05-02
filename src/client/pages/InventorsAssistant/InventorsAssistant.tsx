@@ -35,9 +35,6 @@ const InventorsAssistant = () => {
   const [aiResponse2, setAiResponse2] = useState('')
   const [aiResponse3, setAiResponse3] = useState('')
   const [aiResponse4, setAiResponse4] = useState('')
-  const [ideaRefinement, setIdeaRefinement] = useState('')
-  const [industrialRefinement, setIndustrialRefinement] = useState('')
-  const [claims, setClaims] = useState('')
 
   const handleFirstStep = async () => {
     setAiResponse1('')
@@ -54,7 +51,7 @@ const InventorsAssistant = () => {
   const handleSecondStep = async () => {
     setAiResponse2('')
     const response = await apiClient.post('/llm/step2', {
-      ideaRefinement,
+      aiResponse1,
     })
 
     const { content } = response.data
@@ -65,8 +62,8 @@ const InventorsAssistant = () => {
   const handleThirdStep = async () => {
     setAiResponse3('')
     const response = await apiClient.post('/llm/step3', {
-      ideaRefinement,
-      industrialRefinement,
+      aiResponse1,
+      aiResponse2,
     })
 
     const { content } = response.data
@@ -77,12 +74,13 @@ const InventorsAssistant = () => {
   const handleLastStep = async () => {
     setAiResponse4('')
     const response = await apiClient.post('/llm/step4', {
-      ideaRefinement,
-      industrialRefinement,
+      aiResponse1,
+      aiResponse2,
       aiResponse3,
     })
 
     const { finalResponseMessage } = response.data
+
     setAiResponse4(finalResponseMessage)
   }
 
@@ -210,8 +208,7 @@ const InventorsAssistant = () => {
         {currentStep > 1 && (
           <>
             <SecondStep
-              refinementMessage={ideaRefinement}
-              setRefinementMessage={setIdeaRefinement}
+              setAiResponse1={setAiResponse1}
               aiResponse={aiResponse1}
             />
             <Button
@@ -239,8 +236,7 @@ const InventorsAssistant = () => {
         {currentStep > 2 && aiResponse1.length > 0 && (
           <>
             <ThirdStep
-              refinementMessage={industrialRefinement}
-              setRefinementMessage={setIndustrialRefinement}
+              setAiResponse2={setAiResponse2}
               aiResponse={aiResponse2}
             />
             <Button
@@ -260,14 +256,13 @@ const InventorsAssistant = () => {
                 setCurrentStep(4)
               }}
             >
-              Next step
+              Go to Fourth Step
             </Button>
 
             {currentStep > 3 && (
               <>
                 <FourthStep
-                  refinementMessage={claims}
-                  setRefinementMessage={setClaims}
+                  setAiResponse3={setAiResponse3}
                   aiResponse={aiResponse3}
                 />
 
@@ -309,6 +304,7 @@ const InventorsAssistant = () => {
             ideaRefinement={aiResponse1}
             industrialApplicability={aiResponse2}
             claims={aiResponse3}
+            setAiResponse4={setAiResponse4}
           />
         )}
       </Box>
