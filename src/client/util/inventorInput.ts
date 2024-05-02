@@ -1,5 +1,7 @@
+import { inDevelopment } from '../../config'
+
 const getInitialMessage = () => {
-  if (process.env.NODE_ENV === 'development') {
+  if (inDevelopment) {
     return {
       inventiveMessageDynamic: 'Cat-dog hybrid',
       publicMessageDynamic: 'No one knows',
