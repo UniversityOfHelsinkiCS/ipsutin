@@ -198,7 +198,7 @@ const InventorsAssistant = () => {
                     setCurrentStep(2)
                   }}
                 >
-                  Go to next step
+                  Next step
                 </Button>
               </Box>
             )}
@@ -256,7 +256,7 @@ const InventorsAssistant = () => {
                 setCurrentStep(4)
               }}
             >
-              Go to Fourth Step
+              Next step
             </Button>
 
             {currentStep > 3 && (
