@@ -1,9 +1,10 @@
 import React from 'react'
-import { Alert, List, ListItemText, TextField, Typography } from '@mui/material'
+import { List, ListItemText, TextField, Typography } from '@mui/material'
 import { t } from 'i18next'
 
-import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
+
+import LlmResponse from './LlmResponse'
 
 type FourthStepProps = {
   refinementMessage: string
@@ -42,11 +43,7 @@ const FourthStep = ({
       {t('inventorsAssistant:step4text3')}
     </Typography>
 
-    <Alert severity={aiResponse ? 'success' : 'info'} sx={{ my: 4, p: 4 }}>
-      <Markdown>
-        {aiResponse || 'Grunching response for you, please wait...'}
-      </Markdown>
-    </Alert>
+    <LlmResponse aiResponse={aiResponse} />
 
     <Typography variant='body1' sx={{ my: 2 }}>
       {t('inventorsAssistant:step4text4')}
