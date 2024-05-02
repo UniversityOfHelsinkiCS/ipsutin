@@ -4,7 +4,7 @@ import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
 
-import InventorResponse from './InventorResponse'
+import LlmResponse from './LlmResponse'
 
 type SecondStepProps = {
   refinementMessage: string
@@ -26,7 +26,7 @@ const SecondStep = ({
       {t('inventorsAssistant:step2text1')}
     </Typography>
 
-    <InventorResponse aiResponse={aiResponse} />
+    <LlmResponse aiResponse={aiResponse} />
 
     {aiResponse.length > 0 && (
       <Box component='section' sx={{ mt: 4 }}>
