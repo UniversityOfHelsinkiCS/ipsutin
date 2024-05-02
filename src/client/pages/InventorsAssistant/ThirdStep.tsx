@@ -1,9 +1,10 @@
 import React from 'react'
-import { Alert, Box, TextField, Typography } from '@mui/material'
+import { Box, TextField, Typography } from '@mui/material'
 import { t } from 'i18next'
 
-import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
+
+import LlmResponse from './LlmResponse'
 
 type ThirdStepProps = {
   refinementMessage: string
@@ -25,11 +26,7 @@ const ThirdStep: React.FC<ThirdStepProps> = ({
     </Typography>
 
     <Box component='section' sx={{ mt: 4 }}>
-      <Alert severity={aiResponse ? 'success' : 'info'} sx={{ my: 4, p: 4 }}>
-        <Markdown>
-          {aiResponse || 'Grunching response for you, please wait...'}
-        </Markdown>
-      </Alert>
+      <LlmResponse aiResponse={aiResponse} />
 
       {aiResponse.length > 0 && (
         <>
