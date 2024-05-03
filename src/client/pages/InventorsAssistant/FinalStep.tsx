@@ -33,6 +33,12 @@ const FinalStep = ({
     </Typography>
 
     <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:finalStepSummary')}
+    </Typography>
+
+    <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse4} />
+
+    <Typography variant='body1' sx={{ mt: 2 }}>
       {t('inventorsAssistant:finalStepOriginalIdea')}
     </Typography>
 
@@ -68,11 +74,6 @@ const FinalStep = ({
         {claims}
       </Typography>
     </Alert>
-
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepSummary')}
-    </Typography>
-    <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse4} />
   </>
 )
 
