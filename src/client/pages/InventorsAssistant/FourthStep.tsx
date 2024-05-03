@@ -9,9 +9,14 @@ import LlmResponse from './LlmResponse'
 type FourthStepProps = {
   setAiResponse3: Dispatch<SetStateAction<string>>
   aiResponse: string
+  setEditModeGlobal: Dispatch<SetStateAction<boolean>>
 }
 
-const FourthStep = ({ setAiResponse3, aiResponse }: FourthStepProps) => (
+const FourthStep = ({
+  setAiResponse3,
+  aiResponse,
+  setEditModeGlobal,
+}: FourthStepProps) => (
   <>
     <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:step4Header1')}
@@ -38,7 +43,11 @@ const FourthStep = ({ setAiResponse3, aiResponse }: FourthStepProps) => (
       {t('inventorsAssistant:step4text3')}
     </Typography>
 
-    <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse3} />
+    <LlmResponse
+      aiResponse={aiResponse}
+      setEditedResponse={setAiResponse3}
+      setEditModeGlobal={setEditModeGlobal}
+    />
   </>
 )
 

@@ -9,11 +9,13 @@ import LlmResponse from './LlmResponse'
 type ThirdStepProps = {
   setAiResponse2: React.Dispatch<React.SetStateAction<string>>
   aiResponse: string
+  setEditModeGlobal: Dispatch<SetStateAction<boolean>>
 }
 
 const ThirdStep: React.FC<ThirdStepProps> = ({
   setAiResponse2,
   aiResponse,
+  setEditModeGlobal,
 }) => (
   <>
     <Box component='section' sx={{ mt: 4 }}>
@@ -26,7 +28,11 @@ const ThirdStep: React.FC<ThirdStepProps> = ({
     </Box>
 
     <Box component='section' sx={{ mt: 4 }}>
-      <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse2} />
+      <LlmResponse
+        aiResponse={aiResponse}
+        setEditedResponse={setAiResponse2}
+        setEditModeGlobal={setEditModeGlobal}
+      />
     </Box>
   </>
 )

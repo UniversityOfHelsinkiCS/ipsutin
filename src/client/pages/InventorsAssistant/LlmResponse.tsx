@@ -6,9 +6,14 @@ import Markdown from '../../components/Common/Markdown'
 type LlmResponseProps = {
   aiResponse: string
   setEditedResponse: Dispatch<SetStateAction<string>>
+  setEditModeGlobal: Dispatch<SetStateAction<boolean>>
 }
 
-const LlmResponse = ({ aiResponse, setEditedResponse }: LlmResponseProps) => {
+const LlmResponse = ({
+  aiResponse,
+  setEditedResponse,
+  setEditModeGlobal,
+}: LlmResponseProps) => {
   const [editMode, setEditMode] = useState(false)
   const [editedResponse, setEditedResponseLocally] = useState('')
 
@@ -20,6 +25,7 @@ const LlmResponse = ({ aiResponse, setEditedResponse }: LlmResponseProps) => {
 
   const toggleEditMode = () => {
     setEditMode(!editMode)
+    setEditModeGlobal(!editMode)
   }
 
   const handleSave = () => {

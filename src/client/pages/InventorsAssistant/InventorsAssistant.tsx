@@ -32,6 +32,7 @@ const InventorsAssistant = () => {
   const [aiResponse2, setAiResponse2] = useState('')
   const [aiResponse3, setAiResponse3] = useState('')
   const [aiResponse4, setAiResponse4] = useState('')
+  const [editModeGlobal, setEditModeGlobal] = useState(false)
 
   const handleFirstStep = async () => {
     setAiResponse1('')
@@ -135,9 +136,10 @@ const InventorsAssistant = () => {
             <SecondStep
               setAiResponse1={setAiResponse1}
               aiResponse={aiResponse1}
+              setEditModeGlobal={setEditModeGlobal}
             />
 
-            {currentStep === 2 && aiResponse1.length > 0 && (
+            {currentStep === 2 && aiResponse1.length > 0 && !editModeGlobal && (
               <Button
                 sx={{
                   mx: 'auto',
@@ -166,8 +168,9 @@ const InventorsAssistant = () => {
             <ThirdStep
               setAiResponse2={setAiResponse2}
               aiResponse={aiResponse2}
+              setEditModeGlobal={setEditModeGlobal}
             />
-            {currentStep === 3 && aiResponse2.length > 0 && (
+            {currentStep === 3 && aiResponse2.length > 0 && !editModeGlobal && (
               <Button
                 sx={{
                   mx: 'auto',
@@ -194,6 +197,7 @@ const InventorsAssistant = () => {
                 <FourthStep
                   setAiResponse3={setAiResponse3}
                   aiResponse={aiResponse3}
+                  setEditModeGlobal={setEditModeGlobal}
                 />
 
                 <Box
@@ -203,27 +207,29 @@ const InventorsAssistant = () => {
                     alignItems: 'center',
                   }}
                 >
-                  {currentStep === 4 && aiResponse3.length > 0 && (
-                    <Button
-                      sx={{
-                        mx: 'auto',
-                        px: 12,
-                        my: 4,
-                        borderRadius: '1rem',
-                        textTransform: 'capitalize',
-                        fontWeight: '600',
-                        fontSize: '12pt',
-                      }}
-                      variant='contained'
-                      color='secondary'
-                      onClick={() => {
-                        handleLastStep()
-                        setCurrentStep(5)
-                      }}
-                    >
-                      Go to the final step
-                    </Button>
-                  )}
+                  {currentStep === 4 &&
+                    aiResponse3.length > 0 &&
+                    !editModeGlobal && (
+                      <Button
+                        sx={{
+                          mx: 'auto',
+                          px: 12,
+                          my: 4,
+                          borderRadius: '1rem',
+                          textTransform: 'capitalize',
+                          fontWeight: '600',
+                          fontSize: '12pt',
+                        }}
+                        variant='contained'
+                        color='secondary'
+                        onClick={() => {
+                          handleLastStep()
+                          setCurrentStep(5)
+                        }}
+                      >
+                        Go to the final step
+                      </Button>
+                    )}
                 </Box>
               </>
             )}

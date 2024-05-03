@@ -9,9 +9,14 @@ import LlmResponse from './LlmResponse'
 type SecondStepProps = {
   setAiResponse1: Dispatch<SetStateAction<string>>
   aiResponse: string
+  setEditModeGlobal: Dispatch<SetStateAction<boolean>>
 }
 
-const SecondStep = ({ setAiResponse1, aiResponse }: SecondStepProps) => (
+const SecondStep = ({
+  setAiResponse1,
+  aiResponse,
+  setEditModeGlobal,
+}: SecondStepProps) => (
   <>
     <SectionHeading level='h2' sx={{ mt: 8 }}>
       {t('inventorsAssistant:step2Header1')}
@@ -25,7 +30,11 @@ const SecondStep = ({ setAiResponse1, aiResponse }: SecondStepProps) => (
       </Typography>
     </Box>
 
-    <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse1} />
+    <LlmResponse
+      aiResponse={aiResponse}
+      setEditedResponse={setAiResponse1}
+      setEditModeGlobal={setEditModeGlobal}
+    />
   </>
 )
 
