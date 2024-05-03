@@ -104,25 +104,27 @@ const InventorsAssistant = () => {
                   alignItems: 'center',
                 }}
               >
-                <Button
-                  sx={{
-                    mx: 'auto',
-                    px: 12,
-                    my: 4,
-                    borderRadius: '1rem',
-                    textTransform: 'capitalize',
-                    fontWeight: '600',
-                    fontSize: '12pt',
-                  }}
-                  variant='contained'
-                  color='secondary'
-                  onClick={() => {
-                    handleFirstStep()
-                    setCurrentStep(2)
-                  }}
-                >
-                  Next step
-                </Button>
+                {currentStep === 1 && (
+                  <Button
+                    sx={{
+                      mx: 'auto',
+                      px: 12,
+                      my: 4,
+                      borderRadius: '1rem',
+                      textTransform: 'capitalize',
+                      fontWeight: '600',
+                      fontSize: '12pt',
+                    }}
+                    variant='contained'
+                    color='secondary'
+                    onClick={() => {
+                      handleFirstStep()
+                      setCurrentStep(2)
+                    }}
+                  >
+                    Next step
+                  </Button>
+                )}
               </Box>
             )}
           </>
@@ -134,25 +136,28 @@ const InventorsAssistant = () => {
               setAiResponse1={setAiResponse1}
               aiResponse={aiResponse1}
             />
-            <Button
-              sx={{
-                mx: 'auto',
-                px: 12,
-                my: 4,
-                borderRadius: '1rem',
-                textTransform: 'capitalize',
-                fontWeight: '600',
-                fontSize: '12pt',
-              }}
-              variant='contained'
-              color='secondary'
-              onClick={() => {
-                handleSecondStep()
-                setCurrentStep(3)
-              }}
-            >
-              Next step
-            </Button>
+
+            {currentStep === 2 && (
+              <Button
+                sx={{
+                  mx: 'auto',
+                  px: 12,
+                  my: 4,
+                  borderRadius: '1rem',
+                  textTransform: 'capitalize',
+                  fontWeight: '600',
+                  fontSize: '12pt',
+                }}
+                variant='contained'
+                color='secondary'
+                onClick={() => {
+                  handleSecondStep()
+                  setCurrentStep(3)
+                }}
+              >
+                Next step
+              </Button>
+            )}
           </>
         )}
 
@@ -162,25 +167,27 @@ const InventorsAssistant = () => {
               setAiResponse2={setAiResponse2}
               aiResponse={aiResponse2}
             />
-            <Button
-              sx={{
-                mx: 'auto',
-                px: 12,
-                my: 4,
-                borderRadius: '1rem',
-                textTransform: 'capitalize',
-                fontWeight: '600',
-                fontSize: '12pt',
-              }}
-              variant='contained'
-              color='secondary'
-              onClick={() => {
-                handleThirdStep()
-                setCurrentStep(4)
-              }}
-            >
-              Next step
-            </Button>
+            {currentStep === 3 && (
+              <Button
+                sx={{
+                  mx: 'auto',
+                  px: 12,
+                  my: 4,
+                  borderRadius: '1rem',
+                  textTransform: 'capitalize',
+                  fontWeight: '600',
+                  fontSize: '12pt',
+                }}
+                variant='contained'
+                color='secondary'
+                onClick={() => {
+                  handleThirdStep()
+                  setCurrentStep(4)
+                }}
+              >
+                Next step
+              </Button>
+            )}
 
             {currentStep > 3 && (
               <>
@@ -196,25 +203,27 @@ const InventorsAssistant = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <Button
-                    sx={{
-                      mx: 'auto',
-                      px: 12,
-                      my: 4,
-                      borderRadius: '1rem',
-                      textTransform: 'capitalize',
-                      fontWeight: '600',
-                      fontSize: '12pt',
-                    }}
-                    variant='contained'
-                    color='secondary'
-                    onClick={() => {
-                      handleLastStep()
-                      setCurrentStep(5)
-                    }}
-                  >
-                    Go to the final step
-                  </Button>
+                  {currentStep === 4 && (
+                    <Button
+                      sx={{
+                        mx: 'auto',
+                        px: 12,
+                        my: 4,
+                        borderRadius: '1rem',
+                        textTransform: 'capitalize',
+                        fontWeight: '600',
+                        fontSize: '12pt',
+                      }}
+                      variant='contained'
+                      color='secondary'
+                      onClick={() => {
+                        handleLastStep()
+                        setCurrentStep(5)
+                      }}
+                    >
+                      Go to the final step
+                    </Button>
+                  )}
                 </Box>
               </>
             )}
