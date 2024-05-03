@@ -6,7 +6,7 @@ import Markdown from '../../components/Common/Markdown'
 type LlmResponseProps = {
   aiResponse: string
   setEditedResponse: Dispatch<SetStateAction<string>>
-  setEditModeGlobal: Dispatch<SetStateAction<boolean>>
+  setEditModeGlobal?: Dispatch<SetStateAction<boolean>>
 }
 
 const LlmResponse = ({
@@ -25,7 +25,10 @@ const LlmResponse = ({
 
   const toggleEditMode = () => {
     setEditMode(!editMode)
-    setEditModeGlobal(!editMode)
+
+    if (setEditModeGlobal) {
+      setEditModeGlobal(!editMode)
+    }
   }
 
   const handleSave = () => {
