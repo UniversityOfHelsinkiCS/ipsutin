@@ -137,7 +137,7 @@ const InventorsAssistant = () => {
               aiResponse={aiResponse1}
             />
 
-            {currentStep === 2 && (
+            {currentStep === 2 && aiResponse1.length > 0 && (
               <Button
                 sx={{
                   mx: 'auto',
@@ -167,7 +167,7 @@ const InventorsAssistant = () => {
               setAiResponse2={setAiResponse2}
               aiResponse={aiResponse2}
             />
-            {currentStep === 3 && (
+            {currentStep === 3 && aiResponse2.length > 0 && (
               <Button
                 sx={{
                   mx: 'auto',
@@ -203,7 +203,7 @@ const InventorsAssistant = () => {
                     alignItems: 'center',
                   }}
                 >
-                  {currentStep === 4 && (
+                  {currentStep === 4 && aiResponse3.length > 0 && (
                     <Button
                       sx={{
                         mx: 'auto',
