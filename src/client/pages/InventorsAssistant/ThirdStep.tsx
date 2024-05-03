@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { Box, Typography } from '@mui/material'
 import { t } from 'i18next'
 
