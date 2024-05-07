@@ -15,7 +15,7 @@ export const getPromptById = (id: number): string => {
         
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
         { 
-          "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input]
+          "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
           "feedback": [insert_short_feedback_about_my_input]
          }
   
@@ -38,7 +38,7 @@ export const getPromptById = (id: number): string => {
       
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
       { 
-        "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input]
+        "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
         "feedback": [insert_short_feedback_about_my_input]
        }
 
@@ -60,7 +60,7 @@ export const getPromptById = (id: number): string => {
       
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
         {
-          "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input]
+          "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
           "feedback": [insert_short_feedback_about_my_input]
         }
   
