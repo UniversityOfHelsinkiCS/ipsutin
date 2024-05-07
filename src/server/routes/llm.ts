@@ -5,6 +5,93 @@ import { Message } from '../types'
 
 const llmRouter = express.Router()
 
+llmRouter.post('/step1check1', async (req, res) => {
+  const { inventiveMessage } = req.body
+  const messages: Message[] = []
+
+  const userMessage = createUserMessage(inventiveMessage, 0)
+
+  const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
+
+  const { content } = curreResponse
+
+  try {
+    const curreFeedback = JSON.parse(content)
+    if (curreFeedback.verdict === 'Bad') {
+      return res.json({
+        content: {
+          success: false,
+          feedback: curreFeedback.feedback,
+          error: false,
+        },
+      })
+    }
+    return res.json({ content: { success: true, feedback: '', error: false } })
+  } catch {
+    return res.json({
+      content: { success: false, feedback: content, error: true },
+    })
+  }
+})
+
+llmRouter.post('/step1check2', async (req, res) => {
+  const { publicMessage } = req.body
+  const messages: Message[] = []
+
+  const userMessage = createUserMessage(publicMessage, 1)
+
+  const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
+
+  const { content } = curreResponse
+
+  try {
+    const curreFeedback = JSON.parse(content)
+    if (curreFeedback.verdict === 'Bad') {
+      return res.json({
+        content: {
+          success: false,
+          feedback: curreFeedback.feedback,
+          error: false,
+        },
+      })
+    }
+    return res.json({ content: { success: true, feedback: '', error: false } })
+  } catch {
+    return res.json({
+      content: { success: false, feedback: content, error: true },
+    })
+  }
+})
+
+llmRouter.post('/step1check3', async (req, res) => {
+  const { industrialMessage } = req.body
+  const messages: Message[] = []
+
+  const userMessage = createUserMessage(industrialMessage, 2)
+
+  const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
+
+  const { content } = curreResponse
+
+  try {
+    const curreFeedback = JSON.parse(content)
+    if (curreFeedback.verdict === 'Bad') {
+      return res.json({
+        content: {
+          success: false,
+          feedback: curreFeedback.feedback,
+          error: false,
+        },
+      })
+    }
+    return res.json({ content: { success: true, feedback: '', error: false } })
+  } catch {
+    return res.json({
+      content: { success: false, feedback: content, error: true },
+    })
+  }
+})
+
 llmRouter.post('/step1', async (req, res) => {
   const { inventiveMessage, industrialMessage, publicMessage } = req.body
 
@@ -12,7 +99,7 @@ llmRouter.post('/step1', async (req, res) => {
 
   const userMessage = createUserMessage(
     `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicMessage} *** Industry relevance: ${industrialMessage}`,
-    1
+    3
   )
   const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
 
@@ -26,7 +113,7 @@ llmRouter.post('/step2', async (req, res) => {
 
   const messages: Message[] = []
 
-  const ideaRefinementMessage = createUserMessage(aiResponse1, 2)
+  const ideaRefinementMessage = createUserMessage(aiResponse1, 4)
 
   const ideaRefinementResponse = await askCurreAndAddToMessages(
     ideaRefinementMessage,
@@ -46,7 +133,7 @@ llmRouter.post('/step3', async (req, res) => {
   // Step 3: Ask for claims refinement
   const claimsMessage = createUserMessage(
     `${aiResponse1} Industrial applicability: ${aiResponse2}`,
-    3
+    5
   )
   const claimsResponse = await askCurreAndAddToMessages(claimsMessage, messages)
 
@@ -62,7 +149,7 @@ llmRouter.post('/step4', async (req, res) => {
 
   // Step 4: Final prompt
   const finalPrompt = `${aiResponse1} \nINDUSTRY APPLICABILITY: ${aiResponse2} \nCLAIMS: ${aiResponse3}`
-  const finalMessage = createUserMessage(finalPrompt, 4)
+  const finalMessage = createUserMessage(finalPrompt, 6)
 
   const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
 
