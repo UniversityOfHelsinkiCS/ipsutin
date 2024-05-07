@@ -1,6 +1,6 @@
 import { CURRE_URL } from '../../config'
 import { getPromptById } from '../data/inventorPrompts'
-import { Message } from '../types'
+import { InputValidation, Message, ValidatedInput } from '../types'
 
 export const getCompletion = async (
   allMessages: Message[],
@@ -53,6 +53,28 @@ export function createUserMessage(input: string, promptId: number): Message {
   }
 
   return message
+}
+
+export function handleValidationResponse(content: string): ValidatedInput {
+  let validatedInput = { success: false, feedback: content, error: true }
+
+  try {
+    const curreFeedback: InputValidation = JSON.parse(content)
+
+    if (curreFeedback.verdict === 'Bad') {
+      validatedInput = {
+        success: false,
+        feedback: curreFeedback.feedback,
+        error: false,
+      }
+    } else {
+      validatedInput = { success: true, feedback: '', error: false }
+    }
+  } catch {
+    validatedInput = { success: false, feedback: content, error: true }
+  }
+
+  return validatedInput
 }
 
 export default getCompletion

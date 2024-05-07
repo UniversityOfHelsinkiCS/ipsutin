@@ -1,6 +1,10 @@
 import express from 'express'
 
-import { askCurreAndAddToMessages, createUserMessage } from '../services/llm'
+import {
+  askCurreAndAddToMessages,
+  createUserMessage,
+  handleValidationResponse,
+} from '../services/llm'
 import { Message } from '../types'
 
 const llmRouter = express.Router()
@@ -15,23 +19,9 @@ llmRouter.post('/step1check1', async (req, res) => {
 
   const { content } = curreResponse
 
-  try {
-    const curreFeedback = JSON.parse(content)
-    if (curreFeedback.verdict === 'Bad') {
-      return res.json({
-        content: {
-          success: false,
-          feedback: curreFeedback.feedback,
-          error: false,
-        },
-      })
-    }
-    return res.json({ content: { success: true, feedback: '', error: false } })
-  } catch {
-    return res.json({
-      content: { success: false, feedback: content, error: true },
-    })
-  }
+  const validatedInput = handleValidationResponse(content)
+
+  return res.json({ content: validatedInput })
 })
 
 llmRouter.post('/step1check2', async (req, res) => {
@@ -44,23 +34,9 @@ llmRouter.post('/step1check2', async (req, res) => {
 
   const { content } = curreResponse
 
-  try {
-    const curreFeedback = JSON.parse(content)
-    if (curreFeedback.verdict === 'Bad') {
-      return res.json({
-        content: {
-          success: false,
-          feedback: curreFeedback.feedback,
-          error: false,
-        },
-      })
-    }
-    return res.json({ content: { success: true, feedback: '', error: false } })
-  } catch {
-    return res.json({
-      content: { success: false, feedback: content, error: true },
-    })
-  }
+  const validatedInput = handleValidationResponse(content)
+
+  return res.json({ content: validatedInput })
 })
 
 llmRouter.post('/step1check3', async (req, res) => {
@@ -73,23 +49,9 @@ llmRouter.post('/step1check3', async (req, res) => {
 
   const { content } = curreResponse
 
-  try {
-    const curreFeedback = JSON.parse(content)
-    if (curreFeedback.verdict === 'Bad') {
-      return res.json({
-        content: {
-          success: false,
-          feedback: curreFeedback.feedback,
-          error: false,
-        },
-      })
-    }
-    return res.json({ content: { success: true, feedback: '', error: false } })
-  } catch {
-    return res.json({
-      content: { success: false, feedback: content, error: true },
-    })
-  }
+  const validatedInput = handleValidationResponse(content)
+
+  return res.json({ content: validatedInput })
 })
 
 llmRouter.post('/step1', async (req, res) => {

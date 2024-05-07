@@ -178,3 +178,14 @@ export interface Message {
   role: Role
   content: string
 }
+
+export interface InputValidation {
+  verdict: string
+  feedback: string
+}
+
+export interface ValidatedInput {
+  success: boolean
+  feedback: string
+  error: boolean
+}
