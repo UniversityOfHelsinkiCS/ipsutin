@@ -5,8 +5,11 @@ import apiClient from '../../util/apiClient'
 import getInitialMessage from '../../util/inventorInput'
 
 import FinalStep from './FinalStep'
-import FirstStep from './FirstStep'
+import FirstStepIntroText from './FirstStepIntroText'
 import FourthStep from './FourthStep'
+import IndustrialStep from './IndustrialStep'
+import InventiveStep from './InventiveStep'
+import PublicityStep from './PublicityStep'
 import SecondStep from './SecondStep'
 import StepZero from './StepZero'
 import ThirdStep from './ThirdStep'
@@ -27,12 +30,74 @@ const InventorsAssistant = () => {
   const [industrialMessage, setIndustrialMessage] = useState(
     industrialMessageDynamic
   )
+  const [aiInputFeedback1, setAiInputFeedback1] = useState('')
+  const [aiInputFeedback1Success, setAiInputFeedback1Success] = useState(false)
+
+  const [aiInputFeedback2, setAiInputFeedback2] = useState('')
+  const [aiInputFeedback2Success, setAiInputFeedback2Success] = useState(false)
+
+  const [aiInputFeedback3, setAiInputFeedback3] = useState('')
+  const [aiInputFeedback3Success, setAiInputFeedback3Success] = useState(false)
 
   const [aiResponse1, setAiResponse1] = useState('')
   const [aiResponse2, setAiResponse2] = useState('')
   const [aiResponse3, setAiResponse3] = useState('')
   const [aiResponse4, setAiResponse4] = useState('')
   const [editModeGlobal, setEditModeGlobal] = useState(false)
+
+  const handleFirstCheck = async () => {
+    setCurrentStep(2)
+    const response = await apiClient.post('/llm/step1check1', {
+      inventiveMessage,
+    })
+
+    const { content } = response.data
+
+    if (content.failed) {
+      setAiInputFeedback1(content.content)
+    } else if (content.success === false) {
+      setAiInputFeedback1(content.feedback)
+    } else {
+      setAiInputFeedback1('Your input gave adequate information!')
+      setAiInputFeedback1Success(true)
+    }
+  }
+
+  const handleSecondCheck = async () => {
+    setCurrentStep(3)
+    const response = await apiClient.post('/llm/step1check2', {
+      publicMessage,
+    })
+
+    const { content } = response.data
+
+    if (content.failed) {
+      setAiInputFeedback2(content.content)
+    } else if (content.success === false) {
+      setAiInputFeedback2(content.feedback)
+    } else {
+      setAiInputFeedback2('Your input gave adequate information!')
+      setAiInputFeedback2Success(true)
+    }
+  }
+
+  const handleThirdCheck = async () => {
+    setCurrentStep(4)
+    const response = await apiClient.post('/llm/step1check3', {
+      industrialMessage,
+    })
+
+    const { content } = response.data
+
+    if (content.failed) {
+      setAiInputFeedback3(content.content)
+    } else if (content.success === false) {
+      setAiInputFeedback3(content.feedback)
+    } else {
+      setAiInputFeedback3('Your input gave adequate information!')
+      setAiInputFeedback3Success(true)
+    }
+  }
 
   const handleFirstStep = async () => {
     setAiResponse1('')
@@ -89,15 +154,35 @@ const InventorsAssistant = () => {
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
         {currentStep > 0 && (
           <>
-            <FirstStep
+            <FirstStepIntroText />
+
+            <InventiveStep
               inventiveMessage={inventiveMessage}
               setInventiveMessage={setInventiveMessage}
-              publicityMessage={publicMessage}
-              setPublicityMessage={setPublicMessage}
-              industrialMessage={industrialMessage}
-              setIndustrialMessage={setIndustrialMessage}
+              handleStepCheck={handleFirstCheck}
+              aiInputFeedback={aiInputFeedback1}
+              aiInputFeedbackSuccess={aiInputFeedback1Success}
             />
-            {currentStep === 1 && (
+            {currentStep >= 2 && aiInputFeedback1Success && (
+              <PublicityStep
+                publicityMessage={publicMessage}
+                setPublicityMessage={setPublicMessage}
+                handleStepCheck={handleSecondCheck}
+                aiInputFeedback={aiInputFeedback2}
+                aiInputFeedbackSuccess={aiInputFeedback2Success}
+              />
+            )}
+            {currentStep >= 3 && aiInputFeedback2Success && (
+              <IndustrialStep
+                industrialMessage={industrialMessage}
+                setIndustrialMessage={setIndustrialMessage}
+                handleStepCheck={handleThirdCheck}
+                aiInputFeedback={aiInputFeedback3}
+                aiInputFeedbackSuccess={aiInputFeedback3Success}
+              />
+            )}
+
+            {currentStep === 4 && (
               <Box
                 sx={{
                   display: 'flex',
@@ -105,33 +190,31 @@ const InventorsAssistant = () => {
                   alignItems: 'center',
                 }}
               >
-                {currentStep === 1 && (
-                  <Button
-                    sx={{
-                      mx: 'auto',
-                      px: 12,
-                      my: 4,
-                      borderRadius: '1rem',
-                      textTransform: 'capitalize',
-                      fontWeight: '600',
-                      fontSize: '12pt',
-                    }}
-                    variant='contained'
-                    color='secondary'
-                    onClick={() => {
-                      handleFirstStep()
-                      setCurrentStep(2)
-                    }}
-                  >
-                    Next step
-                  </Button>
-                )}
+                <Button
+                  sx={{
+                    mx: 'auto',
+                    px: 12,
+                    my: 4,
+                    borderRadius: '1rem',
+                    textTransform: 'capitalize',
+                    fontWeight: '600',
+                    fontSize: '12pt',
+                  }}
+                  variant='contained'
+                  color='secondary'
+                  onClick={() => {
+                    handleFirstStep()
+                    setCurrentStep(5)
+                  }}
+                >
+                  Next step
+                </Button>
               </Box>
             )}
           </>
         )}
 
-        {currentStep > 1 && (
+        {currentStep > 4 && (
           <>
             <SecondStep
               setAiResponse1={setAiResponse1}
@@ -139,7 +222,7 @@ const InventorsAssistant = () => {
               setEditModeGlobal={setEditModeGlobal}
             />
 
-            {currentStep === 2 && aiResponse1.length > 0 && !editModeGlobal && (
+            {currentStep === 5 && aiResponse1.length > 0 && !editModeGlobal && (
               <Button
                 sx={{
                   mx: 'auto',
@@ -154,7 +237,7 @@ const InventorsAssistant = () => {
                 color='secondary'
                 onClick={() => {
                   handleSecondStep()
-                  setCurrentStep(3)
+                  setCurrentStep(6)
                 }}
               >
                 Next step
@@ -163,14 +246,14 @@ const InventorsAssistant = () => {
           </>
         )}
 
-        {currentStep > 2 && aiResponse1.length > 0 && (
+        {currentStep > 5 && aiResponse1.length > 0 && (
           <>
             <ThirdStep
               setAiResponse2={setAiResponse2}
               aiResponse={aiResponse2}
               setEditModeGlobal={setEditModeGlobal}
             />
-            {currentStep === 3 && aiResponse2.length > 0 && !editModeGlobal && (
+            {currentStep === 6 && aiResponse2.length > 0 && !editModeGlobal && (
               <Button
                 sx={{
                   mx: 'auto',
@@ -185,14 +268,14 @@ const InventorsAssistant = () => {
                 color='secondary'
                 onClick={() => {
                   handleThirdStep()
-                  setCurrentStep(4)
+                  setCurrentStep(7)
                 }}
               >
                 Next step
               </Button>
             )}
 
-            {currentStep > 3 && (
+            {currentStep > 6 && (
               <>
                 <FourthStep
                   setAiResponse3={setAiResponse3}
@@ -207,7 +290,7 @@ const InventorsAssistant = () => {
                     alignItems: 'center',
                   }}
                 >
-                  {currentStep === 4 &&
+                  {currentStep === 7 &&
                     aiResponse3.length > 0 &&
                     !editModeGlobal && (
                       <Button
@@ -224,7 +307,7 @@ const InventorsAssistant = () => {
                         color='secondary'
                         onClick={() => {
                           handleLastStep()
-                          setCurrentStep(5)
+                          setCurrentStep(8)
                         }}
                       >
                         Go to the final step
@@ -235,7 +318,7 @@ const InventorsAssistant = () => {
             )}
           </>
         )}
-        {currentStep > 4 && (
+        {currentStep > 7 && (
           <FinalStep
             aiResponse={aiResponse4}
             originalIdea={inventiveMessage}
