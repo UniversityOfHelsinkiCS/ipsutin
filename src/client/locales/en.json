@@ -200,6 +200,9 @@
     "industrialTextArea": "Describe the industrial applications of the invention.",
     "detailReminder": "Remember, the more detailed and specific your description, the more accurate our analysis can be.",
     "recordReminder": "Remember also to record your ideas, this tool does not store the results.",
+    "step1ClosingHeader": "Great work!",
+    "step1ClosingText": "You have successfully given the key information needed to proceed. In the next steps your input will be analyzed by the Inventor's Assistant to produce a high quality invention report.",
+    "step1ClosingReminder": "Keep in mind that this tool relies on AI technology that might not always produce correct results.",
 
     "step2Header1": "Inventor's Assistant: Idea refinement",
     "step2text1": "The Inventor's Assistant has prepared feedback to your idea. Remember that exhaustive patent search has not been carried out and must be done to evaluate the novelty of the idea.",
