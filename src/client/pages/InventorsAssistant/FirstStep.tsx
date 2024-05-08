@@ -46,6 +46,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
 
   const handleFirstCheck = async () => {
     setCurrentStep(2)
+    setAiInputFeedbackSuccess1('info')
     const response = await apiClient.post('/llm/step1check1', {
       inventiveMessage,
     })
@@ -66,6 +67,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
 
   const handleSecondCheck = async () => {
     setCurrentStep(3)
+    setAiInputFeedbackSuccess2('info')
     const response = await apiClient.post('/llm/step1check2', {
       publicityMessage,
     })
@@ -86,6 +88,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
 
   const handleThirdCheck = async () => {
     setCurrentStep(4)
+    setAiInputFeedbackSuccess3('info')
     const response = await apiClient.post('/llm/step1check3', {
       industrialMessage,
     })
