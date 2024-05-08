@@ -22,7 +22,7 @@ const getInitialMessage = () => {
   
       In summary, the Cat-dog hybrid represents a groundbreaking innovation that addresses a specific market need, achieved through cutting-edge genetic technology. Its unique blend of traits holds promise across various industries and applications, from pet ownership to professional services, offering unprecedented opportunities for companionship, performance, and support.
       `,
-      publicMessageDynamic: `The idea of the Cat-dog hybrid has not been publicly disclosed through any publications, presentations, or previous patents. It represents an original concept that has not been shared or disseminated in any form prior to this discussion. Therefore, there are no existing disclosures regarding the invention, its technology, or its potential applications.`,
+      publicityMessageDynamic: `The idea of the Cat-dog hybrid has not been publicly disclosed through any publications, presentations, or previous patents. It represents an original concept that has not been shared or disseminated in any form prior to this discussion. Therefore, there are no existing disclosures regarding the invention, its technology, or its potential applications.`,
       industrialMessageDynamic: `The Cat-dog hybrid offers a range of practical applications in industrial settings:
 
       Pet Industry: It revolutionizes the pet industry by offering a unique blend of dog loyalty and cat independence, appealing to a wide range of consumers seeking a companion with the best traits of both species.
@@ -40,7 +40,7 @@ const getInitialMessage = () => {
   }
   return {
     inventiveMessageDynamic: '',
-    publicMessageDynamic: '',
+    publicityMessageDynamic: '',
     industrialMessageDynamic: '',
   }
 }
