@@ -34,9 +34,9 @@ llmRouter.post('/step1check2', async (req, res) => {
 
   const { content } = curreResponse
 
-  const validatedInput = handleValidationResponse(content)
+  const inputFeedback = handleValidationResponse(content)
 
-  return res.json({ content: validatedInput })
+  return res.json({ content: inputFeedback })
 })
 
 llmRouter.post('/step1check3', async (req, res) => {
@@ -49,9 +49,9 @@ llmRouter.post('/step1check3', async (req, res) => {
 
   const { content } = curreResponse
 
-  const validatedInput = handleValidationResponse(content)
+  const inputFeedback = handleValidationResponse(content)
 
-  return res.json({ content: validatedInput })
+  return res.json({ content: inputFeedback })
 })
 
 llmRouter.post('/step1', async (req, res) => {
