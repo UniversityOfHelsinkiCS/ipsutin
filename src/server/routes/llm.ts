@@ -25,10 +25,10 @@ llmRouter.post('/step1check1', async (req, res) => {
 })
 
 llmRouter.post('/step1check2', async (req, res) => {
-  const { publicMessage } = req.body
+  const { publicityMessage } = req.body
   const messages: Message[] = []
 
-  const userMessage = createUserMessage(publicMessage, 1)
+  const userMessage = createUserMessage(publicityMessage, 1)
 
   const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
 
