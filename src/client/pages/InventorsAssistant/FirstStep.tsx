@@ -134,7 +134,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
         aiInputFeedback={aiInputFeedback1}
         aiInputFeedbackSuccess={aiInputFeedbackSuccess1}
       />
-      {currentStep >= 2 && aiInputFeedbackSuccess1 && (
+      {currentStep >= 2 && aiInputFeedbackSuccess1 === 'success' && (
         <>
           <SectionHeading level='h3'>
             {t('inventorsAssistant:publicityStepHeader')}
@@ -152,7 +152,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
         </>
       )}
 
-      {currentStep >= 3 && aiInputFeedbackSuccess2 && (
+      {currentStep >= 3 && aiInputFeedbackSuccess2 === 'success' && (
         <>
           <SectionHeading level='h3'>
             {t('inventorsAssistant:industrialStepHeader')}
