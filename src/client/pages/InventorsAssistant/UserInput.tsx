@@ -46,7 +46,7 @@ const UserInput: React.FC<UserInputProps> = ({
         color='secondary'
         onClick={() => {
           handleStepCheck()
-          setInputStep(1)
+          setInputStep(true)
           setButtonText('Submit again')
         }}
       >
