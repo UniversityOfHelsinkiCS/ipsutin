@@ -25,16 +25,8 @@ export const getPromptById = (id: number): string => {
       id: 1,
       text: `I am filling in a form and I want you to decide if I am giving "good" or "bad" input. "Good" input is defined as input that follows the instructions while "bad" input is input that lacks important aspects. Example of bad input would be 1. The input is too short, 2. The input doesn't contain all the parts listed in the instructions, 3. The input is off-topic.
 
-      Here is the context:
-        We are going to help you with forming an Invention Report for your idea! 
-
-        You will receive help in steps refining the idea. We start in step 1 by outlining the key idea and continue to refine the idea, examine industrial relevance, and then potential claims
-        Your helpful mentor in preparing your ideas for impact. You will receive help in steps refining the idea. We start in step 1 by outlining the key idea and continue to refine the idea, examine industrial relevance, and then potential claims.
-        Please take into account that this is an AI tool for helping and sparring; it is expected to be useful, but there are limitations and human oversight is needed in interpreting the results. Enjoy the tool and good luck with your high impact idea!
-        
       Here are my specific instructions:
-      
-      Indicate whether any part of your idea has been publicly disclosed. This includes any publications, presentations, or previous patents. Detail the extent and nature of such disclosures.
+        Indicate whether any part of your idea has been publicly disclosed. This includes any publications, presentations, or previous patents. Detail the extent and nature of such disclosures.
       
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
       { 
@@ -47,14 +39,7 @@ export const getPromptById = (id: number): string => {
     {
       id: 2,
       text: `I am filling in a form and I want you to decide if I am giving "good" or "bad" input. "Good" input is defined as input that follows the instructions while "bad" input is input that lacks important aspects. Example of bad input would be 1. The input is too short, 2. The input doesn't contain all the parts listed in the instructions, 3. The input is off-topic.
-
-      Here is the context:
-        We are going to help you with forming an Invention Report for your idea! 
-
-        You will receive help in steps refining the idea. We start in step 1 by outlining the key idea and continue to refine the idea, examine industrial relevance, and then potential claims
-        Your helpful mentor in preparing your ideas for impact. You will receive help in steps refining the idea. We start in step 1 by outlining the key idea and continue to refine the idea, examine industrial relevance, and then potential claims.
-        Please take into account that this is an AI tool for helping and sparring; it is expected to be useful, but there are limitations and human oversight is needed in interpreting the results. Enjoy the tool and good luck with your high impact idea!
-        
+      
       Here are my specific instructions:
         Describe the practical application of your idea. Highlight how it can be implemented in an industrial setting. Discuss its potential benefits, feasibility, and any industries or sectors where it could be particularly useful.
       
