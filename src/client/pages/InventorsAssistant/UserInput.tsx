@@ -9,7 +9,7 @@ type UserInputProps = {
   setInventiveMessage: React.Dispatch<React.SetStateAction<string>>
   handleStepCheck: () => void
   aiInputFeedback: string
-  aiInputFeedbackSuccess: boolean
+  aiInputFeedbackSuccess: 'info' | 'success' | 'warning'
 }
 
 const UserInput: React.FC<UserInputProps> = ({
@@ -19,7 +19,7 @@ const UserInput: React.FC<UserInputProps> = ({
   aiInputFeedback,
   aiInputFeedbackSuccess,
 }) => {
-  const [inputStep, setInputStep] = useState<number>(0)
+  const [inputStep, setInputStep] = useState(false)
   const [buttonText, setButtonText] = useState('Next step')
   return (
     <Box component='section' sx={{ mt: 4 }}>
@@ -53,10 +53,10 @@ const UserInput: React.FC<UserInputProps> = ({
         {buttonText}
       </Button>
 
-      {inputStep > 0 && (
+      {inputStep && (
         <LlmInputFeedback
           aiInputFeedback={aiInputFeedback}
-          success={aiInputFeedbackSuccess}
+          alertSeverity={aiInputFeedbackSuccess}
         />
       )}
     </Box>

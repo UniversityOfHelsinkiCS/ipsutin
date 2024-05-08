@@ -4,24 +4,14 @@ import Markdown from '../../components/Common/Markdown'
 
 type LlmInputFeedbackProps = {
   aiInputFeedback: string
-  success: boolean
+  alertSeverity: 'info' | 'success' | 'warning'
 }
 
 const LlmInputFeedback = ({
   aiInputFeedback,
-  success,
+  alertSeverity,
 }: LlmInputFeedbackProps) => {
-  let alertSeverity: 'info' | 'success' | 'warning' = 'info'
-  let message = 'Checking the quality of your input...'
-
-  if (aiInputFeedback) {
-    if (success === true) {
-      alertSeverity = 'success'
-    } else if (success === false) {
-      alertSeverity = 'warning'
-    }
-    message = aiInputFeedback
-  }
+  const message = aiInputFeedback || 'Checking the quality of your input...'
 
   return (
     <Box sx={{ mt: 4 }}>

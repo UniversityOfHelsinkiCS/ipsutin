@@ -30,13 +30,19 @@ const FirstStep: React.FC<FirstStepProps> = ({
   setIndustrialMessage,
 }) => {
   const [aiInputFeedback1, setAiInputFeedback1] = useState('')
-  const [aiInputFeedback1Success, setAiInputFeedback1Success] = useState(false)
+  const [aiInputFeedbackSuccess1, setAiInputFeedbackSuccess1] = useState<
+    'info' | 'success' | 'warning'
+  >('info')
 
   const [aiInputFeedback2, setAiInputFeedback2] = useState('')
-  const [aiInputFeedback2Success, setAiInputFeedback2Success] = useState(false)
+  const [aiInputFeedbackSuccess2, setAiInputFeedbackSuccess2] = useState<
+    'info' | 'success' | 'warning'
+  >('info')
 
   const [aiInputFeedback3, setAiInputFeedback3] = useState('')
-  const [aiInputFeedback3Success, setAiInputFeedback3Success] = useState(false)
+  const [aiInputFeedbackSuccess3, setAiInputFeedbackSuccess3] = useState<
+    'info' | 'success' | 'warning'
+  >('info')
 
   const handleFirstCheck = async () => {
     setCurrentStep(2)
@@ -47,12 +53,14 @@ const FirstStep: React.FC<FirstStepProps> = ({
     const { content } = response.data
 
     if (content.failed) {
+      setAiInputFeedbackSuccess1('warning')
       setAiInputFeedback1(content.content)
     } else if (content.success === false) {
+      setAiInputFeedbackSuccess1('warning')
       setAiInputFeedback1(content.feedback)
     } else {
       setAiInputFeedback1('Your input gave adequate information!')
-      setAiInputFeedback1Success(true)
+      setAiInputFeedbackSuccess1('success')
     }
   }
 
@@ -65,12 +73,14 @@ const FirstStep: React.FC<FirstStepProps> = ({
     const { content } = response.data
 
     if (content.failed) {
+      setAiInputFeedbackSuccess2('warning')
       setAiInputFeedback2(content.content)
     } else if (content.success === false) {
+      setAiInputFeedbackSuccess2('warning')
       setAiInputFeedback2(content.feedback)
     } else {
       setAiInputFeedback2('Your input gave adequate information!')
-      setAiInputFeedback2Success(true)
+      setAiInputFeedbackSuccess2('success')
     }
   }
 
@@ -83,12 +93,14 @@ const FirstStep: React.FC<FirstStepProps> = ({
     const { content } = response.data
 
     if (content.failed) {
+      setAiInputFeedbackSuccess3('warning')
       setAiInputFeedback3(content.content)
     } else if (content.success === false) {
+      setAiInputFeedbackSuccess3('warning')
       setAiInputFeedback3(content.feedback)
     } else {
       setAiInputFeedback3('Your input gave adequate information!')
-      setAiInputFeedback3Success(true)
+      setAiInputFeedbackSuccess3('success')
     }
   }
   return (
@@ -117,9 +129,9 @@ const FirstStep: React.FC<FirstStepProps> = ({
         setInventiveMessage={setInventiveMessage}
         handleStepCheck={handleFirstCheck}
         aiInputFeedback={aiInputFeedback1}
-        aiInputFeedbackSuccess={aiInputFeedback1Success}
+        aiInputFeedbackSuccess={aiInputFeedbackSuccess1}
       />
-      {currentStep >= 2 && aiInputFeedback1Success && (
+      {currentStep >= 2 && aiInputFeedbackSuccess1 && (
         <>
           <SectionHeading level='h3'>
             {t('inventorsAssistant:publicityStepHeader')}
@@ -132,12 +144,12 @@ const FirstStep: React.FC<FirstStepProps> = ({
             setInventiveMessage={setPublicityMessage}
             handleStepCheck={handleSecondCheck}
             aiInputFeedback={aiInputFeedback2}
-            aiInputFeedbackSuccess={aiInputFeedback2Success}
+            aiInputFeedbackSuccess={aiInputFeedbackSuccess2}
           />
         </>
       )}
 
-      {currentStep >= 3 && aiInputFeedback2Success && (
+      {currentStep >= 3 && aiInputFeedbackSuccess2 && (
         <>
           <SectionHeading level='h3'>
             {t('inventorsAssistant:industrialStepHeader')}
@@ -150,7 +162,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             setInventiveMessage={setIndustrialMessage}
             handleStepCheck={handleThirdCheck}
             aiInputFeedback={aiInputFeedback3}
-            aiInputFeedbackSuccess={aiInputFeedback3Success}
+            aiInputFeedbackSuccess={aiInputFeedbackSuccess3}
           />
         </>
       )}
