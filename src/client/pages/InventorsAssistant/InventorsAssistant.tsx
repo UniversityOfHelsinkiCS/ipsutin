@@ -5,11 +5,8 @@ import apiClient from '../../util/apiClient'
 import getInitialMessage from '../../util/inventorInput'
 
 import FinalStep from './FinalStep'
-import FirstStepIntroText from './FirstStepIntroText'
+import FirstStep from './FirstStep'
 import FourthStep from './FourthStep'
-import IndustrialStep from './IndustrialStep'
-import InventiveStep from './InventiveStep'
-import PublicityStep from './PublicityStep'
 import SecondStep from './SecondStep'
 import StepZero from './StepZero'
 import ThirdStep from './ThirdStep'
@@ -19,25 +16,20 @@ const InventorsAssistant = () => {
 
   const {
     inventiveMessageDynamic,
-    publicMessageDynamic,
+    publicityMessageDynamic,
     industrialMessageDynamic,
   } = getInitialMessage()
 
   const [inventiveMessage, setInventiveMessage] = useState(
     inventiveMessageDynamic
   )
-  const [publicMessage, setPublicMessage] = useState(publicMessageDynamic)
+  const [publicityMessage, setPublicityMessage] = useState(
+    publicityMessageDynamic
+  )
+
   const [industrialMessage, setIndustrialMessage] = useState(
     industrialMessageDynamic
   )
-  const [aiInputFeedback1, setAiInputFeedback1] = useState('')
-  const [aiInputFeedback1Success, setAiInputFeedback1Success] = useState(false)
-
-  const [aiInputFeedback2, setAiInputFeedback2] = useState('')
-  const [aiInputFeedback2Success, setAiInputFeedback2Success] = useState(false)
-
-  const [aiInputFeedback3, setAiInputFeedback3] = useState('')
-  const [aiInputFeedback3Success, setAiInputFeedback3Success] = useState(false)
 
   const [aiResponse1, setAiResponse1] = useState('')
   const [aiResponse2, setAiResponse2] = useState('')
@@ -45,66 +37,12 @@ const InventorsAssistant = () => {
   const [aiResponse4, setAiResponse4] = useState('')
   const [editModeGlobal, setEditModeGlobal] = useState(false)
 
-  const handleFirstCheck = async () => {
-    setCurrentStep(2)
-    const response = await apiClient.post('/llm/step1check1', {
-      inventiveMessage,
-    })
-
-    const { content } = response.data
-
-    if (content.failed) {
-      setAiInputFeedback1(content.content)
-    } else if (content.success === false) {
-      setAiInputFeedback1(content.feedback)
-    } else {
-      setAiInputFeedback1('Your input gave adequate information!')
-      setAiInputFeedback1Success(true)
-    }
-  }
-
-  const handleSecondCheck = async () => {
-    setCurrentStep(3)
-    const response = await apiClient.post('/llm/step1check2', {
-      publicMessage,
-    })
-
-    const { content } = response.data
-
-    if (content.failed) {
-      setAiInputFeedback2(content.content)
-    } else if (content.success === false) {
-      setAiInputFeedback2(content.feedback)
-    } else {
-      setAiInputFeedback2('Your input gave adequate information!')
-      setAiInputFeedback2Success(true)
-    }
-  }
-
-  const handleThirdCheck = async () => {
-    setCurrentStep(4)
-    const response = await apiClient.post('/llm/step1check3', {
-      industrialMessage,
-    })
-
-    const { content } = response.data
-
-    if (content.failed) {
-      setAiInputFeedback3(content.content)
-    } else if (content.success === false) {
-      setAiInputFeedback3(content.feedback)
-    } else {
-      setAiInputFeedback3('Your input gave adequate information!')
-      setAiInputFeedback3Success(true)
-    }
-  }
-
   const handleFirstStep = async () => {
     setAiResponse1('')
     const response = await apiClient.post('/llm/step1', {
       inventiveMessage,
       industrialMessage,
-      publicMessage,
+      publicityMessage,
     })
 
     const { content } = response.data
@@ -154,33 +92,16 @@ const InventorsAssistant = () => {
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
         {currentStep > 0 && (
           <>
-            <FirstStepIntroText />
-
-            <InventiveStep
+            <FirstStep
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
               inventiveMessage={inventiveMessage}
               setInventiveMessage={setInventiveMessage}
-              handleStepCheck={handleFirstCheck}
-              aiInputFeedback={aiInputFeedback1}
-              aiInputFeedbackSuccess={aiInputFeedback1Success}
+              publicityMessage={publicityMessage}
+              setPublicityMessage={setPublicityMessage}
+              industrialMessage={industrialMessage}
+              setIndustrialMessage={setIndustrialMessage}
             />
-            {currentStep >= 2 && aiInputFeedback1Success && (
-              <PublicityStep
-                publicityMessage={publicMessage}
-                setPublicityMessage={setPublicMessage}
-                handleStepCheck={handleSecondCheck}
-                aiInputFeedback={aiInputFeedback2}
-                aiInputFeedbackSuccess={aiInputFeedback2Success}
-              />
-            )}
-            {currentStep >= 3 && aiInputFeedback2Success && (
-              <IndustrialStep
-                industrialMessage={industrialMessage}
-                setIndustrialMessage={setIndustrialMessage}
-                handleStepCheck={handleThirdCheck}
-                aiInputFeedback={aiInputFeedback3}
-                aiInputFeedbackSuccess={aiInputFeedback3Success}
-              />
-            )}
 
             {currentStep === 4 && (
               <Box
