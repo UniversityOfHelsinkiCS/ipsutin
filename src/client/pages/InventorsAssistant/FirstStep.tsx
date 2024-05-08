@@ -87,7 +87,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
   }
 
   const handleThirdCheck = async () => {
-    setCurrentStep(4)
     setAiInputFeedbackSuccess3('info')
     const response = await apiClient.post('/llm/step1check3', {
       industrialMessage,
@@ -104,6 +103,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
     } else {
       setAiInputFeedback3('Your input gave adequate information!')
       setAiInputFeedbackSuccess3('success')
+      setCurrentStep(4)
     }
   }
   return (
