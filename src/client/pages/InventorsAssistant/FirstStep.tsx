@@ -169,6 +169,19 @@ const FirstStep: React.FC<FirstStepProps> = ({
           />
         </>
       )}
+      {currentStep >= 4 && aiInputFeedbackSuccess3 === 'success' && (
+        <>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:step1ClosingHeader')}
+          </SectionHeading>
+          <Typography variant='body1' sx={{ my: 2 }}>
+            {t('inventorsAssistant:step1ClosingText')}
+          </Typography>
+          <Typography variant='body1' sx={{ my: 2 }}>
+            {t('inventorsAssistant:step1ClosingReminder')}
+          </Typography>
+        </>
+      )}
     </Box>
   )
 }
