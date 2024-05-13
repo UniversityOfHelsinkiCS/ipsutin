@@ -6,7 +6,7 @@ import LlmInputFeedback from './LlmInputFeedback'
 
 type UserInputProps = {
   inventiveMessage: string
-  setInventiveMessage: React.Dispatch<React.SetStateAction<string>>
+  setUserInput: React.Dispatch<React.SetStateAction<string>>
   handleStepCheck: () => void
   aiInputFeedback: string
   aiInputFeedbackSuccess: 'info' | 'success' | 'warning'
@@ -14,7 +14,7 @@ type UserInputProps = {
 
 const UserInput: React.FC<UserInputProps> = ({
   inventiveMessage,
-  setInventiveMessage,
+  setUserInput,
   handleStepCheck,
   aiInputFeedback,
   aiInputFeedbackSuccess,
@@ -29,10 +29,9 @@ const UserInput: React.FC<UserInputProps> = ({
         multiline
         minRows={5}
         value={inventiveMessage}
-        onChange={(e) => setInventiveMessage(e.target.value)}
+        onChange={(e) => setUserInput(e.target.value)}
         placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
       />
-      {}
 
       {(!inputStep || (inputStep && aiInputFeedbackSuccess === 'warning')) && (
         <Button

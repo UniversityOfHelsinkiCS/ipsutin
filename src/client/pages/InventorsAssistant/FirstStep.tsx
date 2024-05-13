@@ -129,7 +129,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
 
       <UserInput
         inventiveMessage={inventiveMessage}
-        setInventiveMessage={setInventiveMessage}
+        setUserInput={setInventiveMessage}
         handleStepCheck={handleFirstCheck}
         aiInputFeedback={aiInputFeedback1}
         aiInputFeedbackSuccess={aiInputFeedbackSuccess1}
@@ -144,7 +144,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
           </Typography>
           <UserInput
             inventiveMessage={publicityMessage}
-            setInventiveMessage={setPublicityMessage}
+            setUserInput={setPublicityMessage}
             handleStepCheck={handleSecondCheck}
             aiInputFeedback={aiInputFeedback2}
             aiInputFeedbackSuccess={aiInputFeedbackSuccess2}
@@ -162,7 +162,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
           </Typography>
           <UserInput
             inventiveMessage={industrialMessage}
-            setInventiveMessage={setIndustrialMessage}
+            setUserInput={setIndustrialMessage}
             handleStepCheck={handleThirdCheck}
             aiInputFeedback={aiInputFeedback3}
             aiInputFeedbackSuccess={aiInputFeedbackSuccess3}
