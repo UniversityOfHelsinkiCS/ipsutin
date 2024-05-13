@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Alert, Typography } from '@mui/material'
+import { Alert, Box, Typography } from '@mui/material'
 import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
+import useResultRefCallback from '../../hooks/useResultRefCallback'
 
 import LlmResponse from './LlmResponse'
 
@@ -22,59 +23,63 @@ const FinalStep = ({
   industrialApplicability,
   claims,
   setAiResponse4,
-}: FinalStepProps) => (
-  <>
-    <SectionHeading level='h2' sx={{ mt: 8 }}>
-      {t('inventorsAssistant:finalStepHeader1')}
-    </SectionHeading>
+}: FinalStepProps) => {
+  const refCallback = useResultRefCallback()
 
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepText1')}
-    </Typography>
+  return (
+    <Box ref={refCallback}>
+      <SectionHeading level='h2' sx={{ mt: 8 }}>
+        {t('inventorsAssistant:finalStepHeader1')}
+      </SectionHeading>
 
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepSummary')}
-    </Typography>
-
-    <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse4} />
-
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepOriginalIdea')}
-    </Typography>
-
-    <Alert severity='success' sx={{ my: 4, p: 4 }}>
       <Typography variant='body1' sx={{ mt: 2 }}>
-        {originalIdea}
+        {t('inventorsAssistant:finalStepText1')}
       </Typography>
-    </Alert>
 
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepRefinedIdea')}
-    </Typography>
-    <Alert severity='success' sx={{ my: 4, p: 4 }}>
       <Typography variant='body1' sx={{ mt: 2 }}>
-        {ideaRefinement}
+        {t('inventorsAssistant:finalStepSummary')}
       </Typography>
-    </Alert>
 
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepIndustrialApplicability')}
-    </Typography>
-    <Alert severity='success' sx={{ my: 4, p: 4 }}>
-      <Typography variant='body1' sx={{ mt: 2 }}>
-        {industrialApplicability}
-      </Typography>
-    </Alert>
+      <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse4} />
 
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepClaims')}
-    </Typography>
-    <Alert severity='success' sx={{ my: 4, p: 4 }}>
       <Typography variant='body1' sx={{ mt: 2 }}>
-        {claims}
+        {t('inventorsAssistant:finalStepOriginalIdea')}
       </Typography>
-    </Alert>
-  </>
-)
+
+      <Alert severity='success' sx={{ my: 4, p: 4 }}>
+        <Typography variant='body1' sx={{ mt: 2 }}>
+          {originalIdea}
+        </Typography>
+      </Alert>
+
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:finalStepRefinedIdea')}
+      </Typography>
+      <Alert severity='success' sx={{ my: 4, p: 4 }}>
+        <Typography variant='body1' sx={{ mt: 2 }}>
+          {ideaRefinement}
+        </Typography>
+      </Alert>
+
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:finalStepIndustrialApplicability')}
+      </Typography>
+      <Alert severity='success' sx={{ my: 4, p: 4 }}>
+        <Typography variant='body1' sx={{ mt: 2 }}>
+          {industrialApplicability}
+        </Typography>
+      </Alert>
+
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:finalStepClaims')}
+      </Typography>
+      <Alert severity='success' sx={{ my: 4, p: 4 }}>
+        <Typography variant='body1' sx={{ mt: 2 }}>
+          {claims}
+        </Typography>
+      </Alert>
+    </Box>
+  )
+}
 
 export default FinalStep

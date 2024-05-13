@@ -8,6 +8,7 @@ import FinalStep from './FinalStep'
 import FirstStep from './FirstStep'
 import FourthStep from './FourthStep'
 import SecondStep from './SecondStep'
+import SendEmail from './SendEmail'
 import StepZero from './StepZero'
 import ThirdStep from './ThirdStep'
 
@@ -249,6 +250,7 @@ const InventorsAssistant = () => {
             setAiResponse4={setAiResponse4}
           />
         )}
+        <SendEmail />
       </Box>
     </Box>
   )
