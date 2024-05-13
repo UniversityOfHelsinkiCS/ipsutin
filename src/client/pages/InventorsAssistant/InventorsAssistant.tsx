@@ -250,7 +250,7 @@ const InventorsAssistant = () => {
             setAiResponse4={setAiResponse4}
           />
         )}
-        <SendEmail />
+        {aiResponse4 && aiResponse4.length > 0 && <SendEmail />}
       </Box>
     </Box>
   )
