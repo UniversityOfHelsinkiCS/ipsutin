@@ -19,6 +19,7 @@ const InventorPhase3 = () => {
   return (
     <Box component='article'>
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
+        <InventorStepper />
         {currentStep > 7 && (
           <FinalStep
             aiResponse={aiResponse4}
@@ -31,7 +32,6 @@ const InventorPhase3 = () => {
         )}
         {aiResponse4 && aiResponse4.length > 0 && <SendEmail />}
       </Box>
-      <InventorStepper />
     </Box>
   )
 }
