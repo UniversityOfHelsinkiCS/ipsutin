@@ -5,6 +5,7 @@ import apiClient from '../../util/apiClient'
 
 import FourthStep from './FourthStep'
 import { useInventorsContext } from './InventorsContext'
+import InventorStepper from './InventorStepper'
 import SecondStep from './SecondStep'
 import ThirdStep from './ThirdStep'
 
@@ -67,113 +68,107 @@ const InventorPhase2 = () => {
     <Box component='article'>
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
         {currentStep > 4 && (
-          <>
-            <SecondStep
-              setAiResponse1={setAiResponse1}
-              aiResponse={aiResponse1}
-              setEditModeGlobal={setEditModeGlobal}
-            />
+          <SecondStep
+            setAiResponse1={setAiResponse1}
+            aiResponse={aiResponse1}
+            setEditModeGlobal={setEditModeGlobal}
+          />
+        )}
 
-            {currentStep === 5 && aiResponse1.length > 0 && !editModeGlobal && (
-              <Button
-                sx={{
-                  mx: 'auto',
-                  px: 12,
-                  my: 4,
-                  borderRadius: '1rem',
-                  textTransform: 'capitalize',
-                  fontWeight: '600',
-                  fontSize: '12pt',
-                }}
-                variant='contained'
-                color='secondary'
-                onClick={() => {
-                  handleSecondStep()
-                  setCurrentStep(6)
-                }}
-              >
-                Next step
-              </Button>
-            )}
-          </>
+        {currentStep === 5 && aiResponse1.length > 0 && !editModeGlobal && (
+          <Button
+            sx={{
+              mx: 'auto',
+              px: 12,
+              my: 4,
+              borderRadius: '1rem',
+              textTransform: 'capitalize',
+              fontWeight: '600',
+              fontSize: '12pt',
+            }}
+            variant='contained'
+            color='secondary'
+            onClick={() => {
+              handleSecondStep()
+              setCurrentStep(6)
+            }}
+          >
+            Next step
+          </Button>
         )}
 
         {currentStep > 5 && aiResponse1.length > 0 && (
-          <>
-            <ThirdStep
-              setAiResponse2={setAiResponse2}
-              aiResponse={aiResponse2}
-              setEditModeGlobal={setEditModeGlobal}
-            />
-            {currentStep === 6 && aiResponse2.length > 0 && !editModeGlobal && (
-              <Button
-                sx={{
-                  mx: 'auto',
-                  px: 12,
-                  my: 4,
-                  borderRadius: '1rem',
-                  textTransform: 'capitalize',
-                  fontWeight: '600',
-                  fontSize: '12pt',
-                }}
-                variant='contained'
-                color='secondary'
-                onClick={() => {
-                  handleThirdStep()
-                  setCurrentStep(7)
-                }}
-              >
-                Next step
-              </Button>
-            )}
-
-            {currentStep > 6 && (
-              <>
-                <FourthStep
-                  setAiResponse3={setAiResponse3}
-                  aiResponse={aiResponse3}
-                  setEditModeGlobal={setEditModeGlobal}
-                />
-
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  {currentStep === 7 &&
-                    aiResponse3.length > 0 &&
-                    !editModeGlobal && (
-                      <Button
-                        sx={{
-                          mx: 'auto',
-                          px: 12,
-                          my: 4,
-                          borderRadius: '1rem',
-                          textTransform: 'capitalize',
-                          fontWeight: '600',
-                          fontSize: '12pt',
-                        }}
-                        variant='contained'
-                        color='secondary'
-                        onClick={() => {
-                          handleLastStep()
-                          setCurrentStep(8)
-                          navigate({
-                            pathname: '../phase3',
-                            search: location.search,
-                          })
-                        }}
-                      >
-                        Go to the final step
-                      </Button>
-                    )}
-                </Box>
-              </>
-            )}
-          </>
+          <ThirdStep
+            setAiResponse2={setAiResponse2}
+            aiResponse={aiResponse2}
+            setEditModeGlobal={setEditModeGlobal}
+          />
         )}
+
+        {currentStep === 6 && aiResponse2.length > 0 && !editModeGlobal && (
+          <Button
+            sx={{
+              mx: 'auto',
+              px: 12,
+              my: 4,
+              borderRadius: '1rem',
+              textTransform: 'capitalize',
+              fontWeight: '600',
+              fontSize: '12pt',
+            }}
+            variant='contained'
+            color='secondary'
+            onClick={() => {
+              handleThirdStep()
+              setCurrentStep(7)
+            }}
+          >
+            Next step
+          </Button>
+        )}
+
+        {currentStep > 6 && (
+          <FourthStep
+            setAiResponse3={setAiResponse3}
+            aiResponse={aiResponse3}
+            setEditModeGlobal={setEditModeGlobal}
+          />
+        )}
+
+        {currentStep === 7 && aiResponse3.length > 0 && !editModeGlobal && (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Button
+              sx={{
+                mx: 'auto',
+                px: 12,
+                my: 4,
+                borderRadius: '1rem',
+                textTransform: 'capitalize',
+                fontWeight: '600',
+                fontSize: '12pt',
+              }}
+              variant='contained'
+              color='secondary'
+              onClick={() => {
+                handleLastStep()
+                setCurrentStep(8)
+                navigate({
+                  pathname: '../phase3',
+                  search: location.search,
+                })
+              }}
+            >
+              Go to the final step
+            </Button>
+          </Box>
+        )}
+        <InventorStepper />
       </Box>
     </Box>
   )

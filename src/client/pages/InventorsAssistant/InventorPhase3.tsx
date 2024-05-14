@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 
 import FinalStep from './FinalStep'
 import { useInventorsContext } from './InventorsContext'
+import InventorStepper from './InventorStepper'
 import SendEmail from './SendEmail'
 
 const InventorPhase3 = () => {
@@ -30,6 +31,7 @@ const InventorPhase3 = () => {
         )}
         {aiResponse4 && aiResponse4.length > 0 && <SendEmail />}
       </Box>
+      <InventorStepper />
     </Box>
   )
 }

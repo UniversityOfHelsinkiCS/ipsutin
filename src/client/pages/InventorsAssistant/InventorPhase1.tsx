@@ -5,6 +5,7 @@ import apiClient from '../../util/apiClient'
 
 import FirstStep from './FirstStep'
 import { useInventorsContext } from './InventorsContext'
+import InventorStepper from './InventorStepper'
 import StepZero from './StepZero'
 
 const InventorPhase1 = () => {
@@ -51,7 +52,7 @@ const InventorPhase1 = () => {
               industrialMessage={industrialMessage}
               setIndustrialMessage={setIndustrialMessage}
             />
-
+            <InventorStepper />
             {currentStep === 4 && (
               <Box
                 sx={{
