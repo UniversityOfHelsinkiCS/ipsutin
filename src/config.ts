@@ -23,7 +23,7 @@ export const IP_ASSESSMENT_DATA_KEY = 'ipsutin_ip_assessment_local_save'
 export const FULL_URL = inProduction
   ? 'https://ipsutin.ext.ocp-prod-0.k8s.it.helsinki.fi'
   : inStaging
-  ? 'https://toska-staging.cs.helsinki.fi/ipsutin'
+  ? 'https://ipsutin.ext.ocp-test-0.k8s.it.helsinki.fi'
   : 'http://localhost:3000'
 
 // eslint-disable-next-line no-nested-ternary
