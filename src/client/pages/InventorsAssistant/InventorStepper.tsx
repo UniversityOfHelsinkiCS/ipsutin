@@ -26,16 +26,23 @@ const InventorStepper = () => {
   return (
     <Box
       sx={{
+        position: 'sticky',
+        top: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        mt: 5,
-        mb: 5,
+        width: 'justify',
+        padding: 5,
+        zIndex: 10,
+        background:
+          'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 85%, rgba(255,255,255,0) 100%)',
       }}
     >
       <Stepper activeStep={step} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel>{label}</StepLabel>
+            <StepLabel>
+              <b>{label}</b>
+            </StepLabel>
           </Step>
         ))}
       </Stepper>
