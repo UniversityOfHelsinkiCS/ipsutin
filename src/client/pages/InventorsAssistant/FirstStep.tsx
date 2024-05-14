@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Box, List, ListItemText, Typography } from '@mui/material'
+import { Alert, Box, List, ListItemText, Typography } from '@mui/material'
 import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
 import apiClient from '../../util/apiClient'
 
-import FirstStepIntroText from './FirstStepIntroText'
 import UserInput from './UserInput'
 
 type FirstStepProps = {
@@ -108,7 +107,18 @@ const FirstStep: React.FC<FirstStepProps> = ({
   }
   return (
     <Box component='section' sx={{ mt: 4 }}>
-      <FirstStepIntroText />
+      <SectionHeading level='h2' sx={{ mt: 8 }}>
+        {t('inventorsAssistant:header2')}
+      </SectionHeading>
+      <Typography variant='body1'>
+        {t('inventorsAssistant:step1MainContent')}
+      </Typography>
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:step1Disclaimer')}
+      </Typography>
+      <Alert severity='info' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:h2text1')}
+      </Alert>
 
       <SectionHeading level='h3' sx={{ mt: 2 }}>
         {t('inventorsAssistant:inventiveStepHeader')}
@@ -117,6 +127,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
       <Typography variant='body1' sx={{ mt: 2 }}>
         {t('inventorsAssistant:inventiveStepDescription')}
       </Typography>
+
       <Typography variant='body1' sx={{ mt: 2 }}>
         {t('inventorsAssistant:describeGeneralIdea')}
       </Typography>
