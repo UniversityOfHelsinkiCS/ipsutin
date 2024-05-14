@@ -19,7 +19,10 @@ import ResultsPage from './components/InteractiveForm/ResultsPage'
 import About from './pages/About/About'
 import Contact from './pages/Contact/Contact'
 import IdeaEvaluation from './pages/IdeaEvaluation/IdeaEvaluation'
-import InventorsAssistant from './pages/InventorsAssistant/InventorsAssistant'
+import InventorPhase1 from './pages/InventorsAssistant/InventorPhase1'
+import InventorPhase2 from './pages/InventorsAssistant/InventorPhase2'
+import InventorPhase3 from './pages/InventorsAssistant/InventorPhase3'
+import { InventorsContextProvider } from './pages/InventorsAssistant/InventorsContext'
 import IpAssessment from './pages/IpAssessment/IpAssessment'
 import Licences from './pages/Licences/Licences'
 import MainPage from './pages/MainPage/MainPage'
@@ -121,9 +124,27 @@ const router = createBrowserRouter(
           ],
         },
         {
-          path: '/inventors-assistant',
-          element: <InventorsAssistant />,
+          path: '/inventorsassistant',
+          element: (
+            <InventorsContextProvider>
+              <Outlet />
+            </InventorsContextProvider>
+          ),
           errorElement: <RootBoundary />,
+          children: [
+            {
+              index: true,
+              element: <InventorPhase1 />,
+            },
+            {
+              path: 'phase2',
+              element: <InventorPhase2 />,
+            },
+            {
+              path: 'phase3',
+              element: <InventorPhase3 />,
+            },
+          ],
         },
         {
           path: '/admin',
