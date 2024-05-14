@@ -6,7 +6,6 @@ import { inStaging } from './src/config'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: inStaging ? '/ipsutin' : '/',
   server: {
     proxy: {
       '/api/': {

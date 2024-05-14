@@ -25,7 +25,7 @@ jobs:
           containerfiles: |
             ./Dockerfile
           build-args: |
-            BASE_PATH=/ipsutin
+            BASE_PATH=
             GIT_SHA=${{ github.sha }}
             STAGING=true
 
