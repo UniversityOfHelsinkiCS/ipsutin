@@ -124,7 +124,7 @@ const router = createBrowserRouter(
           ],
         },
         {
-          path: '/inventorsassistant',
+          path: '/inventors-assistant',
           element: (
             <InventorsContextProvider>
               <Outlet />
