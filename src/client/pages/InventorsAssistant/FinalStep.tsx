@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { Alert, Box, Typography } from '@mui/material'
 import { t } from 'i18next'
 
+import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 
@@ -47,36 +48,28 @@ const FinalStep = ({
       </Typography>
 
       <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Typography variant='body1' sx={{ mt: 2 }}>
-          {originalIdea}
-        </Typography>
+        <Markdown>{originalIdea}</Markdown>
       </Alert>
 
       <Typography variant='body1' sx={{ mt: 2 }}>
         {t('inventorsAssistant:finalStepRefinedIdea')}
       </Typography>
       <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Typography variant='body1' sx={{ mt: 2 }}>
-          {ideaRefinement}
-        </Typography>
+        <Markdown>{ideaRefinement}</Markdown>
       </Alert>
 
       <Typography variant='body1' sx={{ mt: 2 }}>
         {t('inventorsAssistant:finalStepIndustrialApplicability')}
       </Typography>
       <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Typography variant='body1' sx={{ mt: 2 }}>
-          {industrialApplicability}
-        </Typography>
+        <Markdown>{industrialApplicability}</Markdown>
       </Alert>
 
       <Typography variant='body1' sx={{ mt: 2 }}>
         {t('inventorsAssistant:finalStepClaims')}
       </Typography>
       <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Typography variant='body1' sx={{ mt: 2 }}>
-          {claims}
-        </Typography>
+        <Markdown>{claims}</Markdown>
       </Alert>
     </Box>
   )
