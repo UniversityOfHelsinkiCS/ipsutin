@@ -39,11 +39,11 @@ const InventorPhase1 = () => {
   return (
     <Box component='article'>
       <InventorsIllustration />
-      {currentStep > 0 && <InventorStepper />}
-
-      <StepZero currentStep={currentStep} setCurrentStep={setCurrentStep} />
 
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
+        {currentStep > 0 && <InventorStepper />}
+
+        <StepZero currentStep={currentStep} setCurrentStep={setCurrentStep} />
         {currentStep > 0 && (
           <FirstStep
             currentStep={currentStep}
