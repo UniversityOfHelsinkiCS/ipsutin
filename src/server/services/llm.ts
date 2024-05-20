@@ -1,6 +1,7 @@
 import { CURRE_URL } from '../../config'
 import { getPromptById } from '../data/inventorPrompts'
 import { InputValidation, Message, ValidatedInput } from '../types'
+import { CURRE_API_PASSWORD } from '../util/config'
 
 export const getCompletion = async (
   allMessages: Message[],
@@ -10,6 +11,7 @@ export const getCompletion = async (
     options: {
       messages: [...allMessages],
       model,
+      CURRE_API_PASSWORD_INNOTIN: CURRE_API_PASSWORD,
     },
   }
   const response = await fetch(`${CURRE_URL}/api/ai/stream/innotin`, {
