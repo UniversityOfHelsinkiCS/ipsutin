@@ -3,15 +3,15 @@ import { Grid, Typography } from '@mui/material'
 const upcomingProducts = [
   {
     title: 'Student advisor',
-    image: 'https://via.placeholder.com/300',
+    image: 'src/client/assets/student_advisor.webp',
   },
   {
     title: 'Grant writer',
-    image: 'https://via.placeholder.com/300',
+    image: 'src/client/assets/grant_writer.webp',
   },
   {
     title: 'Outreach helper',
-    image: 'https://via.placeholder.com/300',
+    image: 'src/client/assets/outreach_helper.webp',
   },
 ]
 
