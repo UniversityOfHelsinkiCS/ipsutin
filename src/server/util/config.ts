@@ -6,7 +6,7 @@ dotenv.config()
 
 export const PORT = process.env.PORT || 8000
 
-export const { API_TOKEN, OPENAI_API_KEY } = process.env
+export const { API_TOKEN, OPENAI_API_KEY, CURRE_API_PASSWORD } = process.env
 
 let connectionString = `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:5432/${process.env.POSTGRES_DATABASE}?targetServerType=primary`
 
