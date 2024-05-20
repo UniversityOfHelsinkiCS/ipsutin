@@ -1,17 +1,21 @@
 import { Grid, Typography } from '@mui/material'
 
+import grantWriter from '../../assets/grant_writer.webp'
+import outreachHelper from '../../assets/outreach_helper.webp'
+import studentAdvisor from '../../assets/student_advisor.webp'
+
 const upcomingProducts = [
   {
     title: 'Student advisor',
-    image: 'src/client/assets/student_advisor.webp',
+    image: studentAdvisor,
   },
   {
     title: 'Grant writer',
-    image: 'src/client/assets/grant_writer.webp',
+    image: grantWriter,
   },
   {
     title: 'Outreach helper',
-    image: 'src/client/assets/outreach_helper.webp',
+    image: outreachHelper,
   },
 ]
 
