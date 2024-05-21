@@ -1,4 +1,7 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ChatRequestMessage } from '@azure/openai'
 import { Request } from 'express'
+import OpenAI from 'openai'
 
 export interface Locales {
   fi: string
@@ -28,6 +31,10 @@ export interface User {
   newUser?: boolean
   preferredFaculty: string
 }
+export type AzureOptions = {
+  model: string
+  messages: ChatRequestMessage[]
+}
 
 export interface RequestWithUser extends Request {
   user: User
@@ -37,6 +44,7 @@ export interface UserCount {
   name: 'today' | 'deltaAllTime'
   value: number
 }
+export type APIError = typeof OpenAI.APIError
 
 export type Programme = {
   key: string

@@ -12,6 +12,10 @@ let connectionString = `postgres://${process.env.POSTGRES_USER}:${process.env.PO
 
 if (inProduction || inStaging) connectionString = `${connectionString}&ssl=true`
 
+export const AZURE_API_KEY = process.env.AZURE_API_KEY || ''
+
+export const AZURE_RESOURCE = process.env.AZURE_RESOURCE || ''
+
 export const DB_CONNECTION_STRING = connectionString
 
 export const REDIS_HOST = process.env.REDIS_HOST || 'redis'

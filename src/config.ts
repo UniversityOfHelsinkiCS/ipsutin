@@ -19,16 +19,40 @@ export const IDEA_EVALUATION_DATA_KEY = 'ipsutin_idea_evaluation_local_save'
 
 export const IP_ASSESSMENT_DATA_KEY = 'ipsutin_ip_assessment_local_save'
 
+export const validModels = [
+  {
+    name: 'gpt-3.5-turbo',
+    deployment: process.env.GPT_35_TURBO || 'curredev35',
+    context: 16_384,
+  },
+  {
+    name: 'gpt-4',
+    deployment: process.env.GPT_4 || 'curredev4',
+    context: 128_000,
+  },
+].concat(
+  // Add mock model if not in production
+  inProduction
+    ? []
+    : [
+        {
+          name: 'mock',
+          deployment: 'mock',
+          context: 128_000,
+        },
+      ]
+)
+
 // eslint-disable-next-line no-nested-ternary
 export const FULL_URL = inProduction
   ? 'https://ipsutin.ext.ocp-prod-0.k8s.it.helsinki.fi'
   : inStaging
-  ? 'https://ipsutin.ext.ocp-test-0.k8s.it.helsinki.fi'
-  : 'http://localhost:3000'
+    ? 'https://ipsutin.ext.ocp-test-0.k8s.it.helsinki.fi'
+    : 'http://localhost:3000'
 
 // eslint-disable-next-line no-nested-ternary
 export const CURRE_URL = inProduction
   ? 'https://curre.helsinki.fi/chat'
   : inStaging
-  ? 'http://gptwrapper:8000'
-  : 'http://gptwrapper_dev:8000'
+    ? 'http://gptwrapper:8000'
+    : 'http://gptwrapper_dev:8000'

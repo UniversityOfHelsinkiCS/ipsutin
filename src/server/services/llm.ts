@@ -1,7 +1,30 @@
-import { CURRE_URL } from '../../config'
+/* eslint-disable no-restricted-syntax */
+import {
+  AzureKeyCredential,
+  ChatCompletions,
+  EventStream,
+  OpenAIClient,
+} from '@azure/openai'
+
+import { CURRE_URL, validModels } from '../../config'
 import { getPromptById } from '../data/inventorPrompts'
-import { InputValidation, Message, ValidatedInput } from '../types'
-import { CURRE_API_PASSWORD } from '../util/config'
+import {
+  APIError,
+  AzureOptions,
+  InputValidation,
+  Message,
+  ValidatedInput,
+} from '../types'
+import {
+  AZURE_API_KEY,
+  AZURE_RESOURCE,
+  CURRE_API_PASSWORD,
+} from '../util/config'
+import logger from '../util/logger'
+
+const endpoint = `https://${AZURE_RESOURCE}.openai.azure.com/`
+
+const client = new OpenAIClient(endpoint, new AzureKeyCredential(AZURE_API_KEY))
 
 export const getCompletion = async (
   allMessages: Message[],
@@ -24,6 +47,68 @@ export const getCompletion = async (
   return content
 }
 
+const getMockCompletionEvents: () => Promise<
+  EventStream<ChatCompletions>
+> = async () => {
+  const mockStream = new ReadableStream<ChatCompletions>({
+    start(controller) {
+      for (let i = 0; i < 10; i += 1) {
+        controller.enqueue({
+          id: String(i),
+          created: new Date(),
+          promptFilterResults: [],
+          choices: [
+            {
+              delta: {
+                content: `This is completion ${i}\n`,
+                role: 'system',
+                toolCalls: [],
+              },
+              index: 0,
+              finishReason: 'completed',
+            },
+          ],
+        })
+      }
+      controller.close()
+    },
+  }) as EventStream<ChatCompletions>
+
+  return mockStream
+}
+
+export const getCompletionEvents = async ({
+  model,
+  messages,
+}: AzureOptions) => {
+  const deploymentId = validModels.find((m) => m.name === model)?.deployment
+
+  if (!deploymentId) throw new Error(`Invalid model: ${model}`)
+
+  if (deploymentId === 'mock') return getMockCompletionEvents()
+
+  try {
+    const events = await client.streamChatCompletions(deploymentId, messages)
+
+    return events
+  } catch (error: any) {
+    logger.error(error)
+
+    return { error } as any as APIError
+  }
+}
+
+export async function askLlm(allMessages: Message[]): Promise<Message> {
+  const model = 'gpt-3.5-turbo'
+  const content = await getCompletionEvents({ model, messages: allMessages }) // Get content directly
+  const assistantMessage: Message = {
+    role: 'assistant',
+    content,
+  }
+
+  return assistantMessage
+}
+
 export async function askCurre(allMessages: Message[]): Promise<Message> {
   const model = 'gpt-3.5-turbo'
   const content = await getCompletion(allMessages, model) // Get content directly
@@ -40,7 +125,7 @@ export async function askCurreAndAddToMessages(
   messages: Message[]
 ): Promise<Message> {
   messages.push(message)
-  const curreResponse = await askCurre(messages)
+  const curreResponse = await askLlm(messages)
   messages.push(curreResponse)
   return curreResponse
 }
