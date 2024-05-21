@@ -3,6 +3,7 @@ import { Alert, Box, List, ListItemText, Typography } from '@mui/material'
 import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
+import { AiInputFeedback } from '../../types'
 import apiClient from '../../util/apiClient'
 
 import UserInput from './UserInput'
@@ -29,19 +30,16 @@ const FirstStep: React.FC<FirstStepProps> = ({
   setIndustrialMessage,
 }) => {
   const [aiInputFeedback1, setAiInputFeedback1] = useState('')
-  const [aiInputFeedbackSuccess1, setAiInputFeedbackSuccess1] = useState<
-    'info' | 'success' | 'warning'
-  >('info')
+  const [aiInputFeedbackSuccess1, setAiInputFeedbackSuccess1] =
+    useState<AiInputFeedback>('info')
 
   const [aiInputFeedback2, setAiInputFeedback2] = useState('')
-  const [aiInputFeedbackSuccess2, setAiInputFeedbackSuccess2] = useState<
-    'info' | 'success' | 'warning'
-  >('info')
+  const [aiInputFeedbackSuccess2, setAiInputFeedbackSuccess2] =
+    useState<AiInputFeedback>('info')
 
   const [aiInputFeedback3, setAiInputFeedback3] = useState('')
-  const [aiInputFeedbackSuccess3, setAiInputFeedbackSuccess3] = useState<
-    'info' | 'success' | 'warning'
-  >('info')
+  const [aiInputFeedbackSuccess3, setAiInputFeedbackSuccess3] =
+    useState<AiInputFeedback>('info')
 
   const handleFirstCheck = async () => {
     setCurrentStep(2)
