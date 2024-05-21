@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { SurveyName, User } from '@backend/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Autocomplete,
@@ -16,16 +15,16 @@ import { enqueueSnackbar } from 'notistack'
 
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
 import { useLoggedInUser } from '../../hooks/useUser'
-import ShareResultsEmailTemplate from '../../templates/ShareResultsEmailTemplate'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
 import SectionHeading from '../Common/SectionHeading'
 
 interface ShareResultProps {
-  surveyName: SurveyName
+  emailSubject: string
+  htmlTemplate: JSX.Element
 }
 
-const ShareResult = ({ surveyName }: ShareResultProps) => {
+const ShareResult = ({ emailSubject, htmlTemplate }: ShareResultProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
@@ -58,11 +57,9 @@ const ShareResult = ({ surveyName }: ShareResultProps) => {
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
 
-    const templateHTML = ReactDOMServer.renderToString(
-      <ShareResultsEmailTemplate user={user as User} surveyName={surveyName} />
-    )
+    const templateHTML = ReactDOMServer.renderToString(htmlTemplate)
 
-    const subject = 'Ipsutin shared results'
+    const subject = emailSubject
     const text = `\
     ${templateHTML}
 
