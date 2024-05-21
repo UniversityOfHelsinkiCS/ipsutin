@@ -1,9 +1,11 @@
 import { Box } from '@mui/material'
 
+import ShareResult from '../../components/Suggestion/ShareResult'
+import InventionReportEmailTemplate from '../../templates/InventionReportTemplate'
+
 import FinalStep from './FinalStep'
 import { useInventorsContext } from './InventorsContext'
 import InventorStepper from './InventorStepper'
-import SendEmail from './SendEmail'
 
 const InventorPhase3 = () => {
   const {
@@ -30,7 +32,12 @@ const InventorPhase3 = () => {
             setAiResponse4={setAiResponse4}
           />
         )}
-        {aiResponse4 && aiResponse4.length > 0 && <SendEmail />}
+        {aiResponse4 && aiResponse4.length > 0 && (
+          <ShareResult
+            htmlTemplate={<InventionReportEmailTemplate />}
+            emailSubject='Innotin Shared Results'
+          />
+        )}
       </Box>
     </Box>
   )
