@@ -58,25 +58,20 @@ export function createUserMessage(input: string, promptId: number): Message {
 }
 
 export function handleValidationResponse(content: string): ValidatedInput {
-  let validatedInput = { success: false, feedback: content, error: true }
-
   try {
     const curreFeedback: InputValidation = JSON.parse(content)
 
     if (curreFeedback.verdict === 'Bad') {
-      validatedInput = {
+      return {
         success: false,
         feedback: curreFeedback.feedback,
         error: false,
       }
-    } else {
-      validatedInput = { success: true, feedback: '', error: false }
     }
+    return { success: true, feedback: '', error: false }
   } catch {
-    validatedInput = { success: false, feedback: content, error: true }
+    return { success: false, feedback: content, error: true }
   }
-
-  return validatedInput
 }
 
 export default getCompletion
