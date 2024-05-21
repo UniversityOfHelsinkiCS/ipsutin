@@ -7,6 +7,7 @@ import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
 import { productStyles } from '../../styles'
+import ShareResultsEmailTemplate from '../../templates/ShareResultsEmailTemplate'
 import {
   getRecommendationLabels,
   getRecommendationScores,
@@ -126,7 +127,10 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
           suggestedProduct={recommendedAction}
           surveyName={surveyName}
         />
-        <ShareResult surveyName={surveyName} />
+        <ShareResult
+          htmlTemplate={<ShareResultsEmailTemplate surveyName={surveyName} />}
+          emailSubject='Innotin Shared Results'
+        />
       </Box>
     </Box>
   )
