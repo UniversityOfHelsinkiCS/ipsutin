@@ -93,3 +93,5 @@ export type SurveySave =
   | 'ipsutin_licenses_local_save'
   | 'ipsutin_idea_evaluation_local_save'
   | 'ipsutin_ip_assessment_local_save'
+
+export type AiInputFeedback = 'info' | 'success' | 'warning'
