@@ -6,6 +6,7 @@ import useRecommendations from '../../hooks/useRecommendations'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
+import { useLoggedInUser } from '../../hooks/useUser'
 import { productStyles } from '../../styles'
 import ShareResultsEmailTemplate from '../../templates/ShareResultsEmailTemplate'
 import {
@@ -48,8 +49,11 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
   const { resultData } = useResultData()
 
   const { language } = i18n
+  const { user, isLoading } = useLoggedInUser()
 
   if (
+    !user ||
+    isLoading ||
     !survey ||
     !results ||
     !resultsFetched ||
@@ -128,7 +132,9 @@ const ResultsPage = ({ surveyName, ResultElements }: ResultsPageProps) => {
           surveyName={surveyName}
         />
         <ShareResult
-          htmlTemplate={<ShareResultsEmailTemplate surveyName={surveyName} />}
+          templateComponent={
+            <ShareResultsEmailTemplate surveyName={surveyName} user={user} />
+          }
           emailSubject='Innotin Shared Results'
         />
       </Box>
