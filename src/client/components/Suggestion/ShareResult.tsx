@@ -21,10 +21,10 @@ import SectionHeading from '../Common/SectionHeading'
 
 interface ShareResultProps {
   emailSubject: string
-  htmlTemplate: JSX.Element
+  templateComponent: React.ReactNode
 }
 
-const ShareResult = ({ emailSubject, htmlTemplate }: ShareResultProps) => {
+const ShareResult = ({ emailSubject, templateComponent }: ShareResultProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
@@ -57,7 +57,7 @@ const ShareResult = ({ emailSubject, htmlTemplate }: ShareResultProps) => {
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
 
-    const templateHTML = ReactDOMServer.renderToString(htmlTemplate)
+    const templateHTML = ReactDOMServer.renderToString(templateComponent)
 
     const subject = emailSubject
     const text = `\
