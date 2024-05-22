@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next'
+import { User } from '@backend/types'
 
-import { useLoggedInUser } from '../hooks/useUser'
-
-const InventionReportEmailTemplate = () => {
+const InventionReportEmailTemplate = ({ user }: { user: User | undefined }) => {
   const { t } = useTranslation()
-  const { user, isLoading } = useLoggedInUser()
 
-  if (isLoading || !user) return null
+  if (!user) return null
 
   return (
     <div style={{ borderBottom: '1px solid' }}>
