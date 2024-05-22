@@ -89,7 +89,7 @@ export async function askCurreAndAddToMessages(
   messages: Message[]
 ): Promise<Message> {
   messages.push(message)
-  const curreResponse = await askCurre(messages)
+  const curreResponse = await askLlm(messages)
   messages.push(curreResponse)
   return curreResponse
 }
