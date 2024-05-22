@@ -49,10 +49,3 @@ export const FULL_URL = inProduction
   : inStaging
     ? 'https://ipsutin.ext.ocp-test-0.k8s.it.helsinki.fi'
     : 'http://localhost:3000'
-
-// eslint-disable-next-line no-nested-ternary
-export const CURRE_URL = inProduction
-  ? 'https://curre.helsinki.fi/chat'
-  : inStaging
-    ? 'http://gptwrapper:8000'
-    : 'http://gptwrapper_dev:8000'
