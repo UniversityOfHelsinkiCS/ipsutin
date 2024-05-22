@@ -40,7 +40,7 @@ const Markdown = ({ children, ...rest }: MarkdownProps) => {
   if (!children) return null
 
   // https://stackoverflow.com/questions/69026492/adding-multiple-line-break-in-react-markdown
-  const content = children.replace(/\n/gi, '&nbsp; \n')
+  const content = children?.replace(/\n/gi, '&nbsp; \n')
 
   return (
     <ReactMarkdown
