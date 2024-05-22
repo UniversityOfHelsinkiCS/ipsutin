@@ -3,6 +3,7 @@ import express from 'express'
 import {
   askCurreAndAddToMessages,
   createUserMessage,
+  eventStreamToText,
   handleValidationResponse,
 } from '../services/llm'
 import { Message } from '../types'
@@ -19,7 +20,8 @@ llmRouter.post('/step1check1', async (req, res) => {
 
   const { content } = curreResponse
 
-  const inputFeedback = handleValidationResponse(content)
+  const streamString = await eventStreamToText(content)
+  const inputFeedback = handleValidationResponse(streamString)
 
   return res.json({ content: inputFeedback })
 })
@@ -34,7 +36,8 @@ llmRouter.post('/step1check2', async (req, res) => {
 
   const { content } = curreResponse
 
-  const inputFeedback = handleValidationResponse(content)
+  const streamString = await eventStreamToText(content)
+  const inputFeedback = handleValidationResponse(streamString)
 
   return res.json({ content: inputFeedback })
 })
@@ -49,7 +52,8 @@ llmRouter.post('/step1check3', async (req, res) => {
 
   const { content } = curreResponse
 
-  const inputFeedback = handleValidationResponse(content)
+  const streamString = await eventStreamToText(content)
+  const inputFeedback = handleValidationResponse(streamString)
 
   return res.json({ content: inputFeedback })
 })
@@ -65,7 +69,7 @@ llmRouter.post('/step1', async (req, res) => {
   )
   const curreResponse = await askCurreAndAddToMessages(userMessage, messages)
 
-  const { content } = curreResponse
+  const content = await eventStreamToText(curreResponse.content)
 
   return res.json({ content })
 })
@@ -82,7 +86,7 @@ llmRouter.post('/step2', async (req, res) => {
     messages
   )
 
-  const { content } = ideaRefinementResponse
+  const content = await eventStreamToText(ideaRefinementResponse.content)
 
   return res.json({ content })
 })
@@ -99,7 +103,7 @@ llmRouter.post('/step3', async (req, res) => {
   )
   const claimsResponse = await askCurreAndAddToMessages(claimsMessage, messages)
 
-  const { content } = claimsResponse
+  const content = await eventStreamToText(claimsResponse.content)
 
   return res.json({ content })
 })
@@ -115,7 +119,9 @@ llmRouter.post('/step4', async (req, res) => {
 
   const finalResponse = await askCurreAndAddToMessages(finalMessage, messages)
 
-  const finalResponseMessage: string = finalResponse.content
+  const finalResponseMessage: string = await eventStreamToText(
+    finalResponse.content
+  )
 
   return res.json({ finalResponseMessage })
 })
