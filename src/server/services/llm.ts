@@ -42,7 +42,7 @@ export const getCompletion = async (
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
   })
-
+  console.log('RESPONSE: ', response)
   const content = await response.text()
   return content
 }
@@ -90,7 +90,6 @@ export const getCompletionEvents = async ({
 
   try {
     const events = await client.streamChatCompletions(deploymentId, messages)
-
     return events
   } catch (error: any) {
     logger.error(error)
@@ -110,6 +109,15 @@ export async function askLlm(allMessages: Message[]): Promise<Message> {
   return assistantMessage
 }
 
+export async function askCurreAndAddToMessages(
+  message: Message,
+  messages: Message[]
+): Promise<Message> {
+  messages.push(message)
+  const curreResponse = await askLlm(messages)
+  messages.push(curreResponse)
+  return curreResponse
+}
 export async function askCurre(allMessages: Message[]): Promise<Message> {
   const model = 'gpt-3.5-turbo'
   const content = await getCompletion(allMessages, model) // Get content directly
@@ -119,16 +127,6 @@ export async function askCurre(allMessages: Message[]): Promise<Message> {
   }
 
   return assistantMessage
-}
-
-export async function askCurreAndAddToMessages(
-  message: Message,
-  messages: Message[]
-): Promise<Message> {
-  messages.push(message)
-  const curreResponse = await askLlm(messages)
-  messages.push(curreResponse)
-  return curreResponse
 }
 
 export function createUserMessage(input: string, promptId: number): Message {
@@ -141,6 +139,23 @@ export function createUserMessage(input: string, promptId: number): Message {
   }
 
   return message
+}
+
+export async function eventStreamToText(
+  events: EventStream<ChatCompletions>
+): Promise<string> {
+  let text = ''
+
+  for await (const event of events) {
+    for (const choice of event.choices) {
+      const delta = choice.delta?.content
+      if (delta !== undefined) {
+        text += delta
+      }
+    }
+  }
+
+  return text
 }
 
 export function handleValidationResponse(content: string): ValidatedInput {
