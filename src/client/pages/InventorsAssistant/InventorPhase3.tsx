@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 
 import ShareResult from '../../components/Suggestion/ShareResult'
+import { useLoggedInUser } from '../../hooks/useUser'
 import InventionReportEmailTemplate from '../../templates/InventionReportTemplate'
 
 import FinalStep from './FinalStep'
@@ -17,6 +18,9 @@ const InventorPhase3 = () => {
     aiResponse4,
     setAiResponse4,
   } = useInventorsContext()
+  const { user, isLoading } = useLoggedInUser()
+
+  if (!user || isLoading) return null
 
   return (
     <Box component='article'>
@@ -34,7 +38,7 @@ const InventorPhase3 = () => {
         )}
         {aiResponse4 && aiResponse4.length > 0 && (
           <ShareResult
-            htmlTemplate={<InventionReportEmailTemplate />}
+            templateComponent={<InventionReportEmailTemplate user={user} />}
             emailSubject='Innotin Shared Results'
           />
         )}
