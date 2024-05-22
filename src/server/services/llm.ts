@@ -37,7 +37,8 @@ export const getCompletion = async (
       CURRE_API_PASSWORD_INNOTIN: CURRE_API_PASSWORD,
     },
   }
-  const response = await fetch(`${CURRE_URL}/api/ai/stream/innotin`, {
+
+  const response = await fetch(`${CURRE_URL}/api/innotin/stream`, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
@@ -126,7 +127,7 @@ export async function askCurreAndAddToMessages(
   messages: Message[]
 ): Promise<Message> {
   messages.push(message)
-  const curreResponse = await askLlm(messages)
+  const curreResponse = await askCurre(messages)
   messages.push(curreResponse)
   return curreResponse
 }
