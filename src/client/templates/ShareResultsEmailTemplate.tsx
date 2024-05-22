@@ -1,18 +1,18 @@
 import { useTranslation } from 'react-i18next'
-import { SurveyName } from '@backend/types'
-
-import { useLoggedInUser } from '../hooks/useUser'
+import { SurveyName, User } from '@backend/types'
 
 interface ShareResultsEmailProps {
   surveyName: SurveyName
+  user: User
 }
 
-const ShareResultsEmailTemplate = ({ surveyName }: ShareResultsEmailProps) => {
+const ShareResultsEmailTemplate = ({
+  surveyName,
+  user,
+}: ShareResultsEmailProps) => {
   const { t } = useTranslation()
 
-  const { user, isLoading } = useLoggedInUser()
-
-  if (isLoading || !user) return null
+  if (!user) return null
   return (
     <div style={{ borderBottom: '1px solid' }}>
       <h3>
