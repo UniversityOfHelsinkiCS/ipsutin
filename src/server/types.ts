@@ -184,7 +184,7 @@ export interface EntryWithSurvey {
 export type Role = 'system' | 'assistant' | 'user'
 export interface Message {
   role: Role
-  content: string
+  content: any
 }
 
 export interface InputValidation {
