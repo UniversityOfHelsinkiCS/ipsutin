@@ -84,7 +84,7 @@ export async function askLlm(allMessages: Message[]): Promise<Message> {
   return assistantMessage
 }
 
-export async function askCurreAndAddToMessages(
+export async function askLlmAndAddToMessages(
   message: Message,
   messages: Message[]
 ): Promise<Message> {
