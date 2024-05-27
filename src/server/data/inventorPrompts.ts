@@ -95,7 +95,7 @@ export const getPromptById = (id: number): string => {
 
     {
       id: 6,
-      text: `You are an expert inventor using chain of thought analysis. Edit the following text to become an clear and precise invention report expanding on the points. Here is the input: `,
+      text: `You are an expert inventor using chain of thought analysis. Edit the following text to become an clear and precise invention report expanding on the points. It should iclude 1. Introduction, 2. Novelty and Uniqueness, 3. Industrial Applicability, and 4. Claims as a bulleted list. Here is the input: `,
     },
   ]
 
