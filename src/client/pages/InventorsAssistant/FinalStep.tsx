@@ -45,7 +45,7 @@ const FinalStep = ({
 
     <Accordion defaultExpanded={false} sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h2'>
+        <SectionHeading level='h3'>
           {t('inventorsAssistant:finalStepOriginalIdea')}
         </SectionHeading>
       </AccordionSummary>
@@ -58,7 +58,7 @@ const FinalStep = ({
 
     <Accordion sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h2'>
+        <SectionHeading level='h3'>
           {t('inventorsAssistant:finalStepRefinedIdea')}
         </SectionHeading>
       </AccordionSummary>
@@ -71,7 +71,7 @@ const FinalStep = ({
 
     <Accordion sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h2'>
+        <SectionHeading level='h3'>
           {t('inventorsAssistant:finalStepIndustrialApplicability')}
         </SectionHeading>
       </AccordionSummary>
@@ -84,7 +84,7 @@ const FinalStep = ({
 
     <Accordion sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h2'>
+        <SectionHeading level='h3'>
           {t('inventorsAssistant:finalStepClaims')}
         </SectionHeading>
       </AccordionSummary>
