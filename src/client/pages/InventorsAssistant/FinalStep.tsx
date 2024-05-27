@@ -28,7 +28,7 @@ const FinalStep = ({
   const refCallback = useResultRefCallback()
 
   return (
-    <Box ref={refCallback}>
+    <Box ref={aiResponse && aiResponse.length > 0 ? refCallback : null}>
       <SectionHeading level='h2' sx={{ mt: 8 }}>
         {t('inventorsAssistant:finalStepHeader1')}
       </SectionHeading>
