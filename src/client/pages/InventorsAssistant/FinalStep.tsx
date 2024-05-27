@@ -1,12 +1,19 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Alert, Box, Typography } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Alert,
+  Box,
+  Typography,
+} from '@mui/material'
 import { t } from 'i18next'
 
 import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
-import useResultRefCallback from '../../hooks/useResultRefCallback'
 
-import LlmResponse from './LlmResponse'
+import InventionReport from './InventionReport'
 
 type FinalStepProps = {
   aiResponse: string
@@ -24,55 +31,70 @@ const FinalStep = ({
   industrialApplicability,
   claims,
   setAiResponse4,
-}: FinalStepProps) => {
-  const refCallback = useResultRefCallback()
+}: FinalStepProps) => (
+  <Box>
+    <SectionHeading level='h2' sx={{ mt: 8 }}>
+      {t('inventorsAssistant:finalStepHeader1')}
+    </SectionHeading>
 
-  return (
-    <Box ref={aiResponse && aiResponse.length > 0 ? refCallback : null}>
-      <SectionHeading level='h2' sx={{ mt: 8 }}>
-        {t('inventorsAssistant:finalStepHeader1')}
-      </SectionHeading>
+    <Typography variant='body1' sx={{ mt: 2 }}>
+      {t('inventorsAssistant:finalStepText1')}
+    </Typography>
 
-      <Typography variant='body1' sx={{ mt: 2 }}>
-        {t('inventorsAssistant:finalStepText1')}
-      </Typography>
+    <InventionReport aiResponse={aiResponse} setAiResponse={setAiResponse4} />
 
-      <Typography variant='body1' sx={{ mt: 2 }}>
-        {t('inventorsAssistant:finalStepSummary')}
-      </Typography>
+    <Accordion defaultExpanded={false} sx={{ mt: 8 }}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <SectionHeading level='h3'>
+          {t('inventorsAssistant:finalStepOriginalIdea')}
+        </SectionHeading>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Alert severity='success' sx={{ my: 4, p: 4 }}>
+          <Markdown>{originalIdea}</Markdown>
+        </Alert>
+      </AccordionDetails>
+    </Accordion>
 
-      <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse4} />
+    <Accordion sx={{ mt: 8 }}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <SectionHeading level='h3'>
+          {t('inventorsAssistant:finalStepRefinedIdea')}
+        </SectionHeading>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Alert severity='success' sx={{ my: 4, p: 4 }}>
+          <Markdown>{ideaRefinement}</Markdown>
+        </Alert>
+      </AccordionDetails>
+    </Accordion>
 
-      <Typography variant='body1' sx={{ mt: 2 }}>
-        {t('inventorsAssistant:finalStepOriginalIdea')}
-      </Typography>
+    <Accordion sx={{ mt: 8 }}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <SectionHeading level='h3'>
+          {t('inventorsAssistant:finalStepIndustrialApplicability')}
+        </SectionHeading>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Alert severity='success' sx={{ my: 4, p: 4 }}>
+          <Markdown>{industrialApplicability}</Markdown>
+        </Alert>
+      </AccordionDetails>
+    </Accordion>
 
-      <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Markdown>{originalIdea}</Markdown>
-      </Alert>
-
-      <Typography variant='body1' sx={{ mt: 2 }}>
-        {t('inventorsAssistant:finalStepRefinedIdea')}
-      </Typography>
-      <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Markdown>{ideaRefinement}</Markdown>
-      </Alert>
-
-      <Typography variant='body1' sx={{ mt: 2 }}>
-        {t('inventorsAssistant:finalStepIndustrialApplicability')}
-      </Typography>
-      <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Markdown>{industrialApplicability}</Markdown>
-      </Alert>
-
-      <Typography variant='body1' sx={{ mt: 2 }}>
-        {t('inventorsAssistant:finalStepClaims')}
-      </Typography>
-      <Alert severity='success' sx={{ my: 4, p: 4 }}>
-        <Markdown>{claims}</Markdown>
-      </Alert>
-    </Box>
-  )
-}
+    <Accordion sx={{ mt: 8 }}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <SectionHeading level='h3'>
+          {t('inventorsAssistant:finalStepClaims')}
+        </SectionHeading>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Alert severity='success' sx={{ my: 4, p: 4 }}>
+          <Markdown>{claims}</Markdown>
+        </Alert>
+      </AccordionDetails>
+    </Accordion>
+  </Box>
+)
 
 export default FinalStep
