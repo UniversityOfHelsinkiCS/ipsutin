@@ -4,7 +4,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Alert,
   Box,
   Typography,
 } from '@mui/material'
@@ -31,74 +30,84 @@ const FinalStep = ({
   industrialApplicability,
   claims,
   setAiResponse4,
-}: FinalStepProps) => (
-  <Box>
-    <SectionHeading level='h1' sx={{ mt: 8 }}>
-      {t('inventorsAssistant:finalStepHeader1')}
-    </SectionHeading>
+}: FinalStepProps) => {
+  const boxStyle = {
+    my: 4,
+    p: 4,
+    backgroundColor: '#E9F7E7',
+    color: 'black',
+    borderRadius: 1,
+  }
 
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepText1')}
-    </Typography>
+  return (
+    <Box>
+      <SectionHeading level='h1' sx={{ mt: 8 }}>
+        {t('inventorsAssistant:finalStepHeader1')}
+      </SectionHeading>
 
-    <InventionReport
-      aiResponse={aiResponse}
-      setAiResponse={setAiResponse4}
-      headingLevel='h2'
-    />
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:finalStepText1')}
+      </Typography>
 
-    <Accordion defaultExpanded={false} sx={{ mt: 8 }}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepOriginalIdea')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Alert severity='success' sx={{ my: 4, p: 4 }}>
-          <Markdown>{originalIdea}</Markdown>
-        </Alert>
-      </AccordionDetails>
-    </Accordion>
+      <InventionReport
+        aiResponse={aiResponse}
+        setAiResponse={setAiResponse4}
+        headingLevel='h2'
+      />
 
-    <Accordion sx={{ mt: 8 }}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepRefinedIdea')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Alert severity='success' sx={{ my: 4, p: 4 }}>
-          <Markdown>{ideaRefinement}</Markdown>
-        </Alert>
-      </AccordionDetails>
-    </Accordion>
+      <Accordion defaultExpanded={false} sx={{ mt: 8 }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepOriginalIdea')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box sx={boxStyle}>
+            <Markdown>{originalIdea}</Markdown>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
 
-    <Accordion sx={{ mt: 8 }}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepIndustrialApplicability')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Alert severity='success' sx={{ my: 4, p: 4 }}>
-          <Markdown>{industrialApplicability}</Markdown>
-        </Alert>
-      </AccordionDetails>
-    </Accordion>
+      <Accordion sx={{ mt: 8 }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepRefinedIdea')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box sx={boxStyle}>
+            <Markdown>{ideaRefinement}</Markdown>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
 
-    <Accordion sx={{ mt: 8 }}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepClaims')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Alert severity='success' sx={{ my: 4, p: 4 }}>
-          <Markdown>{claims}</Markdown>
-        </Alert>
-      </AccordionDetails>
-    </Accordion>
-  </Box>
-)
+      <Accordion sx={{ mt: 8 }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepIndustrialApplicability')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box sx={boxStyle}>
+            <Markdown>{industrialApplicability}</Markdown>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion sx={{ mt: 8 }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepClaims')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box sx={boxStyle}>
+            <Markdown>{claims}</Markdown>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+    </Box>
+  )
+}
 
 export default FinalStep
