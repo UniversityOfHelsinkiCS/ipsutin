@@ -9,7 +9,6 @@ import {
 import { validModels } from '../../config'
 import { getPromptById } from '../data/inventorPrompts'
 import {
-  APIError,
   AzureOptions,
   InputValidation,
   Message,
@@ -69,41 +68,8 @@ export const getCompletionEvents = async ({
   } catch (error: any) {
     logger.error(error)
 
-    return { error } as any as APIError
+    return { error } as any
   }
-}
-
-export async function askLlm(allMessages: Message[]): Promise<Message> {
-  const model = 'gpt-3.5-turbo'
-  const content = await getCompletionEvents({ model, messages: allMessages }) // Get content directly
-  const assistantMessage: Message = {
-    role: 'assistant',
-    content,
-  }
-
-  return assistantMessage
-}
-
-export async function askLlmAndAddToMessages(
-  message: Message,
-  messages: Message[]
-): Promise<Message> {
-  messages.push(message)
-  const curreResponse = await askLlm(messages)
-  messages.push(curreResponse)
-  return curreResponse
-}
-
-export function createUserMessage(input: string, promptId: number): Message {
-  const enhancementPrompt: string = getPromptById(promptId)
-  const fullPrompt: string = `${enhancementPrompt} ${input}`
-
-  const message: Message = {
-    role: 'user',
-    content: fullPrompt,
-  }
-
-  return message
 }
 
 export async function eventStreamToText(
@@ -121,6 +87,30 @@ export async function eventStreamToText(
   }
 
   return text
+}
+
+export async function askLlm(allMessages: Message[]): Promise<Message> {
+  const model = 'gpt-3.5-turbo'
+  const events = await getCompletionEvents({ model, messages: allMessages })
+  const content = await eventStreamToText(events)
+  const assistantMessage: Message = {
+    role: 'assistant',
+    content,
+  }
+
+  return assistantMessage
+}
+
+export function createUserMessage(input: string, promptId: number): Message {
+  const enhancementPrompt: string = getPromptById(promptId)
+  const fullPrompt: string = `${enhancementPrompt} ${input}`
+
+  const message: Message = {
+    role: 'user',
+    content: fullPrompt,
+  }
+
+  return message
 }
 
 export function handleValidationResponse(content: string): ValidatedInput {
