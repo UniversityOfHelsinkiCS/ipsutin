@@ -30,10 +30,6 @@ export const PATE_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/pate/'
   : 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/pate/'
 
-export const IMPORTER_URL = inProduction
-  ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/importer/kliksutin'
-  : 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/importer/kliksutin'
-
 export const OIDC_ISSUER = inProduction
   ? 'https://login.helsinki.fi/.well-known/openid-configuration'
   : 'https://login-test.it.helsinki.fi/.well-known/openid-configuration'
