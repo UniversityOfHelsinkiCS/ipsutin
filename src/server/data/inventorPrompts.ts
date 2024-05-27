@@ -16,7 +16,7 @@ export const getPromptById = (id: number): string => {
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
         { 
           "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
-          "feedback": [insert_short_feedback_about_my_input]
+          "feedback": [insert_short_feedback_about_how_my_input_could_be_improved]
          }
   
       Here is the input I gave for what makes my idea unique: `,
@@ -30,7 +30,7 @@ export const getPromptById = (id: number): string => {
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
       { 
         "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
-        "feedback": [insert_short_feedback_about_my_input]
+        "feedback": [insert_short_feedback_about_how_my_input_could_be_improved]
        }
 
       Here is the input I gave for whether my idea has been publically disclesed:`,
@@ -45,7 +45,7 @@ export const getPromptById = (id: number): string => {
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
         {
           "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
-          "feedback": [insert_short_feedback_about_my_input]
+          "feedback": [insert_short_feedback_about_how_my_input_could_be_improved]
         }
   
         Here is the input for the practical application of my idea:`,
