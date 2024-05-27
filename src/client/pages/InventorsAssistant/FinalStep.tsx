@@ -41,7 +41,11 @@ const FinalStep = ({
       {t('inventorsAssistant:finalStepText1')}
     </Typography>
 
-    <InventionReport aiResponse={aiResponse} setAiResponse={setAiResponse4} />
+    <InventionReport
+      aiResponse={aiResponse}
+      setAiResponse={setAiResponse4}
+      headingLevel='h2'
+    />
 
     <Accordion defaultExpanded={false} sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
