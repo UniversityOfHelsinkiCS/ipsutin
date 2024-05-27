@@ -20,7 +20,7 @@ const InventionReport = ({
 
   return (
     <Box ref={aiResponse && aiResponse.length > 0 ? refCallback : null}>
-      <SectionHeading level='h3' sx={{ mt: 8 }}>
+      <SectionHeading level='h2' sx={{ mt: 8 }}>
         {t('inventorsAssistant:finalStepSummary')}
       </SectionHeading>
 

@@ -33,7 +33,7 @@ const FinalStep = ({
   setAiResponse4,
 }: FinalStepProps) => (
   <Box>
-    <SectionHeading level='h2' sx={{ mt: 8 }}>
+    <SectionHeading level='h1' sx={{ mt: 8 }}>
       {t('inventorsAssistant:finalStepHeader1')}
     </SectionHeading>
 
@@ -45,7 +45,7 @@ const FinalStep = ({
 
     <Accordion defaultExpanded={false} sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
+        <SectionHeading level='h2'>
           {t('inventorsAssistant:finalStepOriginalIdea')}
         </SectionHeading>
       </AccordionSummary>
@@ -58,7 +58,7 @@ const FinalStep = ({
 
     <Accordion sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
+        <SectionHeading level='h2'>
           {t('inventorsAssistant:finalStepRefinedIdea')}
         </SectionHeading>
       </AccordionSummary>
@@ -71,7 +71,7 @@ const FinalStep = ({
 
     <Accordion sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
+        <SectionHeading level='h2'>
           {t('inventorsAssistant:finalStepIndustrialApplicability')}
         </SectionHeading>
       </AccordionSummary>
@@ -84,7 +84,7 @@ const FinalStep = ({
 
     <Accordion sx={{ mt: 8 }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
+        <SectionHeading level='h2'>
           {t('inventorsAssistant:finalStepClaims')}
         </SectionHeading>
       </AccordionSummary>
