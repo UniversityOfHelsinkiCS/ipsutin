@@ -10,17 +10,19 @@ import LlmResponse from './LlmResponse'
 type InventionReportProps = {
   aiResponse: string
   setAiResponse: Dispatch<SetStateAction<string>>
+  headingLevel: 'h2' | 'h3'
 }
 
 const InventionReport = ({
   aiResponse,
   setAiResponse,
+  headingLevel,
 }: InventionReportProps) => {
   const refCallback = useResultRefCallback()
 
   return (
     <Box ref={aiResponse && aiResponse.length > 0 ? refCallback : null}>
-      <SectionHeading level='h2' sx={{ mt: 8 }}>
+      <SectionHeading level={headingLevel} sx={{ mt: 8 }}>
         {t('inventorsAssistant:finalStepSummary')}
       </SectionHeading>
 
