@@ -22,21 +22,24 @@ const InventorPhase2 = () => {
     setAiResponse2,
     aiResponse3,
     setAiResponse3,
-
     setAiResponse4,
     editModeGlobal,
     setEditModeGlobal,
+    messages,
+    setMessages,
   } = useInventorsContext()
 
   const handleSecondStep = async () => {
     setAiResponse2('')
     const response = await apiClient.post('/llm/step2', {
       aiResponse1,
+      messages,
     })
 
-    const { content } = response.data
+    const { content, responseMessages } = response.data
 
     setAiResponse2((prev) => prev + content)
+    setMessages(responseMessages)
   }
 
   const handleThirdStep = async () => {
@@ -44,11 +47,13 @@ const InventorPhase2 = () => {
     const response = await apiClient.post('/llm/step3', {
       aiResponse1,
       aiResponse2,
+      messages,
     })
 
-    const { content } = response.data
+    const { content, responseMessages } = response.data
 
     setAiResponse3((prev) => prev + content)
+    setMessages(responseMessages)
   }
 
   const handleLastStep = async () => {
@@ -57,11 +62,13 @@ const InventorPhase2 = () => {
       aiResponse1,
       aiResponse2,
       aiResponse3,
+      messages,
     })
 
-    const { finalResponseMessage } = response.data
+    const { content, responseMessages } = response.data
 
-    setAiResponse4(finalResponseMessage)
+    setAiResponse4(content)
+    setMessages(responseMessages)
   }
 
   return (

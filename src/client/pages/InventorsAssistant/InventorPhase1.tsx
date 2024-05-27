@@ -22,6 +22,7 @@ const InventorPhase1 = () => {
     industrialMessage,
     setIndustrialMessage,
     setAiResponse1,
+    setMessages,
   } = useInventorsContext()
 
   const handleFirstStep = async () => {
@@ -32,8 +33,9 @@ const InventorPhase1 = () => {
       publicityMessage,
     })
 
-    const { content } = response.data
+    const { content, responseMessages } = response.data
     setAiResponse1((prev) => prev + content)
+    setMessages(responseMessages)
   }
 
   return (

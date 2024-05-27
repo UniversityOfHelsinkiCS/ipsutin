@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo, useState } from 'react'
 
+import { Message } from '../../../server/types'
 import getInitialMessage from '../../util/inventorInput'
 
 interface InventorsContextValue {
@@ -21,6 +22,8 @@ interface InventorsContextValue {
   setAiResponse4: React.Dispatch<React.SetStateAction<string>>
   editModeGlobal: boolean
   setEditModeGlobal: React.Dispatch<React.SetStateAction<boolean>>
+  messages: Message[]
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>
 }
 
 const InventorsContext = createContext<InventorsContextValue | undefined>(
@@ -54,6 +57,7 @@ const InventorsContextProvider = ({
   const [aiResponse3, setAiResponse3] = useState('')
   const [aiResponse4, setAiResponse4] = useState('')
   const [editModeGlobal, setEditModeGlobal] = useState(false)
+  const [messages, setMessages] = useState<Message[]>([])
 
   const providerValue = useMemo(
     () => ({
@@ -75,6 +79,8 @@ const InventorsContextProvider = ({
       setAiResponse4,
       editModeGlobal,
       setEditModeGlobal,
+      messages,
+      setMessages,
     }),
     [
       currentStep,
@@ -86,6 +92,8 @@ const InventorsContextProvider = ({
       aiResponse3,
       aiResponse4,
       editModeGlobal,
+      messages,
+      setMessages,
     ]
   )
 
