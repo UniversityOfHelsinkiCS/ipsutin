@@ -1,9 +1,8 @@
 import express from 'express'
 
 import {
-  askLlmAndAddToMessages,
+  askLlm,
   createUserMessage,
-  eventStreamToText,
   handleValidationResponse,
 } from '../services/llm'
 import { Message } from '../types'
@@ -16,12 +15,13 @@ llmRouter.post('/step1check1', async (req, res) => {
 
   const userMessage = createUserMessage(inventiveMessage, 0)
 
-  const curreResponse = await askLlmAndAddToMessages(userMessage, messages)
+  messages.push(userMessage)
+  const llmResponse = await askLlm(messages)
+  messages.push(userMessage)
 
-  const { content } = curreResponse
+  const { content } = llmResponse
 
-  const streamString = await eventStreamToText(content)
-  const inputFeedback = handleValidationResponse(streamString)
+  const inputFeedback = handleValidationResponse(content)
 
   return res.json({ content: inputFeedback })
 })
@@ -32,12 +32,13 @@ llmRouter.post('/step1check2', async (req, res) => {
 
   const userMessage = createUserMessage(publicityMessage, 1)
 
-  const curreResponse = await askLlmAndAddToMessages(userMessage, messages)
+  messages.push(userMessage)
+  const llmResponse = await askLlm(messages)
+  messages.push(userMessage)
 
-  const { content } = curreResponse
+  const { content } = llmResponse
 
-  const streamString = await eventStreamToText(content)
-  const inputFeedback = handleValidationResponse(streamString)
+  const inputFeedback = handleValidationResponse(content)
 
   return res.json({ content: inputFeedback })
 })
@@ -48,12 +49,13 @@ llmRouter.post('/step1check3', async (req, res) => {
 
   const userMessage = createUserMessage(industrialMessage, 2)
 
-  const curreResponse = await askLlmAndAddToMessages(userMessage, messages)
+  messages.push(userMessage)
+  const llmResponse = await askLlm(messages)
+  messages.push(userMessage)
 
-  const { content } = curreResponse
+  const { content } = llmResponse
 
-  const streamString = await eventStreamToText(content)
-  const inputFeedback = handleValidationResponse(streamString)
+  const inputFeedback = handleValidationResponse(content)
 
   return res.json({ content: inputFeedback })
 })
@@ -67,63 +69,60 @@ llmRouter.post('/step1', async (req, res) => {
     `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicMessage} *** Industry relevance: ${industrialMessage}`,
     3
   )
-  const curreResponse = await askLlmAndAddToMessages(userMessage, messages)
 
-  const content = await eventStreamToText(curreResponse.content)
+  messages.push(userMessage)
+  const llmResponse = await askLlm(messages)
+  messages.push(llmResponse)
 
-  return res.json({ content })
+  const { content } = llmResponse
+  const responseMessages = messages
+  return res.json({ content, responseMessages })
 })
 
 llmRouter.post('/step2', async (req, res) => {
-  const { aiResponse1 } = req.body
+  const { aiResponse1, messages } = req.body
 
-  const messages: Message[] = []
+  const userMessage = createUserMessage(aiResponse1, 4)
 
-  const ideaRefinementMessage = createUserMessage(aiResponse1, 4)
+  messages.push(userMessage)
+  const llmResponse = await askLlm(messages)
+  messages.push(llmResponse)
 
-  const ideaRefinementResponse = await askLlmAndAddToMessages(
-    ideaRefinementMessage,
-    messages
-  )
-
-  const content = await eventStreamToText(ideaRefinementResponse.content)
-
-  return res.json({ content })
+  const { content } = llmResponse
+  const responseMessages = messages
+  return res.json({ content, responseMessages })
 })
 
 llmRouter.post('/step3', async (req, res) => {
-  const { aiResponse1, aiResponse2 } = req.body
-
-  const messages: Message[] = []
+  const { aiResponse1, aiResponse2, messages } = req.body
 
   // Step 3: Ask for claims refinement
-  const claimsMessage = createUserMessage(
+  const userMessage = createUserMessage(
     `${aiResponse1} Industrial applicability: ${aiResponse2}`,
     5
   )
-  const claimsResponse = await askLlmAndAddToMessages(claimsMessage, messages)
+  messages.push(userMessage)
+  const llmResponse = await askLlm(messages)
+  messages.push(llmResponse)
 
-  const content = await eventStreamToText(claimsResponse.content)
-
-  return res.json({ content })
+  const { content } = llmResponse
+  const responseMessages = messages
+  return res.json({ content, responseMessages })
 })
 
 llmRouter.post('/step4', async (req, res) => {
-  const { aiResponse1, aiResponse2, aiResponse3 } = req.body
+  const { aiResponse1, aiResponse2, aiResponse3, messages } = req.body
 
-  const messages: Message[] = []
-
-  // Step 4: Final prompt
   const finalPrompt = `${aiResponse1} \nINDUSTRY APPLICABILITY: ${aiResponse2} \nCLAIMS: ${aiResponse3}`
-  const finalMessage = createUserMessage(finalPrompt, 6)
+  const userMessage = createUserMessage(finalPrompt, 6)
 
-  const finalResponse = await askLlmAndAddToMessages(finalMessage, messages)
+  messages.push(userMessage)
+  const llmResponse = await askLlm(messages)
+  messages.push(llmResponse)
 
-  const finalResponseMessage: string = await eventStreamToText(
-    finalResponse.content
-  )
-
-  return res.json({ finalResponseMessage })
+  const { content } = llmResponse
+  const responseMessages = messages
+  return res.json({ content, responseMessages })
 })
 
 export default llmRouter
