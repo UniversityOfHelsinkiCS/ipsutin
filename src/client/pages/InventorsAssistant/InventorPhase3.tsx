@@ -39,7 +39,7 @@ const InventorPhase3 = () => {
         {aiResponse4 && aiResponse4.length > 0 && (
           <ShareResult
             templateComponent={<InventionReportEmailTemplate user={user} />}
-            emailSubject='Innotin Shared Results'
+            emailSubject='Innotin: Invention Report'
           />
         )}
       </Box>
