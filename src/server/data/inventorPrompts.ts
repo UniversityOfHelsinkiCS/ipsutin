@@ -26,8 +26,7 @@ export const getPromptById = (id: number): string => {
       text: `I am filling in a form and I want you to decide if I am giving "good" or "bad" input. "Good" input is defined as input that follows the instructions while "bad" input is input that lacks important aspects. Example of bad input would be 1. The input is too short, 2. The input doesn't contain all the parts listed in the instructions, 3. The input is off-topic.
 
       Here are my specific instructions:
-        Indicate whether any part of your idea has been publicly disclosed. This includes any publications, presentations, or previous patents. Detail the extent and nature of such disclosures.
-      
+        Indicate whether any part of your idea has been publicly disclosed. This includes any publications, presentations, or previous patents. Detail the extent and nature of such disclosures. If your invention has not been publicly disclosed at all it's enough to say something in the style of "No publicity" or "No one knows" or alike. 
       Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
       { 
         "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
