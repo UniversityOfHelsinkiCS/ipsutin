@@ -118,7 +118,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
         {t('inventorsAssistant:h2text1')}
       </Alert>
 
-      <SectionHeading level='h3' sx={{ mt: 2 }}>
+      <SectionHeading level='h2' sx={{ mt: 2 }}>
         {t('inventorsAssistant:inventiveStepHeader')}
       </SectionHeading>
 
@@ -145,7 +145,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
       />
       {currentStep >= 2 && aiInputFeedbackSuccess1 === 'success' && (
         <>
-          <SectionHeading level='h3'>
+          <SectionHeading level='h2'>
             {t('inventorsAssistant:publicityStepHeader')}
           </SectionHeading>
           <Typography variant='body1' sx={{ my: 2 }}>
@@ -163,7 +163,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
 
       {currentStep >= 3 && aiInputFeedbackSuccess2 === 'success' && (
         <>
-          <SectionHeading level='h3'>
+          <SectionHeading level='h2'>
             {t('inventorsAssistant:industrialStepHeader')}
           </SectionHeading>
           <Typography variant='body1' sx={{ my: 2 }}>
@@ -180,7 +180,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
       )}
       {currentStep >= 4 && aiInputFeedbackSuccess3 === 'success' && (
         <>
-          <SectionHeading level='h3'>
+          <SectionHeading level='h2'>
             {t('inventorsAssistant:step1ClosingHeader')}
           </SectionHeading>
           <Typography variant='body1' sx={{ my: 2 }}>
