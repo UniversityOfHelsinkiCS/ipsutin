@@ -24,7 +24,7 @@ const InventorPhase3 = () => {
 
   return (
     <Box component='article'>
-      <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px' }}>
+      <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px', mb: 4 }}>
         <InventorStepper />
         {currentStep > 7 && (
           <FinalStep
