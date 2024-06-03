@@ -29,7 +29,7 @@ jobs:
           install-command: npm i
 
       - name: Upload video
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           path: /home/runner/work/ipsutin/ipsutin/cypress/videos/*
