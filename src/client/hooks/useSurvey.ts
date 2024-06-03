@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query'
 import { Survey, SurveyCounts, SurveyName } from '@backend/types'
+import { useQuery } from '@tanstack/react-query'
 
 import apiClient from '../util/apiClient'
 
@@ -18,7 +18,7 @@ const useSurvey = (name: SurveyName) => {
 }
 
 export const useSurveyCounts = () => {
-  const queryKey = 'surveyCounts'
+  const queryKey = ['surveyCounts']
 
   const query = async (): Promise<SurveyCounts[]> => {
     const { data } = await apiClient.get('/analytics/counts/survey')

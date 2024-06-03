@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { FormValues } from '../types'
 import apiClient from '../util/apiClient'

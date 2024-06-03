@@ -1,10 +1,10 @@
-import { useQuery } from 'react-query'
 import { Faculty } from '@backend/types'
+import { useQuery } from '@tanstack/react-query'
 
 import apiClient from '../util/apiClient'
 
 export const useFaculties = () => {
-  const queryKey = 'faculties'
+  const queryKey = ['faculties']
 
   const query = async (): Promise<Faculty[]> => {
     const { data } = await apiClient.get('/faculties')
@@ -18,7 +18,7 @@ export const useFaculties = () => {
 }
 
 export const useUserFaculties = () => {
-  const queryKey = 'userFaculties'
+  const queryKey = ['userFaculties']
 
   const query = async (): Promise<Faculty[]> => {
     const { data } = await apiClient.get('/faculties/user')
@@ -32,7 +32,7 @@ export const useUserFaculties = () => {
 }
 
 export const useFacultyCounts = () => {
-  const queryKey = 'facultyCounts'
+  const queryKey = ['facultyCounts']
 
   const query = async (): Promise<Faculty[]> => {
     const { data } = await apiClient.get('/analytics/counts/faculty')

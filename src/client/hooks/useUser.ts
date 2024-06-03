@@ -1,11 +1,11 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { User, UserCount } from '@backend/types'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { UserUpdates } from '../../validators/user'
 import apiClient from '../util/apiClient'
 
 export const useLoggedInUser = () => {
-  const queryKey = 'user'
+  const queryKey = ['user']
 
   const query = async (): Promise<User> => {
     const { data } = await apiClient.get('/users')
@@ -45,7 +45,7 @@ export const useUpdatedUser = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('user')
+        queryClient.invalidateQueries(['user'])
       },
     }
   )

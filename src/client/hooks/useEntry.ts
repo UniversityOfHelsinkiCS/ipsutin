@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query'
 import { EntryWithSurvey } from '@backend/types'
+import { useQuery } from '@tanstack/react-query'
 
 import apiClient from '../util/apiClient'
 
