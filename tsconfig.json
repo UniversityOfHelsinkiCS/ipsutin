@@ -6,12 +6,12 @@
     "esModuleInterop": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "lib": ["es2022", "dom"],
+    "lib": ["es2022", "DOM", "DOM.Iterable", "esnext"],
     "module": "ES2022",
     "moduleResolution": "node",
     "outDir": "dist",
     "strict": true,
-    "target": "es2022",
+    "target": "ESNext",
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
@@ -22,7 +22,8 @@
   "include": ["src/**/*", "types/@unfuck-utf8-headers-middleware.d..ts"],
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
+      "module": "esnext",
+      "resolveJsonModule": false
     }
   }
 }
