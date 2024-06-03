@@ -13,7 +13,7 @@ jobs:
     # needs: test
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build image
         id: build-image
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Pull image and create a container
         run: docker create --name ipsutin quay.io/toska/ipsutin:production
