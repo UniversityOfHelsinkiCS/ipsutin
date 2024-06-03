@@ -6,13 +6,13 @@ import apiClient from '../util/apiClient'
 const useSurvey = (name: SurveyName) => {
   const queryKey = ['survey', name]
 
-  const query = async (): Promise<Survey> => {
+  const queryFn = async (): Promise<Survey> => {
     const { data } = await apiClient.get(`/surveys/${name}`)
 
     return data
   }
 
-  const { data: survey, ...rest } = useQuery(queryKey, query)
+  const { data: survey, ...rest } = useQuery(queryKey, queryFn)
 
   return { survey, ...rest }
 }
@@ -20,13 +20,13 @@ const useSurvey = (name: SurveyName) => {
 export const useSurveyCounts = () => {
   const queryKey = ['surveyCounts']
 
-  const query = async (): Promise<SurveyCounts[]> => {
+  const queryFn = async (): Promise<SurveyCounts[]> => {
     const { data } = await apiClient.get('/analytics/counts/survey')
 
     return data
   }
 
-  const { data: surveyCounts, ...rest } = useQuery(queryKey, query)
+  const { data: surveyCounts, ...rest } = useQuery(queryKey, queryFn)
 
   return { surveyCounts, ...rest }
 }

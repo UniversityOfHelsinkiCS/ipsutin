@@ -6,13 +6,13 @@ import apiClient from '../util/apiClient'
 export const useFaculties = () => {
   const queryKey = ['faculties']
 
-  const query = async (): Promise<Faculty[]> => {
+  const queryFn = async (): Promise<Faculty[]> => {
     const { data } = await apiClient.get('/faculties')
 
     return data
   }
 
-  const { data: faculties, ...rest } = useQuery(queryKey, query)
+  const { data: faculties, ...rest } = useQuery(queryKey, queryFn)
 
   return { faculties, ...rest }
 }
@@ -20,13 +20,13 @@ export const useFaculties = () => {
 export const useUserFaculties = () => {
   const queryKey = ['userFaculties']
 
-  const query = async (): Promise<Faculty[]> => {
+  const queryFn = async (): Promise<Faculty[]> => {
     const { data } = await apiClient.get('/faculties/user')
 
     return data
   }
 
-  const { data: userFaculties, ...rest } = useQuery(queryKey, query)
+  const { data: userFaculties, ...rest } = useQuery(queryKey, queryFn)
 
   return { userFaculties, ...rest }
 }
@@ -34,13 +34,13 @@ export const useUserFaculties = () => {
 export const useFacultyCounts = () => {
   const queryKey = ['facultyCounts']
 
-  const query = async (): Promise<Faculty[]> => {
+  const queryFn = async (): Promise<Faculty[]> => {
     const { data } = await apiClient.get('/analytics/counts/faculty')
 
     return data
   }
 
-  const { data: facultyCounts, ...rest } = useQuery(queryKey, query)
+  const { data: facultyCounts, ...rest } = useQuery(queryKey, queryFn)
 
   return { facultyCounts, ...rest }
 }

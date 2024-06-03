@@ -7,30 +7,31 @@ import apiClient from '../util/apiClient'
 export const useLoggedInUser = () => {
   const queryKey = ['user']
 
-  const query = async (): Promise<User> => {
+  const queryFn = async (): Promise<User> => {
     const { data } = await apiClient.get('/users')
     return data
   }
 
-  const { data: user, ...rest } = useQuery(queryKey, query)
+  const { data: user, ...rest } = useQuery(queryKey, queryFn)
   return { user, ...rest }
 }
 
 export const useUserCounts = () => {
   const queryKey = ['userCounts']
 
-  const query = async (): Promise<UserCount[]> => {
+  const queryFn = async (): Promise<UserCount[]> => {
     const { data } = await apiClient.get('/analytics/counts/user')
 
     return data
   }
 
-  const { data: userCounts, ...rest } = useQuery(queryKey, query)
+  const { data: userCounts, ...rest } = useQuery(queryKey, queryFn)
 
   return { userCounts, ...rest }
 }
 
 export const useUpdatedUser = () => {
+  const queryKey = ['user']
   const queryClient = useQueryClient()
   const { user } = useLoggedInUser()
 
@@ -45,7 +46,7 @@ export const useUpdatedUser = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['user'])
+        queryClient.invalidateQueries(queryKey)
       },
     }
   )
