@@ -22,9 +22,10 @@ const upcomingProducts = [
 const UpcomingProducts = () => (
   <Grid
     container
-    spacing={4}
     sx={{
       maxWidth: '1024px',
+      display: 'flex',
+      gap: { xs: '4rem 0' },
       mx: 'auto',
       my: '8rem',
       alignItems: 'center',
