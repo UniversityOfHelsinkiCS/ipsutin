@@ -12,7 +12,9 @@ const useRecommendations = (surveyId: number | undefined) => {
     return data
   }
 
-  const { data: recommendations, ...rest } = useQuery(queryKey, queryFn, {
+  const { data: recommendations, ...rest } = useQuery({
+    queryKey,
+    queryFn,
     enabled: Boolean(surveyId),
   })
 

@@ -19,7 +19,7 @@ const useSaveEntryMutation = (surveyId: number | undefined) => {
     })
   }
 
-  const mutation = useMutation(mutationFn)
+  const mutation = useMutation({ mutationFn })
 
   return mutation
 }

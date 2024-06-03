@@ -12,7 +12,7 @@ export const useFaculties = () => {
     return data
   }
 
-  const { data: faculties, ...rest } = useQuery(queryKey, queryFn)
+  const { data: faculties, ...rest } = useQuery({ queryKey, queryFn })
 
   return { faculties, ...rest }
 }
@@ -26,7 +26,7 @@ export const useUserFaculties = () => {
     return data
   }
 
-  const { data: userFaculties, ...rest } = useQuery(queryKey, queryFn)
+  const { data: userFaculties, ...rest } = useQuery({ queryKey, queryFn })
 
   return { userFaculties, ...rest }
 }
@@ -40,7 +40,7 @@ export const useFacultyCounts = () => {
     return data
   }
 
-  const { data: facultyCounts, ...rest } = useQuery(queryKey, queryFn)
+  const { data: facultyCounts, ...rest } = useQuery({ queryKey, queryFn })
 
   return { facultyCounts, ...rest }
 }

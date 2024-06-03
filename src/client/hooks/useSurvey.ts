@@ -12,7 +12,7 @@ const useSurvey = (name: SurveyName) => {
     return data
   }
 
-  const { data: survey, ...rest } = useQuery(queryKey, queryFn)
+  const { data: survey, ...rest } = useQuery({ queryKey, queryFn })
 
   return { survey, ...rest }
 }
@@ -26,7 +26,7 @@ export const useSurveyCounts = () => {
     return data
   }
 
-  const { data: surveyCounts, ...rest } = useQuery(queryKey, queryFn)
+  const { data: surveyCounts, ...rest } = useQuery({ queryKey, queryFn })
 
   return { surveyCounts, ...rest }
 }

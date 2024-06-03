@@ -12,9 +12,11 @@ export const useEntries = () => {
     return data
   }
 
-  const { data: entries, ...rest } = useQuery(queryKey, queryFn, {
+  const { data: entries, ...rest } = useQuery({
+    queryKey,
+    queryFn,
     retry: false,
-    useErrorBoundary: true,
+    throwOnError: true,
   })
 
   return { entries, ...rest }
@@ -29,10 +31,12 @@ export const useEntry = (entryId: string | undefined) => {
     return data
   }
 
-  const { data: entry, ...rest } = useQuery(queryKey, queryFn, {
+  const { data: entry, ...rest } = useQuery({
+    queryKey,
+    queryFn,
     enabled: !!entryId,
     retry: false,
-    useErrorBoundary: true,
+    throwOnError: true,
   })
 
   return { entry, ...rest }
