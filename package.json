@@ -2,6 +2,7 @@
   "name": "ipsutin",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@azure/openai": "^1.0.0-beta.12",
     "@emotion/react": "^11.11.1",
