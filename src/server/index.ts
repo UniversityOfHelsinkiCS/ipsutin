@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import express from 'express'
 import session from 'express-session'
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import passport from 'passport'
 import path from 'path'
 
@@ -32,7 +34,10 @@ app.use('/api', (req, res, next) => router(req, res, next))
 app.use('/api', (_, res) => res.sendStatus(404))
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
-  const DIST_PATH = path.resolve(__dirname, '../../dist')
+  const DIST_PATH = path.resolve(
+    dirname(fileURLToPath(import.meta.url)),
+    '../../dist'
+  )
   const INDEX_PATH = path.resolve(DIST_PATH, 'index.html')
 
   app.use(express.static(DIST_PATH))
