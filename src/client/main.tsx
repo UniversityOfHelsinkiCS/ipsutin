@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <CssBaseline>
         <RouterProvider router={router} />
       </CssBaseline>
-      <ReactQueryDevtools position='bottom-right' />
+      <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   </React.StrictMode>
 )
