@@ -55,6 +55,7 @@ const getMockCompletionEvents: () => Promise<
 export const getCompletionEvents = async ({
   model,
   messages,
+  asJson,
 }: AzureOptions) => {
   const deploymentId = validModels.find((m) => m.name === model)?.deployment
 
@@ -63,6 +64,14 @@ export const getCompletionEvents = async ({
   if (deploymentId === 'mock') return getMockCompletionEvents()
 
   try {
+    if (asJson) {
+      const events = await client.streamChatCompletions(
+        deploymentId,
+        messages,
+        { responseFormat: { type: 'json_object' } }
+      )
+      return events
+    }
     const events = await client.streamChatCompletions(deploymentId, messages)
     return events
   } catch (error: any) {
@@ -89,9 +98,16 @@ export async function eventStreamToText(
   return text
 }
 
-export async function askLlm(allMessages: Message[]): Promise<Message> {
-  const model = 'gpt-3.5-turbo'
-  const events = await getCompletionEvents({ model, messages: allMessages })
+export async function askLlm(
+  allMessages: Message[],
+  asJson?: boolean
+): Promise<Message> {
+  const model = 'gpt-4o'
+  const events = await getCompletionEvents({
+    model,
+    messages: allMessages,
+    asJson,
+  })
   const content = await eventStreamToText(events)
   const assistantMessage: Message = {
     role: 'assistant',
