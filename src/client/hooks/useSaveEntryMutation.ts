@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { FormValues } from '../types'
 import apiClient from '../util/apiClient'
@@ -19,7 +19,7 @@ const useSaveEntryMutation = (surveyId: number | undefined) => {
     })
   }
 
-  const mutation = useMutation(mutationFn)
+  const mutation = useMutation({ mutationFn })
 
   return mutation
 }

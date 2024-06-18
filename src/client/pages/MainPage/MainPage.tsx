@@ -27,18 +27,18 @@ const MainPage = () => {
             level='h2'
             sx={{ py: 1, backgroundColor: '#000', color: '#fff' }}
           >
-            {t('mainPage:upcomingProducts')}
+            {t('mainPage:products')}
           </SectionHeading>
-          <UpcomingProducts />
+          <ProductGrid />
         </Grid>
         <Grid item sm={12} sx={{ mt: 4, textAlign: 'center' }}>
           <SectionHeading
             level='h2'
             sx={{ py: 1, backgroundColor: '#000', color: '#fff' }}
           >
-            {t('mainPage:products')}
+            {t('mainPage:upcomingProducts')}
           </SectionHeading>
-          <ProductGrid />
+          <UpcomingProducts />
         </Grid>
         <Grid
           item

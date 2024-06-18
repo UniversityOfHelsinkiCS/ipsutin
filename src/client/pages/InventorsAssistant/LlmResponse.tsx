@@ -36,10 +36,20 @@ const LlmResponse = ({
     setEditedResponse(editedResponse)
   }
 
+  if (!aiResponse) {
+    return (
+      <Box sx={{ my: 4 }}>
+        <Alert severity='info'>
+          Grunching response for you, please wait...
+        </Alert>
+      </Box>
+    )
+  }
+
   return (
-    <Box sx={{ mt: 4 }}>
+    <Box sx={{ my: 4 }}>
       {editMode ? (
-        <div>
+        <>
           <TextField
             fullWidth
             multiline
@@ -50,32 +60,32 @@ const LlmResponse = ({
           />
           <Button
             onClick={handleSave}
-            variant='outlined'
             color='primary'
-            sx={{ mt: 2 }}
+            variant='contained'
+            sx={{ mt: 1, borderRadius: '0.5rem' }}
+            type='button'
           >
             Save
           </Button>
-        </div>
+        </>
       ) : (
-        <Alert
-          severity={aiResponse ? 'success' : 'info'}
-          sx={{ my: 4, p: 4, width: '100%' }}
-        >
-          <Markdown>
-            {aiResponse || 'Grunching response for you, please wait...'}
-          </Markdown>
+        <>
+          <Alert severity='success' sx={{ py: 4, px: 2, width: '100%' }}>
+            <Markdown>{aiResponse}</Markdown>
+          </Alert>
           {aiResponse && aiResponse.length > 0 && (
             <Button
+              data-cy='edit-ai-response-button'
+              variant='contained'
+              sx={{ mt: 2, borderRadius: '0.5rem' }}
               onClick={toggleEditMode}
-              variant='outlined'
               color='primary'
-              sx={{ mt: 2 }}
+              type='button'
             >
-              Edit
+              Edit AI Response
             </Button>
           )}
-        </Alert>
+        </>
       )}
     </Box>
   )
