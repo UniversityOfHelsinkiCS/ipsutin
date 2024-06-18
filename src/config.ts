@@ -21,9 +21,9 @@ export const IP_ASSESSMENT_DATA_KEY = 'ipsutin_ip_assessment_local_save'
 
 export const validModels = [
   {
-    name: 'gpt-3.5-turbo',
-    deployment: process.env.GPT_35_TURBO || 'curredev35',
-    context: 16_384,
+    name: 'gpt-4o',
+    deployment: process.env.GPT_4O || 'gpt-4o',
+    context: 128_000,
   },
   {
     name: 'gpt-4',
