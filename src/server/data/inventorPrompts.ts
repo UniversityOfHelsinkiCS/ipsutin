@@ -13,12 +13,12 @@ export const getPromptById = (id: number): string => {
             2) the invention
             3) the applications
         
-      Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
+      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback:
         { 
           "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
-          "feedback": [insert_short_feedback_about_how_my_input_could_be_improved]
-         }
-  
+          "feedback": [insert_short_feedback_about_how_my_input_could_be_improved],
+        }
+      
       Here is the input I gave for what makes my idea unique: `,
     },
     {
@@ -27,7 +27,7 @@ export const getPromptById = (id: number): string => {
 
       Here are my specific instructions:
         Indicate whether any part of your idea has been publicly disclosed. This includes any publications, presentations, or previous patents. Detail the extent and nature of such disclosures. If your invention has not been publicly disclosed at all it's enough to say something in the style of "No publicity" or "No one knows" or alike. 
-      Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
+      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback:
       { 
         "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
         "feedback": [insert_short_feedback_about_how_my_input_could_be_improved]
@@ -42,7 +42,7 @@ export const getPromptById = (id: number): string => {
       Here are my specific instructions:
         Describe the practical application of your idea. Highlight how it can be implemented in an industrial setting. Discuss its potential benefits, feasibility, and any industries or sectors where it could be particularly useful.
       
-      Return the below JSON inserted with your verdict about my input and 1-2 sentences of feedback:
+      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback:
         {
           "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
           "feedback": [insert_short_feedback_about_how_my_input_could_be_improved]
