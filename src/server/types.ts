@@ -34,6 +34,7 @@ export interface User {
 export type AzureOptions = {
   model: string
   messages: ChatRequestMessage[]
+  asJson?: boolean
 }
 
 export interface RequestWithUser extends Request {
