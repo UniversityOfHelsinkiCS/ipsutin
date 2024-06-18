@@ -16,7 +16,7 @@ llmRouter.post('/step1check1', async (req, res) => {
   const userMessage = createUserMessage(inventiveMessage, 0)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages)
+  const llmResponse = await askLlm(messages, true)
   messages.push(userMessage)
 
   const { content } = llmResponse
@@ -33,7 +33,7 @@ llmRouter.post('/step1check2', async (req, res) => {
   const userMessage = createUserMessage(publicityMessage, 1)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages)
+  const llmResponse = await askLlm(messages, true)
   messages.push(userMessage)
 
   const { content } = llmResponse
@@ -50,7 +50,7 @@ llmRouter.post('/step1check3', async (req, res) => {
   const userMessage = createUserMessage(industrialMessage, 2)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages)
+  const llmResponse = await askLlm(messages, true)
   messages.push(userMessage)
 
   const { content } = llmResponse
