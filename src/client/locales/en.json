@@ -237,6 +237,9 @@
 
     "chatBoxPlaceholder": "Enter your idea...",
     "chatBoxHeader": "Start chatting",
+    "WeNeedFeedbackHeader": "We need feedback!",
+    "WeNeedFeedbackText": "Please submit feedback so that we can develop the application according to real world needs",
+    "WeNeedFeedbackButton": "Give Feedback",
 
     "note": "(C) 2023-2024 Sasu Tarkoma. This tool is based on LLM technology. Use the LLM with ethical considerations. Human oversight and understanding is necessary for interpreting the results."
   }
