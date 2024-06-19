@@ -1,5 +1,8 @@
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
+import { t } from 'i18next'
 
+import Markdown from '../../components/Common/Markdown'
+import SectionHeading from '../../components/Common/SectionHeading'
 import ShareResult from '../../components/Suggestion/ShareResult'
 import { useLoggedInUser } from '../../hooks/useUser'
 import InventionReportEmailTemplate from '../../templates/InventionReportTemplate'
@@ -22,6 +25,9 @@ const InventorPhase3 = () => {
 
   if (!user || isLoading) return null
 
+  const giveFeedback = () => {
+    console.log('GIVE FEEDBACK!')
+  }
   return (
     <Box component='article'>
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px', mb: 4 }}>
@@ -36,13 +42,48 @@ const InventorPhase3 = () => {
             setAiResponse4={setAiResponse4}
           />
         )}
-        {aiResponse4 && aiResponse4.length > 0 && (
-          <ShareResult
-            templateComponent={<InventionReportEmailTemplate user={user} />}
-            emailSubject='Innotin: Invention Report'
-          />
-        )}
       </Box>
+      {aiResponse4 && aiResponse4.length > 0 && (
+        <Box
+          sx={{
+            my: 4,
+            display: 'flex',
+            justifyContent: 'space-between',
+            maxWidth: '1024px',
+            alignItems: 'flex-start',
+          }}
+        >
+          <Box sx={{ width: '50%', paddingRight: 2 }}>
+            <ShareResult
+              templateComponent={<InventionReportEmailTemplate user={user} />}
+              emailSubject='Innotin: Invention Report'
+            />
+          </Box>
+
+          <Box sx={{ width: '50%', mt: 8, paddingLeft: 2 }}>
+            <SectionHeading level='h2'>
+              {t('inventorsAssistant:WeNeedFeedbackHeader')}
+            </SectionHeading>
+            <Markdown>{t('inventorsAssistant:WeNeedFeedbackText')}</Markdown>
+            <Button
+              sx={{
+                px: 8,
+                py: 2,
+                mt: 2,
+                borderRadius: '1rem',
+                textTransform: 'capitalize',
+                fontWeight: '700',
+                fontSize: '18pt',
+              }}
+              variant='contained'
+              color='secondary'
+              onClick={giveFeedback}
+            >
+              {t('inventorsAssistant:WeNeedFeedbackButton')}
+            </Button>
+          </Box>
+        </Box>
+      )}
     </Box>
   )
 }
