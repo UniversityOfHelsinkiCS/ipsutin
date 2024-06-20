@@ -26,7 +26,7 @@ const InventorPhase3 = () => {
   if (!user || isLoading) return null
 
   const giveFeedback = () => {
-    console.log('GIVE FEEDBACK!')
+    window.open('https://www.google.com/', '_blank')
   }
   return (
     <Box component='article'>
