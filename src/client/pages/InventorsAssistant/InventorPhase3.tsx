@@ -28,9 +28,11 @@ const InventorPhase3 = () => {
   const giveFeedback = () => {
     window.open(
       'https://docs.google.com/forms/d/e/1FAIpQLSdfwmqBokGNjT7_17WscZgQrTQFDLS-GWUgfcYfggz3cAdmuw/viewform?usp=sf_link',
-      '_blank'
+      '_blank',
+      'noopener,noreferrer'
     )
   }
+
   return (
     <Box component='article'>
       <Box component='section' sx={{ mx: 'auto', maxWidth: '1024px', mb: 4 }}>
