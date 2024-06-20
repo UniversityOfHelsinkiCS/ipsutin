@@ -26,7 +26,10 @@ const InventorPhase3 = () => {
   if (!user || isLoading) return null
 
   const giveFeedback = () => {
-    window.open('https://www.google.com/', '_blank')
+    window.open(
+      'https://docs.google.com/forms/d/e/1FAIpQLSdfwmqBokGNjT7_17WscZgQrTQFDLS-GWUgfcYfggz3cAdmuw/viewform?usp=sf_link',
+      '_blank'
+    )
   }
   return (
     <Box component='article'>
