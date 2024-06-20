@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { Button, Grid, Typography } from '@mui/material'
+import { Alert, Box, Button, Grid, Typography } from '@mui/material'
 
 import assistantIcon from '../../assets/inventors_assistant_icon.png'
 import SectionHeading from '../../components/Common/SectionHeading'
@@ -44,7 +44,7 @@ const AIAssistants = () => {
           sx={{
             mx: 'auto',
             px: 4,
-            my: 8,
+            my: 4,
             borderRadius: '1rem',
             textTransform: 'capitalize',
             fontWeight: '600',
@@ -58,6 +58,17 @@ const AIAssistants = () => {
         >
           Go to Inventors assistant
         </Button>
+
+        <Box sx={{ width: '400px', margin: '0 auto' }}>
+          <Alert severity='warning'>
+            <Typography sx={{ fontSize: '16pt', fontWeight: '700' }}>
+              {t('mainPage:InventorsAssistantReminder')}
+            </Typography>
+            <Typography sx={{ fontSize: '16pt', fontWeight: '600' }}>
+              {t('mainPage:InventorsAssistantReminderText')}
+            </Typography>
+          </Alert>
+        </Box>
       </Grid>
     </Grid>
   )
