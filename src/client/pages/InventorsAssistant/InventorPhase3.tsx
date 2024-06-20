@@ -27,7 +27,7 @@ const InventorPhase3 = () => {
 
   const giveFeedback = () => {
     window.open(
-      'https://forms.office.com/Pages/DesignPageV2.aspx?subpage=design&FormId=WXWumNwQiEKOLkWT5i_j7ujS3meKbjpKrEWrxWyyPF9UM1NFQkRLSFQ0TzZZTlpHT0xKR01FSVFBTC4u&Token=957d75a21c6148fa9bda4d1d17415e8a',
+      'https://forms.office.com/e/FtnY1K7Yef',
       '_blank',
       'noopener,noreferrer'
     )
