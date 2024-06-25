@@ -7,7 +7,7 @@ import LlmInputFeedback from './LlmInputFeedback'
 type UserInputProps = {
   inventiveMessage: string
   setUserInput: React.Dispatch<React.SetStateAction<string>>
-  handleStepCheck: () => void
+  handleStepCheck: (aiElaboration?: string) => void
   aiInputFeedback: string
   aiInputFeedbackSuccess: 'info' | 'success' | 'warning'
   aiElaboration: string
@@ -63,6 +63,8 @@ const UserInput: React.FC<UserInputProps> = ({
           aiInputFeedback={aiInputFeedback}
           alertSeverity={aiInputFeedbackSuccess}
           aiElaboration={aiElaboration}
+          setUserInput={setUserInput}
+          handleStepCheck={handleStepCheck}
         />
       )}
     </Box>
