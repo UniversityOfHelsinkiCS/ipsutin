@@ -10,6 +10,7 @@ type UserInputProps = {
   handleStepCheck: () => void
   aiInputFeedback: string
   aiInputFeedbackSuccess: 'info' | 'success' | 'warning'
+  aiElaboration: string
 }
 
 const UserInput: React.FC<UserInputProps> = ({
@@ -18,6 +19,7 @@ const UserInput: React.FC<UserInputProps> = ({
   handleStepCheck,
   aiInputFeedback,
   aiInputFeedbackSuccess,
+  aiElaboration,
 }) => {
   const [inputStep, setInputStep] = useState(false)
   const [buttonText, setButtonText] = useState('Next step')
@@ -60,6 +62,7 @@ const UserInput: React.FC<UserInputProps> = ({
         <LlmInputFeedback
           aiInputFeedback={aiInputFeedback}
           alertSeverity={aiInputFeedbackSuccess}
+          aiElaboration={aiElaboration}
         />
       )}
     </Box>
