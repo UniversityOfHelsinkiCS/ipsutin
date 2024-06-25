@@ -47,11 +47,12 @@ const FirstStep: React.FC<FirstStepProps> = ({
 
   const [aiElaboration3, setAiElaboration3] = useState('')
 
-  const handleFirstCheck = async () => {
+  const handleFirstCheck = async (aiExample: string) => {
     setCurrentStep(2)
     setAiInputFeedbackSuccess1('info')
+    const message = aiExample || inventiveMessage
     const response = await apiClient.post('/llm/step1check1', {
-      inventiveMessage,
+      inventiveMessage: message,
     })
 
     const { content } = response.data
@@ -70,11 +71,12 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }
 
-  const handleSecondCheck = async () => {
+  const handleSecondCheck = async (aiExample: string) => {
     setCurrentStep(3)
     setAiInputFeedbackSuccess2('info')
+    const message = aiExample || publicityMessage
     const response = await apiClient.post('/llm/step1check2', {
-      publicityMessage,
+      publicityMessage: message,
     })
 
     const { content } = response.data
@@ -93,10 +95,11 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }
 
-  const handleThirdCheck = async () => {
+  const handleThirdCheck = async (aiExample: string) => {
     setAiInputFeedbackSuccess3('info')
+    const message = aiExample || industrialMessage
     const response = await apiClient.post('/llm/step1check3', {
-      industrialMessage,
+      industrialMessage: message,
     })
 
     const { content } = response.data
@@ -115,6 +118,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
       setCurrentStep(4)
     }
   }
+
   return (
     <Box component='section' sx={{ mt: 4 }}>
       <SectionHeading level='h2' sx={{ mt: 8 }}>
@@ -156,6 +160,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
         aiInputFeedbackSuccess={aiInputFeedbackSuccess1}
         aiElaboration={aiElaboration1}
       />
+
       {currentStep >= 2 && aiInputFeedbackSuccess1 === 'success' && (
         <>
           <SectionHeading level='h2'>
