@@ -131,17 +131,18 @@ export function createUserMessage(input: string, promptId: number): Message {
 
 export function handleValidationResponse(content: string): ValidatedInput {
   try {
-    const curreFeedback: InputValidation = JSON.parse(content)
+    const llmFeedback: InputValidation = JSON.parse(content)
 
-    if (curreFeedback.verdict === 'Bad') {
+    if (llmFeedback.verdict === 'Bad') {
       return {
         success: false,
-        feedback: curreFeedback.feedback,
+        feedback: llmFeedback.feedback,
+        elaboration: llmFeedback.elaboration,
         error: false,
       }
     }
-    return { success: true, feedback: '', error: false }
+    return { success: true, feedback: '', elaboration: '', error: false }
   } catch {
-    return { success: false, feedback: content, error: true }
+    return { success: false, feedback: content, elaboration: '', error: true }
   }
 }
