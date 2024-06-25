@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Alert, Box, Button } from '@mui/material'
+import { t } from 'i18next'
 
 import Markdown from '../../components/Common/Markdown'
 
@@ -33,7 +34,7 @@ const LlmInputFeedback = ({
     ${aiElaboration}
     
     **Notice:**
-    I am an AI assistant and the above is only an example, and might overlook important aspects. For testing reasons we however provide you with an easy option to proceed with the AI example based on your input.`
+    ${t('inventorsAssistant:Notice')}`
   }
 
   useEffect(() => {
@@ -71,7 +72,7 @@ const LlmInputFeedback = ({
                 handleStepCheck(aiElaboration)
               }}
             >
-              Proceed with AI example
+              {t('inventorsAssistant:ProceedWithAiExample')}
             </Button>
           )}
         </Alert>

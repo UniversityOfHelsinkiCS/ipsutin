@@ -242,7 +242,8 @@
     "WeNeedFeedbackHeader": "We need feedback!",
     "WeNeedFeedbackText": "Please submit feedback so that we can develop the application according to real world needs",
     "WeNeedFeedbackButton": "Give Feedback",
-
+    "Notice": "I am an AI assistant and the above is only an example, and might overlook important aspects. For testing reasons we however provide you with an easy option to proceed with the AI example based on your input.`",
+    "ProceedWithAiExample": "Proceed with AI example",
     "note": "(C) 2023-2024 Sasu Tarkoma. This tool is based on LLM technology. Use the LLM with ethical considerations. Human oversight and understanding is necessary for interpreting the results."
   }
 }
