@@ -6,18 +6,30 @@ import Markdown from '../../components/Common/Markdown'
 type LlmInputFeedbackProps = {
   aiInputFeedback: string
   alertSeverity: 'info' | 'success' | 'warning'
+  aiElaboration: string
 }
 
 const LlmInputFeedback = ({
   aiInputFeedback,
   alertSeverity,
+  aiElaboration,
 }: LlmInputFeedbackProps) => {
   const [visible, setVisible] = useState<boolean>(true)
 
-  let message = aiInputFeedback || 'Checking the quality of your input...'
+  let message = 'Checking the quality of your input...'
 
-  if (alertSeverity === 'info') {
-    message = 'Checking the quality of your input...'
+  if (alertSeverity === 'success') {
+    message = aiInputFeedback
+  }
+
+  if (alertSeverity === 'warning' && aiElaboration !== '') {
+    message = `${aiInputFeedback}
+
+    **For example:**
+    ${aiElaboration}
+    
+    **Remember:**
+    I am an AI assistant and the above is only an example, and might overlook important aspects.`
   }
 
   useEffect(() => {
