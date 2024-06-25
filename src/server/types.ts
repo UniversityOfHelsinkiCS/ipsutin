@@ -191,10 +191,12 @@ export interface Message {
 export interface InputValidation {
   verdict: string
   feedback: string
+  elaboration: string
 }
 
 export interface ValidatedInput {
   success: boolean
   feedback: string
+  elaboration: string
   error: boolean
 }
