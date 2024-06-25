@@ -33,13 +33,19 @@ const FirstStep: React.FC<FirstStepProps> = ({
   const [aiInputFeedbackSuccess1, setAiInputFeedbackSuccess1] =
     useState<AiInputFeedback>('info')
 
+  const [aiElaboration1, setAiElaboration1] = useState('')
+
   const [aiInputFeedback2, setAiInputFeedback2] = useState('')
   const [aiInputFeedbackSuccess2, setAiInputFeedbackSuccess2] =
     useState<AiInputFeedback>('info')
 
+  const [aiElaboration2, setAiElaboration2] = useState('')
+
   const [aiInputFeedback3, setAiInputFeedback3] = useState('')
   const [aiInputFeedbackSuccess3, setAiInputFeedbackSuccess3] =
     useState<AiInputFeedback>('info')
+
+  const [aiElaboration3, setAiElaboration3] = useState('')
 
   const handleFirstCheck = async () => {
     setCurrentStep(2)
@@ -56,9 +62,11 @@ const FirstStep: React.FC<FirstStepProps> = ({
     } else if (content.success === false) {
       setAiInputFeedbackSuccess1('warning')
       setAiInputFeedback1(content.feedback)
+      setAiElaboration1(content.elaboration)
     } else {
       setAiInputFeedback1('Your input gave adequate information!')
       setAiInputFeedbackSuccess1('success')
+      setAiElaboration1('')
     }
   }
 
@@ -77,9 +85,11 @@ const FirstStep: React.FC<FirstStepProps> = ({
     } else if (content.success === false) {
       setAiInputFeedbackSuccess2('warning')
       setAiInputFeedback2(content.feedback)
+      setAiElaboration2(content.elaboration)
     } else {
       setAiInputFeedback2('Your input gave adequate information!')
       setAiInputFeedbackSuccess2('success')
+      setAiElaboration2('')
     }
   }
 
@@ -97,9 +107,11 @@ const FirstStep: React.FC<FirstStepProps> = ({
     } else if (content.success === false) {
       setAiInputFeedbackSuccess3('warning')
       setAiInputFeedback3(content.feedback)
+      setAiElaboration3(content.elaboration)
     } else {
       setAiInputFeedback3('Your input gave adequate information!')
       setAiInputFeedbackSuccess3('success')
+      setAiElaboration3('')
       setCurrentStep(4)
     }
   }
@@ -142,6 +154,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
         handleStepCheck={handleFirstCheck}
         aiInputFeedback={aiInputFeedback1}
         aiInputFeedbackSuccess={aiInputFeedbackSuccess1}
+        aiElaboration={aiElaboration1}
       />
       {currentStep >= 2 && aiInputFeedbackSuccess1 === 'success' && (
         <>
@@ -157,6 +170,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             handleStepCheck={handleSecondCheck}
             aiInputFeedback={aiInputFeedback2}
             aiInputFeedbackSuccess={aiInputFeedbackSuccess2}
+            aiElaboration={aiElaboration2}
           />
         </>
       )}
@@ -175,6 +189,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             handleStepCheck={handleThirdCheck}
             aiInputFeedback={aiInputFeedback3}
             aiInputFeedbackSuccess={aiInputFeedbackSuccess3}
+            aiElaboration={aiElaboration3}
           />
         </>
       )}
