@@ -1,8 +1,8 @@
-import Sentry from '@sentry/node'
+import * as Sentry from '@sentry/node'
 import { NextFunction, Request, Response } from 'express'
 import { UniqueConstraintError, ValidationError } from 'sequelize'
 
-import { inProduction } from '../../config'
+import { inProduction, inStaging } from '../../config'
 import ZodValidationError from '../errors/ValidationError'
 import logger from '../util/logger'
 
@@ -14,7 +14,7 @@ const errorHandler = (
 ) => {
   logger.error(`${error.message} ${error.name} ${error.stack}`)
 
-  if (inProduction) Sentry.captureException(error)
+  if (inProduction || inStaging) Sentry.captureException(error)
 
   if (error.name === 'ZodValidationError') {
     return res.status(400).send({

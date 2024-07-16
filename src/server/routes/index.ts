@@ -1,4 +1,4 @@
-import { Handlers as SentryHandlers } from '@sentry/node'
+import * as Sentry from '@sentry/node'
 import cors from 'cors'
 import express from 'express'
 
@@ -23,10 +23,7 @@ import userRouter from './user'
 
 const router = express()
 
-initializeSentry(router)
-
-router.use(SentryHandlers.requestHandler())
-router.use(SentryHandlers.tracingHandler())
+initializeSentry()
 
 router.use(cors())
 router.use(express.json())
@@ -49,7 +46,7 @@ router.use('/login', loginRouter)
 router.use('/analytics', analyticRouter)
 router.use('/llm', llmRouter)
 
-router.use(SentryHandlers.errorHandler())
+Sentry.setupExpressErrorHandler(router)
 router.use(errorHandler)
 
 export default router

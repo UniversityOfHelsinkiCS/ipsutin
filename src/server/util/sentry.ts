@@ -1,17 +1,15 @@
-import { init as initSentry, Integrations } from '@sentry/node'
-import { Integrations as TracingIntegrations } from '@sentry/tracing'
-import { Express } from 'express-serve-static-core'
+import * as Sentry from '@sentry/node'
 
 import { GIT_SHA, inProduction, inStaging } from '../../config'
 
-const initializeSentry = (router: Express) => {
+const initializeSentry = () => {
   if (inProduction || inStaging) {
-    initSentry({
+    Sentry.init({
       dsn: 'https://f1febb592f09a6756ddfcff7257f45e3@toska.cs.helsinki.fi/10',
       release: GIT_SHA,
       integrations: [
-        new Integrations.Http({ tracing: true }),
-        new TracingIntegrations.Express({ router }),
+        Sentry.httpIntegration({ breadcrumbs: true }),
+        Sentry.expressIntegration(),
       ],
       tracesSampleRate: 1.0,
     })
