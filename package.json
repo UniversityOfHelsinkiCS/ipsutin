@@ -66,7 +66,7 @@
     "test:cypress": "cypress open",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "format": "prettier --write '*.{ts,tsx,json,css,md}'",
+    "format": "prettier --write '**/*.{ts,tsx,json,css,md}'",
     "build": "DISABLE_ESLINT_PLUGIN=true vite build",
     "prepare": "husky"
   },
@@ -180,7 +180,6 @@
     "trailingComma": "es5",
     "semi": false,
     "singleQuote": true,
-    "pluginSearchDirs": false,
     "useTabs": false,
     "tabWidth": 2,
     "printWidth": 80,
@@ -188,7 +187,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": "eslint",
-    "*.{ts,tsx,json,css,md}": "prettier --write"
+    "**/*.{ts,tsx,json,css,md}": "prettier --write"
   },
   "browserslist": {
     "production": [
