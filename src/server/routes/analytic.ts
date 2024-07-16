@@ -34,9 +34,8 @@ analyticRouter.get(
   async (req, res) => {
     const { surveyName } = req.params
 
-    const surveyAnswerDistribution = await getSurveyAnswerDistribution(
-      surveyName
-    )
+    const surveyAnswerDistribution =
+      await getSurveyAnswerDistribution(surveyName)
 
     return res.status(200).send(surveyAnswerDistribution)
   }
