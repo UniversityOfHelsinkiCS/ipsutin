@@ -47,7 +47,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
 
   const [aiElaboration3, setAiElaboration3] = useState('')
 
-  const handleFirstCheck = async (aiExample: string) => {
+  const handleFirstCheck = async (aiExample?: string) => {
     setCurrentStep(2)
     setAiInputFeedbackSuccess1('info')
     const message = aiExample || inventiveMessage
@@ -71,7 +71,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }
 
-  const handleSecondCheck = async (aiExample: string) => {
+  const handleSecondCheck = async (aiExample?: string) => {
     setCurrentStep(3)
     setAiInputFeedbackSuccess2('info')
     const message = aiExample || publicityMessage
@@ -95,7 +95,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }
 
-  const handleThirdCheck = async (aiExample: string) => {
+  const handleThirdCheck = async (aiExample?: string) => {
     setAiInputFeedbackSuccess3('info')
     const message = aiExample || industrialMessage
     const response = await apiClient.post('/llm/step1check3', {

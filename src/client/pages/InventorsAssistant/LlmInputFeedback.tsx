@@ -9,7 +9,7 @@ type LlmInputFeedbackProps = {
   alertSeverity: 'info' | 'success' | 'warning'
   aiElaboration: string
   setUserInput: React.Dispatch<React.SetStateAction<string>>
-  handleStepCheck: (aiElaboration?: string) => void
+  handleStepCheck: (aiExample?: string) => void
 }
 
 const LlmInputFeedback = ({
