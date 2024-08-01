@@ -103,13 +103,11 @@ export async function askLlm(
   asJson?: boolean
 ): Promise<Message> {
   const model = 'gpt-4o'
-  console.log('BEFORE GET COMPLETION EVENTS')
   const events = await getCompletionEvents({
     model,
     messages: allMessages,
     asJson,
   })
-  console.log('AFTER GET COMPLETION EVENTS')
   const content = await eventStreamToText(events)
   const assistantMessage: Message = {
     role: 'assistant',
