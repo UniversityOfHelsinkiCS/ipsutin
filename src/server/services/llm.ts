@@ -52,7 +52,7 @@ const getMockCompletionEvents: () => Promise<
   return mockStream
 }
 
-export const getCompletionEvents = async ({
+export const getStreamedCompletionEvents = async ({
   model,
   messages,
   asJson,
@@ -80,7 +80,32 @@ export const getCompletionEvents = async ({
     return { error } as any
   }
 }
+export const getCompletionEvents = async ({
+  model,
+  messages,
+  asJson,
+}: AzureOptions): Promise<ChatCompletions> => {
+  const deploymentId = validModels.find((m) => m.name === model)?.deployment
 
+  if (!deploymentId) throw new Error(`Invalid model: ${model}`)
+
+  try {
+    if (asJson) {
+      const completions = await client.getChatCompletions(
+        deploymentId,
+        messages,
+        { responseFormat: { type: 'json_object' } }
+      )
+      return completions
+    }
+    const completions = await client.getChatCompletions(deploymentId, messages)
+    return completions
+  } catch (error: any) {
+    logger.error(error)
+
+    return { error } as any
+  }
+}
 export async function eventStreamToText(
   events: EventStream<ChatCompletions>
 ): Promise<string> {
@@ -98,17 +123,37 @@ export async function eventStreamToText(
   return text
 }
 
-export async function askLlm(
+export async function askLlmStream(
   allMessages: Message[],
   asJson?: boolean
 ): Promise<Message> {
   const model = 'gpt-4o'
-  const events = await getCompletionEvents({
+  const events = await getStreamedCompletionEvents({
     model,
     messages: allMessages,
     asJson,
   })
   const content = await eventStreamToText(events)
+  const assistantMessage: Message = {
+    role: 'assistant',
+    content,
+  }
+
+  return assistantMessage
+}
+
+export async function askLlmNoStream(
+  allMessages: Message[],
+  asJson?: boolean
+): Promise<Message> {
+  const model = 'gpt-4o'
+  const completions = await getCompletionEvents({
+    model,
+    messages: allMessages,
+    asJson,
+  })
+  const content = completions.choices[0].message?.content
+
   const assistantMessage: Message = {
     role: 'assistant',
     content,
