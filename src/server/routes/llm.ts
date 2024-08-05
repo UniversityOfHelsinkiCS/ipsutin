@@ -1,7 +1,8 @@
 import express from 'express'
 
 import {
-  askLlm,
+  askLlmNoStream,
+  askLlmStream,
   createUserMessage,
   handleValidationResponse,
 } from '../services/llm'
@@ -16,7 +17,7 @@ llmRouter.post('/step1check1', async (req, res) => {
   const userMessage = createUserMessage(inventiveMessage, 0)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages, true)
+  const llmResponse = await askLlmNoStream(messages, true)
   messages.push(userMessage)
 
   const { content } = llmResponse
@@ -33,7 +34,7 @@ llmRouter.post('/step1check2', async (req, res) => {
   const userMessage = createUserMessage(publicityMessage, 1)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages, true)
+  const llmResponse = await askLlmNoStream(messages, true)
   messages.push(userMessage)
 
   const { content } = llmResponse
@@ -50,7 +51,7 @@ llmRouter.post('/step1check3', async (req, res) => {
   const userMessage = createUserMessage(industrialMessage, 2)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages, true)
+  const llmResponse = await askLlmNoStream(messages, true)
   messages.push(userMessage)
 
   const { content } = llmResponse
@@ -71,7 +72,7 @@ llmRouter.post('/step1', async (req, res) => {
   )
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages)
+  const llmResponse = await askLlmStream(messages)
   messages.push(llmResponse)
 
   const { content } = llmResponse
@@ -85,7 +86,7 @@ llmRouter.post('/step2', async (req, res) => {
   const userMessage = createUserMessage(aiResponse1, 4)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages)
+  const llmResponse = await askLlmStream(messages)
   messages.push(llmResponse)
 
   const { content } = llmResponse
@@ -102,7 +103,7 @@ llmRouter.post('/step3', async (req, res) => {
     5
   )
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages)
+  const llmResponse = await askLlmStream(messages)
   messages.push(llmResponse)
 
   const { content } = llmResponse
@@ -117,7 +118,7 @@ llmRouter.post('/step4', async (req, res) => {
   const userMessage = createUserMessage(finalPrompt, 6)
 
   messages.push(userMessage)
-  const llmResponse = await askLlm(messages)
+  const llmResponse = await askLlmStream(messages)
   messages.push(llmResponse)
 
   const { content } = llmResponse
