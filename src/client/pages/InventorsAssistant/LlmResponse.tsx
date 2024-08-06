@@ -5,12 +5,14 @@ import Markdown from '../../components/Common/Markdown'
 
 type LlmResponseProps = {
   aiResponse: string
+  aiResponseReady: boolean
   setEditedResponse: Dispatch<SetStateAction<string>>
   setEditModeGlobal?: Dispatch<SetStateAction<boolean>>
 }
 
 const LlmResponse = ({
   aiResponse,
+  aiResponseReady,
   setEditedResponse,
   setEditModeGlobal,
 }: LlmResponseProps) => {
@@ -73,7 +75,7 @@ const LlmResponse = ({
           <Alert severity='success' sx={{ py: 4, px: 2, width: '100%' }}>
             <Markdown>{aiResponse}</Markdown>
           </Alert>
-          {aiResponse && aiResponse.length > 0 && (
+          {aiResponse && aiResponseReady && (
             <Button
               data-cy='edit-ai-response-button'
               variant='contained'

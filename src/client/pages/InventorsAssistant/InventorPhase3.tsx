@@ -41,6 +41,7 @@ const InventorPhase3 = () => {
         {currentStep > 7 && (
           <FinalStep
             aiResponse={aiResponse4}
+            aiResponseReady={aiResponse4Ready}
             originalIdea={inventiveMessage}
             ideaRefinement={aiResponse1}
             industrialApplicability={aiResponse2}

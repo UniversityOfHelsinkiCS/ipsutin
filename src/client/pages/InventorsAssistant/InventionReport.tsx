@@ -9,12 +9,14 @@ import LlmResponse from './LlmResponse'
 
 type InventionReportProps = {
   aiResponse: string
+  aiResponseReady: boolean
   setAiResponse: Dispatch<SetStateAction<string>>
   headingLevel: 'h2' | 'h3'
 }
 
 const InventionReport = ({
   aiResponse,
+  aiResponseReady,
   setAiResponse,
   headingLevel,
 }: InventionReportProps) => {
@@ -26,7 +28,11 @@ const InventionReport = ({
         {t('inventorsAssistant:finalStepSummary')}
       </SectionHeading>
 
-      <LlmResponse aiResponse={aiResponse} setEditedResponse={setAiResponse} />
+      <LlmResponse
+        aiResponse={aiResponse}
+        aiResponseReady={aiResponseReady}
+        setEditedResponse={setAiResponse}
+      />
     </Box>
   )
 }

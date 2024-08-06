@@ -9,12 +9,14 @@ import LlmResponse from './LlmResponse'
 type FourthStepProps = {
   setAiResponse3: Dispatch<SetStateAction<string>>
   aiResponse: string
+  aiResponseReady: boolean
   setEditModeGlobal: Dispatch<SetStateAction<boolean>>
 }
 
 const FourthStep = ({
   setAiResponse3,
   aiResponse,
+  aiResponseReady,
   setEditModeGlobal,
 }: FourthStepProps) => (
   <>
@@ -45,6 +47,7 @@ const FourthStep = ({
 
     <LlmResponse
       aiResponse={aiResponse}
+      aiResponseReady={aiResponseReady}
       setEditedResponse={setAiResponse3}
       setEditModeGlobal={setEditModeGlobal}
     />

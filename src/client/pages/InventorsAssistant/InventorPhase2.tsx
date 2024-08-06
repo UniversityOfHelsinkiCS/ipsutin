@@ -82,6 +82,7 @@ const InventorPhase2 = () => {
           <SecondStep
             setAiResponse1={setAiResponse1}
             aiResponse={aiResponse1}
+            aiResponseReady={aiResponse1Ready}
             setEditModeGlobal={setEditModeGlobal}
           />
         )}
@@ -112,6 +113,7 @@ const InventorPhase2 = () => {
           <ThirdStep
             setAiResponse2={setAiResponse2}
             aiResponse={aiResponse2}
+            aiResponseReady={aiResponse2Ready}
             setEditModeGlobal={setEditModeGlobal}
           />
         )}
@@ -142,6 +144,7 @@ const InventorPhase2 = () => {
           <FourthStep
             setAiResponse3={setAiResponse3}
             aiResponse={aiResponse3}
+            aiResponseReady={aiResponse3Ready}
             setEditModeGlobal={setEditModeGlobal}
           />
         )}
