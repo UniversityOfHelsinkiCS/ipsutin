@@ -16,6 +16,7 @@ import InventionReport from './InventionReport'
 
 type FinalStepProps = {
   aiResponse: string
+  aiResponseReady: boolean
   originalIdea: string
   ideaRefinement: string
   industrialApplicability: string
@@ -31,6 +32,7 @@ const styles = {
 
 const FinalStep = ({
   aiResponse,
+  aiResponseReady,
   originalIdea,
   ideaRefinement,
   industrialApplicability,
@@ -48,6 +50,7 @@ const FinalStep = ({
 
     <InventionReport
       aiResponse={aiResponse}
+      aiResponseReady={aiResponseReady}
       setAiResponse={setAiResponse4}
       headingLevel='h2'
     />
