@@ -1,6 +1,9 @@
+import React from 'react'
+
 const processStream = async (
   stream: ReadableStream,
-  setAiResponse: React.Dispatch<React.SetStateAction<string>>
+  setAiResponse: React.Dispatch<React.SetStateAction<string>>,
+  setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const reader = stream.getReader()
   const decoder = new TextDecoder()
@@ -19,6 +22,7 @@ const processStream = async (
     throw new Error('Error while reading stream:')
   } finally {
     reader.releaseLock()
+    setAiResponseReady(true)
   }
 }
 
