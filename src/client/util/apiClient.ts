@@ -24,8 +24,7 @@ export const fetchStream = async (
 
     return response.body // Return the ReadableStream
   } catch (error) {
-    console.error('Error during fetch:', error)
-    return null
+    throw new Error('Error during fetch')
   }
 }
 
