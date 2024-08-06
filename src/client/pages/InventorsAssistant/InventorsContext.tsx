@@ -18,12 +18,8 @@ interface InventorsContextValue {
   setAiResponse1Ready: React.Dispatch<React.SetStateAction<boolean>>
   aiResponse2: string
   setAiResponse2: React.Dispatch<React.SetStateAction<string>>
-  aiResponse2Ready: boolean
-  setAiResponse2Ready: React.Dispatch<React.SetStateAction<boolean>>
   aiResponse3: string
   setAiResponse3: React.Dispatch<React.SetStateAction<string>>
-  aiResponse3Ready: boolean
-  setAiResponse3Ready: React.Dispatch<React.SetStateAction<boolean>>
   aiResponse4: string
   setAiResponse4: React.Dispatch<React.SetStateAction<string>>
   aiResponse4Ready: boolean
