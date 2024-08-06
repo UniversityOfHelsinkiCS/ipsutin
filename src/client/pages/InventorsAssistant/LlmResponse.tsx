@@ -41,9 +41,7 @@ const LlmResponse = ({
   if (!aiResponse) {
     return (
       <Box sx={{ my: 4 }}>
-        <Alert severity='info'>
-          Grunching response for you, please wait...
-        </Alert>
+        <Alert severity='info'>The Assistant is thinking...</Alert>
       </Box>
     )
   }
