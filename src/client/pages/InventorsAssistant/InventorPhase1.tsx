@@ -1,13 +1,14 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
 
-import apiClient from '../../util/apiClient'
+import { fetchStream } from '../../util/apiClient'
 
 import FirstStep from './FirstStep'
 import InventorsIllustration from './InventorIllustration'
 import { useInventorsContext } from './InventorsContext'
 import InventorStepper from './InventorStepper'
 import StepZero from './StepZero'
+import processStream from './StreamReader'
 
 const InventorPhase1 = () => {
   const navigate = useNavigate()
@@ -22,20 +23,20 @@ const InventorPhase1 = () => {
     industrialMessage,
     setIndustrialMessage,
     setAiResponse1,
-    setMessages,
   } = useInventorsContext()
 
   const handleFirstStep = async () => {
     setAiResponse1('')
-    const response = await apiClient.post('/llm/step1', {
+
+    const stream = await fetchStream('/llm/step1', {
       inventiveMessage,
       industrialMessage,
       publicityMessage,
     })
 
-    const { content, responseMessages } = response.data
-    setAiResponse1((prev) => prev + content)
-    setMessages(responseMessages)
+    if (stream) {
+      await processStream(stream, setAiResponse1)
+    }
   }
 
   return (

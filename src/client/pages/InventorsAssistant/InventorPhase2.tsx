@@ -1,12 +1,13 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
 
-import apiClient from '../../util/apiClient'
+import { fetchStream } from '../../util/apiClient'
 
 import FourthStep from './FourthStep'
 import { useInventorsContext } from './InventorsContext'
 import InventorStepper from './InventorStepper'
 import SecondStep from './SecondStep'
+import processStream from './StreamReader'
 import ThirdStep from './ThirdStep'
 
 const InventorPhase2 = () => {
@@ -26,49 +27,45 @@ const InventorPhase2 = () => {
     editModeGlobal,
     setEditModeGlobal,
     messages,
-    setMessages,
   } = useInventorsContext()
 
   const handleSecondStep = async () => {
     setAiResponse2('')
-    const response = await apiClient.post('/llm/step2', {
+    const stream = await fetchStream('/llm/step2', {
       aiResponse1,
       messages,
     })
 
-    const { content, responseMessages } = response.data
-
-    setAiResponse2((prev) => prev + content)
-    setMessages(responseMessages)
+    if (stream) {
+      await processStream(stream, setAiResponse2)
+    }
   }
 
   const handleThirdStep = async () => {
     setAiResponse3('')
-    const response = await apiClient.post('/llm/step3', {
+    const stream = await fetchStream('/llm/step3', {
       aiResponse1,
       aiResponse2,
       messages,
     })
 
-    const { content, responseMessages } = response.data
-
-    setAiResponse3((prev) => prev + content)
-    setMessages(responseMessages)
+    if (stream) {
+      await processStream(stream, setAiResponse3)
+    }
   }
 
   const handleLastStep = async () => {
     setAiResponse4('')
-    const response = await apiClient.post('/llm/step4', {
+    const stream = await fetchStream('/llm/step4', {
       aiResponse1,
       aiResponse2,
       aiResponse3,
       messages,
     })
 
-    const { content, responseMessages } = response.data
-
-    setAiResponse4(content)
-    setMessages(responseMessages)
+    if (stream) {
+      await processStream(stream, setAiResponse4)
+    }
   }
 
   return (
