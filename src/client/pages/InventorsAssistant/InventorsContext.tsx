@@ -53,9 +53,12 @@ const InventorsContextProvider = ({
     industrialMessageDynamic
   )
   const [aiResponse1, setAiResponse1] = useState('')
+  const [aiResponse1Ready, setAiResponse1Ready] = useState<boolean>(false)
   const [aiResponse2, setAiResponse2] = useState('')
   const [aiResponse3, setAiResponse3] = useState('')
   const [aiResponse4, setAiResponse4] = useState('')
+  const [aiResponse4Ready, setAiResponse4Ready] = useState<boolean>(false)
+
   const [editModeGlobal, setEditModeGlobal] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
 
@@ -71,12 +74,16 @@ const InventorsContextProvider = ({
       setIndustrialMessage,
       aiResponse1,
       setAiResponse1,
+      aiResponse1Ready,
+      setAiResponse1Ready,
       aiResponse2,
       setAiResponse2,
       aiResponse3,
       setAiResponse3,
       aiResponse4,
       setAiResponse4,
+      aiResponse4Ready,
+      setAiResponse4Ready,
       editModeGlobal,
       setEditModeGlobal,
       messages,
@@ -88,9 +95,11 @@ const InventorsContextProvider = ({
       publicityMessage,
       industrialMessage,
       aiResponse1,
+      aiResponse1Ready,
       aiResponse2,
       aiResponse3,
       aiResponse4,
+      aiResponse4Ready,
       editModeGlobal,
       messages,
       setMessages,
