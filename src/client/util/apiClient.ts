@@ -4,4 +4,29 @@ import { PUBLIC_URL } from '../../config'
 
 const apiClient = axios.create({ baseURL: `${PUBLIC_URL}/api` })
 
+export const fetchStream = async (
+  endpoint: string,
+  requestBody: object
+): Promise<ReadableStream<Uint8Array> | null> => {
+  const url = `${PUBLIC_URL}/api/${endpoint}`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
+
+    if (!response.body) {
+      throw new Error('ReadableStream not supported or missing in response.')
+    }
+
+    return response.body // Return the ReadableStream
+  } catch (error) {
+    console.error('Error during fetch:', error)
+    return null
+  }
+}
+
 export default apiClient
