@@ -5,6 +5,7 @@ import {
   EventStream,
   OpenAIClient,
 } from '@azure/openai'
+import { Response } from 'express'
 
 import { validModels } from '../../config'
 import { getPromptById } from '../data/inventorPrompts'
@@ -56,7 +57,7 @@ export const getStreamedCompletionEvents = async ({
   model,
   messages,
   asJson,
-}: AzureOptions) => {
+}: AzureOptions): Promise<EventStream<ChatCompletions>> => {
   const deploymentId = validModels.find((m) => m.name === model)?.deployment
 
   if (!deploymentId) throw new Error(`Invalid model: ${model}`)
@@ -123,23 +124,55 @@ export async function eventStreamToText(
   return text
 }
 
+export const streamCompletion = async (
+  events: EventStream<ChatCompletions>,
+  res: Response
+): Promise<void> => {
+  try {
+    for await (const event of events) {
+      for (const choice of event.choices) {
+        const delta = choice.delta?.content
+
+        if (delta) {
+          // eslint-disable-next-line
+          await new Promise((resolve) => {
+            if (
+              !res.write(delta, (err) => {
+                if (err) logger.error(`${choice.delta} ${err}`)
+              })
+            ) {
+              logger.info(
+                `${choice.delta} res.write returned false, waiting for drain`
+              )
+              res.once('drain', resolve)
+            } else {
+              process.nextTick(resolve)
+            }
+          })
+        }
+      }
+    }
+
+    // Ensure the response is properly ended
+    res.end()
+  } catch (error) {
+    // Handle any errors that occur while streaming events
+    res.status(500).end('Internal Server Error')
+  }
+}
+
 export async function askLlmStream(
   allMessages: Message[],
   asJson?: boolean
-): Promise<Message> {
+): Promise<EventStream<ChatCompletions>> {
   const model = 'gpt-4o'
   const events = await getStreamedCompletionEvents({
     model,
     messages: allMessages,
     asJson,
   })
-  const content = await eventStreamToText(events)
-  const assistantMessage: Message = {
-    role: 'assistant',
-    content,
-  }
 
-  return assistantMessage
+  return events
 }
 
 export async function askLlmNoStream(

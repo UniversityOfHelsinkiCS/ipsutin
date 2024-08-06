@@ -5,6 +5,7 @@ import {
   askLlmStream,
   createUserMessage,
   handleValidationResponse,
+  streamCompletion,
 } from '../services/llm'
 import { Message } from '../types'
 
@@ -60,11 +61,10 @@ llmRouter.post('/step1check3', async (req, res) => {
 
   return res.json({ content: inputFeedback })
 })
-
 llmRouter.post('/step1', async (req, res) => {
   const { inventiveMessage, industrialMessage, publicMessage } = req.body
 
-  const messages: Message[] = []
+  const messages = []
 
   const userMessage = createUserMessage(
     `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicMessage} *** Industry relevance: ${industrialMessage}`,
@@ -72,12 +72,22 @@ llmRouter.post('/step1', async (req, res) => {
   )
 
   messages.push(userMessage)
-  const llmResponse = await askLlmStream(messages)
-  messages.push(llmResponse)
 
-  const { content } = llmResponse
-  const responseMessages = messages
-  return res.json({ content, responseMessages })
+  try {
+    const events = await askLlmStream(messages)
+
+    res.setHeader('Content-Type', 'text/event-stream')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+
+    // Stream completion
+    await streamCompletion(events, res)
+
+    res.end()
+    // The response will be ended by streamCompletion
+  } catch (error) {
+    res.status(500).send('Internal Server Error')
+  }
 })
 
 llmRouter.post('/step2', async (req, res) => {
@@ -86,12 +96,13 @@ llmRouter.post('/step2', async (req, res) => {
   const userMessage = createUserMessage(aiResponse1, 4)
 
   messages.push(userMessage)
-  const llmResponse = await askLlmStream(messages)
-  messages.push(llmResponse)
+  const events = await askLlmStream(messages)
 
-  const { content } = llmResponse
-  const responseMessages = messages
-  return res.json({ content, responseMessages })
+  res.setHeader('content-type', 'text/event-stream')
+
+  await streamCompletion(events, res)
+
+  res.end()
 })
 
 llmRouter.post('/step3', async (req, res) => {
@@ -103,12 +114,13 @@ llmRouter.post('/step3', async (req, res) => {
     5
   )
   messages.push(userMessage)
-  const llmResponse = await askLlmStream(messages)
-  messages.push(llmResponse)
+  const events = await askLlmStream(messages)
 
-  const { content } = llmResponse
-  const responseMessages = messages
-  return res.json({ content, responseMessages })
+  res.setHeader('content-type', 'text/event-stream')
+
+  await streamCompletion(events, res)
+
+  res.end()
 })
 
 llmRouter.post('/step4', async (req, res) => {
@@ -118,12 +130,13 @@ llmRouter.post('/step4', async (req, res) => {
   const userMessage = createUserMessage(finalPrompt, 6)
 
   messages.push(userMessage)
-  const llmResponse = await askLlmStream(messages)
-  messages.push(llmResponse)
+  const events = await askLlmStream(messages)
 
-  const { content } = llmResponse
-  const responseMessages = messages
-  return res.json({ content, responseMessages })
+  res.setHeader('content-type', 'text/event-stream')
+
+  await streamCompletion(events, res)
+
+  res.end()
 })
 
 export default llmRouter
