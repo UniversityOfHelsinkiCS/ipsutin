@@ -20,6 +20,7 @@ const InventorPhase3 = () => {
     aiResponse3,
     aiResponse4,
     setAiResponse4,
+    aiResponse4Ready,
   } = useInventorsContext()
   const { user, isLoading } = useLoggedInUser()
 
@@ -48,7 +49,7 @@ const InventorPhase3 = () => {
           />
         )}
       </Box>
-      {aiResponse4 && aiResponse4.length > 0 && (
+      {aiResponse4 && aiResponse4Ready && (
         <Box
           sx={{
             my: 4,

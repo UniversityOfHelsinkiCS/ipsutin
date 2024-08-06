@@ -23,6 +23,7 @@ const InventorPhase1 = () => {
     industrialMessage,
     setIndustrialMessage,
     setAiResponse1,
+    setAiResponse1Ready,
   } = useInventorsContext()
 
   const handleFirstStep = async () => {
@@ -35,7 +36,7 @@ const InventorPhase1 = () => {
     })
 
     if (stream) {
-      await processStream(stream, setAiResponse1)
+      await processStream(stream, setAiResponse1, setAiResponse1Ready)
     }
   }
 

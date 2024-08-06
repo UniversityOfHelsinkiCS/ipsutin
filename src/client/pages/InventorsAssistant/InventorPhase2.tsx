@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
 
@@ -19,15 +20,20 @@ const InventorPhase2 = () => {
     setCurrentStep,
     aiResponse1,
     setAiResponse1,
+    aiResponse1Ready,
     aiResponse2,
     setAiResponse2,
     aiResponse3,
     setAiResponse3,
     setAiResponse4,
+    setAiResponse4Ready,
     editModeGlobal,
     setEditModeGlobal,
     messages,
   } = useInventorsContext()
+
+  const [aiResponse2Ready, setAiResponse2Ready] = useState<boolean>(false)
+  const [aiResponse3Ready, setAiResponse3Ready] = useState<boolean>(false)
 
   const handleSecondStep = async () => {
     setAiResponse2('')
@@ -37,7 +43,7 @@ const InventorPhase2 = () => {
     })
 
     if (stream) {
-      await processStream(stream, setAiResponse2)
+      await processStream(stream, setAiResponse2, setAiResponse2Ready)
     }
   }
 
@@ -50,7 +56,7 @@ const InventorPhase2 = () => {
     })
 
     if (stream) {
-      await processStream(stream, setAiResponse3)
+      await processStream(stream, setAiResponse3, setAiResponse3Ready)
     }
   }
 
@@ -64,7 +70,7 @@ const InventorPhase2 = () => {
     })
 
     if (stream) {
-      await processStream(stream, setAiResponse4)
+      await processStream(stream, setAiResponse4, setAiResponse4Ready)
     }
   }
 
@@ -80,7 +86,7 @@ const InventorPhase2 = () => {
           />
         )}
 
-        {currentStep === 5 && aiResponse1.length > 0 && !editModeGlobal && (
+        {currentStep === 5 && !editModeGlobal && aiResponse1Ready && (
           <Button
             sx={{
               mx: 'auto',
@@ -110,7 +116,7 @@ const InventorPhase2 = () => {
           />
         )}
 
-        {currentStep === 6 && aiResponse2.length > 0 && !editModeGlobal && (
+        {currentStep === 6 && !editModeGlobal && aiResponse2Ready && (
           <Button
             sx={{
               mx: 'auto',
@@ -140,7 +146,7 @@ const InventorPhase2 = () => {
           />
         )}
 
-        {currentStep === 7 && aiResponse3.length > 0 && !editModeGlobal && (
+        {currentStep === 7 && !editModeGlobal && aiResponse3Ready && (
           <Box
             sx={{
               display: 'flex',
