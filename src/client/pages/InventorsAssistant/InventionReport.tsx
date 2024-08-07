@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { Box } from '@mui/material'
 import { t } from 'i18next'
 
@@ -21,9 +21,16 @@ const InventionReport = ({
   headingLevel,
 }: InventionReportProps) => {
   const refCallback = useResultRefCallback()
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (aiResponse && aiResponse.length > 0 && aiResponseReady && ref.current) {
+      refCallback(ref.current)
+    }
+  }, [aiResponse, aiResponseReady, refCallback])
 
   return (
-    <Box ref={aiResponse && aiResponse.length > 0 ? refCallback : null}>
+    <Box ref={ref}>
       <SectionHeading level={headingLevel} sx={{ mt: 8 }}>
         {t('inventorsAssistant:finalStepSummary')}
       </SectionHeading>
