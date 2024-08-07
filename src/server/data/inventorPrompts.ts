@@ -13,7 +13,7 @@ export const getPromptById = (id: number): string => {
             2) the invention
             3) the applications
         
-      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback. The feedback needs to be constructive and in a positive and casual tone. Don't focus on what is wrong - focus on how to improve it. End with asking some key questions that still need answering. Keep it very brief. The Elaboration takes the user's input and elaborates on it in the right direction. Use the structure of the instructions and keep the elaboration very brief. The elaboration should be written from the perspective of the user. I.e. use My instead of Your.
+      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback. The feedback needs to be constructive and in a positive and casual tone. Don't focus on what is wrong - focus on how to improve it. End with asking some key questions that still need answering. Keep it very brief. The Elaboration takes the user's input and elaborates on it in the right direction. Use the structure of the instructions and keep the elaboration very brief. The elaboration should be written from a neutral perspective. I.e. instead of Your... or My idea, use The idea...
         { 
           "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
           "feedback": [insert_short_feedback_about_how_my_input_could_be_improved],
@@ -28,7 +28,7 @@ export const getPromptById = (id: number): string => {
 
       Here are my specific instructions:
         Indicate whether any part of your idea has been publicly disclosed. This includes any publications, presentations, or previous patents. Detail the extent and nature of such disclosures. If your invention has not been publicly disclosed at all it's enough to be very brief. Even one word is enough. 
-      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback. The feedback needs to be constructive and in a positive and casual tone. Don't focus on what is wrong - focus on how to improve it. End with asking some key questions that still need answering. Keep it very brief. The Elaboration takes the user's input and elaborates on it in the right direction. Use the structure of the instructions and keep the elaboration very brief. The elaboration should be written from the perspective of the user. I.e. use My instead of Your.
+      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback. The feedback needs to be constructive and in a positive and casual tone. Don't focus on what is wrong - focus on how to improve it. End with asking some key questions that still need answering. Keep it very brief. The Elaboration takes the user's input and elaborates on it in the right direction. Use the structure of the instructions and keep the elaboration very brief. The elaboration should be written from a neutral perspective. I.e. instead of Your... or My idea, use The idea...
       { 
         "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
         "feedback": [insert_short_feedback_about_how_my_input_could_be_improved],
@@ -44,7 +44,7 @@ export const getPromptById = (id: number): string => {
       Here are my specific instructions:
         Describe the practical application of your idea. Highlight how it can be implemented in an industrial setting. Discuss its potential benefits, feasibility, and any industries or sectors where it could be particularly useful.
       
-      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback. The feedback needs to be constructive and in a positive and casual tone. Don't focus on what is wrong - focus on how to improve it. End with asking some key questions that still need answering. Keep it very brief. The Elaboration takes the user's input and elaborates on it in the right direction. Use the structure of the instructions and keep the elaboration very brief. The elaboration should be written from the perspective of the user. I.e. use My instead of Your.
+      Return the below JSON as plain text inserted with your verdict about my input and 1-2 sentences of feedback. The feedback needs to be constructive and in a positive and casual tone. Don't focus on what is wrong - focus on how to improve it. End with asking some key questions that still need answering. Keep it very brief. The Elaboration takes the user's input and elaborates on it in the right direction. Use the structure of the instructions and keep the elaboration very brief. The elaboration should be written from a neutral perspective. I.e. instead of Your... or My idea, use The idea...
         {
           "verdict":[insert_Good_or_Bad_here_according_to_your_analysis_of_my_input],
           "feedback": [insert_short_feedback_about_how_my_input_could_be_improved],
