@@ -21,12 +21,10 @@ export const getUserOrganisations = async (
   userId: string,
   iamGroups: string[]
 ): Promise<OrganisationData[]> => {
-  console.log('getUserOrganisations iamGroups', iamGroups)
   const { data } = await jamiClient.post('/user-organisations', {
     userId,
     iamGroups,
   })
 
-  console.log('getUserOrganisations DATA:', data)
   return data || []
 }

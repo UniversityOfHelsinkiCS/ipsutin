@@ -37,9 +37,7 @@ const params = {
 }
 
 const checkAdmin = (iamGroups: string[] | undefined | null) => {
-  console.log('checkAdmin first step', iamGroups)
   if (!iamGroups) return false
-  console.log('checkAdmin SECOND STEP')
   return iamGroups.some((iamGroup) =>
     ['grp-toska', 'grp-his'].includes(iamGroup)
   )
@@ -73,8 +71,6 @@ const verifyLogin = async (
     family_name: lastName,
   } = userinfo as unknown as UserInfo
 
-  console.log('USER INFO', userinfo)
-
   const userPreferedFaculty = await getUserFaculties(id, iamGroups)
 
   const userFaculty = await User.findByPk(id, {
@@ -94,7 +90,6 @@ const verifyLogin = async (
     preferredFaculty:
       userFacultyCode || userPreferedFaculty[0]?.code || 'OTHER',
   }
-  console.log('USER: ', user)
   await User.upsert({
     ...user,
     lastLoggedIn: new Date(),
