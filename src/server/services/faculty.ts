@@ -15,10 +15,11 @@ export const getFaculties = async (): Promise<Faculty[]> => {
 
 export const getUserFaculties = async (
   userId: string,
-  iamGroups: string[] | null
+  iamGroups: string[] | null | undefined
 ): Promise<Faculty[]> => {
   if (inE2EMode) return mockFaculty
 
+  console.log('getuserFaculties iamGroups:', iamGroups)
   if (!userId || !iamGroups) return []
 
   const organisationData = await getUserOrganisations(userId, iamGroups)

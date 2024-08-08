@@ -13,7 +13,7 @@ export interface UserInfo {
   uid: string
   hyPersonSisuId: string
   email: string
-  hyGroupCn: string[] | null
+  hyGroupCn: string[] | null | undefined
   preferredLanguage: string
   given_name: string
   family_name: string
@@ -27,7 +27,7 @@ export interface User {
   email: string
   language: string
   isAdmin: boolean
-  iamGroups: string[] | null
+  iamGroups: string[] | undefined | null
   newUser?: boolean
   preferredFaculty: string
 }
