@@ -94,7 +94,7 @@ const verifyLogin = async (
     preferredFaculty:
       userFacultyCode || userPreferedFaculty[0]?.code || 'OTHER',
   }
-
+  console.log('USER: ', user)
   await User.upsert({
     ...user,
     lastLoggedIn: new Date(),
