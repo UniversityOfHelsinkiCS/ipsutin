@@ -36,7 +36,7 @@ const params = {
   },
 }
 
-const checkAdmin = (iamGroups: string[]) => {
+const checkAdmin = (iamGroups: string[] | null) => {
   if (!iamGroups) return false
   return iamGroups.some((iamGroup) =>
     ['grp-toska', 'grp-his'].includes(iamGroup)
@@ -109,7 +109,10 @@ const setupAuthentication = async () => {
   })
 
   passport.deserializeUser(
-    async ({ id, iamGroups }: { id: string; iamGroups: string[] }, done) => {
+    async (
+      { id, iamGroups }: { id: string; iamGroups: string[] | null },
+      done
+    ) => {
       const user = await User.findByPk(id)
 
       if (!user)
