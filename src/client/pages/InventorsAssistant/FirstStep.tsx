@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, Box, List, ListItemText, Typography } from '@mui/material'
 import { t } from 'i18next'
 
@@ -29,23 +29,92 @@ const FirstStep: React.FC<FirstStepProps> = ({
   industrialMessage,
   setIndustrialMessage,
 }) => {
-  const [aiInputFeedback1, setAiInputFeedback1] = useState('')
+  const [aiInputFeedback1, setAiInputFeedback1] = useState<string>(() => {
+    const saved = sessionStorage.getItem('aiInputFeedback1')
+    return saved ? JSON.parse(saved) : ''
+  })
   const [aiInputFeedbackSuccess1, setAiInputFeedbackSuccess1] =
-    useState<AiInputFeedback>('info')
+    useState<AiInputFeedback>(() => {
+      const saved = sessionStorage.getItem('aiInputFeedbackSuccess1')
+      return saved ? JSON.parse(saved) : 'info'
+    })
+  const [aiElaboration1, setAiElaboration1] = useState<string>(() => {
+    const saved = sessionStorage.getItem('aiElaboration1')
+    return saved ? JSON.parse(saved) : ''
+  })
 
-  const [aiElaboration1, setAiElaboration1] = useState('')
-
-  const [aiInputFeedback2, setAiInputFeedback2] = useState('')
+  const [aiInputFeedback2, setAiInputFeedback2] = useState<string>(() => {
+    const saved = sessionStorage.getItem('aiInputFeedback2')
+    return saved ? JSON.parse(saved) : ''
+  })
   const [aiInputFeedbackSuccess2, setAiInputFeedbackSuccess2] =
-    useState<AiInputFeedback>('info')
+    useState<AiInputFeedback>(() => {
+      const saved = sessionStorage.getItem('aiInputFeedbackSuccess2')
+      return saved ? JSON.parse(saved) : 'info'
+    })
+  const [aiElaboration2, setAiElaboration2] = useState<string>(() => {
+    const saved = sessionStorage.getItem('aiElaboration2')
+    return saved ? JSON.parse(saved) : ''
+  })
 
-  const [aiElaboration2, setAiElaboration2] = useState('')
-
-  const [aiInputFeedback3, setAiInputFeedback3] = useState('')
+  const [aiInputFeedback3, setAiInputFeedback3] = useState<string>(() => {
+    const saved = sessionStorage.getItem('aiInputFeedback3')
+    return saved ? JSON.parse(saved) : ''
+  })
   const [aiInputFeedbackSuccess3, setAiInputFeedbackSuccess3] =
-    useState<AiInputFeedback>('info')
+    useState<AiInputFeedback>(() => {
+      const saved = sessionStorage.getItem('aiInputFeedbackSuccess3')
+      return saved ? JSON.parse(saved) : 'info'
+    })
+  const [aiElaboration3, setAiElaboration3] = useState<string>(() => {
+    const saved = sessionStorage.getItem('aiElaboration3')
+    return saved ? JSON.parse(saved) : ''
+  })
 
-  const [aiElaboration3, setAiElaboration3] = useState('')
+  useEffect(() => {
+    sessionStorage.setItem('aiInputFeedback1', JSON.stringify(aiInputFeedback1))
+  }, [aiInputFeedback1])
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'aiInputFeedbackSuccess1',
+      JSON.stringify(aiInputFeedbackSuccess1)
+    )
+  }, [aiInputFeedbackSuccess1])
+
+  useEffect(() => {
+    sessionStorage.setItem('aiElaboration1', JSON.stringify(aiElaboration1))
+  }, [aiElaboration1])
+
+  useEffect(() => {
+    sessionStorage.setItem('aiInputFeedback2', JSON.stringify(aiInputFeedback2))
+  }, [aiInputFeedback2])
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'aiInputFeedbackSuccess2',
+      JSON.stringify(aiInputFeedbackSuccess2)
+    )
+  }, [aiInputFeedbackSuccess2])
+
+  useEffect(() => {
+    sessionStorage.setItem('aiElaboration2', JSON.stringify(aiElaboration2))
+  }, [aiElaboration2])
+
+  useEffect(() => {
+    sessionStorage.setItem('aiInputFeedback3', JSON.stringify(aiInputFeedback3))
+  }, [aiInputFeedback3])
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'aiInputFeedbackSuccess3',
+      JSON.stringify(aiInputFeedbackSuccess3)
+    )
+  }, [aiInputFeedbackSuccess3])
+
+  useEffect(() => {
+    sessionStorage.setItem('aiElaboration3', JSON.stringify(aiElaboration3))
+  }, [aiElaboration3])
 
   const handleFirstCheck = async (aiExample?: string) => {
     setCurrentStep(2)
@@ -153,6 +222,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
       </List>
 
       <UserInput
+        userInputId={1}
         inventiveMessage={inventiveMessage}
         setUserInput={setInventiveMessage}
         handleStepCheck={handleFirstCheck}
@@ -170,6 +240,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             {t('inventorsAssistant:publicityStepDescription')}
           </Typography>
           <UserInput
+            userInputId={2}
             inventiveMessage={publicityMessage}
             setUserInput={setPublicityMessage}
             handleStepCheck={handleSecondCheck}
@@ -189,6 +260,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             {t('inventorsAssistant:industrialDescription')}
           </Typography>
           <UserInput
+            userInputId={3}
             inventiveMessage={industrialMessage}
             setUserInput={setIndustrialMessage}
             handleStepCheck={handleThirdCheck}

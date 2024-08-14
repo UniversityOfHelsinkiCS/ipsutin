@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Button, TextField } from '@mui/material'
 import { t } from 'i18next'
 
 import LlmInputFeedback from './LlmInputFeedback'
 
 type UserInputProps = {
+  userInputId: number
   inventiveMessage: string
   setUserInput: React.Dispatch<React.SetStateAction<string>>
   handleStepCheck: (aiExample?: string) => void
@@ -14,6 +15,7 @@ type UserInputProps = {
 }
 
 const UserInput: React.FC<UserInputProps> = ({
+  userInputId,
   inventiveMessage,
   setUserInput,
   handleStepCheck,
@@ -21,8 +23,33 @@ const UserInput: React.FC<UserInputProps> = ({
   aiInputFeedbackSuccess,
   aiElaboration,
 }) => {
-  const [inputStep, setInputStep] = useState(false)
-  const [buttonText, setButtonText] = useState('Next step')
+  const [inputStep, setInputStep] = useState<boolean>(() => {
+    const saved = sessionStorage.getItem(`inputStep${userInputId}`)
+    return saved ? JSON.parse(saved) : false
+  })
+
+  const [buttonText, setButtonText] = useState<string>(() => {
+    const saved = sessionStorage.getItem(`buttonText${userInputId}`)
+    return saved ? JSON.parse(saved) : 'Next step'
+  })
+
+  useEffect(() => {
+    sessionStorage.setItem(`inputStep${userInputId}`, JSON.stringify(inputStep))
+  }, [inputStep, userInputId])
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      `buttonText${userInputId}`,
+      JSON.stringify(buttonText)
+    )
+  }, [buttonText, userInputId])
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      `aiInputFeedbackSuccess${userInputId}`,
+      JSON.stringify(aiInputFeedbackSuccess)
+    )
+  }, [aiInputFeedbackSuccess, userInputId])
 
   return (
     <Box component='section' sx={{ mt: 4 }}>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
 
@@ -32,8 +32,23 @@ const InventorPhase2 = () => {
     messages,
   } = useInventorsContext()
 
-  const [aiResponse2Ready, setAiResponse2Ready] = useState<boolean>(false)
-  const [aiResponse3Ready, setAiResponse3Ready] = useState<boolean>(false)
+  const [aiResponse2Ready, setAiResponse2Ready] = useState<boolean>(() => {
+    const saved = sessionStorage.getItem('aiResponse2Ready')
+    return saved ? JSON.parse(saved) : false
+  })
+
+  const [aiResponse3Ready, setAiResponse3Ready] = useState<boolean>(() => {
+    const saved = sessionStorage.getItem('aiResponse3Ready')
+    return saved ? JSON.parse(saved) : false
+  })
+
+  useEffect(() => {
+    sessionStorage.setItem('aiResponse2Ready', JSON.stringify(aiResponse2Ready))
+  }, [aiResponse2Ready])
+
+  useEffect(() => {
+    sessionStorage.setItem('aiResponse3Ready', JSON.stringify(aiResponse3Ready))
+  }, [aiResponse3Ready])
 
   const handleSecondStep = async () => {
     setAiResponse2('')
