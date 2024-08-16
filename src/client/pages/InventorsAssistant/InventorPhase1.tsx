@@ -24,19 +24,28 @@ const InventorPhase1 = () => {
     setIndustrialMessage,
     setAiResponse1,
     setAiResponse1Ready,
+    setAiResponse1Error,
   } = useInventorsContext()
 
   const handleFirstStep = async () => {
+    setAiResponse1Error(null)
     setAiResponse1('')
 
-    const stream = await fetchStream('/llm/step1', {
+    const { stream, error } = await fetchStream('/llm/step1', {
       inventiveMessage,
       industrialMessage,
       publicityMessage,
     })
 
+    if (error) {
+      setAiResponse1Error(`An error occurred: ${error}`)
+      return
+    }
+
     if (stream) {
       await processStream(stream, setAiResponse1, setAiResponse1Ready)
+    } else {
+      setAiResponse1Error('An unknown error occurred.')
     }
   }
 
