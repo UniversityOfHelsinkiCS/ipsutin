@@ -4,6 +4,7 @@ import { Alert, Box, Button, TextField } from '@mui/material'
 import Markdown from '../../components/Common/Markdown'
 
 type LlmResponseProps = {
+  current: boolean
   aiResponse: string
   aiResponseReady: boolean
   setEditedResponse: Dispatch<SetStateAction<string>>
@@ -11,6 +12,7 @@ type LlmResponseProps = {
 }
 
 const LlmResponse = ({
+  current,
   aiResponse,
   aiResponseReady,
   setEditedResponse,
@@ -73,7 +75,7 @@ const LlmResponse = ({
           <Alert severity='success' sx={{ py: 4, px: 2, width: '100%' }}>
             <Markdown>{aiResponse}</Markdown>
           </Alert>
-          {aiResponse && aiResponseReady && (
+          {aiResponse && aiResponseReady && current && (
             <Button
               data-cy='edit-ai-response-button'
               variant='contained'
