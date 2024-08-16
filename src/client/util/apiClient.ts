@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { PUBLIC_URL } from '../../config'
 
-const apiClient = axios.create({ baseURL: `${PUBLIC_URL}/api` })
+const apiClient = axios.create({ baseURL: `${PUBLIC_URL}/api`, timeout: 7000 })
 
 export const fetchStream = async (
   endpoint: string,
