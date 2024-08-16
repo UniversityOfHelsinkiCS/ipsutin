@@ -51,6 +51,9 @@ const UserInput: React.FC<UserInputProps> = ({
     )
   }, [aiInputFeedbackSuccess, userInputId])
 
+  // Check if the inventiveMessage is empty
+  const isInputEmpty = !inventiveMessage.trim()
+
   return (
     <Box component='section' sx={{ mt: 4 }}>
       <TextField
@@ -80,6 +83,8 @@ const UserInput: React.FC<UserInputProps> = ({
             setInputStep(true)
             setButtonText('Submit again')
           }}
+          // Disable the button if the input is empty
+          disabled={isInputEmpty}
         >
           {buttonText}
         </Button>
