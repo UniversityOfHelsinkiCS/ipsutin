@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, Box, List, ListItemText, Typography } from '@mui/material'
+import { AxiosError } from 'axios'
 import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
@@ -71,6 +72,33 @@ const FirstStep: React.FC<FirstStepProps> = ({
     return saved ? JSON.parse(saved) : ''
   })
 
+  const [errorMessage1, setErrorMessage1] = useState<string | null>(() => {
+    const saved = sessionStorage.getItem('errorMessage1')
+    return saved ? JSON.parse(saved) : null
+  })
+
+  const [errorMessage2, setErrorMessage2] = useState<string | null>(() => {
+    const saved = sessionStorage.getItem('errorMessage2')
+    return saved ? JSON.parse(saved) : null
+  })
+
+  const [errorMessage3, setErrorMessage3] = useState<string | null>(() => {
+    const saved = sessionStorage.getItem('errorMessage3')
+    return saved ? JSON.parse(saved) : null
+  })
+
+  useEffect(() => {
+    sessionStorage.setItem('errorMessage1', JSON.stringify(errorMessage1))
+  }, [errorMessage1])
+
+  useEffect(() => {
+    sessionStorage.setItem('errorMessage2', JSON.stringify(errorMessage2))
+  }, [errorMessage2])
+
+  useEffect(() => {
+    sessionStorage.setItem('errorMessage3', JSON.stringify(errorMessage3))
+  }, [errorMessage3])
+
   useEffect(() => {
     sessionStorage.setItem('aiInputFeedback1', JSON.stringify(aiInputFeedback1))
   }, [aiInputFeedback1])
@@ -117,74 +145,131 @@ const FirstStep: React.FC<FirstStepProps> = ({
   }, [aiElaboration3])
 
   const handleFirstCheck = async (aiExample?: string) => {
-    setCurrentStep(2)
-    setAiInputFeedbackSuccess1('info')
-    const message = aiExample || inventiveMessage
-    const response = await apiClient.post('/llm/step1check1', {
-      inventiveMessage: message,
-    })
+    try {
+      setErrorMessage1(null)
+      setCurrentStep(2)
+      setAiInputFeedbackSuccess1('info')
+      const message = aiExample || inventiveMessage
+      const response = await apiClient.post('/llm/step1check1', {
+        inventiveMessage: message,
+      })
 
-    const { content } = response.data
+      const { content } = response.data
 
-    if (content.failed) {
-      setAiInputFeedbackSuccess1('warning')
-      setAiInputFeedback1(content.content)
-    } else if (content.success === false) {
-      setAiInputFeedbackSuccess1('warning')
-      setAiInputFeedback1(content.feedback)
-      setAiElaboration1(content.elaboration)
-    } else {
-      setAiInputFeedback1('Your input gave adequate information!')
-      setAiInputFeedbackSuccess1('success')
-      setAiElaboration1('')
+      if (content.failed) {
+        setAiInputFeedbackSuccess1('warning')
+        setAiInputFeedback1(content.content)
+      } else if (content.success === false) {
+        setAiInputFeedbackSuccess1('warning')
+        setAiInputFeedback1(content.feedback)
+        setAiElaboration1(content.elaboration)
+      } else {
+        setAiInputFeedback1('Your input gave adequate information!')
+        setAiInputFeedbackSuccess1('success')
+        setAiElaboration1('')
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          setErrorMessage1(
+            `Server Error: ${error.response.status} - ${error.response.data.message || 'An unexpected error occurred'}`
+          )
+        } else if (error.request) {
+          setErrorMessage1('Network Error: Unable to reach the server')
+        } else {
+          setErrorMessage1(`Request Error: ${error.message}`)
+        }
+      } else if (error instanceof Error) {
+        setErrorMessage2(`Error: ${error.message}`)
+      } else {
+        setErrorMessage2('An unknown error occurred')
+      }
     }
   }
 
   const handleSecondCheck = async (aiExample?: string) => {
-    setCurrentStep(3)
-    setAiInputFeedbackSuccess2('info')
-    const message = aiExample || publicityMessage
-    const response = await apiClient.post('/llm/step1check2', {
-      publicityMessage: message,
-    })
+    try {
+      setErrorMessage2(null)
+      setCurrentStep(3)
+      setAiInputFeedbackSuccess2('info')
+      const message = aiExample || publicityMessage
+      const response = await apiClient.post('/llm/step1check2', {
+        publicityMessage: message,
+      })
 
-    const { content } = response.data
+      const { content } = response.data
 
-    if (content.failed) {
-      setAiInputFeedbackSuccess2('warning')
-      setAiInputFeedback2(content.content)
-    } else if (content.success === false) {
-      setAiInputFeedbackSuccess2('warning')
-      setAiInputFeedback2(content.feedback)
-      setAiElaboration2(content.elaboration)
-    } else {
-      setAiInputFeedback2('Your input gave adequate information!')
-      setAiInputFeedbackSuccess2('success')
-      setAiElaboration2('')
+      if (content.failed) {
+        setAiInputFeedbackSuccess2('warning')
+        setAiInputFeedback2(content.content)
+      } else if (content.success === false) {
+        setAiInputFeedbackSuccess2('warning')
+        setAiInputFeedback2(content.feedback)
+        setAiElaboration2(content.elaboration)
+      } else {
+        setAiInputFeedback2('Your input gave adequate information!')
+        setAiInputFeedbackSuccess2('success')
+        setAiElaboration2('')
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          setErrorMessage2(
+            `Server Error: ${error.response.status} - ${error.response.data.message || 'An unexpected error occurred'}`
+          )
+        } else if (error.request) {
+          setErrorMessage2('Network Error: Unable to reach the server')
+        } else {
+          setErrorMessage2(`Request Error: ${error.message}`)
+        }
+      } else if (error instanceof Error) {
+        setErrorMessage2(`Error: ${error.message}`)
+      } else {
+        setErrorMessage2('An unknown error occurred')
+      }
     }
   }
 
   const handleThirdCheck = async (aiExample?: string) => {
-    setAiInputFeedbackSuccess3('info')
-    const message = aiExample || industrialMessage
-    const response = await apiClient.post('/llm/step1check3', {
-      industrialMessage: message,
-    })
+    try {
+      setErrorMessage3(null)
+      setAiInputFeedbackSuccess3('info')
+      const message = aiExample || industrialMessage
+      const response = await apiClient.post('/llm/step1check3', {
+        industrialMessage: message,
+      })
 
-    const { content } = response.data
+      const { content } = response.data
 
-    if (content.failed) {
-      setAiInputFeedbackSuccess3('warning')
-      setAiInputFeedback3(content.content)
-    } else if (content.success === false) {
-      setAiInputFeedbackSuccess3('warning')
-      setAiInputFeedback3(content.feedback)
-      setAiElaboration3(content.elaboration)
-    } else {
-      setAiInputFeedback3('Your input gave adequate information!')
-      setAiInputFeedbackSuccess3('success')
-      setAiElaboration3('')
-      setCurrentStep(4)
+      if (content.failed) {
+        setAiInputFeedbackSuccess3('warning')
+        setAiInputFeedback3(content.content)
+      } else if (content.success === false) {
+        setAiInputFeedbackSuccess3('warning')
+        setAiInputFeedback3(content.feedback)
+        setAiElaboration3(content.elaboration)
+      } else {
+        setAiInputFeedback3('Your input gave adequate information!')
+        setAiInputFeedbackSuccess3('success')
+        setAiElaboration3('')
+        setCurrentStep(4)
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          setErrorMessage3(
+            `Server Error: ${error.response.status} - ${error.response.data.message || 'An unexpected error occurred'}`
+          )
+        } else if (error.request) {
+          setErrorMessage3('Network Error: Unable to reach the server')
+        } else {
+          setErrorMessage3(`Request Error: ${error.message}`)
+        }
+      } else if (error instanceof Error) {
+        setErrorMessage2(`Error: ${error.message}`)
+      } else {
+        setErrorMessage2('An unknown error occurred')
+      }
     }
   }
 
@@ -222,8 +307,9 @@ const FirstStep: React.FC<FirstStepProps> = ({
       </List>
 
       <UserInput
+        errorMessage={errorMessage1}
         userInputId={1}
-        inventiveMessage={inventiveMessage}
+        userInputMessage={inventiveMessage}
         setUserInput={setInventiveMessage}
         handleStepCheck={handleFirstCheck}
         aiInputFeedback={aiInputFeedback1}
@@ -240,8 +326,9 @@ const FirstStep: React.FC<FirstStepProps> = ({
             {t('inventorsAssistant:publicityStepDescription')}
           </Typography>
           <UserInput
+            errorMessage={errorMessage2}
             userInputId={2}
-            inventiveMessage={publicityMessage}
+            userInputMessage={publicityMessage}
             setUserInput={setPublicityMessage}
             handleStepCheck={handleSecondCheck}
             aiInputFeedback={aiInputFeedback2}
@@ -260,8 +347,9 @@ const FirstStep: React.FC<FirstStepProps> = ({
             {t('inventorsAssistant:industrialDescription')}
           </Typography>
           <UserInput
+            errorMessage={errorMessage3}
             userInputId={3}
-            inventiveMessage={industrialMessage}
+            userInputMessage={industrialMessage}
             setUserInput={setIndustrialMessage}
             handleStepCheck={handleThirdCheck}
             aiInputFeedback={aiInputFeedback3}
