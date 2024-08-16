@@ -2,12 +2,15 @@ import axios from 'axios'
 
 import { PUBLIC_URL } from '../../config'
 
-const apiClient = axios.create({ baseURL: `${PUBLIC_URL}/api`, timeout: 7000 })
+const apiClient = axios.create({ baseURL: `${PUBLIC_URL}/api`, timeout: 15000 })
 
 export const fetchStream = async (
   endpoint: string,
   requestBody: object
-): Promise<ReadableStream<Uint8Array> | null> => {
+): Promise<{
+  stream: ReadableStream<Uint8Array> | null
+  error: string | null
+}> => {
   const url = `${PUBLIC_URL}/api/${endpoint}`
   try {
     const response = await fetch(url, {
@@ -18,13 +21,19 @@ export const fetchStream = async (
       body: JSON.stringify(requestBody),
     })
 
-    if (!response.body) {
-      throw new Error('ReadableStream not supported or missing in response.')
+    if (!response.ok) {
+      return { stream: null, error: `HTTP error! Status: ${response.status}` }
     }
 
-    return response.body // Return the ReadableStream
-  } catch (error) {
-    throw new Error('Error during fetch')
+    if (!response.body) {
+      return {
+        stream: null,
+        error: 'ReadableStream not supported or missing in response.',
+      }
+    }
+    return { stream: response.body, error: null }
+  } catch (error: any) {
+    return { stream: null, error: error.message || 'Error during fetch' }
   }
 }
 
