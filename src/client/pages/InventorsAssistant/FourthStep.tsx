@@ -7,6 +7,7 @@ import SectionHeading from '../../components/Common/SectionHeading'
 import LlmResponse from './LlmResponse'
 
 type FourthStepProps = {
+  current: boolean
   setAiResponse3: Dispatch<SetStateAction<string>>
   aiResponse: string
   aiResponseReady: boolean
@@ -14,6 +15,7 @@ type FourthStepProps = {
 }
 
 const FourthStep = ({
+  current,
   setAiResponse3,
   aiResponse,
   aiResponseReady,
@@ -46,6 +48,7 @@ const FourthStep = ({
     </Typography>
 
     <LlmResponse
+      current={current}
       aiResponse={aiResponse}
       aiResponseReady={aiResponseReady}
       setEditedResponse={setAiResponse3}

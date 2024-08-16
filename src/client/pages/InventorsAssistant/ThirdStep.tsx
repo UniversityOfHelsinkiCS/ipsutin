@@ -7,6 +7,7 @@ import SectionHeading from '../../components/Common/SectionHeading'
 import LlmResponse from './LlmResponse'
 
 type ThirdStepProps = {
+  current: boolean
   setAiResponse2: React.Dispatch<React.SetStateAction<string>>
   aiResponse: string
   aiResponseReady: boolean
@@ -14,6 +15,7 @@ type ThirdStepProps = {
 }
 
 const ThirdStep: React.FC<ThirdStepProps> = ({
+  current,
   setAiResponse2,
   aiResponse,
   aiResponseReady,
@@ -31,6 +33,7 @@ const ThirdStep: React.FC<ThirdStepProps> = ({
 
     <Box component='section' sx={{ mt: 4 }}>
       <LlmResponse
+        current={current}
         aiResponse={aiResponse}
         aiResponseReady={aiResponseReady}
         setEditedResponse={setAiResponse2}

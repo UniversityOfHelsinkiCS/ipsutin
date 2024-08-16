@@ -36,6 +36,7 @@ const InventionReport = ({
       </SectionHeading>
 
       <LlmResponse
+        current
         aiResponse={aiResponse}
         aiResponseReady={aiResponseReady}
         setEditedResponse={setAiResponse}

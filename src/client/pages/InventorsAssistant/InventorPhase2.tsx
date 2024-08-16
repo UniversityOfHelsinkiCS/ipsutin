@@ -42,6 +42,44 @@ const InventorPhase2 = () => {
     return saved ? JSON.parse(saved) : false
   })
 
+  const [llmResponseCurrent1, setLlmResponseCurrent1] = useState<boolean>(
+    () => {
+      const saved = sessionStorage.getItem('llmResponseCurrent1')
+      return saved ? JSON.parse(saved) : true
+    }
+  )
+  const [llmResponseCurrent2, setLlmResponseCurrent2] = useState<boolean>(
+    () => {
+      const saved = sessionStorage.getItem('llmResponseCurrent2')
+      return saved ? JSON.parse(saved) : true
+    }
+  )
+  const [llmResponseCurrent3, setLlmResponseCurrent3] = useState<boolean>(
+    () => {
+      const saved = sessionStorage.getItem('llmResponseCurrent3')
+      return saved ? JSON.parse(saved) : true
+    }
+  )
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'llmResponseCurrent1',
+      JSON.stringify(llmResponseCurrent1)
+    )
+  }, [llmResponseCurrent1])
+  useEffect(() => {
+    sessionStorage.setItem(
+      'llmResponseCurrent2',
+      JSON.stringify(llmResponseCurrent2)
+    )
+  }, [llmResponseCurrent2])
+  useEffect(() => {
+    sessionStorage.setItem(
+      'llmResponseCurrent3',
+      JSON.stringify(llmResponseCurrent3)
+    )
+  }, [llmResponseCurrent3])
+
   useEffect(() => {
     sessionStorage.setItem('aiResponse2Ready', JSON.stringify(aiResponse2Ready))
   }, [aiResponse2Ready])
@@ -95,6 +133,7 @@ const InventorPhase2 = () => {
         <InventorStepper />
         {currentStep > 4 && (
           <SecondStep
+            current={llmResponseCurrent1}
             setAiResponse1={setAiResponse1}
             aiResponse={aiResponse1}
             aiResponseReady={aiResponse1Ready}
@@ -118,6 +157,7 @@ const InventorPhase2 = () => {
             onClick={() => {
               handleSecondStep()
               setCurrentStep(6)
+              setLlmResponseCurrent1(false)
             }}
           >
             Next step
@@ -126,6 +166,7 @@ const InventorPhase2 = () => {
 
         {currentStep > 5 && aiResponse1.length > 0 && (
           <ThirdStep
+            current={llmResponseCurrent2}
             setAiResponse2={setAiResponse2}
             aiResponse={aiResponse2}
             aiResponseReady={aiResponse2Ready}
@@ -149,6 +190,7 @@ const InventorPhase2 = () => {
             onClick={() => {
               handleThirdStep()
               setCurrentStep(7)
+              setLlmResponseCurrent2(false)
             }}
           >
             Next step
@@ -157,6 +199,7 @@ const InventorPhase2 = () => {
 
         {currentStep > 6 && (
           <FourthStep
+            current={llmResponseCurrent3}
             setAiResponse3={setAiResponse3}
             aiResponse={aiResponse3}
             aiResponseReady={aiResponse3Ready}
@@ -187,6 +230,7 @@ const InventorPhase2 = () => {
               onClick={() => {
                 handleLastStep()
                 setCurrentStep(8)
+                setLlmResponseCurrent3(false)
                 navigate({
                   pathname: '../phase3',
                   search: location.search,
