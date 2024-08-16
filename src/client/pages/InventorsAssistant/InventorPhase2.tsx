@@ -150,7 +150,7 @@ const InventorPhase2 = () => {
     setAiResponse4Error(null)
     setAiResponse4('')
 
-    const { stream, error } = await fetchStream('/llm/step4asd', {
+    const { stream, error } = await fetchStream('/llm/step4', {
       aiResponse1,
       aiResponse2,
       aiResponse3,
