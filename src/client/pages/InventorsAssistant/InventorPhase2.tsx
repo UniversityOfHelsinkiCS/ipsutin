@@ -27,6 +27,7 @@ const InventorPhase2 = () => {
     setAiResponse3,
     setAiResponse4,
     setAiResponse4Ready,
+    setAiResponse4Error,
     editModeGlobal,
     setEditModeGlobal,
     messages,
@@ -37,10 +38,24 @@ const InventorPhase2 = () => {
     return saved ? JSON.parse(saved) : false
   })
 
+  const [aiResponse2Error, setAiResponse2Error] = useState<string | null>(
+    () => {
+      const saved = sessionStorage.getItem('aiResponse2Error')
+      return saved ? JSON.parse(saved) : null
+    }
+  )
+
   const [aiResponse3Ready, setAiResponse3Ready] = useState<boolean>(() => {
     const saved = sessionStorage.getItem('aiResponse3Ready')
     return saved ? JSON.parse(saved) : false
   })
+
+  const [aiResponse3Error, setAiResponse3Error] = useState<string | null>(
+    () => {
+      const saved = sessionStorage.getItem('aiResponse2Error')
+      return saved ? JSON.parse(saved) : null
+    }
+  )
 
   const [llmResponseCurrent1, setLlmResponseCurrent1] = useState<boolean>(
     () => {
@@ -89,41 +104,68 @@ const InventorPhase2 = () => {
   }, [aiResponse3Ready])
 
   const handleSecondStep = async () => {
+    setAiResponse2Error(null)
     setAiResponse2('')
-    const stream = await fetchStream('/llm/step2', {
+
+    const { stream, error } = await fetchStream('/llm/step2', {
       aiResponse1,
       messages,
     })
 
+    if (error) {
+      setAiResponse2Error(`An error occurred: ${error}`)
+      return
+    }
+
     if (stream) {
       await processStream(stream, setAiResponse2, setAiResponse2Ready)
+    } else {
+      setAiResponse2Error('An unknown error occurred.')
     }
   }
 
   const handleThirdStep = async () => {
+    setAiResponse3Error(null)
     setAiResponse3('')
-    const stream = await fetchStream('/llm/step3', {
+
+    const { stream, error } = await fetchStream('/llm/step3', {
       aiResponse1,
       aiResponse2,
       messages,
     })
 
+    if (error) {
+      setAiResponse3Error(`An error occurred: ${error}`)
+      return
+    }
+
     if (stream) {
       await processStream(stream, setAiResponse3, setAiResponse3Ready)
+    } else {
+      setAiResponse3Error('An unknown error occurred.')
     }
   }
 
   const handleLastStep = async () => {
+    setAiResponse4Error(null)
     setAiResponse4('')
-    const stream = await fetchStream('/llm/step4', {
+
+    const { stream, error } = await fetchStream('/llm/step4asd', {
       aiResponse1,
       aiResponse2,
       aiResponse3,
       messages,
     })
 
+    if (error) {
+      setAiResponse4Error(`An error occurred: ${error}`)
+      return
+    }
+
     if (stream) {
       await processStream(stream, setAiResponse4, setAiResponse4Ready)
+    } else {
+      setAiResponse4Error('An unknown error occurred.')
     }
   }
 
@@ -171,6 +213,8 @@ const InventorPhase2 = () => {
             aiResponse={aiResponse2}
             aiResponseReady={aiResponse2Ready}
             setEditModeGlobal={setEditModeGlobal}
+            aiResponseError={aiResponse2Error}
+            handleTryAgain={handleSecondStep}
           />
         )}
 
@@ -204,6 +248,8 @@ const InventorPhase2 = () => {
             aiResponse={aiResponse3}
             aiResponseReady={aiResponse3Ready}
             setEditModeGlobal={setEditModeGlobal}
+            aiResponseError={aiResponse3Error}
+            handleTryAgain={handleThirdStep}
           />
         )}
 
