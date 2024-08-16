@@ -53,6 +53,7 @@ const UserInput: React.FC<UserInputProps> = ({
 
   // Check if the inventiveMessage is empty
   const isInputEmpty = !inventiveMessage.trim()
+  const isTextFieldDisabled = inputStep && aiInputFeedbackSuccess === 'success'
 
   return (
     <Box component='section' sx={{ mt: 4 }}>
@@ -63,6 +64,7 @@ const UserInput: React.FC<UserInputProps> = ({
         value={inventiveMessage}
         onChange={(e) => setUserInput(e.target.value)}
         placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
+        disabled={isTextFieldDisabled}
       />
 
       {(!inputStep || (inputStep && aiInputFeedbackSuccess === 'warning')) && (
