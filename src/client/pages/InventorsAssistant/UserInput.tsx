@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import { Box, Button, TextField } from '@mui/material'
 import { t } from 'i18next'
 
+import ErrorAlert from './ErrorAlert'
 import LlmInputFeedback from './LlmInputFeedback'
 
 type UserInputProps = {
+  errorMessage: string | null
   userInputId: number
-  inventiveMessage: string
+  userInputMessage: string
   setUserInput: React.Dispatch<React.SetStateAction<string>>
   handleStepCheck: (aiExample?: string) => void
   aiInputFeedback: string
@@ -15,8 +17,9 @@ type UserInputProps = {
 }
 
 const UserInput: React.FC<UserInputProps> = ({
+  errorMessage,
   userInputId,
-  inventiveMessage,
+  userInputMessage,
   setUserInput,
   handleStepCheck,
   aiInputFeedback,
@@ -51,8 +54,8 @@ const UserInput: React.FC<UserInputProps> = ({
     )
   }, [aiInputFeedbackSuccess, userInputId])
 
-  // Check if the inventiveMessage is empty
-  const isInputEmpty = !inventiveMessage.trim()
+  // Check if the userInput is empty
+  const isInputEmpty = !userInputMessage.trim()
   const isTextFieldDisabled = inputStep && aiInputFeedbackSuccess === 'success'
 
   return (
@@ -61,7 +64,7 @@ const UserInput: React.FC<UserInputProps> = ({
         fullWidth
         multiline
         minRows={5}
-        value={inventiveMessage}
+        value={userInputMessage}
         onChange={(e) => setUserInput(e.target.value)}
         placeholder={t('inventorsAssistant:chatBoxPlaceholder')}
         disabled={isTextFieldDisabled}
@@ -91,15 +94,24 @@ const UserInput: React.FC<UserInputProps> = ({
           {buttonText}
         </Button>
       )}
-
       {inputStep && (
-        <LlmInputFeedback
-          aiInputFeedback={aiInputFeedback}
-          alertSeverity={aiInputFeedbackSuccess}
-          aiElaboration={aiElaboration}
-          setUserInput={setUserInput}
-          handleStepCheck={handleStepCheck}
-        />
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        <>
+          {errorMessage ? (
+            <ErrorAlert
+              error={errorMessage}
+              handleTryAgain={() => handleStepCheck(userInputMessage)}
+            />
+          ) : (
+            <LlmInputFeedback
+              aiInputFeedback={aiInputFeedback}
+              alertSeverity={aiInputFeedbackSuccess}
+              aiElaboration={aiElaboration}
+              setUserInput={setUserInput}
+              handleStepCheck={handleStepCheck}
+            />
+          )}
+        </>
       )}
     </Box>
   )
