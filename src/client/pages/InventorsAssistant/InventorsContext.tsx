@@ -16,6 +16,8 @@ interface InventorsContextValue {
   setAiResponse1: React.Dispatch<React.SetStateAction<string>>
   aiResponse1Ready: boolean
   setAiResponse1Ready: React.Dispatch<React.SetStateAction<boolean>>
+  aiResponse1Error: string | null
+  setAiResponse1Error: React.Dispatch<React.SetStateAction<string | null>>
   aiResponse2: string
   setAiResponse2: React.Dispatch<React.SetStateAction<string>>
   aiResponse3: string
@@ -76,6 +78,13 @@ const InventorsContextProvider = ({
     return saved ? JSON.parse(saved) : false
   })
 
+  const [aiResponse1Error, setAiResponse1Error] = useState<string | null>(
+    () => {
+      const saved = sessionStorage.getItem('aiResponse1Error')
+      return saved ? JSON.parse(saved) : null
+    }
+  )
+
   const [aiResponse2, setAiResponse2] = useState<string>(() => {
     const saved = sessionStorage.getItem('aiResponse2')
     return saved ? JSON.parse(saved) : ''
@@ -107,6 +116,11 @@ const InventorsContextProvider = ({
   })
 
   // Save state to sessionStorage on change
+
+  useEffect(() => {
+    sessionStorage.setItem('aiResponse1Error', JSON.stringify(aiResponse1Error))
+  }, [aiResponse1Error])
+
   useEffect(() => {
     sessionStorage.setItem('currentStep', JSON.stringify(currentStep))
   }, [currentStep])
@@ -172,6 +186,8 @@ const InventorsContextProvider = ({
       setAiResponse1,
       aiResponse1Ready,
       setAiResponse1Ready,
+      aiResponse1Error,
+      setAiResponse1Error,
       aiResponse2,
       setAiResponse2,
       aiResponse3,
@@ -192,6 +208,7 @@ const InventorsContextProvider = ({
       industrialMessage,
       aiResponse1,
       aiResponse1Ready,
+      aiResponse1Error,
       aiResponse2,
       aiResponse3,
       aiResponse4,
