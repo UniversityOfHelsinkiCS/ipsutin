@@ -26,6 +26,8 @@ interface InventorsContextValue {
   setAiResponse4: React.Dispatch<React.SetStateAction<string>>
   aiResponse4Ready: boolean
   setAiResponse4Ready: React.Dispatch<React.SetStateAction<boolean>>
+  aiResponse4Error: string | null
+  setAiResponse4Error: React.Dispatch<React.SetStateAction<string | null>>
   editModeGlobal: boolean
   setEditModeGlobal: React.Dispatch<React.SetStateAction<boolean>>
   messages: Message[]
@@ -104,7 +106,12 @@ const InventorsContextProvider = ({
     const saved = sessionStorage.getItem('aiResponse4Ready')
     return saved ? JSON.parse(saved) : false
   })
-
+  const [aiResponse4Error, setAiResponse4Error] = useState<string | null>(
+    () => {
+      const saved = sessionStorage.getItem('aiResponse4Error')
+      return saved ? JSON.parse(saved) : null
+    }
+  )
   const [editModeGlobal, setEditModeGlobal] = useState<boolean>(() => {
     const saved = sessionStorage.getItem('editModeGlobal')
     return saved ? JSON.parse(saved) : false
@@ -120,6 +127,10 @@ const InventorsContextProvider = ({
   useEffect(() => {
     sessionStorage.setItem('aiResponse1Error', JSON.stringify(aiResponse1Error))
   }, [aiResponse1Error])
+
+  useEffect(() => {
+    sessionStorage.setItem('aiResponse4Error', JSON.stringify(aiResponse4Error))
+  }, [aiResponse4Error])
 
   useEffect(() => {
     sessionStorage.setItem('currentStep', JSON.stringify(currentStep))
@@ -188,6 +199,8 @@ const InventorsContextProvider = ({
       setAiResponse1Ready,
       aiResponse1Error,
       setAiResponse1Error,
+      aiResponse4Error,
+      setAiResponse4Error,
       aiResponse2,
       setAiResponse2,
       aiResponse3,
@@ -209,6 +222,7 @@ const InventorsContextProvider = ({
       aiResponse1,
       aiResponse1Ready,
       aiResponse1Error,
+      aiResponse4Error,
       aiResponse2,
       aiResponse3,
       aiResponse4,
