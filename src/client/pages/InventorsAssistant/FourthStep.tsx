@@ -4,6 +4,7 @@ import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
 
+import ErrorAlert from './ErrorAlert'
 import LlmResponse from './LlmResponse'
 
 type FourthStepProps = {
@@ -12,6 +13,8 @@ type FourthStepProps = {
   aiResponse: string
   aiResponseReady: boolean
   setEditModeGlobal: Dispatch<SetStateAction<boolean>>
+  aiResponseError: string | null
+  handleTryAgain: () => void
 }
 
 const FourthStep = ({
@@ -20,6 +23,8 @@ const FourthStep = ({
   aiResponse,
   aiResponseReady,
   setEditModeGlobal,
+  aiResponseError,
+  handleTryAgain,
 }: FourthStepProps) => (
   <>
     <SectionHeading level='h2' sx={{ mt: 8 }}>
@@ -47,13 +52,20 @@ const FourthStep = ({
       {t('inventorsAssistant:step4text3')}
     </Typography>
 
-    <LlmResponse
-      current={current}
-      aiResponse={aiResponse}
-      aiResponseReady={aiResponseReady}
-      setEditedResponse={setAiResponse3}
-      setEditModeGlobal={setEditModeGlobal}
-    />
+    {aiResponseError ? (
+      <ErrorAlert
+        error={aiResponseError}
+        handleTryAgain={() => handleTryAgain()}
+      />
+    ) : (
+      <LlmResponse
+        current={current}
+        aiResponse={aiResponse}
+        aiResponseReady={aiResponseReady}
+        setEditedResponse={setAiResponse3}
+        setEditModeGlobal={setEditModeGlobal}
+      />
+    )}
   </>
 )
 

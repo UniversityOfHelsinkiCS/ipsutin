@@ -11,8 +11,12 @@ import { t } from 'i18next'
 
 import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
+import { fetchStream } from '../../util/apiClient'
 
+import ErrorAlert from './ErrorAlert'
 import InventionReport from './InventionReport'
+import { useInventorsContext } from './InventorsContext'
+import processStream from './StreamReader'
 
 type FinalStepProps = {
   aiResponse: string
@@ -38,67 +42,107 @@ const FinalStep = ({
   industrialApplicability,
   claims,
   setAiResponse4,
-}: FinalStepProps) => (
-  <Box>
-    <SectionHeading level='h1' sx={{ mt: 8 }}>
-      {t('inventorsAssistant:finalStepHeader1')}
-    </SectionHeading>
+}: FinalStepProps) => {
+  const {
+    aiResponse1,
+    aiResponse2,
+    aiResponse3,
+    setAiResponse4Ready,
+    aiResponse4Error,
+    setAiResponse4Error,
+    messages,
+  } = useInventorsContext()
 
-    <Typography variant='body1' sx={{ mt: 2 }}>
-      {t('inventorsAssistant:finalStepText1')}
-    </Typography>
+  const handleLastStep = async () => {
+    setAiResponse4Error(null)
+    setAiResponse4('')
 
-    <InventionReport
-      aiResponse={aiResponse}
-      aiResponseReady={aiResponseReady}
-      setAiResponse={setAiResponse4}
-      headingLevel='h2'
-    />
+    const { stream, error } = await fetchStream('/llm/step4', {
+      aiResponse1,
+      aiResponse2,
+      aiResponse3,
+      messages,
+    })
 
-    <Accordion defaultExpanded={false}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepOriginalIdea')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails sx={styles.accordionDetails}>
-        <Markdown>{originalIdea}</Markdown>
-      </AccordionDetails>
-    </Accordion>
+    if (error) {
+      setAiResponse4Error(`An error occurred: ${error}`)
+      return
+    }
 
-    <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepRefinedIdea')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails sx={styles.accordionDetails}>
-        <Markdown>{ideaRefinement}</Markdown>
-      </AccordionDetails>
-    </Accordion>
+    if (stream) {
+      await processStream(stream, setAiResponse4, setAiResponse4Ready)
+    } else {
+      setAiResponse4Error('An unknown error occurred.')
+    }
+  }
+  return (
+    <Box>
+      <SectionHeading level='h1' sx={{ mt: 8 }}>
+        {t('inventorsAssistant:finalStepHeader1')}
+      </SectionHeading>
 
-    <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepIndustrialApplicability')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails sx={styles.accordionDetails}>
-        <Markdown>{industrialApplicability}</Markdown>
-      </AccordionDetails>
-    </Accordion>
+      <Typography variant='body1' sx={{ mt: 2 }}>
+        {t('inventorsAssistant:finalStepText1')}
+      </Typography>
+      {aiResponse4Error ? (
+        <ErrorAlert
+          error={aiResponse4Error}
+          handleTryAgain={() => handleLastStep()}
+        />
+      ) : (
+        <InventionReport
+          aiResponse={aiResponse}
+          aiResponseReady={aiResponseReady}
+          setAiResponse={setAiResponse4}
+          headingLevel='h2'
+        />
+      )}
 
-    <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <SectionHeading level='h3'>
-          {t('inventorsAssistant:finalStepClaims')}
-        </SectionHeading>
-      </AccordionSummary>
-      <AccordionDetails sx={styles.accordionDetails}>
-        <Markdown>{claims}</Markdown>
-      </AccordionDetails>
-    </Accordion>
-  </Box>
-)
+      <Accordion defaultExpanded={false}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepOriginalIdea')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails sx={styles.accordionDetails}>
+          <Markdown>{originalIdea}</Markdown>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepRefinedIdea')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails sx={styles.accordionDetails}>
+          <Markdown>{ideaRefinement}</Markdown>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepIndustrialApplicability')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails sx={styles.accordionDetails}>
+          <Markdown>{industrialApplicability}</Markdown>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <SectionHeading level='h3'>
+            {t('inventorsAssistant:finalStepClaims')}
+          </SectionHeading>
+        </AccordionSummary>
+        <AccordionDetails sx={styles.accordionDetails}>
+          <Markdown>{claims}</Markdown>
+        </AccordionDetails>
+      </Accordion>
+    </Box>
+  )
+}
 
 export default FinalStep

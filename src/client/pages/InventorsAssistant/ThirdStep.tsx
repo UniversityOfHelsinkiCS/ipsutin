@@ -4,6 +4,7 @@ import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
 
+import ErrorAlert from './ErrorAlert'
 import LlmResponse from './LlmResponse'
 
 type ThirdStepProps = {
@@ -12,6 +13,8 @@ type ThirdStepProps = {
   aiResponse: string
   aiResponseReady: boolean
   setEditModeGlobal: Dispatch<SetStateAction<boolean>>
+  aiResponseError: string | null
+  handleTryAgain: () => void
 }
 
 const ThirdStep: React.FC<ThirdStepProps> = ({
@@ -20,6 +23,8 @@ const ThirdStep: React.FC<ThirdStepProps> = ({
   aiResponse,
   aiResponseReady,
   setEditModeGlobal,
+  aiResponseError,
+  handleTryAgain,
 }) => (
   <>
     <Box component='section' sx={{ mt: 4 }}>
@@ -32,13 +37,20 @@ const ThirdStep: React.FC<ThirdStepProps> = ({
     </Box>
 
     <Box component='section' sx={{ mt: 4 }}>
-      <LlmResponse
-        current={current}
-        aiResponse={aiResponse}
-        aiResponseReady={aiResponseReady}
-        setEditedResponse={setAiResponse2}
-        setEditModeGlobal={setEditModeGlobal}
-      />
+      {aiResponseError ? (
+        <ErrorAlert
+          error={aiResponseError}
+          handleTryAgain={() => handleTryAgain()}
+        />
+      ) : (
+        <LlmResponse
+          current={current}
+          aiResponse={aiResponse}
+          aiResponseReady={aiResponseReady}
+          setEditedResponse={setAiResponse2}
+          setEditModeGlobal={setEditModeGlobal}
+        />
+      )}
     </Box>
   </>
 )
