@@ -41,6 +41,7 @@ const AIAssistants = () => {
           size='large'
           component={Link}
           to='/inventors-assistant'
+          onClick={() => sessionStorage.clear()}
           sx={{
             mx: 'auto',
             px: 4,
