@@ -21,6 +21,7 @@ const LlmResponse = ({
 }: LlmResponseProps) => {
   const [editMode, setEditMode] = useState(false)
   const [editedResponse, setEditedResponseLocally] = useState('')
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     if (!editMode) {
@@ -77,18 +78,36 @@ const LlmResponse = ({
             <Markdown>{aiResponse}</Markdown>
           </Alert>
           {aiResponse && aiResponseReady && current && (
-            <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                mt: 2,
+                position: 'relative',
+                minHeight: '56px', // Ensures space is reserved for the Alert
+              }}
+            >
               <Button
                 data-cy='edit-ai-response-button'
                 variant='contained'
-                sx={{ borderRadius: '0.5rem', mr: 2, minWidth: '170px' }}
+                sx={{ borderRadius: '0.5rem', mr: 2, whiteSpace: 'nowrap' }}
                 onClick={toggleEditMode}
                 color='primary'
                 type='button'
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
                 {t('inventorsAssistant:EditButton')}
               </Button>
-              <Alert severity='info' sx={{ py: 1, px: 2, width: 'flex' }}>
+              <Alert
+                severity='info'
+                sx={{
+                  py: 1,
+                  px: 2,
+                  width: 'flex',
+                  visibility: isHovered ? 'visible' : 'hidden',
+                }}
+              >
                 <Markdown>{t('inventorsAssistant:EditInfo')}</Markdown>
               </Alert>
             </Box>
