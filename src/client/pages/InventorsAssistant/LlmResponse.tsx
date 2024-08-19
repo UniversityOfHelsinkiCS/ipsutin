@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Alert, Box, Button, TextField } from '@mui/material'
+import { t } from 'i18next'
 
 import Markdown from '../../components/Common/Markdown'
 
@@ -43,7 +44,7 @@ const LlmResponse = ({
   if (!aiResponse) {
     return (
       <Box sx={{ my: 4 }}>
-        <Alert severity='info'>The Assistant is thinking...</Alert>
+        <Alert severity='info'>{t('inventorsAssistant:AiThinking')}</Alert>
       </Box>
     )
   }
@@ -76,16 +77,21 @@ const LlmResponse = ({
             <Markdown>{aiResponse}</Markdown>
           </Alert>
           {aiResponse && aiResponseReady && current && (
-            <Button
-              data-cy='edit-ai-response-button'
-              variant='contained'
-              sx={{ mt: 2, borderRadius: '0.5rem' }}
-              onClick={toggleEditMode}
-              color='primary'
-              type='button'
-            >
-              Edit AI Response
-            </Button>
+            <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+              <Button
+                data-cy='edit-ai-response-button'
+                variant='contained'
+                sx={{ borderRadius: '0.5rem', mr: 2, minWidth: '170px' }}
+                onClick={toggleEditMode}
+                color='primary'
+                type='button'
+              >
+                {t('inventorsAssistant:EditButton')}
+              </Button>
+              <Alert severity='info' sx={{ py: 1, px: 2, width: 'flex' }}>
+                <Markdown>{t('inventorsAssistant:EditInfo')}</Markdown>
+              </Alert>
+            </Box>
           )}
         </>
       )}
