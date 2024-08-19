@@ -237,7 +237,10 @@
     "finalStepClaims": "Claims",
     "finalStepSummary": "Summary of the idea",
     "tryAgain": "Try Again",
+    "AiThinking": "The Assistant is thinking...",
 
+    "EditButton": "Edit AI Response",
+    "EditInfo": "**Edit the AI-response to make sure it reflects your idea.**",
     "chatBoxPlaceholder": "Enter your idea...",
     "chatBoxHeader": "Start chatting",
     "WeNeedFeedbackHeader": "We need feedback!",
