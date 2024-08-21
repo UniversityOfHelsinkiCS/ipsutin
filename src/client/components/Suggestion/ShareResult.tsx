@@ -13,11 +13,19 @@ import {
 } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 
+import { INNOVATION_SERVICES_EMAIL } from '../../../config'
 import { ShareResultEmails, ShareResultsZod } from '../../../validators/emails'
 import { useLoggedInUser } from '../../hooks/useUser'
 import sendEmail from '../../util/mailing'
 import Markdown from '../Common/Markdown'
 import SectionHeading from '../Common/SectionHeading'
+
+import HoverCheckbox from './HoverCheckBox'
+
+// Define the form data interface
+interface ShareResultFormValues {
+  emails: string[] // Define emails as an array of strings
+}
 
 interface ShareResultProps {
   emailSubject: string
@@ -28,6 +36,9 @@ const ShareResult = ({ emailSubject, templateComponent }: ShareResultProps) => {
   const { t } = useTranslation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
+  const [yourselfChecked, setYourselfChecked] = useState(true)
+  const [InnovationServicesChecked, setInnovationServicesChecked] =
+    useState(false)
 
   const resultHTML = sessionStorage.getItem('ipsutin-session-resultHTML')
 
@@ -36,11 +47,12 @@ const ShareResult = ({ emailSubject, templateComponent }: ShareResultProps) => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+    setValue,
+  } = useForm<ShareResultFormValues>({
     mode: 'all',
     resolver: zodResolver(ShareResultsZod),
     defaultValues: {
-      emails: [''],
+      emails: [],
     },
   })
 
@@ -51,8 +63,12 @@ const ShareResult = ({ emailSubject, templateComponent }: ShareResultProps) => {
   useEffect(() => {
     if (!user?.email) return
 
-    reset({ emails: [user.email] })
-  }, [reset, user])
+    const emails: string[] = [] // Explicitly type the emails array
+    if (yourselfChecked) emails.push(user.email)
+    if (InnovationServicesChecked) emails.push(INNOVATION_SERVICES_EMAIL)
+
+    setValue('emails', emails) // This should now be correctly typed
+  }, [reset, user, yourselfChecked, InnovationServicesChecked, setValue])
 
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
@@ -88,6 +104,21 @@ const ShareResult = ({ emailSubject, templateComponent }: ShareResultProps) => {
       <Markdown>{t('extraAction:shareResultsContent')}</Markdown>
 
       <form onSubmit={handleSubmit(onSubmit)}>
+        <HoverCheckbox
+          checkBoxChecked={yourselfChecked}
+          setCheckBoxChecked={setYourselfChecked}
+          isSent={isSent}
+          label={t('extraAction:shareResultsYourself')}
+          alertLabel={t('extraAction:shareResultsYourselfAlertLabel')}
+        />
+        <HoverCheckbox
+          checkBoxChecked={InnovationServicesChecked}
+          setCheckBoxChecked={setInnovationServicesChecked}
+          isSent={isSent}
+          label={t('extraAction:shareResultsInnovationServices')}
+          alertLabel={t('extraAction:shareResultsInnovationServicesAlertLabel')}
+        />
+
         <Controller
           name='emails'
           control={control}
