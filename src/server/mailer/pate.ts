@@ -10,7 +10,7 @@ const settings = {
   hideToska: false,
   disableToska: true,
   color: 'black',
-  header: 'Ipsutin robot',
+  header: `Inventor's Assistant`,
   headerFontColor: 'white',
   dryrun: !inProduction || inStaging,
 }
@@ -27,7 +27,7 @@ const sendEmail = async (targets: string[], text: string, subject: string) => {
 
   const mail = {
     template: {
-      from: 'Ipsutin robot',
+      from: `Inventor's Assistant`,
       text,
     },
     emails,
