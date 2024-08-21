@@ -19,6 +19,9 @@ export const IDEA_EVALUATION_DATA_KEY = 'ipsutin_idea_evaluation_local_save'
 
 export const IP_ASSESSMENT_DATA_KEY = 'ipsutin_ip_assessment_local_save'
 
+export const INNOVATION_SERVICES_EMAIL =
+  process.env.INNOVATION_SERVICES_EMAIL || 'innovationServices@email.com'
+
 export const validModels = [
   {
     name: 'gpt-4o',
