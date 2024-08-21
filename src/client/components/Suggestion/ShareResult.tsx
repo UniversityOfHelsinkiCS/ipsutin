@@ -72,13 +72,16 @@ const ShareResult = ({ emailSubject, templateComponent }: ShareResultProps) => {
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
 
+    const latestResultHTML = sessionStorage.getItem(
+      'ipsutin-session-resultHTML'
+    )
     const templateHTML = ReactDOMServer.renderToString(templateComponent)
 
     const subject = emailSubject
     const text = `\
     ${templateHTML}
 
-    ${resultHTML}
+    ${latestResultHTML}
     `
 
     sendEmail(emails, text, subject)
