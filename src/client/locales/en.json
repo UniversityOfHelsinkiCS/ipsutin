@@ -120,9 +120,14 @@
   "extraAction": {
     "title": "Based on your selections you may also be interested in these",
     "shareResultsTitle": "Share results",
-    "shareResultsContent": "New emails are inputted by typing the email address and pressing enter",
+    "shareResultsContent": "You can share the SUMMARY OF YOUR IDEA by adding emails to the list below. Type the email and press enter.",
+    "shareResultsDefaultOptions": "**Check the boxes to share with these:**",
+    "shareResultsYourself": "Yourself",
+    "shareResultsYourselfAlertLabel": "**Your @helsinki.fi email.**",
+    "shareResultsInnovationServices": "Innovation Services",
+    "shareResultsInnovationServicesAlertLabel": "**University of Helsinki's Innovation Services can help you take your idea to the next level.**",
     "shareResultInputPlaceholder": "Type in email addresses to share",
-    "shareResultSendEmails": "Send summary email",
+    "shareResultSendEmails": "Send summary",
     "shareResultEmailErrors": "Please fix the invalid email addresses",
     "pateSuccessMessage": "Shared results with provided email addresses",
     "pateErrorMessage": "Could not share results"
