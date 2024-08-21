@@ -1,7 +1,6 @@
 import axios from 'axios'
 import * as dotenv from 'dotenv'
 
-import { inProduction, inStaging } from '../../config'
 import { PATE_URL } from '../util/config'
 
 dotenv.config()
@@ -12,7 +11,7 @@ const settings = {
   color: 'black',
   header: `Inventor's Assistant`,
   headerFontColor: 'white',
-  dryrun: !inProduction || inStaging,
+  dryrun: false,
 }
 
 const pateClient = axios.create({
