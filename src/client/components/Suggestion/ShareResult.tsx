@@ -22,9 +22,8 @@ import SectionHeading from '../Common/SectionHeading'
 
 import HoverCheckbox from './HoverCheckBox'
 
-// Define the form data interface
 interface ShareResultFormValues {
-  emails: string[] // Define emails as an array of strings
+  emails: string[]
 }
 
 interface ShareResultProps {
@@ -63,11 +62,11 @@ const ShareResult = ({ emailSubject, templateComponent }: ShareResultProps) => {
   useEffect(() => {
     if (!user?.email) return
 
-    const emails: string[] = [] // Explicitly type the emails array
+    const emails: string[] = []
     if (yourselfChecked) emails.push(user.email)
     if (InnovationServicesChecked) emails.push(INNOVATION_SERVICES_EMAIL)
 
-    setValue('emails', emails) // This should now be correctly typed
+    setValue('emails', emails)
   }, [reset, user, yourselfChecked, InnovationServicesChecked, setValue])
 
   const onSubmit = ({ emails }: ShareResultEmails) => {
