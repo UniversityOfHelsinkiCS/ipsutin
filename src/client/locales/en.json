@@ -120,7 +120,7 @@
   "extraAction": {
     "title": "Based on your selections you may also be interested in these",
     "shareResultsTitle": "Share results",
-    "shareResultsContent": "You can share the SUMMARY OF YOUR IDEA by adding emails to the list below. Type the email and press enter.",
+    "shareResultsContent": "You can share your results by adding emails to the list below. Type the email and press enter.",
     "shareResultsDefaultOptions": "**Check the boxes to share with these:**",
     "shareResultsYourself": "Yourself",
     "shareResultsYourselfAlertLabel": "**Your @helsinki.fi email.**",
