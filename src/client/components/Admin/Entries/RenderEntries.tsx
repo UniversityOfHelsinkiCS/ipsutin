@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { EntryWithSurvey, Survey } from '@backend/types'
@@ -36,28 +35,26 @@ const RenderEntries = () => {
       field: 'Survey',
       headerName: t('admin:entryViewSurvey'),
       width: 200,
-      valueGetter: ({ value }: { value: Survey }) =>
-        t(`surveyNames:${value.name}`),
+      valueGetter: (value: Survey) => t(`surveyNames:${value.name}`),
     },
     {
       field: 'faculty',
       headerName: t('admin:entryViewFaculty'),
       width: 75,
-      valueGetter: ({ row }: { row: EntryWithSurvey }) => row.data.faculty,
+      valueGetter: (_: unknown, row: EntryWithSurvey) =>
+        t(`faculties:${row.data.faculty}`),
     },
     {
       field: 'createdAt',
       headerName: t('admin:entryViewCreated'),
       width: 175,
-      valueFormatter: ({ value }: { value: Date }) =>
-        new Date(value).toLocaleString(),
+      valueFormatter: (value: Date) => new Date(value).toLocaleString(),
     },
     {
       field: 'updatedAt',
       headerName: t('admin:entryViewUpdated'),
       width: 175,
-      valueFormatter: ({ value }: { value: Date }) =>
-        new Date(value).toLocaleString(),
+      valueFormatter: (value: Date) => new Date(value).toLocaleString(),
     },
     {
       field: 'sessionToken',

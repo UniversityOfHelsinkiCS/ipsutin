@@ -43,7 +43,7 @@ export const validModels = [
 
 // eslint-disable-next-line no-nested-ternary
 export const FULL_URL = inProduction
-  ? 'https://ipsutin.ext.ocp-prod-0.k8s.it.helsinki.fi'
+  ? 'https://innotin.helsinki.fi'
   : inStaging
     ? 'https://ipsutin.ext.ocp-test-0.k8s.it.helsinki.fi'
     : 'http://localhost:3000'
