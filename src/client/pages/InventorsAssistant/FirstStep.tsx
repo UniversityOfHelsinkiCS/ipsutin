@@ -51,8 +51,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     initialFeedbackState
   )
 
-  console.log('CURRENT STEP:', currentStep)
-
   const handleValidation = async (
     step: number,
     userInput: string,
