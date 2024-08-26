@@ -31,6 +31,13 @@ export interface InputProps {
   surveyInfo?: string
 }
 
+export type FeedbackState = {
+  aiInputFeedback: string
+  aiInputFeedbackSuccess: AiInputFeedback
+  aiElaboration: string
+  errorMessage: string | null
+}
+
 export interface ProductCardProps {
   title: string
   description: string
