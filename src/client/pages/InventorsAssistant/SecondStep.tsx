@@ -3,12 +3,10 @@ import { Box, Typography } from '@mui/material'
 import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
-import { fetchStream } from '../../util/apiClient'
 
 import ErrorAlert from './ErrorAlert'
 import { useInventorsContext } from './InventorsContext'
 import LlmResponse from './LlmResponse'
-import processStream from './StreamReader'
 
 type SecondStepProps = {
   current: boolean
@@ -26,34 +24,21 @@ const SecondStep = ({
   setEditModeGlobal,
 }: SecondStepProps) => {
   const {
-    inventiveMessage,
-    publicityMessage,
-    industrialMessage,
-    setAiResponse1Ready,
     aiResponse1Error,
+    setAiResponse1Ready,
     setAiResponse1Error,
+    inventiveMessage,
+    industrialMessage,
+    publicityMessage,
+    handleStep,
   } = useInventorsContext()
 
-  const handleFirstStep = async () => {
-    setAiResponse1Error(null)
-    setAiResponse1('')
-
-    const { stream, error } = await fetchStream('/llm/step1', {
+  const handleFirstStep = () => {
+    handleStep(1, setAiResponse1, setAiResponse1Ready, setAiResponse1Error, {
       inventiveMessage,
       industrialMessage,
       publicityMessage,
     })
-
-    if (error) {
-      setAiResponse1Error(`An error occurred: ${error}`)
-      return
-    }
-
-    if (stream) {
-      await processStream(stream, setAiResponse1, setAiResponse1Ready)
-    } else {
-      setAiResponse1Error('An unknown error occurred.')
-    }
   }
   return (
     <>
