@@ -11,12 +11,10 @@ import { t } from 'i18next'
 
 import Markdown from '../../components/Common/Markdown'
 import SectionHeading from '../../components/Common/SectionHeading'
-import { fetchStream } from '../../util/apiClient'
 
 import ErrorAlert from './ErrorAlert'
 import InventionReport from './InventionReport'
 import { useInventorsContext } from './InventorsContext'
-import processStream from './StreamReader'
 
 type FinalStepProps = {
   aiResponse: string
@@ -51,30 +49,18 @@ const FinalStep = ({
     aiResponse4Error,
     setAiResponse4Error,
     messages,
+    handleStep,
   } = useInventorsContext()
 
   const handleLastStep = async () => {
-    setAiResponse4Error(null)
-    setAiResponse4('')
-
-    const { stream, error } = await fetchStream('/llm/step4', {
+    handleStep(4, setAiResponse4, setAiResponse4Ready, setAiResponse4Error, {
       aiResponse1,
       aiResponse2,
       aiResponse3,
       messages,
     })
-
-    if (error) {
-      setAiResponse4Error(`An error occurred: ${error}`)
-      return
-    }
-
-    if (stream) {
-      await processStream(stream, setAiResponse4, setAiResponse4Ready)
-    } else {
-      setAiResponse4Error('An unknown error occurred.')
-    }
   }
+
   return (
     <Box>
       <SectionHeading level='h1' sx={{ mt: 8 }}>
