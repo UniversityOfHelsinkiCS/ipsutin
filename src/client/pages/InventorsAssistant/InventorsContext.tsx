@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
 
 import { Message } from '../../../server/types'
+import useSessionStorage from '../../hooks/useSessionStorage'
 import { fetchStream } from '../../util/apiClient'
 import getInitialMessage from '../../util/inventorInput'
 
@@ -65,133 +66,47 @@ const InventorsContextProvider = ({
     industrialMessageDynamic,
   } = getInitialMessage()
 
-  const [inventiveMessage, setInventiveMessage] = useState(() => {
-    const saved = sessionStorage.getItem('inventiveMessage')
-    return saved ? JSON.parse(saved) : inventiveMessageDynamic
-  })
-
-  const [publicityMessage, setPublicityMessage] = useState(() => {
-    const saved = sessionStorage.getItem('publicityMessage')
-    return saved ? JSON.parse(saved) : publicityMessageDynamic
-  })
-
-  const [industrialMessage, setIndustrialMessage] = useState(() => {
-    const saved = sessionStorage.getItem('industrialMessage')
-    return saved ? JSON.parse(saved) : industrialMessageDynamic
-  })
-
-  const [aiResponse1, setAiResponse1] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiResponse1')
-    return saved ? JSON.parse(saved) : ''
-  })
-
-  const [aiResponse1Ready, setAiResponse1Ready] = useState<boolean>(() => {
-    const saved = sessionStorage.getItem('aiResponse1Ready')
-    return saved ? JSON.parse(saved) : false
-  })
-
-  const [aiResponse1Error, setAiResponse1Error] = useState<string | null>(
-    () => {
-      const saved = sessionStorage.getItem('aiResponse1Error')
-      return saved ? JSON.parse(saved) : null
-    }
+  const [inventiveMessage, setInventiveMessage] = useSessionStorage(
+    'inventiveMessage',
+    inventiveMessageDynamic
+  )
+  const [publicityMessage, setPublicityMessage] = useSessionStorage(
+    'publicityMessage',
+    publicityMessageDynamic
+  )
+  const [industrialMessage, setIndustrialMessage] = useSessionStorage(
+    'industrialMessage',
+    industrialMessageDynamic
   )
 
-  const [aiResponse2, setAiResponse2] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiResponse2')
-    return saved ? JSON.parse(saved) : ''
-  })
-
-  const [aiResponse3, setAiResponse3] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiResponse3')
-    return saved ? JSON.parse(saved) : ''
-  })
-
-  const [aiResponse4, setAiResponse4] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiResponse4')
-    return saved ? JSON.parse(saved) : ''
-  })
-
-  const [aiResponse4Ready, setAiResponse4Ready] = useState<boolean>(() => {
-    const saved = sessionStorage.getItem('aiResponse4Ready')
-    return saved ? JSON.parse(saved) : false
-  })
-  const [aiResponse4Error, setAiResponse4Error] = useState<string | null>(
-    () => {
-      const saved = sessionStorage.getItem('aiResponse4Error')
-      return saved ? JSON.parse(saved) : null
-    }
+  const [aiResponse1, setAiResponse1] = useSessionStorage('aiResponse1', '')
+  const [aiResponse1Ready, setAiResponse1Ready] = useSessionStorage(
+    'aiResponse1Ready',
+    false
   )
-  const [editModeGlobal, setEditModeGlobal] = useState<boolean>(() => {
-    const saved = sessionStorage.getItem('editModeGlobal')
-    return saved ? JSON.parse(saved) : false
-  })
+  const [aiResponse1Error, setAiResponse1Error] = useSessionStorage(
+    'aiResponse1Error',
+    null
+  )
 
-  const [messages, setMessages] = useState<Message[]>(() => {
-    const saved = sessionStorage.getItem('messages')
-    return saved ? JSON.parse(saved) : []
-  })
+  const [aiResponse2, setAiResponse2] = useSessionStorage('aiResponse2', '')
+  const [aiResponse3, setAiResponse3] = useSessionStorage('aiResponse3', '')
+  const [aiResponse4, setAiResponse4] = useSessionStorage('aiResponse4', '')
+  const [aiResponse4Ready, setAiResponse4Ready] = useSessionStorage(
+    'aiResponse4Ready',
+    false
+  )
+  const [aiResponse4Error, setAiResponse4Error] = useSessionStorage(
+    'aiResponse4Error',
+    null
+  )
 
-  // Save state to sessionStorage on change
+  const [editModeGlobal, setEditModeGlobal] = useSessionStorage(
+    'editModeGlobal',
+    false
+  )
 
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse1Error', JSON.stringify(aiResponse1Error))
-  }, [aiResponse1Error])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse4Error', JSON.stringify(aiResponse4Error))
-  }, [aiResponse4Error])
-
-  useEffect(() => {
-    sessionStorage.setItem('currentStep', JSON.stringify(currentStep))
-  }, [currentStep])
-
-  useEffect(() => {
-    sessionStorage.setItem('inventiveMessage', JSON.stringify(inventiveMessage))
-  }, [inventiveMessage])
-
-  useEffect(() => {
-    sessionStorage.setItem('publicityMessage', JSON.stringify(publicityMessage))
-  }, [publicityMessage])
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      'industrialMessage',
-      JSON.stringify(industrialMessage)
-    )
-  }, [industrialMessage])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse1', JSON.stringify(aiResponse1))
-  }, [aiResponse1])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse1Ready', JSON.stringify(aiResponse1Ready))
-  }, [aiResponse1Ready])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse2', JSON.stringify(aiResponse2))
-  }, [aiResponse2])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse3', JSON.stringify(aiResponse3))
-  }, [aiResponse3])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse4', JSON.stringify(aiResponse4))
-  }, [aiResponse4])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse4Ready', JSON.stringify(aiResponse4Ready))
-  }, [aiResponse4Ready])
-
-  useEffect(() => {
-    sessionStorage.setItem('editModeGlobal', JSON.stringify(editModeGlobal))
-  }, [editModeGlobal])
-
-  useEffect(() => {
-    sessionStorage.setItem('messages', JSON.stringify(messages))
-  }, [messages])
+  const [messages, setMessages] = useSessionStorage('messages', [])
 
   const handleStep = async (
     step: number,
