@@ -60,70 +60,55 @@ const InventorPhase2 = () => {
   const [llmResponseCurrent3, setLlmResponseCurrent3] =
     useSessionStorage<boolean>('llmResponseCurrent3', true)
 
-  const handleSecondStep = async () => {
-    setAiResponse2Error(null)
-    setAiResponse2('')
+  const handleStep = async (
+    step: number,
+    setAiResponse: React.Dispatch<React.SetStateAction<string>>,
+    setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>,
+    setAiResponseError: React.Dispatch<React.SetStateAction<string | null>>,
+    aiResponseData: any
+  ) => {
+    setAiResponseError(null)
+    setAiResponse('')
 
-    const { stream, error } = await fetchStream('/llm/step2', {
-      aiResponse1,
-      messages,
-    })
+    const { stream, error } = await fetchStream(
+      `/llm/step${step}`,
+      aiResponseData
+    )
 
     if (error) {
-      setAiResponse2Error(`An error occurred: ${error}`)
+      setAiResponseError(`An error occurred: ${error}`)
       return
     }
 
     if (stream) {
-      await processStream(stream, setAiResponse2, setAiResponse2Ready)
+      await processStream(stream, setAiResponse, setAiResponseReady)
     } else {
-      setAiResponse2Error('An unknown error occurred.')
+      setAiResponseError('An unknown error occurred.')
     }
   }
 
-  const handleThirdStep = async () => {
-    setAiResponse3Error(null)
-    setAiResponse3('')
+  const handleSecondStep = () => {
+    handleStep(2, setAiResponse2, setAiResponse2Ready, setAiResponse2Error, {
+      aiResponse1,
+      messages,
+    })
+  }
 
-    const { stream, error } = await fetchStream('/llm/step3', {
+  const handleThirdStep = () => {
+    handleStep(3, setAiResponse3, setAiResponse3Ready, setAiResponse3Error, {
       aiResponse1,
       aiResponse2,
       messages,
     })
-
-    if (error) {
-      setAiResponse3Error(`An error occurred: ${error}`)
-      return
-    }
-
-    if (stream) {
-      await processStream(stream, setAiResponse3, setAiResponse3Ready)
-    } else {
-      setAiResponse3Error('An unknown error occurred.')
-    }
   }
 
-  const handleLastStep = async () => {
-    setAiResponse4Error(null)
-    setAiResponse4('')
-
-    const { stream, error } = await fetchStream('/llm/step4', {
+  const handleLastStep = () => {
+    handleStep(4, setAiResponse4, setAiResponse4Ready, setAiResponse4Error, {
       aiResponse1,
       aiResponse2,
       aiResponse3,
       messages,
     })
-
-    if (error) {
-      setAiResponse4Error(`An error occurred: ${error}`)
-      return
-    }
-
-    if (stream) {
-      await processStream(stream, setAiResponse4, setAiResponse4Ready)
-    } else {
-      setAiResponse4Error('An unknown error occurred.')
-    }
   }
 
   return (
