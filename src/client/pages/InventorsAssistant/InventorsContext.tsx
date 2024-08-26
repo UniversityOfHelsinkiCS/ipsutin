@@ -183,6 +183,20 @@ const InventorsContextProvider = ({
       editModeGlobal,
       messages,
       handleStep,
+      setCurrentStep,
+      setInventiveMessage,
+      setPublicityMessage,
+      setIndustrialMessage,
+      setAiResponse1,
+      setAiResponse1Ready,
+      setAiResponse1Error,
+      setAiResponse2,
+      setAiResponse3,
+      setAiResponse4,
+      setAiResponse4Ready,
+      setAiResponse4Error,
+      setEditModeGlobal,
+      setMessages,
     ]
   )
 
