@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
 import { Box, Button, TextField } from '@mui/material'
 import { t } from 'i18next'
+
+import useSessionStorage from '../../hooks/useSessionStorage'
 
 import ErrorAlert from './ErrorAlert'
 import LlmInputFeedback from './LlmInputFeedback'
@@ -26,33 +27,14 @@ const UserInput: React.FC<UserInputProps> = ({
   aiInputFeedbackSuccess,
   aiElaboration,
 }) => {
-  const [inputStep, setInputStep] = useState<boolean>(() => {
-    const saved = sessionStorage.getItem(`inputStep${userInputId}`)
-    return saved ? JSON.parse(saved) : false
-  })
-
-  const [buttonText, setButtonText] = useState<string>(() => {
-    const saved = sessionStorage.getItem(`buttonText${userInputId}`)
-    return saved ? JSON.parse(saved) : 'Next step'
-  })
-
-  useEffect(() => {
-    sessionStorage.setItem(`inputStep${userInputId}`, JSON.stringify(inputStep))
-  }, [inputStep, userInputId])
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      `buttonText${userInputId}`,
-      JSON.stringify(buttonText)
-    )
-  }, [buttonText, userInputId])
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      `aiInputFeedbackSuccess${userInputId}`,
-      JSON.stringify(aiInputFeedbackSuccess)
-    )
-  }, [aiInputFeedbackSuccess, userInputId])
+  const [inputStep, setInputStep] = useSessionStorage<boolean>(
+    `inputStep${userInputId}`,
+    false
+  )
+  const [buttonText, setButtonText] = useSessionStorage<string>(
+    `buttonText${userInputId}`,
+    'Next step'
+  )
 
   // Check if the userInput is empty
   const isInputEmpty = !userInputMessage.trim()
