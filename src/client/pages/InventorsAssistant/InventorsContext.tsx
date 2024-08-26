@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useCallback, useContext, useMemo } from 'react'
 
 import { Message } from '../../../server/types'
 import useSessionStorage from '../../hooks/useSessionStorage'
@@ -116,32 +116,35 @@ const InventorsContextProvider = ({
 
   const [messages, setMessages] = useSessionStorage<Message[]>('messages', [])
 
-  const handleStep = async (
-    step: number,
-    setAiResponse: React.Dispatch<React.SetStateAction<string>>,
-    setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>,
-    setAiResponseError: React.Dispatch<React.SetStateAction<string | null>>,
-    aiResponseData: any
-  ) => {
-    setAiResponseError(null)
-    setAiResponse('')
+  const handleStep = useCallback(
+    async (
+      step: number,
+      setAiResponse: React.Dispatch<React.SetStateAction<string>>,
+      setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>,
+      setAiResponseError: React.Dispatch<React.SetStateAction<string | null>>,
+      aiResponseData: any
+    ) => {
+      setAiResponseError(null)
+      setAiResponse('')
 
-    const { stream, error } = await fetchStream(
-      `/llm/step${step}`,
-      aiResponseData
-    )
+      const { stream, error } = await fetchStream(
+        `/llm/step${step}`,
+        aiResponseData
+      )
 
-    if (error) {
-      setAiResponseError(`An error occurred: ${error}`)
-      return
-    }
+      if (error) {
+        setAiResponseError(`An error occurred: ${error}`)
+        return
+      }
 
-    if (stream) {
-      await processStream(stream, setAiResponse, setAiResponseReady)
-    } else {
-      setAiResponseError('An unknown error occurred.')
-    }
-  }
+      if (stream) {
+        await processStream(stream, setAiResponse, setAiResponseReady)
+      } else {
+        setAiResponseError('An unknown error occurred.')
+      }
+    },
+    []
+  )
 
   const providerValue = useMemo(
     () => ({
