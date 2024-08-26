@@ -68,7 +68,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     try {
       feedbackState((prevState) => ({
         ...prevState,
-        errorMessage: null,
         aiInputFeedbackSuccess: 'info',
       }))
 
@@ -100,7 +99,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
           ...prevState,
           aiInputFeedbackSuccess: 'success',
           aiInputFeedback: 'Your input gave adequate information!',
-          aiElaboration: '',
         }))
         if (step === 4) setCurrentStep(4)
       }
