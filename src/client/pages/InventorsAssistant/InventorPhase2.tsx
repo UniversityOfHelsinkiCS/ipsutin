@@ -2,13 +2,11 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
 
 import useSessionStorage from '../../hooks/useSessionStorage'
-import { fetchStream } from '../../util/apiClient'
 
 import FourthStep from './FourthStep'
 import { useInventorsContext } from './InventorsContext'
 import InventorStepper from './InventorStepper'
 import SecondStep from './SecondStep'
-import processStream from './StreamReader'
 import ThirdStep from './ThirdStep'
 
 const InventorPhase2 = () => {
@@ -31,6 +29,7 @@ const InventorPhase2 = () => {
     editModeGlobal,
     setEditModeGlobal,
     messages,
+    handleStep,
   } = useInventorsContext()
 
   const [aiResponse2Ready, setAiResponse2Ready] = useSessionStorage<boolean>(
@@ -59,33 +58,6 @@ const InventorPhase2 = () => {
 
   const [llmResponseCurrent3, setLlmResponseCurrent3] =
     useSessionStorage<boolean>('llmResponseCurrent3', true)
-
-  const handleStep = async (
-    step: number,
-    setAiResponse: React.Dispatch<React.SetStateAction<string>>,
-    setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>,
-    setAiResponseError: React.Dispatch<React.SetStateAction<string | null>>,
-    aiResponseData: any
-  ) => {
-    setAiResponseError(null)
-    setAiResponse('')
-
-    const { stream, error } = await fetchStream(
-      `/llm/step${step}`,
-      aiResponseData
-    )
-
-    if (error) {
-      setAiResponseError(`An error occurred: ${error}`)
-      return
-    }
-
-    if (stream) {
-      await processStream(stream, setAiResponse, setAiResponseReady)
-    } else {
-      setAiResponseError('An unknown error occurred.')
-    }
-  }
 
   const handleSecondStep = () => {
     handleStep(2, setAiResponse2, setAiResponse2Ready, setAiResponse2Error, {
