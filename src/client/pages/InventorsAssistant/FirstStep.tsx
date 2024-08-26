@@ -58,7 +58,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
     initialFeedbackState
   )
 
-  const handleCheck = async (
+  const handleValidation = async (
     step: number,
     userInput: string,
     feedbackState: React.Dispatch<React.SetStateAction<FeedbackState>>,
@@ -128,15 +128,15 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }
 
-  const handleFirstCheck = async () => {
-    await handleCheck(2, inventiveMessage, setFeedback1, 0)
+  const handleFirstValidation = async () => {
+    await handleValidation(2, inventiveMessage, setFeedback1, 0)
   }
 
-  const handleSecondCheck = async () => {
-    await handleCheck(3, publicityMessage, setFeedback2, 1)
+  const handleSecondValidation = async () => {
+    await handleValidation(3, publicityMessage, setFeedback2, 1)
   }
 
-  const handleThirdCheck = async () => {
+  const handleThirdValidation = async () => {
     await handleCheck(4, industrialMessage, setFeedback3, 2)
   }
 
@@ -178,7 +178,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
         userInputId={1}
         userInputMessage={inventiveMessage}
         setUserInput={setInventiveMessage}
-        handleStepCheck={handleFirstCheck}
+        handleStepCheck={handleFirstValidation}
         aiInputFeedback={feedback1.aiInputFeedback}
         aiInputFeedbackSuccess={feedback1.aiInputFeedbackSuccess}
         aiElaboration={feedback1.aiElaboration}
@@ -197,7 +197,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             userInputId={2}
             userInputMessage={publicityMessage}
             setUserInput={setPublicityMessage}
-            handleStepCheck={handleSecondCheck}
+            handleStepCheck={handleSecondValidation}
             aiInputFeedback={feedback2.aiInputFeedback}
             aiInputFeedbackSuccess={feedback2.aiInputFeedbackSuccess}
             aiElaboration={feedback2.aiElaboration}
@@ -218,7 +218,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             userInputId={3}
             userInputMessage={industrialMessage}
             setUserInput={setIndustrialMessage}
-            handleStepCheck={handleThirdCheck}
+            handleStepCheck={handleThirdValidation}
             aiInputFeedback={feedback3.aiInputFeedback}
             aiInputFeedbackSuccess={feedback3.aiInputFeedbackSuccess}
             aiElaboration={feedback3.aiElaboration}
