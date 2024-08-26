@@ -1,7 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import { Message } from '../../../server/types'
+import { fetchStream } from '../../util/apiClient'
 import getInitialMessage from '../../util/inventorInput'
+
+import processStream from './StreamReader'
 
 interface InventorsContextValue {
   currentStep: number
@@ -32,6 +35,13 @@ interface InventorsContextValue {
   setEditModeGlobal: React.Dispatch<React.SetStateAction<boolean>>
   messages: Message[]
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>
+  handleStep: (
+    step: number,
+    setAiResponse: React.Dispatch<React.SetStateAction<string>>,
+    setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>,
+    setAiResponseError: React.Dispatch<React.SetStateAction<string | null>>,
+    aiResponseData: any
+  ) => Promise<void>
 }
 
 const InventorsContext = createContext<InventorsContextValue | undefined>(
@@ -183,6 +193,33 @@ const InventorsContextProvider = ({
     sessionStorage.setItem('messages', JSON.stringify(messages))
   }, [messages])
 
+  const handleStep = async (
+    step: number,
+    setAiResponse: React.Dispatch<React.SetStateAction<string>>,
+    setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>,
+    setAiResponseError: React.Dispatch<React.SetStateAction<string | null>>,
+    aiResponseData: any
+  ) => {
+    setAiResponseError(null)
+    setAiResponse('')
+
+    const { stream, error } = await fetchStream(
+      `/llm/step${step}`,
+      aiResponseData
+    )
+
+    if (error) {
+      setAiResponseError(`An error occurred: ${error}`)
+      return
+    }
+
+    if (stream) {
+      await processStream(stream, setAiResponse, setAiResponseReady)
+    } else {
+      setAiResponseError('An unknown error occurred.')
+    }
+  }
+
   const providerValue = useMemo(
     () => ({
       currentStep,
@@ -213,6 +250,7 @@ const InventorsContextProvider = ({
       setEditModeGlobal,
       messages,
       setMessages,
+      handleStep,
     }),
     [
       currentStep,
@@ -229,6 +267,7 @@ const InventorsContextProvider = ({
       aiResponse4Ready,
       editModeGlobal,
       messages,
+      handleStep,
     ]
   )
 
