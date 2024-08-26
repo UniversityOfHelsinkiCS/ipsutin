@@ -84,7 +84,7 @@ const LlmResponse = ({
                 alignItems: 'center',
                 mt: 2,
                 position: 'relative',
-                minHeight: '56px', // Ensures space is reserved for the Alert
+                minHeight: '56px',
               }}
             >
               <Button
