@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
 
+import useSessionStorage from '../../hooks/useSessionStorage'
 import { fetchStream } from '../../util/apiClient'
 
 import FourthStep from './FourthStep'
@@ -33,75 +33,32 @@ const InventorPhase2 = () => {
     messages,
   } = useInventorsContext()
 
-  const [aiResponse2Ready, setAiResponse2Ready] = useState<boolean>(() => {
-    const saved = sessionStorage.getItem('aiResponse2Ready')
-    return saved ? JSON.parse(saved) : false
-  })
-
-  const [aiResponse2Error, setAiResponse2Error] = useState<string | null>(
-    () => {
-      const saved = sessionStorage.getItem('aiResponse2Error')
-      return saved ? JSON.parse(saved) : null
-    }
+  const [aiResponse2Ready, setAiResponse2Ready] = useSessionStorage<boolean>(
+    'aiResponse2Ready',
+    false
   )
 
-  const [aiResponse3Ready, setAiResponse3Ready] = useState<boolean>(() => {
-    const saved = sessionStorage.getItem('aiResponse3Ready')
-    return saved ? JSON.parse(saved) : false
-  })
+  const [aiResponse2Error, setAiResponse2Error] = useSessionStorage<
+    string | null
+  >('aiResponse2Error', null)
 
-  const [aiResponse3Error, setAiResponse3Error] = useState<string | null>(
-    () => {
-      const saved = sessionStorage.getItem('aiResponse2Error')
-      return saved ? JSON.parse(saved) : null
-    }
+  const [aiResponse3Ready, setAiResponse3Ready] = useSessionStorage<boolean>(
+    'aiResponse3Ready',
+    false
   )
 
-  const [llmResponseCurrent1, setLlmResponseCurrent1] = useState<boolean>(
-    () => {
-      const saved = sessionStorage.getItem('llmResponseCurrent1')
-      return saved ? JSON.parse(saved) : true
-    }
-  )
-  const [llmResponseCurrent2, setLlmResponseCurrent2] = useState<boolean>(
-    () => {
-      const saved = sessionStorage.getItem('llmResponseCurrent2')
-      return saved ? JSON.parse(saved) : true
-    }
-  )
-  const [llmResponseCurrent3, setLlmResponseCurrent3] = useState<boolean>(
-    () => {
-      const saved = sessionStorage.getItem('llmResponseCurrent3')
-      return saved ? JSON.parse(saved) : true
-    }
-  )
+  const [aiResponse3Error, setAiResponse3Error] = useSessionStorage<
+    string | null
+  >('aiResponse3Error', null)
 
-  useEffect(() => {
-    sessionStorage.setItem(
-      'llmResponseCurrent1',
-      JSON.stringify(llmResponseCurrent1)
-    )
-  }, [llmResponseCurrent1])
-  useEffect(() => {
-    sessionStorage.setItem(
-      'llmResponseCurrent2',
-      JSON.stringify(llmResponseCurrent2)
-    )
-  }, [llmResponseCurrent2])
-  useEffect(() => {
-    sessionStorage.setItem(
-      'llmResponseCurrent3',
-      JSON.stringify(llmResponseCurrent3)
-    )
-  }, [llmResponseCurrent3])
+  const [llmResponseCurrent1, setLlmResponseCurrent1] =
+    useSessionStorage<boolean>('llmResponseCurrent1', true)
 
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse2Ready', JSON.stringify(aiResponse2Ready))
-  }, [aiResponse2Ready])
+  const [llmResponseCurrent2, setLlmResponseCurrent2] =
+    useSessionStorage<boolean>('llmResponseCurrent2', true)
 
-  useEffect(() => {
-    sessionStorage.setItem('aiResponse3Ready', JSON.stringify(aiResponse3Ready))
-  }, [aiResponse3Ready])
+  const [llmResponseCurrent3, setLlmResponseCurrent3] =
+    useSessionStorage<boolean>('llmResponseCurrent3', true)
 
   const handleSecondStep = async () => {
     setAiResponse2Error(null)
