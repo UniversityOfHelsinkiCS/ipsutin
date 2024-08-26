@@ -137,7 +137,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
   }
 
   const handleThirdValidation = async () => {
-    await handleCheck(4, industrialMessage, setFeedback3, 2)
+    await handleValidation(4, industrialMessage, setFeedback3, 2)
   }
 
   return (
