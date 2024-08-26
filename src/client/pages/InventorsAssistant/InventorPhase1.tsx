@@ -1,14 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
 
-import { fetchStream } from '../../util/apiClient'
-
 import FirstStep from './FirstStep'
 import InventorsIllustration from './InventorIllustration'
 import { useInventorsContext } from './InventorsContext'
 import InventorStepper from './InventorStepper'
 import StepZero from './StepZero'
-import processStream from './StreamReader'
 
 const InventorPhase1 = () => {
   const navigate = useNavigate()
@@ -25,28 +22,15 @@ const InventorPhase1 = () => {
     setAiResponse1,
     setAiResponse1Ready,
     setAiResponse1Error,
+    handleStep,
   } = useInventorsContext()
 
-  const handleFirstStep = async () => {
-    setAiResponse1Error(null)
-    setAiResponse1('')
-
-    const { stream, error } = await fetchStream('/llm/step1', {
+  const handleFirstStep = () => {
+    handleStep(1, setAiResponse1, setAiResponse1Ready, setAiResponse1Error, {
       inventiveMessage,
       industrialMessage,
       publicityMessage,
     })
-
-    if (error) {
-      setAiResponse1Error(`An error occurred: ${error}`)
-      return
-    }
-
-    if (stream) {
-      await processStream(stream, setAiResponse1, setAiResponse1Ready)
-    } else {
-      setAiResponse1Error('An unknown error occurred.')
-    }
   }
 
   return (
