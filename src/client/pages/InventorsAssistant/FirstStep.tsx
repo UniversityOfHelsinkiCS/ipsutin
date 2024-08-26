@@ -1,13 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Alert, Box, List, ListItemText, Typography } from '@mui/material'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
+import useSessionStorage from '../../hooks/useSessionStorage'
 import { AiInputFeedback } from '../../types'
 import apiClient from '../../util/apiClient'
 
 import UserInput from './UserInput'
+
+type FeedbackState = {
+  aiInputFeedback: string
+  aiInputFeedbackSuccess: AiInputFeedback
+  aiElaboration: string
+  errorMessage: string | null
+}
+
+const initialFeedbackState: FeedbackState = {
+  aiInputFeedback: '',
+  aiInputFeedbackSuccess: 'info',
+  errorMessage: null,
+  aiElaboration: '',
+}
 
 type FirstStepProps = {
   currentStep: number
@@ -30,247 +45,99 @@ const FirstStep: React.FC<FirstStepProps> = ({
   industrialMessage,
   setIndustrialMessage,
 }) => {
-  const [aiInputFeedback1, setAiInputFeedback1] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiInputFeedback1')
-    return saved ? JSON.parse(saved) : ''
-  })
-  const [aiInputFeedbackSuccess1, setAiInputFeedbackSuccess1] =
-    useState<AiInputFeedback>(() => {
-      const saved = sessionStorage.getItem('aiInputFeedbackSuccess1')
-      return saved ? JSON.parse(saved) : 'info'
-    })
-  const [aiElaboration1, setAiElaboration1] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiElaboration1')
-    return saved ? JSON.parse(saved) : ''
-  })
+  const [feedback1, setFeedback1] = useSessionStorage<FeedbackState>(
+    'feedback1',
+    initialFeedbackState
+  )
+  const [feedback2, setFeedback2] = useSessionStorage<FeedbackState>(
+    'feedback2',
+    initialFeedbackState
+  )
+  const [feedback3, setFeedback3] = useSessionStorage<FeedbackState>(
+    'feedback3',
+    initialFeedbackState
+  )
 
-  const [aiInputFeedback2, setAiInputFeedback2] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiInputFeedback2')
-    return saved ? JSON.parse(saved) : ''
-  })
-  const [aiInputFeedbackSuccess2, setAiInputFeedbackSuccess2] =
-    useState<AiInputFeedback>(() => {
-      const saved = sessionStorage.getItem('aiInputFeedbackSuccess2')
-      return saved ? JSON.parse(saved) : 'info'
-    })
-  const [aiElaboration2, setAiElaboration2] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiElaboration2')
-    return saved ? JSON.parse(saved) : ''
-  })
-
-  const [aiInputFeedback3, setAiInputFeedback3] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiInputFeedback3')
-    return saved ? JSON.parse(saved) : ''
-  })
-  const [aiInputFeedbackSuccess3, setAiInputFeedbackSuccess3] =
-    useState<AiInputFeedback>(() => {
-      const saved = sessionStorage.getItem('aiInputFeedbackSuccess3')
-      return saved ? JSON.parse(saved) : 'info'
-    })
-  const [aiElaboration3, setAiElaboration3] = useState<string>(() => {
-    const saved = sessionStorage.getItem('aiElaboration3')
-    return saved ? JSON.parse(saved) : ''
-  })
-
-  const [errorMessage1, setErrorMessage1] = useState<string | null>(() => {
-    const saved = sessionStorage.getItem('errorMessage1')
-    return saved ? JSON.parse(saved) : null
-  })
-
-  const [errorMessage2, setErrorMessage2] = useState<string | null>(() => {
-    const saved = sessionStorage.getItem('errorMessage2')
-    return saved ? JSON.parse(saved) : null
-  })
-
-  const [errorMessage3, setErrorMessage3] = useState<string | null>(() => {
-    const saved = sessionStorage.getItem('errorMessage3')
-    return saved ? JSON.parse(saved) : null
-  })
-
-  useEffect(() => {
-    sessionStorage.setItem('errorMessage1', JSON.stringify(errorMessage1))
-  }, [errorMessage1])
-
-  useEffect(() => {
-    sessionStorage.setItem('errorMessage2', JSON.stringify(errorMessage2))
-  }, [errorMessage2])
-
-  useEffect(() => {
-    sessionStorage.setItem('errorMessage3', JSON.stringify(errorMessage3))
-  }, [errorMessage3])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiInputFeedback1', JSON.stringify(aiInputFeedback1))
-  }, [aiInputFeedback1])
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      'aiInputFeedbackSuccess1',
-      JSON.stringify(aiInputFeedbackSuccess1)
-    )
-  }, [aiInputFeedbackSuccess1])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiElaboration1', JSON.stringify(aiElaboration1))
-  }, [aiElaboration1])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiInputFeedback2', JSON.stringify(aiInputFeedback2))
-  }, [aiInputFeedback2])
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      'aiInputFeedbackSuccess2',
-      JSON.stringify(aiInputFeedbackSuccess2)
-    )
-  }, [aiInputFeedbackSuccess2])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiElaboration2', JSON.stringify(aiElaboration2))
-  }, [aiElaboration2])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiInputFeedback3', JSON.stringify(aiInputFeedback3))
-  }, [aiInputFeedback3])
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      'aiInputFeedbackSuccess3',
-      JSON.stringify(aiInputFeedbackSuccess3)
-    )
-  }, [aiInputFeedbackSuccess3])
-
-  useEffect(() => {
-    sessionStorage.setItem('aiElaboration3', JSON.stringify(aiElaboration3))
-  }, [aiElaboration3])
-
-  const handleFirstCheck = async (aiExample?: string) => {
+  const handleCheck = async (
+    step: number,
+    userInput: string,
+    feedbackState: React.Dispatch<React.SetStateAction<FeedbackState>>,
+    validationStep: number,
+    aiElaboration?: string
+  ) => {
     try {
-      setErrorMessage1(null)
-      setCurrentStep(2)
-      setAiInputFeedbackSuccess1('info')
-      const message = aiExample || inventiveMessage
-      const response = await apiClient.post('/llm/step1check1', {
-        inventiveMessage: message,
-      })
+      feedbackState((prevState) => ({
+        ...prevState,
+        errorMessage: null,
+        aiInputFeedbackSuccess: 'info',
+      }))
 
+      setCurrentStep(step)
+
+      const requestBody = {
+        userInput: aiElaboration || userInput,
+        validationStep,
+      }
+
+      const response = await apiClient.post('llm/validation', requestBody)
       const { content } = response.data
 
       if (content.failed) {
-        setAiInputFeedbackSuccess1('warning')
-        setAiInputFeedback1(content.content)
+        feedbackState((prevState) => ({
+          ...prevState,
+          aiInputFeedbackSuccess: 'warning',
+          aiInputFeedback: content.content,
+        }))
       } else if (content.success === false) {
-        setAiInputFeedbackSuccess1('warning')
-        setAiInputFeedback1(content.feedback)
-        setAiElaboration1(content.elaboration)
+        feedbackState((prevState) => ({
+          ...prevState,
+          aiInputFeedbackSuccess: 'warning',
+          aiInputFeedback: content.feedback,
+          aiElaboration: content.elaboration,
+        }))
       } else {
-        setAiInputFeedback1('Your input gave adequate information!')
-        setAiInputFeedbackSuccess1('success')
-        setAiElaboration1('')
+        feedbackState((prevState) => ({
+          ...prevState,
+          aiInputFeedbackSuccess: 'success',
+          aiInputFeedback: 'Your input gave adequate information!',
+          aiElaboration: '',
+        }))
+        if (step === 4) setCurrentStep(4)
       }
     } catch (error) {
+      let errorMessage: string
+
       if (error instanceof AxiosError) {
         if (error.response) {
-          setErrorMessage1(
-            `Server Error: ${error.response.status} - ${error.response.data.message || 'An unexpected error occurred'}`
-          )
+          errorMessage = `Server Error: ${error.response.status} - ${error.response.data.message || 'An unexpected error occurred'}`
         } else if (error.request) {
-          setErrorMessage1('Network Error: Unable to reach the server')
+          errorMessage = 'Network Error: Unable to reach the server'
         } else {
-          setErrorMessage1(`Request Error: ${error.message}`)
+          errorMessage = `Request Error: ${error.message}`
         }
       } else if (error instanceof Error) {
-        setErrorMessage2(`Error: ${error.message}`)
+        errorMessage = `Error: ${error.message}`
       } else {
-        setErrorMessage2('An unknown error occurred')
+        errorMessage = 'An unknown error occurred'
       }
+
+      feedbackState((prevState) => ({
+        ...prevState,
+        errorMessage,
+      }))
     }
   }
 
-  const handleSecondCheck = async (aiExample?: string) => {
-    try {
-      setErrorMessage2(null)
-      setCurrentStep(3)
-      setAiInputFeedbackSuccess2('info')
-      const message = aiExample || publicityMessage
-      const response = await apiClient.post('/llm/step1check2', {
-        publicityMessage: message,
-      })
-
-      const { content } = response.data
-
-      if (content.failed) {
-        setAiInputFeedbackSuccess2('warning')
-        setAiInputFeedback2(content.content)
-      } else if (content.success === false) {
-        setAiInputFeedbackSuccess2('warning')
-        setAiInputFeedback2(content.feedback)
-        setAiElaboration2(content.elaboration)
-      } else {
-        setAiInputFeedback2('Your input gave adequate information!')
-        setAiInputFeedbackSuccess2('success')
-        setAiElaboration2('')
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        if (error.response) {
-          setErrorMessage2(
-            `Server Error: ${error.response.status} - ${error.response.data.message || 'An unexpected error occurred'}`
-          )
-        } else if (error.request) {
-          setErrorMessage2('Network Error: Unable to reach the server')
-        } else {
-          setErrorMessage2(`Request Error: ${error.message}`)
-        }
-      } else if (error instanceof Error) {
-        setErrorMessage2(`Error: ${error.message}`)
-      } else {
-        setErrorMessage2('An unknown error occurred')
-      }
-    }
+  const handleFirstCheck = async () => {
+    await handleCheck(2, inventiveMessage, setFeedback1, 0)
   }
 
-  const handleThirdCheck = async (aiExample?: string) => {
-    try {
-      setErrorMessage3(null)
-      setAiInputFeedbackSuccess3('info')
-      const message = aiExample || industrialMessage
-      const response = await apiClient.post('/llm/step1check3', {
-        industrialMessage: message,
-      })
+  const handleSecondCheck = async () => {
+    await handleCheck(3, publicityMessage, setFeedback2, 1)
+  }
 
-      const { content } = response.data
-
-      if (content.failed) {
-        setAiInputFeedbackSuccess3('warning')
-        setAiInputFeedback3(content.content)
-      } else if (content.success === false) {
-        setAiInputFeedbackSuccess3('warning')
-        setAiInputFeedback3(content.feedback)
-        setAiElaboration3(content.elaboration)
-      } else {
-        setAiInputFeedback3('Your input gave adequate information!')
-        setAiInputFeedbackSuccess3('success')
-        setAiElaboration3('')
-        setCurrentStep(4)
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        if (error.response) {
-          setErrorMessage3(
-            `Server Error: ${error.response.status} - ${error.response.data.message || 'An unexpected error occurred'}`
-          )
-        } else if (error.request) {
-          setErrorMessage3('Network Error: Unable to reach the server')
-        } else {
-          setErrorMessage3(`Request Error: ${error.message}`)
-        }
-      } else if (error instanceof Error) {
-        setErrorMessage2(`Error: ${error.message}`)
-      } else {
-        setErrorMessage2('An unknown error occurred')
-      }
-    }
+  const handleThirdCheck = async () => {
+    await handleCheck(4, industrialMessage, setFeedback3, 2)
   }
 
   return (
@@ -307,17 +174,17 @@ const FirstStep: React.FC<FirstStepProps> = ({
       </List>
 
       <UserInput
-        errorMessage={errorMessage1}
+        errorMessage={feedback1.errorMessage}
         userInputId={1}
         userInputMessage={inventiveMessage}
         setUserInput={setInventiveMessage}
         handleStepCheck={handleFirstCheck}
-        aiInputFeedback={aiInputFeedback1}
-        aiInputFeedbackSuccess={aiInputFeedbackSuccess1}
-        aiElaboration={aiElaboration1}
+        aiInputFeedback={feedback1.aiInputFeedback}
+        aiInputFeedbackSuccess={feedback1.aiInputFeedbackSuccess}
+        aiElaboration={feedback1.aiElaboration}
       />
 
-      {currentStep >= 2 && aiInputFeedbackSuccess1 === 'success' && (
+      {currentStep >= 2 && feedback1.aiInputFeedbackSuccess === 'success' && (
         <>
           <SectionHeading level='h2'>
             {t('inventorsAssistant:publicityStepHeader')}
@@ -326,19 +193,19 @@ const FirstStep: React.FC<FirstStepProps> = ({
             {t('inventorsAssistant:publicityStepDescription')}
           </Typography>
           <UserInput
-            errorMessage={errorMessage2}
+            errorMessage={feedback2.errorMessage}
             userInputId={2}
             userInputMessage={publicityMessage}
             setUserInput={setPublicityMessage}
             handleStepCheck={handleSecondCheck}
-            aiInputFeedback={aiInputFeedback2}
-            aiInputFeedbackSuccess={aiInputFeedbackSuccess2}
-            aiElaboration={aiElaboration2}
+            aiInputFeedback={feedback2.aiInputFeedback}
+            aiInputFeedbackSuccess={feedback2.aiInputFeedbackSuccess}
+            aiElaboration={feedback2.aiElaboration}
           />
         </>
       )}
 
-      {currentStep >= 3 && aiInputFeedbackSuccess2 === 'success' && (
+      {currentStep >= 3 && feedback2.aiInputFeedbackSuccess === 'success' && (
         <>
           <SectionHeading level='h2'>
             {t('inventorsAssistant:industrialStepHeader')}
@@ -347,18 +214,18 @@ const FirstStep: React.FC<FirstStepProps> = ({
             {t('inventorsAssistant:industrialDescription')}
           </Typography>
           <UserInput
-            errorMessage={errorMessage3}
+            errorMessage={feedback3.errorMessage}
             userInputId={3}
             userInputMessage={industrialMessage}
             setUserInput={setIndustrialMessage}
             handleStepCheck={handleThirdCheck}
-            aiInputFeedback={aiInputFeedback3}
-            aiInputFeedbackSuccess={aiInputFeedbackSuccess3}
-            aiElaboration={aiElaboration3}
+            aiInputFeedback={feedback3.aiInputFeedback}
+            aiInputFeedbackSuccess={feedback3.aiInputFeedbackSuccess}
+            aiElaboration={feedback3.aiElaboration}
           />
         </>
       )}
-      {currentStep >= 4 && aiInputFeedbackSuccess3 === 'success' && (
+      {currentStep >= 4 && feedback3.aiInputFeedbackSuccess === 'success' && (
         <>
           <SectionHeading level='h2'>
             {t('inventorsAssistant:step1ClosingHeader')}
