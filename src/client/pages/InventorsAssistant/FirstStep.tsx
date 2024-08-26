@@ -5,17 +5,10 @@ import { t } from 'i18next'
 
 import SectionHeading from '../../components/Common/SectionHeading'
 import useSessionStorage from '../../hooks/useSessionStorage'
-import { AiInputFeedback } from '../../types'
+import { FeedbackState } from '../../types'
 import apiClient from '../../util/apiClient'
 
 import UserInput from './UserInput'
-
-type FeedbackState = {
-  aiInputFeedback: string
-  aiInputFeedbackSuccess: AiInputFeedback
-  aiElaboration: string
-  errorMessage: string | null
-}
 
 const initialFeedbackState: FeedbackState = {
   aiInputFeedback: '',
