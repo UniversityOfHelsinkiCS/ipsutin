@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo } from 'react'
 
 import { Message } from '../../../server/types'
 import useSessionStorage from '../../hooks/useSessionStorage'
@@ -54,59 +54,67 @@ const InventorsContextProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  // Load initial state from sessionStorage or use default initial state
-  const [currentStep, setCurrentStep] = useState<number>(() => {
-    const saved = sessionStorage.getItem('currentStep')
-    return saved ? JSON.parse(saved) : 0
-  })
-
+  const [currentStep, setCurrentStep] = useSessionStorage<number>(
+    'currentStep',
+    0
+  )
   const {
     inventiveMessageDynamic,
     publicityMessageDynamic,
     industrialMessageDynamic,
   } = getInitialMessage()
 
-  const [inventiveMessage, setInventiveMessage] = useSessionStorage(
+  const [inventiveMessage, setInventiveMessage] = useSessionStorage<string>(
     'inventiveMessage',
     inventiveMessageDynamic
   )
-  const [publicityMessage, setPublicityMessage] = useSessionStorage(
+  const [publicityMessage, setPublicityMessage] = useSessionStorage<string>(
     'publicityMessage',
     publicityMessageDynamic
   )
-  const [industrialMessage, setIndustrialMessage] = useSessionStorage(
+  const [industrialMessage, setIndustrialMessage] = useSessionStorage<string>(
     'industrialMessage',
     industrialMessageDynamic
   )
 
-  const [aiResponse1, setAiResponse1] = useSessionStorage('aiResponse1', '')
-  const [aiResponse1Ready, setAiResponse1Ready] = useSessionStorage(
+  const [aiResponse1, setAiResponse1] = useSessionStorage<string>(
+    'aiResponse1',
+    ''
+  )
+  const [aiResponse1Ready, setAiResponse1Ready] = useSessionStorage<boolean>(
     'aiResponse1Ready',
     false
   )
-  const [aiResponse1Error, setAiResponse1Error] = useSessionStorage(
-    'aiResponse1Error',
-    null
-  )
+  const [aiResponse1Error, setAiResponse1Error] = useSessionStorage<
+    string | null
+  >('aiResponse1Error', null)
 
-  const [aiResponse2, setAiResponse2] = useSessionStorage('aiResponse2', '')
-  const [aiResponse3, setAiResponse3] = useSessionStorage('aiResponse3', '')
-  const [aiResponse4, setAiResponse4] = useSessionStorage('aiResponse4', '')
-  const [aiResponse4Ready, setAiResponse4Ready] = useSessionStorage(
+  const [aiResponse2, setAiResponse2] = useSessionStorage<string>(
+    'aiResponse2',
+    ''
+  )
+  const [aiResponse3, setAiResponse3] = useSessionStorage<string>(
+    'aiResponse3',
+    ''
+  )
+  const [aiResponse4, setAiResponse4] = useSessionStorage<string>(
+    'aiResponse4',
+    ''
+  )
+  const [aiResponse4Ready, setAiResponse4Ready] = useSessionStorage<boolean>(
     'aiResponse4Ready',
     false
   )
-  const [aiResponse4Error, setAiResponse4Error] = useSessionStorage(
-    'aiResponse4Error',
-    null
-  )
+  const [aiResponse4Error, setAiResponse4Error] = useSessionStorage<
+    string | null
+  >('aiResponse4Error', null)
 
-  const [editModeGlobal, setEditModeGlobal] = useSessionStorage(
+  const [editModeGlobal, setEditModeGlobal] = useSessionStorage<boolean>(
     'editModeGlobal',
     false
   )
 
-  const [messages, setMessages] = useSessionStorage('messages', [])
+  const [messages, setMessages] = useSessionStorage<Message[]>('messages', [])
 
   const handleStep = async (
     step: number,
