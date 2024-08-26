@@ -11,11 +11,11 @@ import { Message } from '../types'
 
 const llmRouter = express.Router()
 
-llmRouter.post('/step1check1', async (req, res) => {
-  const { inventiveMessage } = req.body
+llmRouter.post('/validation', async (req, res) => {
+  const { userInput, validationStep } = req.body
   const messages: Message[] = []
 
-  const userMessage = createUserMessage(inventiveMessage, 0)
+  const userMessage = createUserMessage(userInput, validationStep)
 
   messages.push(userMessage)
   const llmResponse = await askLlmNoStream(messages, true)
@@ -28,39 +28,6 @@ llmRouter.post('/step1check1', async (req, res) => {
   return res.json({ content: inputFeedback })
 })
 
-llmRouter.post('/step1check2', async (req, res) => {
-  const { publicityMessage } = req.body
-  const messages: Message[] = []
-
-  const userMessage = createUserMessage(publicityMessage, 1)
-
-  messages.push(userMessage)
-  const llmResponse = await askLlmNoStream(messages, true)
-  messages.push(userMessage)
-
-  const { content } = llmResponse
-
-  const inputFeedback = handleValidationResponse(content)
-
-  return res.json({ content: inputFeedback })
-})
-
-llmRouter.post('/step1check3', async (req, res) => {
-  const { industrialMessage } = req.body
-  const messages: Message[] = []
-
-  const userMessage = createUserMessage(industrialMessage, 2)
-
-  messages.push(userMessage)
-  const llmResponse = await askLlmNoStream(messages, true)
-  messages.push(userMessage)
-
-  const { content } = llmResponse
-
-  const inputFeedback = handleValidationResponse(content)
-
-  return res.json({ content: inputFeedback })
-})
 llmRouter.post('/step1', async (req, res) => {
   const { inventiveMessage, industrialMessage, publicMessage } = req.body
 
