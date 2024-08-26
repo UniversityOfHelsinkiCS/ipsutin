@@ -51,6 +51,8 @@ const FirstStep: React.FC<FirstStepProps> = ({
     initialFeedbackState
   )
 
+  console.log('CURRENT STEP:', currentStep)
+
   const handleValidation = async (
     step: number,
     userInput: string,
@@ -63,8 +65,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
         ...prevState,
         aiInputFeedbackSuccess: 'info',
       }))
-
-      setCurrentStep(step)
 
       const requestBody = {
         userInput: aiElaboration || userInput,
@@ -93,7 +93,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
           aiInputFeedbackSuccess: 'success',
           aiInputFeedback: 'Your input gave adequate information!',
         }))
-        if (step === 4) setCurrentStep(4)
+        setCurrentStep(step)
       }
     } catch (error) {
       let errorMessage: string
