@@ -1,4 +1,5 @@
 import { Box, Step, StepLabel, Stepper } from '@mui/material'
+import { t } from 'i18next'
 
 import { useInventorsContext } from './InventorsContext'
 
@@ -6,9 +7,9 @@ const InventorStepper = () => {
   const { currentStep } = useInventorsContext()
 
   const steps = [
-    'Giving your input',
-    'Getting AI response on input',
-    'Create Invention Report',
+    t('inventorsAssistant:StepperGivingInput'),
+    t('inventorsAssistant:StepperGettingAiResponse'),
+    t('inventorsAssistant:StepperCreateInventionReport'),
   ]
 
   const activeStep = ({ currentStep }: { currentStep: number }): number => {
