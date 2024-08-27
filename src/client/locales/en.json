@@ -252,6 +252,8 @@
     "SubmitAgain": "Submit Again",
     "GoToFinalStep": "Go to Final Step",
 
+    "llmFeedbackInitialMessage": "Checking the quality of your input...",
+
     "EditButton": "Edit AI Response",
     "EditInfo": "**Edit the AI-response to make sure it reflects your idea.**",
     "chatBoxPlaceholder": "Enter your idea...",
