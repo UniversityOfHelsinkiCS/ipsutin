@@ -21,7 +21,7 @@ const LlmInputFeedback = ({
 }: LlmInputFeedbackProps) => {
   const [visible, setVisible] = useState<boolean>(true)
 
-  let message = 'Checking the quality of your input...'
+  let message = t('inventorsAssistant:llmFeedbackInitialMessage')
 
   if (alertSeverity === 'success') {
     message = aiInputFeedback
