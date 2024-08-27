@@ -33,7 +33,7 @@ const UserInput: React.FC<UserInputProps> = ({
   )
   const [buttonText, setButtonText] = useSessionStorage<string>(
     `buttonText${userInputId}`,
-    'Next step'
+    t('inventorsAssistant:NextStep')
   )
 
   // Check if the userInput is empty
@@ -68,7 +68,7 @@ const UserInput: React.FC<UserInputProps> = ({
           onClick={() => {
             handleStepCheck()
             setInputStep(true)
-            setButtonText('Submit again')
+            setButtonText(t('inventorsAssistant:SubmitAgain'))
           }}
           // Disable the button if the input is empty
           disabled={isInputEmpty}
