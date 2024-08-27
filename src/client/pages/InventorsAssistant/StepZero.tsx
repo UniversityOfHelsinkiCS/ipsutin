@@ -47,7 +47,7 @@ const StepZero: React.FC<StepZeroProps> = ({ currentStep, setCurrentStep }) => {
             color='secondary'
             onClick={() => setCurrentStep(1)}
           >
-            Start
+            {t('inventorsAssistant:start')}
           </Button>
         </Box>
       )}
