@@ -15,7 +15,7 @@ const ErrorAlert: React.FC<ErrorAlertProps> = ({ error, handleTryAgain }) => {
   return (
     <Box sx={{ mt: 4 }}>
       <Alert severity='warning' sx={{ my: 4, p: 4, width: '100%' }}>
-        <Markdown>## An Error Occured</Markdown>
+        <Markdown>{t('inventorsAssitant:ErrorAlert')}</Markdown>
 
         <Typography
           variant='body2'
