@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
+import { t } from 'i18next'
 
 import useSessionStorage from '../../hooks/useSessionStorage'
 
@@ -116,7 +117,7 @@ const InventorPhase2 = () => {
               setLlmResponseCurrent1(false)
             }}
           >
-            Next step
+            {t('inventorsAssistant:NextStep')}
           </Button>
         )}
 
@@ -151,7 +152,7 @@ const InventorPhase2 = () => {
               setLlmResponseCurrent2(false)
             }}
           >
-            Next step
+            {t('inventorsAssistant:NextStep')}
           </Button>
         )}
 
@@ -197,7 +198,7 @@ const InventorPhase2 = () => {
                 })
               }}
             >
-              Go to the final step
+              {t('inventorsAssistant:GoToFinalStep')}
             </Button>
           </Box>
         )}
