@@ -243,6 +243,9 @@
     "finalStepSummary": "Summary of the idea",
     "tryAgain": "Try Again",
     "AiThinking": "The Assistant is thinking...",
+    "NextStep": "Next Step",
+    "SubmitAgain": "Submit Again",
+    "GoToFinalStep": "Go to Final Step",
 
     "EditButton": "Edit AI Response",
     "EditInfo": "**Edit the AI-response to make sure it reflects your idea.**",
