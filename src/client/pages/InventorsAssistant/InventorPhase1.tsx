@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Box, Button } from '@mui/material'
+import { t } from 'i18next'
 
 import FirstStep from './FirstStep'
 import InventorsIllustration from './InventorIllustration'
@@ -82,7 +83,7 @@ const InventorPhase1 = () => {
                 })
               }}
             >
-              Next step
+              {t('inventorsAssistant:NextStep')}
             </Button>
           </Box>
         )}
