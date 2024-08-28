@@ -10,28 +10,30 @@ import {
 import { Message } from '../types'
 
 const llmRouter = express.Router()
-
 llmRouter.post('/validation', async (req, res) => {
-  const { userInput, validationStep } = req.body
-  const messages: Message[] = []
+  try {
+    const { userInput, validationStep } = req.body
+    const messages: Message[] = []
 
-  const userMessage = createUserMessage(userInput, validationStep)
+    const userMessage = createUserMessage(userInput, validationStep)
+    messages.push(userMessage)
 
-  messages.push(userMessage)
-  const llmResponse = await askLlmNoStream(messages, true)
-  messages.push(userMessage)
+    const llmResponse = await askLlmNoStream(messages, true)
+    messages.push(userMessage)
 
-  const { content } = llmResponse
+    const { content } = llmResponse
 
-  const inputFeedback = handleValidationResponse(content)
+    const inputFeedback = handleValidationResponse(content)
 
-  return res.json({ content: inputFeedback })
+    return res.json({ content: inputFeedback })
+  } catch (error) {
+    return res.status(500).send('Internal Server Error')
+  }
 })
 
 llmRouter.post('/step1', async (req, res) => {
   const { inventiveMessage, industrialMessage, publicMessage } = req.body
-
-  const messages = []
+  const messages: Message[] = []
 
   const userMessage = createUserMessage(
     `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicMessage} *** Industry relevance: ${industrialMessage}`,
@@ -50,8 +52,7 @@ llmRouter.post('/step1', async (req, res) => {
     // Stream completion
     await streamCompletion(events, res)
 
-    res.end()
-    // The response will be ended by streamCompletion
+    res.end() // The response will be ended by streamCompletion
   } catch (error) {
     res.status(500).send('Internal Server Error')
   }
@@ -59,17 +60,21 @@ llmRouter.post('/step1', async (req, res) => {
 
 llmRouter.post('/step2', async (req, res) => {
   const { aiResponse1, messages } = req.body
-
   const userMessage = createUserMessage(aiResponse1, 4)
 
   messages.push(userMessage)
-  const events = await askLlmStream(messages)
 
-  res.setHeader('content-type', 'text/event-stream')
+  try {
+    const events = await askLlmStream(messages)
 
-  await streamCompletion(events, res)
+    res.setHeader('Content-Type', 'text/event-stream')
 
-  res.end()
+    await streamCompletion(events, res)
+
+    res.end()
+  } catch (error) {
+    res.status(500).send('Internal Server Error')
+  }
 })
 
 llmRouter.post('/step3', async (req, res) => {
@@ -80,14 +85,20 @@ llmRouter.post('/step3', async (req, res) => {
     `${aiResponse1} Industrial applicability: ${aiResponse2}`,
     5
   )
+
   messages.push(userMessage)
-  const events = await askLlmStream(messages)
 
-  res.setHeader('content-type', 'text/event-stream')
+  try {
+    const events = await askLlmStream(messages)
 
-  await streamCompletion(events, res)
+    res.setHeader('Content-Type', 'text/event-stream')
 
-  res.end()
+    await streamCompletion(events, res)
+
+    res.end()
+  } catch (error) {
+    res.status(500).send('Internal Server Error')
+  }
 })
 
 llmRouter.post('/step4', async (req, res) => {
@@ -97,13 +108,18 @@ llmRouter.post('/step4', async (req, res) => {
   const userMessage = createUserMessage(finalPrompt, 6)
 
   messages.push(userMessage)
-  const events = await askLlmStream(messages)
 
-  res.setHeader('content-type', 'text/event-stream')
+  try {
+    const events = await askLlmStream(messages)
 
-  await streamCompletion(events, res)
+    res.setHeader('Content-Type', 'text/event-stream')
 
-  res.end()
+    await streamCompletion(events, res)
+
+    res.end()
+  } catch (error) {
+    res.status(500).send('Internal Server Error')
+  }
 })
 
 export default llmRouter
