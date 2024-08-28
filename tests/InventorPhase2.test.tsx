@@ -7,7 +7,6 @@ import React from 'react'
 
 import '@testing-library/jest-dom'
 
-// Mock i18next
 vi.mock('i18next', () => ({
   t: vi.fn((key) => {
     const translations = {
@@ -26,8 +25,6 @@ vi.mock('../src/client/pages/InventorsAssistant/InventorsContext', () => ({
 describe('InventorPhase2 Component', () => {
   const mockHandleStep = vi.fn()
   const mockSetCurrentStep = vi.fn()
-  const mockNavigate = vi.fn()
-  const mockSetLlmResponseCurrent = vi.fn()
 
   beforeEach(() => {
     useInventorsContext.mockReturnValue({
@@ -96,7 +93,6 @@ describe('InventorPhase2 Component', () => {
 
     const nextStepButton = screen.getByRole('button', { name: /Next Step/i })
     expect(nextStepButton).toBeInTheDocument()
-
     ;(useInventorsContext as any).mockReturnValue({
       currentStep: 5,
       aiResponse1: 'response1',
