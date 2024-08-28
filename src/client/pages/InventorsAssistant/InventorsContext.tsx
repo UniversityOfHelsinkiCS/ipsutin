@@ -5,7 +5,7 @@ import useSessionStorage from '../../hooks/useSessionStorage'
 import { fetchStream } from '../../util/apiClient'
 import getInitialMessage from '../../util/inventorInput'
 
-import processStream from './StreamReader'
+import { processStream } from './ProcessStream'
 
 interface InventorsContextValue {
   currentStep: number
