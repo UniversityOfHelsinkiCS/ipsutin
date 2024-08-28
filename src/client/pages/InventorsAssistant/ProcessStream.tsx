@@ -1,6 +1,6 @@
 import React from 'react'
 
-const processStream = async (
+export const processStream = async (
   stream: ReadableStream,
   setAiResponse: React.Dispatch<React.SetStateAction<string>>,
   setAiResponseReady: React.Dispatch<React.SetStateAction<boolean>>
