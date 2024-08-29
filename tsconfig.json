@@ -19,12 +19,7 @@
       "@frontend/*": ["src/client/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "types/@unfuck-utf8-headers-middleware.d..ts",
-    "vitest.config.ts",
-    "vite.config.ts"
-  ],
+  "include": ["src/**/*", "types/@unfuck-utf8-headers-middleware.d..ts"],
   "ts-node": {
     "compilerOptions": {
       "module": "esnext",
