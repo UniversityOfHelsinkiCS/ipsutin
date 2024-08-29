@@ -21,6 +21,15 @@ describe('LLM API Tests', () => {
     expect(response.body).toHaveProperty('content')
   })
 
+  it('POST /validation should return success True when user input is good', async () => {
+    const response = await request(app)
+      .post('/api/validation')
+      .send({ userInput: 'Nothing has been disclosed', validationStep: 1 })
+
+    expect(response.statusCode).toBe(200)
+    expect(response.body).toHaveProperty('content.success', true)
+  })
+
   it('POST /step1 should respond with streamed events', async () => {
     const response = await request(app).post('/api/step1').send({
       inventiveMessage: 'Inventive message',
