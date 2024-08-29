@@ -42,13 +42,11 @@ describe('LLM API Tests', () => {
   }, 15000)
 
   it('POST /step3 should respond with streamed events', async () => {
-    const response = await request(app)
-      .post('/api/step3')
-      .send({
-        aiResponse1: 'Response 1',
-        aiResponse2: 'Response 2',
-        messages: [],
-      })
+    const response = await request(app).post('/api/step3').send({
+      aiResponse1: 'Response 1',
+      aiResponse2: 'Response 2',
+      messages: [],
+    })
 
     expect(response.statusCode).toBe(200)
     expect(response.headers['content-type']).toBe('text/event-stream')
@@ -65,11 +63,40 @@ describe('LLM API Tests', () => {
     expect(response.statusCode).toBe(200)
     expect(response.headers['content-type']).toBe('text/event-stream')
   }, 15000)
+})
 
+describe('LLM API Tests - Error Handling', () => {
   it('POST /validation should handle errors', async () => {
     const response = await request(app).post('/api/validation').send({})
 
-    expect(response.statusCode).toBe(500)
-    expect(response.text).toBe('Internal Server Error')
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toHaveProperty('error')
   })
+  it('POST /step1 should handle errors when required fields are missing', async () => {
+    const response = await request(app).post('/api/step1').send({})
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toHaveProperty('error')
+  }, 15000)
+
+  it('POST /step2 should handle errors when required fields are missing', async () => {
+    const response = await request(app).post('/api/step2').send({})
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toHaveProperty('error')
+  }, 15000)
+
+  it('POST /step3 should handle errors when required fields are missing', async () => {
+    const response = await request(app).post('/api/step3').send({})
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toHaveProperty('error')
+  }, 15000)
+
+  it('POST /step4 should handle errors when required fields are missing', async () => {
+    const response = await request(app).post('/api/step4').send({})
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toHaveProperty('error')
+  }, 15000)
 })
