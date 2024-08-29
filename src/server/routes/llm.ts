@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import express from 'express'
 
 import {
@@ -10,11 +11,18 @@ import {
 import { Message } from '../types'
 
 const llmRouter = express.Router()
+
 llmRouter.post('/validation', async (req, res) => {
   try {
     const { userInput, validationStep } = req.body
-    const messages: Message[] = []
 
+    if (!userInput || validationStep === undefined) {
+      return res
+        .status(400)
+        .json({ error: 'Missing userInput or validationStep' })
+    }
+
+    const messages: Message[] = []
     const userMessage = createUserMessage(userInput, validationStep)
     messages.push(userMessage)
 
@@ -22,7 +30,6 @@ llmRouter.post('/validation', async (req, res) => {
     messages.push(userMessage)
 
     const { content } = llmResponse
-
     const inputFeedback = handleValidationResponse(content)
 
     return res.json({ content: inputFeedback })
@@ -33,6 +40,15 @@ llmRouter.post('/validation', async (req, res) => {
 
 llmRouter.post('/step1', async (req, res) => {
   const { inventiveMessage, industrialMessage, publicMessage } = req.body
+
+  if (!inventiveMessage || !industrialMessage || !publicMessage) {
+    return res
+      .status(400)
+      .json({
+        error: 'Missing inventiveMessage, industrialMessage, or publicMessage',
+      })
+  }
+
   const messages: Message[] = []
 
   const userMessage = createUserMessage(
@@ -49,10 +65,9 @@ llmRouter.post('/step1', async (req, res) => {
     res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Connection', 'keep-alive')
 
-    // Stream completion
     await streamCompletion(events, res)
 
-    res.end() // The response will be ended by streamCompletion
+    res.end()
   } catch (error) {
     res.status(500).send('Internal Server Error')
   }
@@ -60,8 +75,12 @@ llmRouter.post('/step1', async (req, res) => {
 
 llmRouter.post('/step2', async (req, res) => {
   const { aiResponse1, messages } = req.body
-  const userMessage = createUserMessage(aiResponse1, 4)
 
+  if (!aiResponse1 || !messages) {
+    return res.status(400).json({ error: 'Missing aiResponse1 or messages' })
+  }
+
+  const userMessage = createUserMessage(aiResponse1, 4)
   messages.push(userMessage)
 
   try {
@@ -80,7 +99,12 @@ llmRouter.post('/step2', async (req, res) => {
 llmRouter.post('/step3', async (req, res) => {
   const { aiResponse1, aiResponse2, messages } = req.body
 
-  // Step 3: Ask for claims refinement
+  if (!aiResponse1 || !aiResponse2 || !messages) {
+    return res
+      .status(400)
+      .json({ error: 'Missing aiResponse1, aiResponse2, or messages' })
+  }
+
   const userMessage = createUserMessage(
     `${aiResponse1} Industrial applicability: ${aiResponse2}`,
     5
@@ -103,6 +127,14 @@ llmRouter.post('/step3', async (req, res) => {
 
 llmRouter.post('/step4', async (req, res) => {
   const { aiResponse1, aiResponse2, aiResponse3, messages } = req.body
+
+  if (!aiResponse1 || !aiResponse2 || !aiResponse3 || !messages) {
+    return res
+      .status(400)
+      .json({
+        error: 'Missing aiResponse1, aiResponse2, aiResponse3, or messages',
+      })
+  }
 
   const finalPrompt = `${aiResponse1} \nINDUSTRY APPLICABILITY: ${aiResponse2} \nCLAIMS: ${aiResponse3}`
   const userMessage = createUserMessage(finalPrompt, 6)
