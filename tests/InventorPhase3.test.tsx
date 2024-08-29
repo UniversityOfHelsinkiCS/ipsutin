@@ -41,7 +41,6 @@ describe('InventorPhase3 Component', () => {
       aiResponse4Ready: true,
       setAiResponse4: vi.fn(),
     })
-
     ;(useLoggedInUser as any).mockReturnValue({
       user: { id: 1, name: 'John Doe' },
       isLoading: false,
@@ -69,7 +68,6 @@ describe('InventorPhase3 Component', () => {
       aiResponse4Ready: true,
       setAiResponse4: vi.fn(),
     })
-
     ;(useLoggedInUser as any).mockReturnValue({
       user: { id: 1, name: 'John Doe' },
       isLoading: false,
@@ -97,7 +95,6 @@ describe('InventorPhase3 Component', () => {
       aiResponse4Ready: false,
       setAiResponse4: vi.fn(),
     })
-
     ;(useLoggedInUser as any).mockReturnValue({
       user: { id: 1, name: 'John Doe' },
       isLoading: false,
@@ -125,10 +122,8 @@ describe('InventorPhase3 Component', () => {
       aiResponse4Ready: true,
       setAiResponse4: vi.fn(),
     })
-
-    // Mock loading state
     ;(useLoggedInUser as any).mockReturnValue({
-      user: null, // User is not logged in
+      user: null,
       isLoading: false,
     })
 
@@ -138,13 +133,10 @@ describe('InventorPhase3 Component', () => {
       </MemoryRouter>
     )
 
-    // Check that nothing is rendered
     expect(container).toBeEmptyDOMElement()
-
-    // Mock loading state
     ;(useLoggedInUser as any).mockReturnValue({
       user: { id: 1, name: 'John Doe' },
-      isLoading: true, // User is loading
+      isLoading: true,
     })
 
     const { container: loadingContainer } = render(
@@ -153,7 +145,6 @@ describe('InventorPhase3 Component', () => {
       </MemoryRouter>
     )
 
-    // Check that nothing is rendered
     expect(loadingContainer).toBeEmptyDOMElement()
   })
 })
