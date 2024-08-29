@@ -109,8 +109,6 @@ describe('InventorPhase2 Component', () => {
       </MemoryRouter>
     )
 
-    screen.debug()
-
     expect(
       screen.queryByRole('button', { name: /Next Step/i })
     ).not.toBeInTheDocument()
