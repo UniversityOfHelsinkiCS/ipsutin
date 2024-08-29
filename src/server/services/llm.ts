@@ -7,7 +7,7 @@ import {
 } from '@azure/openai'
 import { Response } from 'express'
 
-import { validModels } from '../../config'
+import { inVitest, validModels } from '../../config'
 import { getPromptById } from '../data/inventorPrompts'
 import {
   AzureOptions,
@@ -58,9 +58,11 @@ export const getStreamedCompletionEvents = async ({
   messages,
   asJson,
 }: AzureOptions): Promise<EventStream<ChatCompletions>> => {
-  const deploymentId = validModels.find((m) => m.name === model)?.deployment
+  let deploymentId = validModels.find((m) => m.name === model)?.deployment
 
   if (!deploymentId) throw new Error(`Invalid model: ${model}`)
+
+  if (inVitest) deploymentId = 'mock'
 
   if (deploymentId === 'mock') return getMockCompletionEvents()
 
