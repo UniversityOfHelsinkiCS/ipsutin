@@ -204,7 +204,7 @@ describe('InventorsContext handleStep', () => {
     )
     expect(mockSetAiResponse).toHaveBeenCalledWith('Processed Data')
     expect(mockSetAiResponseReady).toHaveBeenCalledWith(true)
-    expect(mockSetAiResponseError).toHaveBeenCalledWith(null) // Ensure no error occurred
+    expect(mockSetAiResponseError).toHaveBeenCalledWith(null)
   })
 
   it('should set aiResponseError if an error occurs', async () => {
