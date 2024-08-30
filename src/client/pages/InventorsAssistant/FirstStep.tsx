@@ -73,11 +73,13 @@ const FirstStep: React.FC<FirstStepProps> = ({
       const { content } = response.data
 
       if (content.failed) {
-        feedbackState((prevState) => ({
-          ...prevState,
-          aiInputFeedbackSuccess: 'warning',
-          aiInputFeedback: content.content,
-        }))
+        if (typeof content.content !== 'string') {
+          feedbackState((prevState) => ({
+            ...prevState,
+            aiInputFeedbackSuccess: 'warning',
+            aiInputFeedback: 'An Error Occurred. Try submitting again',
+          }))
+        }
       } else if (content.success === false) {
         feedbackState((prevState) => ({
           ...prevState,
