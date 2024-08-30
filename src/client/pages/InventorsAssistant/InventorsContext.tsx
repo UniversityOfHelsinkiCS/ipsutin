@@ -128,7 +128,7 @@ const InventorsContextProvider = ({
       setAiResponse('')
 
       const { stream, error } = await fetchStream(
-        `/llm/step${step}`,
+        `llm/step${step}`,
         aiResponseData
       )
 
