@@ -39,20 +39,18 @@ llmRouter.post('/validation', async (req, res) => {
 })
 
 llmRouter.post('/step1', async (req, res) => {
-  const { inventiveMessage, industrialMessage, publicMessage } = req.body
+  const { inventiveMessage, industrialMessage, publicityMessage } = req.body
 
-  if (!inventiveMessage || !industrialMessage || !publicMessage) {
-    return res
-      .status(400)
-      .json({
-        error: 'Missing inventiveMessage, industrialMessage, or publicMessage',
-      })
+  if (!inventiveMessage || !industrialMessage || !publicityMessage) {
+    return res.status(400).json({
+      error: 'Missing inventiveMessage, industrialMessage, or publicMessage',
+    })
   }
 
   const messages: Message[] = []
 
   const userMessage = createUserMessage(
-    `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicMessage} *** Industry relevance: ${industrialMessage}`,
+    `The idea is: ${inventiveMessage} *** Novelty for critical analysis: ${publicityMessage} *** Industry relevance: ${industrialMessage}`,
     3
   )
 
@@ -129,11 +127,9 @@ llmRouter.post('/step4', async (req, res) => {
   const { aiResponse1, aiResponse2, aiResponse3, messages } = req.body
 
   if (!aiResponse1 || !aiResponse2 || !aiResponse3 || !messages) {
-    return res
-      .status(400)
-      .json({
-        error: 'Missing aiResponse1, aiResponse2, aiResponse3, or messages',
-      })
+    return res.status(400).json({
+      error: 'Missing aiResponse1, aiResponse2, aiResponse3, or messages',
+    })
   }
 
   const finalPrompt = `${aiResponse1} \nINDUSTRY APPLICABILITY: ${aiResponse2} \nCLAIMS: ${aiResponse3}`
