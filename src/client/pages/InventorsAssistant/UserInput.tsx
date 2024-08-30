@@ -36,8 +36,12 @@ const UserInput: React.FC<UserInputProps> = ({
     t('inventorsAssistant:NextStep')
   )
 
-  // Check if the userInput is empty
-  const isInputEmpty = !userInputMessage.trim()
+  let isInputEmpty = true
+
+  if (typeof userInputMessage === 'string') {
+    isInputEmpty = !userInputMessage.trim()
+  }
+
   const isTextFieldDisabled = inputStep && aiInputFeedbackSuccess === 'success'
 
   return (
