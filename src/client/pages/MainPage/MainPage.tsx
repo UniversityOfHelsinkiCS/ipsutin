@@ -7,7 +7,6 @@ import AIAssistants from './AIAssistants'
 import HeroSection from './HeroSection'
 import ProductGrid from './ProductGrid'
 import ServiceLinks from './ServiceLinks'
-import UpcomingProducts from './UpcomingProducts'
 
 const MainPage = () => {
   const { t } = useTranslation()
@@ -30,15 +29,6 @@ const MainPage = () => {
             {t('mainPage:products')}
           </SectionHeading>
           <ProductGrid />
-        </Grid>
-        <Grid item sm={12} sx={{ mt: 4, textAlign: 'center' }}>
-          <SectionHeading
-            level='h2'
-            sx={{ py: 1, backgroundColor: '#000', color: '#fff' }}
-          >
-            {t('mainPage:upcomingProducts')}
-          </SectionHeading>
-          <UpcomingProducts />
         </Grid>
         <Grid
           item
