@@ -5,6 +5,7 @@ import express from 'express'
 import { inDevelopment, inE2EMode, inStaging } from '../../config'
 import accessLogger from '../middleware/access'
 import errorHandler from '../middleware/error'
+import isLoggedInMiddleware from '../middleware/isLoggedIn'
 import shibbolethMiddleware from '../middleware/shibboleth'
 import userMiddleware from '../middleware/user'
 import initializeSentry from '../util/sentry'
@@ -33,6 +34,9 @@ if (inDevelopment || inE2EMode) router.use(userMiddleware)
 
 router.use(accessLogger)
 
+router.use('/login', loginRouter)
+router.use(isLoggedInMiddleware)
+
 if (inStaging) router.use('/test', testRouter)
 
 router.use('/results', resultRouter)
@@ -42,7 +46,6 @@ router.use('/entries', entryRouter)
 router.use('/users', userRouter)
 router.use('/summary', summaryRouter)
 router.use('/recommendations', recommendationRouter)
-router.use('/login', loginRouter)
 router.use('/analytics', analyticRouter)
 router.use('/llm', llmRouter)
 
