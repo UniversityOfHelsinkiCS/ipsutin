@@ -26,7 +26,7 @@ jobs:
           build-args: |
             GIT_SHA=${{ github.sha }}
 
-      - name: Push to quay.io
+      - name: Push to version helsinki
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build-image.outputs.image }}
