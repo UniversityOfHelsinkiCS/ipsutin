@@ -23,7 +23,7 @@ jobs:
         run: docker-compose -f docker-compose.ci.yml up -d
 
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v7.4.4
         with:
           browser: chrome
           install-command: npm ci
