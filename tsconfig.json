@@ -8,7 +8,7 @@
     "strictNullChecks": true,
     "lib": ["es2022", "DOM", "DOM.Iterable", "esnext"],
     "module": "ES2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "outDir": "dist",
     "strict": true,
     "target": "ESNext",

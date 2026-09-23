@@ -4,6 +4,12 @@ import { defineConfig } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // Vite 8's Rolldown-based CJS interop breaks default imports from
+  // @mui/icons-material subpaths (e.g. `@mui/icons-material/Menu`),
+  // which only ship a CJS default export with no exports map.
+  legacy: {
+    inconsistentCjsInterop: true,
+  },
   server: {
     proxy: {
       '/api/': {
