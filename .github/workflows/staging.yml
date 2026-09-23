@@ -33,35 +33,3 @@ jobs:
           registry: registry.version.helsinki.fi/toska/openshift/kontit/
           username: kontit
           password: ${{ secrets.VERSION_PUSH_SECRET }}
-
-  sentry-release:
-    runs-on: ubuntu-latest
-    needs: build-and-push
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Login to registry.version.helsinki.fi
-        uses: docker/login-action@v4
-        with:
-          registry: registry.version.helsinki.fi
-          username: kontit
-          password: ${{ secrets.VERSION_PUSH_SECRET }}
-
-      - name: Pull image and create a container
-        run: docker create --name ipsutin registry.version.helsinki.fi/toska/openshift/kontit/ipsutin:staging
-
-      - name: Copy assets from the container
-        run: docker cp ipsutin:/opt/app-root/src ./app
-        
-      - name: Create Sentry release
-        uses: getsentry/action-release@v1
-        env:
-          SENTRY_URL: ${{ secrets.SENTRY_URL }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-        with:
-          environment: production
-          set_commits: 'skip'
-          sourcemaps: ./app
-          url_prefix: '~/app'
