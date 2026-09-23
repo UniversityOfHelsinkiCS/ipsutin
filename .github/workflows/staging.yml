@@ -22,7 +22,6 @@ jobs:
             ./Dockerfile
           build-args: |
             BASE_PATH=
-            GIT_SHA=${{ github.sha }}
             STAGING=true
 
       - name: Push to version helsinki

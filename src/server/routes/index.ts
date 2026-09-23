@@ -1,14 +1,12 @@
-import * as Sentry from '@sentry/node'
 import cors from 'cors'
 import express from 'express'
 
-import { inDevelopment, inE2EMode, inStaging } from '../../config'
+import { inDevelopment, inE2EMode } from '../../config'
 import accessLogger from '../middleware/access'
 import errorHandler from '../middleware/error'
 import isLoggedInMiddleware from '../middleware/isLoggedIn'
 import shibbolethMiddleware from '../middleware/shibboleth'
 import userMiddleware from '../middleware/user'
-import initializeSentry from '../util/sentry'
 
 import analyticRouter from './analytic'
 import entryRouter from './entry'
@@ -19,12 +17,9 @@ import recommendationRouter from './recommendation'
 import resultRouter from './result'
 import summaryRouter from './summary'
 import surveyRouter from './survey'
-import testRouter from './test'
 import userRouter from './user'
 
 const router = express()
-
-initializeSentry()
 
 router.use(cors())
 router.use(express.json())
@@ -37,8 +32,6 @@ router.use(accessLogger)
 router.use('/login', loginRouter)
 router.use(isLoggedInMiddleware)
 
-if (inStaging) router.use('/test', testRouter)
-
 router.use('/results', resultRouter)
 router.use('/faculties', facultyRouter)
 router.use('/surveys', surveyRouter)
@@ -49,7 +42,6 @@ router.use('/recommendations', recommendationRouter)
 router.use('/analytics', analyticRouter)
 router.use('/llm', llmRouter)
 
-Sentry.setupExpressErrorHandler(router)
 router.use(errorHandler)
 
 export default router

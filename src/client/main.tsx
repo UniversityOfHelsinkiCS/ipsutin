@@ -7,11 +7,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import initializeI18n from './util/il18n'
 import queryClient from './util/queryClient'
-import initializeSentry from './util/sentry'
 import router from './Router'
 
 initializeI18n()
-initializeSentry()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
