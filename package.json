@@ -46,7 +46,7 @@
     "umzug": "^3.2.1",
     "unfuck-utf8-headers-middleware": "^1.0.1",
     "vite": "^8.3.0",
-    "zod": "^3.21.4"
+    "zod": "^4.0.0"
   },
   "scripts": {
     "start": "docker compose up",
